@@ -19,9 +19,12 @@
 		BF5415121AE7109900DA14BA /* SimulatorWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5415111AE7109900DA14BA /* SimulatorWindow.swift */; };
 		BF5415141AE712DA00DA14BA /* SimulatorWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF5415131AE712DA00DA14BA /* SimulatorWindow.xib */; };
 		BF5415161AE7132F00DA14BA /* Simulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5415151AE7132F00DA14BA /* Simulator.swift */; };
-		BF5415181AE719EC00DA14BA /* Keyboard-292x169.png in Resources */ = {isa = PBXBuildFile; fileRef = BF5415171AE719EC00DA14BA /* Keyboard-292x169.png */; };
 		BF54151A1AE7228E00DA14BA /* SimulatorMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5415191AE7228E00DA14BA /* SimulatorMenu.swift */; };
 		BF54151C1AE7249100DA14BA /* SimulatorMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF54151B1AE7249100DA14BA /* SimulatorMenuItem.swift */; };
+		BF54151E1AE733D900DA14BA /* SimulatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF54151D1AE733D900DA14BA /* SimulatorView.swift */; };
+		BF5415201AE739FE00DA14BA /* Keyboard-236x137.png in Resources */ = {isa = PBXBuildFile; fileRef = BF54151F1AE739FE00DA14BA /* Keyboard-236x137.png */; };
+		BF5415271AE74C6000DA14BA /* BlackButton-107x42.png in Resources */ = {isa = PBXBuildFile; fileRef = BF5415251AE74C6000DA14BA /* BlackButton-107x42.png */; };
+		BF5415281AE74C6000DA14BA /* WhiteButton-107x42.png in Resources */ = {isa = PBXBuildFile; fileRef = BF5415261AE74C6000DA14BA /* WhiteButton-107x42.png */; };
 		BF7152991AD5918800CB15B6 /* GraphicsUtilities in Resources */ = {isa = PBXBuildFile; fileRef = BF7152981AD5918800CB15B6 /* GraphicsUtilities */; };
 		BF71529B1AD5927700CB15B6 /* NSLineSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF71529A1AD5927700CB15B6 /* NSLineSegment.swift */; };
 		BF996C051AD98329007DB769 /* socket-empty-grey-16x16.png in Resources */ = {isa = PBXBuildFile; fileRef = BF996C041AD98329007DB769 /* socket-empty-grey-16x16.png */; };
@@ -83,9 +86,12 @@
 		BF5415111AE7109900DA14BA /* SimulatorWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimulatorWindow.swift; sourceTree = "<group>"; };
 		BF5415131AE712DA00DA14BA /* SimulatorWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SimulatorWindow.xib; sourceTree = "<group>"; };
 		BF5415151AE7132F00DA14BA /* Simulator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Simulator.swift; sourceTree = "<group>"; };
-		BF5415171AE719EC00DA14BA /* Keyboard-292x169.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Keyboard-292x169.png"; sourceTree = "<group>"; };
 		BF5415191AE7228E00DA14BA /* SimulatorMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimulatorMenu.swift; sourceTree = "<group>"; };
 		BF54151B1AE7249100DA14BA /* SimulatorMenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimulatorMenuItem.swift; sourceTree = "<group>"; };
+		BF54151D1AE733D900DA14BA /* SimulatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimulatorView.swift; sourceTree = "<group>"; };
+		BF54151F1AE739FE00DA14BA /* Keyboard-236x137.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Keyboard-236x137.png"; sourceTree = "<group>"; };
+		BF5415251AE74C6000DA14BA /* BlackButton-107x42.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BlackButton-107x42.png"; sourceTree = "<group>"; };
+		BF5415261AE74C6000DA14BA /* WhiteButton-107x42.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WhiteButton-107x42.png"; sourceTree = "<group>"; };
 		BF7152981AD5918800CB15B6 /* GraphicsUtilities */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GraphicsUtilities; sourceTree = "<group>"; };
 		BF71529A1AD5927700CB15B6 /* NSLineSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSLineSegment.swift; sourceTree = "<group>"; };
 		BF996C041AD98329007DB769 /* socket-empty-grey-16x16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "socket-empty-grey-16x16.png"; sourceTree = "<group>"; };
@@ -157,10 +163,10 @@
 		BF54150B1AE6FADF00DA14BA /* Utilities and Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				BF5415091AE6C54D00DA14BA /* JSONParser.swift */,
 				BFE1A4181AD32F310020A7E6 /* NSBezierPathExtensions.swift */,
 				BFD426581AD2D558008C5009 /* NSPointExtensions.swift */,
 				BFE1A40E1AD310360020A7E6 /* NSRectExtensions.swift */,
-				BF5415091AE6C54D00DA14BA /* JSONParser.swift */,
 				BF54150C1AE6FB0900DA14BA /* StringExtensions.swift */,
 			);
 			name = "Utilities and Extensions";
@@ -169,11 +175,12 @@
 		BF5415101AE7107C00DA14BA /* Simulator */ = {
 			isa = PBXGroup;
 			children = (
-				BF5415111AE7109900DA14BA /* SimulatorWindow.swift */,
-				BF5415131AE712DA00DA14BA /* SimulatorWindow.xib */,
 				BF5415151AE7132F00DA14BA /* Simulator.swift */,
 				BF5415191AE7228E00DA14BA /* SimulatorMenu.swift */,
 				BF54151B1AE7249100DA14BA /* SimulatorMenuItem.swift */,
+				BF54151D1AE733D900DA14BA /* SimulatorView.swift */,
+				BF5415111AE7109900DA14BA /* SimulatorWindow.swift */,
+				BF5415131AE712DA00DA14BA /* SimulatorWindow.xib */,
 			);
 			name = Simulator;
 			sourceTree = "<group>";
@@ -240,7 +247,9 @@
 		BFD426401AD2AE88008C5009 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				BF5415171AE719EC00DA14BA /* Keyboard-292x169.png */,
+				BF5415251AE74C6000DA14BA /* BlackButton-107x42.png */,
+				BF5415261AE74C6000DA14BA /* WhiteButton-107x42.png */,
+				BF54151F1AE739FE00DA14BA /* Keyboard-236x137.png */,
 				BF54150E1AE70F5000DA14BA /* WhiteiPhone-292x597.png */,
 				BF996C081AD9971F007DB769 /* socket-action-empty-16x16.png */,
 				BF996C041AD98329007DB769 /* socket-empty-grey-16x16.png */,
@@ -383,17 +392,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF5415181AE719EC00DA14BA /* Keyboard-292x169.png in Resources */,
 				BFE1A40B1AD304600020A7E6 /* socket-full-16x16.png in Resources */,
 				BF23E3831ADED1DB007B370F /* ActionItemEditorView.xib in Resources */,
 				BFE1A4131AD3217F0020A7E6 /* iPhone6WhiteUSSD-170x347.png in Resources */,
+				BF5415201AE739FE00DA14BA /* Keyboard-236x137.png in Resources */,
 				BF5415141AE712DA00DA14BA /* SimulatorWindow.xib in Resources */,
 				BFB804591ADF4FAC00CB8DBE /* JSON.txt in Resources */,
 				BF996C051AD98329007DB769 /* socket-empty-grey-16x16.png in Resources */,
 				BF54150F1AE70F5000DA14BA /* WhiteiPhone-292x597.png in Resources */,
 				BF7152991AD5918800CB15B6 /* GraphicsUtilities in Resources */,
+				BF5415281AE74C6000DA14BA /* WhiteButton-107x42.png in Resources */,
 				BFD426281AD2AE44008C5009 /* Images.xcassets in Resources */,
 				BFE1A40A1AD304600020A7E6 /* socket-empty-16x16.png in Resources */,
+				BF5415271AE74C6000DA14BA /* BlackButton-107x42.png in Resources */,
 				BF996C091AD9971F007DB769 /* socket-action-empty-16x16.png in Resources */,
 				BFE1A4111AD317090020A7E6 /* iPhone6BlackUSSD-170x347.png in Resources */,
 				BFD4262B1AD2AE44008C5009 /* MainMenu.xib in Resources */,
@@ -433,6 +444,7 @@
 				BFE1A4191AD32F310020A7E6 /* NSBezierPathExtensions.swift in Sources */,
 				BF5415121AE7109900DA14BA /* SimulatorWindow.swift in Sources */,
 				BFD426511AD2AF9B008C5009 /* USSDMenuTitleItem.swift in Sources */,
+				BF54151E1AE733D900DA14BA /* SimulatorView.swift in Sources */,
 				BF23E3851ADED312007B370F /* ActionItemEditor.swift in Sources */,
 				BFD4265C1AD2D7A0008C5009 /* SelectionHolder.swift in Sources */,
 				BFE1A41F1AD332570020A7E6 /* SlotSet.swift in Sources */,

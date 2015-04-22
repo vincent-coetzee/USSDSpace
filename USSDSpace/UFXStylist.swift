@@ -20,12 +20,45 @@ class UFXStylist:NSObject
 	static var DeselectionColor:NSColor = NSColor.clearColor()
 	static var LinkLineColor:NSColor = NSColor.lightGrayColor()
 	static var SlotMenuImage = NSImage(named:"socket-action-empty-16x16")
+	static var SimulatorFontName = "Helvetica"
+	static var SimulatorFontSize:CGFloat = 13
+	static var SimulatorFont = NSFont(name:UFXStylist.SimulatorFontName,size:UFXStylist.SimulatorFontSize)
+	static var SimulatorTextColor = NSColor.whiteColor()
+	static var SimulatorButtonFont = NSFont(name:"Helvetica Bold",size:14)
 	
 	static func styleMenuEntry(item:USSDMenuEntry)
 		{
 		item.font = MenuItemFont
 		item.fontSize = MenuItemFontSize
 		item.foregroundColor = MenuItemTextColor.CGColor
+		}
+		
+	static func styleSimulatorLayer(layer:CATextLayer)
+		{
+		layer.font = SimulatorFontName
+		layer.foregroundColor = SimulatorTextColor.CGColor
+		layer.fontSize = SimulatorFontSize
+		layer.alignmentMode = kCAAlignmentCenter
+		}
+		
+	static func styledSimulatorButtonText(text:String) -> NSAttributedString
+		{
+		if text == "Dismiss"
+			{
+			var attributes:[String: AnyObject] = [String:AnyObject]()
+			
+			attributes[NSFontAttributeName] = UFXStylist.SimulatorButtonFont
+			attributes[NSForegroundColorAttributeName] = NSColor.blackColor()
+			return(NSAttributedString(string: text,attributes:attributes))
+			}
+		else
+			{
+			var attributes:[String: AnyObject] = [String:AnyObject]()
+			
+			attributes[NSFontAttributeName] = UFXStylist.SimulatorButtonFont
+			attributes[NSForegroundColorAttributeName] = NSColor.whiteColor()
+			return(NSAttributedString(string: text,attributes:attributes))
+			}
 		}
 		
 	static func styleLayerAsMenuName(layer:CATextLayer)

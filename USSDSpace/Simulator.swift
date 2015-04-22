@@ -13,7 +13,7 @@ import QuartzCore
 class Simulator:NSObject,NSXMLParserDelegate
 	{
 	@IBOutlet var window:SimulatorWindow?
-	var contentView:NSView?
+	var view:SimulatorView?
 	var nib:NSNib?
 	var array:AutoreleasingUnsafeMutablePointer<NSArray?> = AutoreleasingUnsafeMutablePointer<NSArray?>()
 	var menu:SimulatorMenu?
@@ -33,6 +33,8 @@ class Simulator:NSObject,NSXMLParserDelegate
 		{
 		nib = NSNib(nibNamed: "SimulatorWindow",bundle:NSBundle.mainBundle())
 		nib!.instantiateWithOwner(self,topLevelObjects:array)
+		view = SimulatorView(frame:window!.contentView.bounds)
+		window!.contentView.addSubview(view!)
 		window!.makeKeyAndOrderFront(self)
 		}
 		

@@ -17,6 +17,7 @@ class SimulatorMenu:NSObject,NSXMLParserDelegate
 	var menu:SimulatorMenu?
 	var items:[SimulatorMenuItem] = [SimulatorMenuItem]()
 	var currentItem:SimulatorMenuItem?
+	var menuLayer:CATextLayer?
 	
 	init(parser:NSXMLParser)
 		{
@@ -24,6 +25,12 @@ class SimulatorMenu:NSObject,NSXMLParserDelegate
 		self.parser = parser
 		oldDelegate = parser.delegate
 		parser.delegate = self
+		}
+		
+	func addToLayer(layer:CALayer)
+		{
+		menuLayer = CATextLayer()
+		
 		}
 		
 	func parser(parser: NSXMLParser, foundCharacters string: String?)

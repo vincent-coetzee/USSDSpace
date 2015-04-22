@@ -10,27 +10,29 @@
 	<string>USSDSpace</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>d0435b4f-f105-41bd-988a-02b91759f8d0</key>
-		<string>svn+ssh://olamide4/USSDSpace</string>
+		<key>5D91968A84BF2E94A4DE06AB4C10E2F0AEA4A6A6</key>
+		<string>github.com:vincent-coetzee/USSDSpace.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>trunk/USSDSpace.xcodeproj</string>
+	<string>USSDSpace.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>d0435b4f-f105-41bd-988a-02b91759f8d0</key>
-		<string>../../..</string>
+		<key>5D91968A84BF2E94A4DE06AB4C10E2F0AEA4A6A6</key>
+		<string>../..</string>
 	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:vincent-coetzee/USSDSpace.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>d0435b4f-f105-41bd-988a-02b91759f8d0</string>
+	<string>5D91968A84BF2E94A4DE06AB4C10E2F0AEA4A6A6</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.subversion</string>
+			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>d0435b4f-f105-41bd-988a-02b91759f8d0</string>
+			<string>5D91968A84BF2E94A4DE06AB4C10E2F0AEA4A6A6</string>
 			<key>IDESourceControlWCCName</key>
 			<string>USSDSpace</string>
 		</dict>
