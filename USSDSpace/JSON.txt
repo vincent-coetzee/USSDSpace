@@ -10,3 +10,14 @@
 		]
 	},
 	{ "uuid": "FAFEC668-913B-4F26-B841-E5C51ECCF71C", "menuName": "CAMP-1", "transferElements": [{"type":"USSDSpace.USSDMenuTitleItem", "uuid":"F1203AEC-E3AF-4469-8F1D-98E5AEF38490"},{ "type": "USSDSpace.USSDMenuItem", "uuid":"D7EC0196-FB0E-4985-B3A8-6FC620045282", "itemIndex": 1, "text": "Pay Now" },{ "type": "USSDSpace.USSDMenuItem", "uuid":"C132EBEC-D036-4B45-BBCD-336D9A47EDB5", "itemIndex": 2, "text": "Payment Arrangement" },{ "type": "USSDSpace.USSDMenuItem", "uuid":"7545546D-8B69-4601-8742-D844D0D17D3A", "itemIndex": 3, "text": "Rewards","actionType": "link", "actionValue": , "nextMenuUUID": "D4CF1756-5A36-42CF-8BFC-C8B9E1EEE5CB" },{ "type": "USSDSpace.USSDActionMenuItem", "uuid":"65D6626A-44AE-4953-8E0B-7ED8A7ECFC8E", "itemIndex": 4, "text": "Exit","actionType":"Method","actionValue":"onExit","nextMenuUUID":"FAFEC668-913B-4F26-B841-E5C51ECCF71C" }]}]}
+	
+	mvn archetype:generate  -DarchetypeArtifactId=jboss-javaee6-webapp  \ 
+                                             -DarchetypeGroupId=org.jboss.spec.archetypes \
+                                             -DgroupId=com.mastertheboss  \ 
+                                             -DartifactId=as7example -DinteractiveMode=false
+
+	
+	mvn archetype:generate  -DarchetypeArtifactId=org.jboss.spec.archetypes  -DarchetypeGroupId=org.jboss.spec.archetypes -DgroupId=com.macsemantics -DartifactId=USSDManager -DinteractiveMode=false
+
+
+ mvn archetype:generate -DgroupId=com.macsemantics -DartifactId=USSDManager -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false

@@ -37,6 +37,7 @@ class SimulatorMenuItem:NSObject,NSXMLParserDelegate
 			height = 0
 			return
 			}
+		NSLog("****\(title)****")
 		label = "\(command).\(title)"
 		menuItemLayer = CATextLayer()
 		menuItemLayer!.wrapped = true

@@ -78,7 +78,6 @@ class Simulator:NSObject,NSXMLParserDelegate
 			{
 			return
 			}
-		view!.hideKeyboard(true)
 		callbackURL = CallbackURL(base:callback!)
 		callbackURL.setValue(reply,forKey:"request")
 		setCallback(callbackURL)
@@ -97,9 +96,15 @@ class Simulator:NSObject,NSXMLParserDelegate
 			{
 			parser!.delegate = self
 			parser!.parse()
-			NSLog("ERROR=\(parser!.parserError)")
+			if parser!.parserError != nil
+				{
+				NSLog("ERROR = \(parser!.parserError)")
+				}
+			else
+				{
+				view!.currentMenu = menu!
+				}
 			}
-		view!.currentMenu = menu!
 		}
 		
 	func parser(parser: NSXMLParser,didStartElement elementName: String,namespaceURI: String?,qualifiedName: String?,attributes attributeDict: [NSObject : AnyObject])

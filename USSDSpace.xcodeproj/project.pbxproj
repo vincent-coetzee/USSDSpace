@@ -25,6 +25,8 @@
 		BF5415271AE74C6000DA14BA /* BlackButton-107x42.png in Resources */ = {isa = PBXBuildFile; fileRef = BF5415251AE74C6000DA14BA /* BlackButton-107x42.png */; };
 		BF5415281AE74C6000DA14BA /* WhiteButton-107x42.png in Resources */ = {isa = PBXBuildFile; fileRef = BF5415261AE74C6000DA14BA /* WhiteButton-107x42.png */; };
 		BF54152A1AE7572100DA14BA /* CallbackURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5415291AE7572100DA14BA /* CallbackURL.swift */; };
+		BF54152C1AE77B5C00DA14BA /* NSColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF54152B1AE77B5C00DA14BA /* NSColorExtensions.swift */; };
+		BF54152E1AE77F6E00DA14BA /* NSAttributedStringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF54152D1AE77F6E00DA14BA /* NSAttributedStringExtensions.swift */; };
 		BF7152991AD5918800CB15B6 /* GraphicsUtilities in Resources */ = {isa = PBXBuildFile; fileRef = BF7152981AD5918800CB15B6 /* GraphicsUtilities */; };
 		BF71529B1AD5927700CB15B6 /* NSLineSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF71529A1AD5927700CB15B6 /* NSLineSegment.swift */; };
 		BF996C051AD98329007DB769 /* socket-empty-grey-16x16.png in Resources */ = {isa = PBXBuildFile; fileRef = BF996C041AD98329007DB769 /* socket-empty-grey-16x16.png */; };
@@ -49,7 +51,6 @@
 		BFD426591AD2D558008C5009 /* NSPointExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD426581AD2D558008C5009 /* NSPointExtensions.swift */; };
 		BFD4265C1AD2D7A0008C5009 /* SelectionHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD4265B1AD2D7A0008C5009 /* SelectionHolder.swift */; };
 		BFD4265E1AD2D96C008C5009 /* Selectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD4265D1AD2D96C008C5009 /* Selectable.swift */; };
-		BFD426601AD2ECCF008C5009 /* TextHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD4265F1AD2ECCF008C5009 /* TextHelper.swift */; };
 		BFE1A40A1AD304600020A7E6 /* socket-empty-16x16.png in Resources */ = {isa = PBXBuildFile; fileRef = BFE1A4081AD304600020A7E6 /* socket-empty-16x16.png */; };
 		BFE1A40B1AD304600020A7E6 /* socket-full-16x16.png in Resources */ = {isa = PBXBuildFile; fileRef = BFE1A4091AD304600020A7E6 /* socket-full-16x16.png */; };
 		BFE1A40D1AD305650020A7E6 /* USSDMenuEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE1A40C1AD305650020A7E6 /* USSDMenuEntry.swift */; };
@@ -92,6 +93,8 @@
 		BF5415251AE74C6000DA14BA /* BlackButton-107x42.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BlackButton-107x42.png"; sourceTree = "<group>"; };
 		BF5415261AE74C6000DA14BA /* WhiteButton-107x42.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WhiteButton-107x42.png"; sourceTree = "<group>"; };
 		BF5415291AE7572100DA14BA /* CallbackURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallbackURL.swift; sourceTree = "<group>"; };
+		BF54152B1AE77B5C00DA14BA /* NSColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSColorExtensions.swift; sourceTree = "<group>"; };
+		BF54152D1AE77F6E00DA14BA /* NSAttributedStringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAttributedStringExtensions.swift; sourceTree = "<group>"; };
 		BF7152981AD5918800CB15B6 /* GraphicsUtilities */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GraphicsUtilities; sourceTree = "<group>"; };
 		BF71529A1AD5927700CB15B6 /* NSLineSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSLineSegment.swift; sourceTree = "<group>"; };
 		BF996C041AD98329007DB769 /* socket-empty-grey-16x16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "socket-empty-grey-16x16.png"; sourceTree = "<group>"; };
@@ -120,7 +123,6 @@
 		BFD426581AD2D558008C5009 /* NSPointExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSPointExtensions.swift; sourceTree = "<group>"; };
 		BFD4265B1AD2D7A0008C5009 /* SelectionHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectionHolder.swift; sourceTree = "<group>"; };
 		BFD4265D1AD2D96C008C5009 /* Selectable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Selectable.swift; sourceTree = "<group>"; };
-		BFD4265F1AD2ECCF008C5009 /* TextHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextHelper.swift; sourceTree = "<group>"; };
 		BFE1A4081AD304600020A7E6 /* socket-empty-16x16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "socket-empty-16x16.png"; sourceTree = "<group>"; };
 		BFE1A4091AD304600020A7E6 /* socket-full-16x16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "socket-full-16x16.png"; sourceTree = "<group>"; };
 		BFE1A40C1AD305650020A7E6 /* USSDMenuEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USSDMenuEntry.swift; sourceTree = "<group>"; };
@@ -164,7 +166,9 @@
 			isa = PBXGroup;
 			children = (
 				BF5415091AE6C54D00DA14BA /* JSONParser.swift */,
+				BF54152D1AE77F6E00DA14BA /* NSAttributedStringExtensions.swift */,
 				BFE1A4181AD32F310020A7E6 /* NSBezierPathExtensions.swift */,
+				BF54152B1AE77B5C00DA14BA /* NSColorExtensions.swift */,
 				BFD426581AD2D558008C5009 /* NSPointExtensions.swift */,
 				BFE1A40E1AD310360020A7E6 /* NSRectExtensions.swift */,
 				BF54150C1AE6FB0900DA14BA /* StringExtensions.swift */,
@@ -207,15 +211,14 @@
 		BFD4261F1AD2AE44008C5009 /* USSDSpace */ = {
 			isa = PBXGroup;
 			children = (
-				BF5415101AE7107C00DA14BA /* Simulator */,
-				BF54150B1AE6FADF00DA14BA /* Utilities and Extensions */,
-				BF23E38A1ADF1BAA007B370F /* Deployment */,
-				BFD4265A1AD2D78E008C5009 /* Value Models */,
-				BFD426431AD2AEC4008C5009 /* UFX */,
 				BFD426411AD2AE96008C5009 /* Application Related */,
+				BF23E38A1ADF1BAA007B370F /* Deployment */,
 				BFD426401AD2AE88008C5009 /* Resources */,
+				BF5415101AE7107C00DA14BA /* Simulator */,
 				BFD426201AD2AE44008C5009 /* Supporting Files */,
-				BF7152981AD5918800CB15B6 /* GraphicsUtilities */,
+				BFD426431AD2AEC4008C5009 /* UFX */,
+				BF54150B1AE6FADF00DA14BA /* Utilities and Extensions */,
+				BFD4265A1AD2D78E008C5009 /* Value Models */,
 			);
 			path = USSDSpace;
 			sourceTree = "<group>";
@@ -223,6 +226,7 @@
 		BFD426201AD2AE44008C5009 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BF7152981AD5918800CB15B6 /* GraphicsUtilities */,
 				BFD426211AD2AE44008C5009 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -288,7 +292,6 @@
 				BFE1A4161AD32A6E0020A7E6 /* SlotLink.swift */,
 				BFE1A41E1AD332570020A7E6 /* SlotSet.swift */,
 				BF4FD4991AD5B8E400ABBDCA /* TargetSlot.swift */,
-				BFD4265F1AD2ECCF008C5009 /* TextHelper.swift */,
 				BFD426561AD2BE00008C5009 /* UFXStylist.swift */,
 				BF996C061AD993F3007DB769 /* USSDActionMenuItem.swift */,
 				BFD4264A1AD2AF45008C5009 /* USSDElement.swift */,
@@ -447,8 +450,8 @@
 				BF23E3851ADED312007B370F /* ActionItemEditor.swift in Sources */,
 				BFD4265C1AD2D7A0008C5009 /* SelectionHolder.swift in Sources */,
 				BFE1A41F1AD332570020A7E6 /* SlotSet.swift in Sources */,
-				BFD426601AD2ECCF008C5009 /* TextHelper.swift in Sources */,
 				BFD426571AD2BE00008C5009 /* UFXStylist.swift in Sources */,
+				BF54152E1AE77F6E00DA14BA /* NSAttributedStringExtensions.swift in Sources */,
 				BFD426491AD2AF1C008C5009 /* DesignView.swift in Sources */,
 				BF54152A1AE7572100DA14BA /* CallbackURL.swift in Sources */,
 				BFD4264B1AD2AF45008C5009 /* USSDElement.swift in Sources */,
@@ -459,6 +462,7 @@
 				BF5415161AE7132F00DA14BA /* Simulator.swift in Sources */,
 				BF4FD49A1AD5B8E400ABBDCA /* TargetSlot.swift in Sources */,
 				BFE1A40F1AD310360020A7E6 /* NSRectExtensions.swift in Sources */,
+				BF54152C1AE77B5C00DA14BA /* NSColorExtensions.swift in Sources */,
 				BFD4264D1AD2AF57008C5009 /* USSDMenu.swift in Sources */,
 				BFD4265E1AD2D96C008C5009 /* Selectable.swift in Sources */,
 				BFE1A41D1AD331DB0020A7E6 /* Slot.swift in Sources */,

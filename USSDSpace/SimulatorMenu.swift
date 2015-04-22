@@ -31,7 +31,6 @@ class SimulatorMenu:NSObject,NSXMLParserDelegate
 	func addToLayer(layer:CALayer,inWidth:CGFloat,inHeight:CGFloat)
 		{
 		var totalHeight:CGFloat = 0
-		var itemLayer:CATextLayer
 		var padding:CGFloat
 		var offset:CGFloat
 		var newWidth:CGFloat
@@ -51,7 +50,7 @@ class SimulatorMenu:NSObject,NSXMLParserDelegate
 			item.addToLayer(layer,inWidth:inWidth)
 			totalHeight += item.height
 			}
-		padding = (inHeight - 40 - totalHeight)/2
+		padding = (inHeight - totalHeight)/2 - 20
 		offset = padding
 		menuLayer!.frame = CGRect(x:xOffset,y:offset,width:newWidth,height:height)
 		offset += height
@@ -60,7 +59,7 @@ class SimulatorMenu:NSObject,NSXMLParserDelegate
 			if item.display
 				{
 				item.menuItemLayer!.frame = CGRect(x:xOffset,y:offset,width:newWidth,height:item.height)
-				offset += height
+				offset += item.height
 				}
 			}
 		layer.setNeedsDisplay()

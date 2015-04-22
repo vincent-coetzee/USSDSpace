@@ -12,7 +12,7 @@ import QuartzCore
 
 class SimulatorView:NSView,NSTextViewDelegate,NSTextDelegate
 	{
-	private var menuLayer:CALayer = CALayer()
+	private var menuLayer = CALayer()
 	private var keyboardLayer:CALayer = CALayer()
 	private var entryField:NSTextView = NSTextView(frame:NSRect(x:0,y:0,width:0,height:0))
 	private var characterCountLayer = CATextLayer()
@@ -20,6 +20,9 @@ class SimulatorView:NSView,NSTextViewDelegate,NSTextDelegate
 	private var replyButton = NSButton(frame:NSRect(x:0,y:0,width:0,height:0))
 	private var rightButton = NSButton(frame:NSRect(x:0,y:0,width:0,height:0))
 	private var leftButton = NSButton(frame:NSRect(x:0,y:0,width:0,height:0))
+	
+	private let KeyboardAdjustmentHeight:CGFloat = 97
+	
 	var controller:Simulator?
 	
 	var currentMenu:SimulatorMenu?
@@ -72,7 +75,7 @@ class SimulatorView:NSView,NSTextViewDelegate,NSTextDelegate
 		if move
 			{
 			var menuFrame = menuLayer.frame
-			menuFrame.origin.y += 127
+			menuFrame.origin.y += KeyboardAdjustmentHeight
 			menuLayer.frame = menuFrame
 			}
 		replyButton.hidden = false
@@ -84,29 +87,27 @@ class SimulatorView:NSView,NSTextViewDelegate,NSTextDelegate
 		
 	func showKeyboard()
 		{
-		var menuFrame = menuLayer.frame
-		menuFrame.origin.y -= 127
-		menuLayer.frame = menuFrame
 		characterCountLayer.hidden = false
 		keyboardLayer.hidden = false
 		replyButton.hidden = true
 		dismissButton.hidden = true
 		entryField.string = ""
 		self.addSubview(entryField)
-		entryField.layer!.borderColor = UFXStylist.SimulatorTextColor.CGColor
-		entryField.layer!.borderWidth = 1
-		entryField.layer!.cornerRadius = 6
-		entryField.textColor = UFXStylist.SimulatorTextColor
-		entryField.fieldEditor = true
+		configureEntryField()
 		self.window!.makeKeyAndOrderFront(nil)
 		self.window!.makeFirstResponder(entryField)
 		rightButton.hidden = false
 		leftButton.hidden = false
+		var menuFrame = menuLayer.frame
+		menuFrame.origin.y -= KeyboardAdjustmentHeight
+		menuLayer.frame = menuFrame
 		}
 		
 	func commonInit()
 		{
 		wantsLayer = true
+		menuLayer.borderWidth = 3
+		menuLayer.borderColor = NSColor.redColor().CGColor
 		self.layer!.addSublayer(menuLayer)
 		needsLayout = true
 		needsDisplay = true
@@ -117,12 +118,21 @@ class SimulatorView:NSView,NSTextViewDelegate,NSTextDelegate
 		characterCountLayer.font = UFXStylist.SimulatorFontName
 		characterCountLayer.fontSize = UFXStylist.SimulatorFontSize
 		self.layer!.addSublayer(characterCountLayer)
-		entryField.font = UFXStylist.SimulatorFont
-		entryField.textColor = UFXStylist.SimulatorTextColor
-		entryField.drawsBackground = false
-		entryField.delegate = self
 		initButtons()
 		hideKeyboard(false)
+		doInitialLayout()
+		}
+		
+	func configureEntryField()
+		{
+		entryField.textColor = UFXStylist.SimulatorTextColor
+		entryField.font = UFXStylist.SimulatorFont
+		entryField.drawsBackground = false
+		entryField.delegate = self
+		entryField.fieldEditor = true
+		entryField.layer!.borderColor = UFXStylist.SimulatorTextColor.CGColor
+		entryField.layer!.borderWidth = 1
+		entryField.layer!.cornerRadius = 6
 		}
 		
 	func initButtons()
@@ -178,15 +188,31 @@ class SimulatorView:NSView,NSTextViewDelegate,NSTextDelegate
 		
 	func onCancelSend(sender:AnyObject?)
 		{
+		hideKeyboard(true)
 		}
 		
-	override func layout()
+	func resetMenuLayerFrame()
 		{
 		var someBounds:NSRect
 		var origin:NSPoint
 		var extent:NSSize
 		
-		super.layout()
+		someBounds = bounds
+		origin = someBounds.origin
+		extent = someBounds.size
+		origin.x += 30
+		extent.width = 236
+		origin.y += 107
+		extent.height = 399
+		menuLayer.frame = NSRect(origin:origin,size:extent)
+		}
+		
+	func doInitialLayout()
+		{
+		var someBounds:NSRect
+		var origin:NSPoint
+		var extent:NSSize
+		
 		someBounds = bounds
 		origin = someBounds.origin
 		extent = someBounds.size
@@ -196,7 +222,7 @@ class SimulatorView:NSView,NSTextViewDelegate,NSTextDelegate
 		extent.height = 399
 		menuLayer.frame = NSRect(origin:origin,size:extent)
 		keyboardLayer.frame = NSRect(x:29,y:371,width:236,height:137)
-		entryField.frame = NSRect(x:32,y:327,width:230,height:24)
+		entryField.frame = NSRect(x:32,y:327,width:230,height:36)
 		characterCountLayer.frame = NSRect(x:32,y:356,width:230,height:24)
 		dismissButton.frame = NSRect(x:29+10,y:420,width:107,height:42)
 		replyButton.frame = NSRect(x:29+10+107+4,y:420,width:107,height:42)
@@ -206,6 +232,8 @@ class SimulatorView:NSView,NSTextViewDelegate,NSTextDelegate
 		
 	func updateMenuLayer()
 		{
+		resetMenuLayerFrame()
+		hideKeyboard(false)
 		if menuLayer.sublayers != nil
 			{
 			for aLayer in menuLayer.sublayers
