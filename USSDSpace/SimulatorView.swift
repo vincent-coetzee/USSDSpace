@@ -60,6 +60,11 @@ class SimulatorView:NSView,NSTextViewDelegate,NSTextDelegate
 		characterCountLayer.string = NSString(format:"%ld characters remaining",remainder)
 		}
 		
+	func textDidEndEditing(notification:NSNotification) 
+		{
+		onReplySend(self)
+		}
+		
 	func hideKeyboard(move:Bool)
 		{
 		characterCountLayer.hidden = true
