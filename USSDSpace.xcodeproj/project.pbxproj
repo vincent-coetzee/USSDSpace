@@ -11,6 +11,10 @@
 		BF23E3851ADED312007B370F /* ActionItemEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF23E3841ADED312007B370F /* ActionItemEditor.swift */; };
 		BF23E3891ADEE220007B370F /* USSDMenuNameItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF23E3881ADEE220007B370F /* USSDMenuNameItem.swift */; };
 		BF23E38C1ADF1BC4007B370F /* USSDManagerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF23E38B1ADF1BC4007B370F /* USSDManagerService.swift */; };
+		BF34841E1AE820F100F4180C /* AuthenticationPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF34841D1AE820F100F4180C /* AuthenticationPacket.swift */; };
+		BF3484201AE838D000F4180C /* ErrorSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF34841F1AE838D000F4180C /* ErrorSheet.xib */; };
+		BF3484221AE8398600F4180C /* ErrorSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3484211AE8398600F4180C /* ErrorSheet.swift */; };
+		BF3EC9851AE7E41A00140D82 /* USSDDocument.png in Resources */ = {isa = PBXBuildFile; fileRef = BF3EC9841AE7E41A00140D82 /* USSDDocument.png */; };
 		BF4FD49A1AD5B8E400ABBDCA /* TargetSlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4FD4991AD5B8E400ABBDCA /* TargetSlot.swift */; };
 		BF54150A1AE6C54D00DA14BA /* JSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5415091AE6C54D00DA14BA /* JSONParser.swift */; };
 		BF54150D1AE6FB0900DA14BA /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF54150C1AE6FB0900DA14BA /* StringExtensions.swift */; };
@@ -79,6 +83,10 @@
 		BF23E3841ADED312007B370F /* ActionItemEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionItemEditor.swift; sourceTree = "<group>"; };
 		BF23E3881ADEE220007B370F /* USSDMenuNameItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USSDMenuNameItem.swift; sourceTree = "<group>"; };
 		BF23E38B1ADF1BC4007B370F /* USSDManagerService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USSDManagerService.swift; sourceTree = "<group>"; };
+		BF34841D1AE820F100F4180C /* AuthenticationPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationPacket.swift; sourceTree = "<group>"; };
+		BF34841F1AE838D000F4180C /* ErrorSheet.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ErrorSheet.xib; sourceTree = "<group>"; };
+		BF3484211AE8398600F4180C /* ErrorSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorSheet.swift; sourceTree = "<group>"; };
+		BF3EC9841AE7E41A00140D82 /* USSDDocument.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = USSDDocument.png; sourceTree = "<group>"; };
 		BF4FD4991AD5B8E400ABBDCA /* TargetSlot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetSlot.swift; sourceTree = "<group>"; };
 		BF5415091AE6C54D00DA14BA /* JSONParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONParser.swift; sourceTree = "<group>"; };
 		BF54150C1AE6FB0900DA14BA /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
@@ -165,6 +173,7 @@
 		BF54150B1AE6FADF00DA14BA /* Utilities and Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				BF71529A1AD5927700CB15B6 /* NSLineSegment.swift */,
 				BF5415091AE6C54D00DA14BA /* JSONParser.swift */,
 				BF54152D1AE77F6E00DA14BA /* NSAttributedStringExtensions.swift */,
 				BFE1A4181AD32F310020A7E6 /* NSBezierPathExtensions.swift */,
@@ -172,6 +181,7 @@
 				BFD426581AD2D558008C5009 /* NSPointExtensions.swift */,
 				BFE1A40E1AD310360020A7E6 /* NSRectExtensions.swift */,
 				BF54150C1AE6FB0900DA14BA /* StringExtensions.swift */,
+				BF34841D1AE820F100F4180C /* AuthenticationPacket.swift */,
 			);
 			name = "Utilities and Extensions";
 			sourceTree = "<group>";
@@ -193,6 +203,7 @@
 		BFD426141AD2AE44008C5009 = {
 			isa = PBXGroup;
 			children = (
+				BF3EC9841AE7E41A00140D82 /* USSDDocument.png */,
 				BFD4261F1AD2AE44008C5009 /* USSDSpace */,
 				BFD426331AD2AE44008C5009 /* USSDSpaceTests */,
 				BFD4261E1AD2AE44008C5009 /* Products */,
@@ -263,9 +274,7 @@
 				BFE1A4081AD304600020A7E6 /* socket-empty-16x16.png */,
 				BFE1A4091AD304600020A7E6 /* socket-full-16x16.png */,
 				BFD426271AD2AE44008C5009 /* Images.xcassets */,
-				BFD426291AD2AE44008C5009 /* MainMenu.xib */,
 				BFD426241AD2AE44008C5009 /* USSDSpace.xcdatamodeld */,
-				BF23E3821ADED1DB007B370F /* ActionItemEditorView.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -282,12 +291,15 @@
 			isa = PBXGroup;
 			children = (
 				BF23E3841ADED312007B370F /* ActionItemEditor.swift */,
+				BF23E3821ADED1DB007B370F /* ActionItemEditorView.xib */,
 				BF996C0A1AD9973F007DB769 /* ActionSlot.swift */,
-				BFB804581ADF4FAC00CB8DBE /* JSON.txt */,
 				BFD426461AD2AF10008C5009 /* DesignController.swift */,
 				BFD426481AD2AF1C008C5009 /* DesignView.swift */,
+				BF3484211AE8398600F4180C /* ErrorSheet.swift */,
+				BF34841F1AE838D000F4180C /* ErrorSheet.xib */,
+				BFB804581ADF4FAC00CB8DBE /* JSON.txt */,
 				BFE1A4141AD329DA0020A7E6 /* LinkManagementLayer.swift */,
-				BF71529A1AD5927700CB15B6 /* NSLineSegment.swift */,
+				BFD426291AD2AE44008C5009 /* MainMenu.xib */,
 				BFE1A41C1AD331DB0020A7E6 /* Slot.swift */,
 				BFE1A4161AD32A6E0020A7E6 /* SlotLink.swift */,
 				BFE1A41E1AD332570020A7E6 /* SlotSet.swift */,
@@ -399,11 +411,13 @@
 				BF23E3831ADED1DB007B370F /* ActionItemEditorView.xib in Resources */,
 				BFE1A4131AD3217F0020A7E6 /* iPhone6WhiteUSSD-170x347.png in Resources */,
 				BF5415201AE739FE00DA14BA /* Keyboard-236x137.png in Resources */,
+				BF3484201AE838D000F4180C /* ErrorSheet.xib in Resources */,
 				BF5415141AE712DA00DA14BA /* SimulatorWindow.xib in Resources */,
 				BFB804591ADF4FAC00CB8DBE /* JSON.txt in Resources */,
 				BF996C051AD98329007DB769 /* socket-empty-grey-16x16.png in Resources */,
 				BF54150F1AE70F5000DA14BA /* WhiteiPhone-292x597.png in Resources */,
 				BF7152991AD5918800CB15B6 /* GraphicsUtilities in Resources */,
+				BF3EC9851AE7E41A00140D82 /* USSDDocument.png in Resources */,
 				BF5415281AE74C6000DA14BA /* WhiteButton-107x42.png in Resources */,
 				BFD426281AD2AE44008C5009 /* Images.xcassets in Resources */,
 				BFE1A40A1AD304600020A7E6 /* socket-empty-16x16.png in Resources */,
@@ -429,6 +443,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BFD4264F1AD2AF85008C5009 /* USSDMenuItem.swift in Sources */,
+				BF34841E1AE820F100F4180C /* AuthenticationPacket.swift in Sources */,
 				BF23E3891ADEE220007B370F /* USSDMenuNameItem.swift in Sources */,
 				BF54150A1AE6C54D00DA14BA /* JSONParser.swift in Sources */,
 				BF54151A1AE7228E00DA14BA /* SimulatorMenu.swift in Sources */,
@@ -449,6 +464,7 @@
 				BF54151E1AE733D900DA14BA /* SimulatorView.swift in Sources */,
 				BF23E3851ADED312007B370F /* ActionItemEditor.swift in Sources */,
 				BFD4265C1AD2D7A0008C5009 /* SelectionHolder.swift in Sources */,
+				BF3484221AE8398600F4180C /* ErrorSheet.swift in Sources */,
 				BFE1A41F1AD332570020A7E6 /* SlotSet.swift in Sources */,
 				BFD426571AD2BE00008C5009 /* UFXStylist.swift in Sources */,
 				BF54152E1AE77F6E00DA14BA /* NSAttributedStringExtensions.swift in Sources */,

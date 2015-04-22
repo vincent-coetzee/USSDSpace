@@ -3,7 +3,7 @@
 //  USSDSpace
 //
 //  Created by Vincent Coetzee on 2015/04/06.
-//  Copyright (c) 2015 Olamide. All rights reserved.
+//  Copyright (c) 2015 MacSemantics. All rights reserved.
 //
 
 import Foundation
@@ -26,7 +26,9 @@ class USSDMenuItem:USSDMenuEntry
 		{
 	    super.init(coder:aDecoder)
 		leftSource = aDecoder.decodeObjectForKey("leftSource") as! Slot
+		leftSource.menuItem = self
 		rightSource = aDecoder.decodeObjectForKey("rightSource") as! Slot
+		rightSource.menuItem = self
 		}
 		
 	override var displayText:String
@@ -58,6 +60,17 @@ class USSDMenuItem:USSDMenuEntry
 		{
 		leftSource.setFrameDelta(delta)
 		rightSource.setFrameDelta(delta)
+		if leftSource.isConnected
+			{
+			leftSource.adjustSideAccordingToTargetSlot(leftSource.link!.targetSlot!)
+			rightSource.enabled = false
+			}
+		else if rightSource.isConnected
+			{
+			rightSource.adjustSideAccordingToTargetSlot(rightSource.link!.targetSlot!)
+			leftSource.enabled = false
+			}
+		
 		}
 		
 	override func addSourceSlotsToSet(set:SlotSet)
@@ -78,10 +91,52 @@ class USSDMenuItem:USSDMenuEntry
 		if leftSource.isConnected
 			{
 			linkLayer.addLink(leftSource.link!)
+			leftSource.menuItem = self
 			}
 		if rightSource.isConnected
 			{
 			linkLayer.addLink(rightSource.link!)
+			rightSource.menuItem = self
+			}
+		}
+		
+	func swapSlotAndFrames(slot1:Slot,slot2:Slot)
+		{
+		var tempOuterFrame:CGRect
+		var tempInnerFrame:CGRect
+		var tempSlot:Slot
+		var line:NSLineSegment
+		var point:NSPoint
+		
+		tempOuterFrame = slot1.outerFrame
+		tempInnerFrame = slot1.frame
+		slot1.outerFrame = slot2.outerFrame
+		slot1.frame = slot2.frame
+		slot2.outerFrame = tempOuterFrame
+		slot2.frame = tempInnerFrame
+		if (slot1 == leftSource)
+			{
+			tempSlot = leftSource
+			leftSource = slot2
+			rightSource = tempSlot
+			}
+		else
+			{
+			tempSlot = rightSource
+			rightSource = slot2
+			leftSource = tempSlot
+			}
+		if leftSource.link != nil
+			{
+			line = NSLineSegment(start:leftSource.outerFrame.centerPoint,end:leftSource.link!.targetSlot!.outerFrame!.centerPoint)
+			point = leftSource.link!.targetSlot!.outerFrame!.pointOfIntersectionWithLine(line)!
+			leftSource.link!.setLine(leftSource.outerFrame.centerPoint,toPoint: point)
+			}
+		else
+			{
+			line = NSLineSegment(start:rightSource.outerFrame.centerPoint,end:rightSource.link!.targetSlot!.outerFrame!.centerPoint)
+			point = rightSource.link!.targetSlot!.outerFrame!.pointOfIntersectionWithLine(line)!
+			rightSource.link!.setLine(rightSource.outerFrame.centerPoint,toPoint: point)
 			}
 		}
 		
@@ -103,6 +158,8 @@ class USSDMenuItem:USSDMenuEntry
 		addSublayer(rightSource)
 		leftSource.sisterSlot = rightSource
 		rightSource.sisterSlot = leftSource
+		rightSource.menuItem = self
+		leftSource.menuItem = self
 		}
 		
 	override init(layer:AnyObject?)
@@ -112,6 +169,8 @@ class USSDMenuItem:USSDMenuEntry
 		addSublayer(rightSource)
 		leftSource.sisterSlot = rightSource
 		rightSource.sisterSlot = leftSource
+		rightSource.menuItem = self
+		leftSource.menuItem = self
 		}
 		
 	override init(text:String)
@@ -121,5 +180,7 @@ class USSDMenuItem:USSDMenuEntry
 		addSublayer(rightSource)
 		leftSource.sisterSlot = rightSource
 		rightSource.sisterSlot = leftSource
+		rightSource.menuItem = self
+		leftSource.menuItem = self
 		}
 	}

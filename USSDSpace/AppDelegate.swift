@@ -3,7 +3,7 @@
 //  USSDSpace
 //
 //  Created by Vincent Coetzee on 2015/04/06.
-//  Copyright (c) 2015 Olamide. All rights reserved.
+//  Copyright (c) 2015 MacSemantics. All rights reserved.
 //
 
 import Cocoa
@@ -27,10 +27,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	// MARK: - Core Data stack
 
 	lazy var applicationDocumentsDirectory: NSURL = {
-	    // The directory the application uses to store the Core Data store file. This code uses a directory named "za.co.olamide.USSDSpace" in the user's Application Support directory.
+	    // The directory the application uses to store the Core Data store file. This code uses a directory named "za.co.macsemantics.USSDSpace" in the user's Application Support directory.
 	    let urls = NSFileManager.defaultManager().URLsForDirectory(.ApplicationSupportDirectory, inDomains: .UserDomainMask)
 	    let appSupportURL = urls[urls.count - 1] as! NSURL
-	    return appSupportURL.URLByAppendingPathComponent("za.co.olamide.USSDSpace")
+	    return appSupportURL.URLByAppendingPathComponent("za.co.macsemantics.USSDSpace")
 	}()
 
 	lazy var managedObjectModel: NSManagedObjectModel = {

@@ -3,7 +3,7 @@
 //  USSDSpace
 //
 //  Created by Vincent Coetzee on 2015/04/22.
-//  Copyright (c) 2015 Olamide. All rights reserved.
+//  Copyright (c) 2015 MacSemantics. All rights reserved.
 //
 
 import Foundation
@@ -13,21 +13,22 @@ import QuartzCore
 class Simulator:NSObject,NSXMLParserDelegate
 	{
 	@IBOutlet var window:SimulatorWindow?
+	@IBOutlet var viewMenu:NSMenu?
+	
 	var view:SimulatorView?
 	var nib:NSNib?
 	var array:AutoreleasingUnsafeMutablePointer<NSArray?> = AutoreleasingUnsafeMutablePointer<NSArray?>()
 	var menu:SimulatorMenu?
 	var masterController:DesignController?
+	var targetURL:CallbackURL?
 	
-	class func openNewSimulator() -> Simulator
+	class func openNewSimulatorOn(startURL:String = "http://197.96.167.14:8080/bei/ussdhandler") -> Simulator
 		{
 		var newSimulator:Simulator
 		var nib:NSNib
 		var callback:CallbackURL
-		
-		newSimulator = Simulator()
+		newSimulator = Simulator(startURL: CallbackURL(base:startURL))
 		newSimulator.openWindow()
-		newSimulator.setCallback(CallbackURL(base:"http://197.96.167.14:8080/bei/ussdhandler"))
 		return(newSimulator)
 		}
 		
@@ -45,14 +46,28 @@ class Simulator:NSObject,NSXMLParserDelegate
 		nib = NSNib(nibNamed: "SimulatorWindow",bundle:NSBundle.mainBundle())
 		nib!.instantiateWithOwner(self,topLevelObjects:array)
 		view = SimulatorView(frame:window!.contentView.bounds)
+		view!.menu = viewMenu!
 		view!.controller = self
 		window!.contentView.addSubview(view!)
 		window!.makeKeyAndOrderFront(self)
+		setCallback(targetURL!)
+		}
+		
+	init(startURL:CallbackURL)
+		{
+		targetURL = startURL
 		}
 		
 	func sendDismiss()
 		{
-		masterController!.closeSimulator(self)
+		if masterController != nil
+			{
+			masterController!.closeSimulator(self)
+			}
+		else
+			{
+			closeWindow()
+			}
 		}
 		
 	func sendReply(reply:String)

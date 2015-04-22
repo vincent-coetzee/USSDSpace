@@ -3,13 +3,13 @@
 //  USSDSpace
 //
 //  Created by Vincent Coetzee on 2015/04/22.
-//  Copyright (c) 2015 Olamide. All rights reserved.
+//  Copyright (c) 2015 MacSemantics. All rights reserved.
 //
 
 import Foundation
 import AppKit
 
-class SimulatorMenuItem:NSObject,NSXMLParserDelegate
+class SimulatorMenuItem:NSObject,NSXMLParserDelegate,Selectable
 	{
 	var title:String = ""
 	var order:Int = 1
@@ -26,6 +26,14 @@ class SimulatorMenuItem:NSObject,NSXMLParserDelegate
 		self.display = display == "true" 
 		self.command = command.toInt()!
 		self.callback = callback
+		}
+		
+	func select()
+		{
+		}
+		
+	func deselect()
+		{
 		}
 		
 	func addToLayer(layer:CALayer,inWidth:CGFloat)

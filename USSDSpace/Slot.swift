@@ -3,7 +3,7 @@
 //  USSDSpace
 //
 //  Created by Vincent Coetzee on 2015/04/06.
-//  Copyright (c) 2015 Olamide. All rights reserved.
+//  Copyright (c) 2015 MacSemantics. All rights reserved.
 //
 
 import Foundation
@@ -15,6 +15,7 @@ class Slot:CALayer
 	var outerFrame:CGRect
 	var link:SlotLink?
 	var sisterSlot:Slot?
+	var menuItem:USSDMenuItem?
 	
 	var centerPoint:NSPoint
 		{
@@ -62,6 +63,31 @@ class Slot:CALayer
 				sisterSlot!.enabled = true
 				}
 			}
+		}
+		
+	func adjustSideAccordingToTargetSlot(targetSlot:TargetSlot)
+		{
+		var sisterSlotDistance:CGFloat
+		var myDistance:CGFloat
+		var minX:CGFloat
+		var maxX:CGFloat
+		var x1:CGFloat
+		var x2:CGFloat
+		
+		x1 = sisterSlot!.outerFrame.centerPoint.x
+		x2 = targetSlot.outerFrame!.centerPoint.x
+		minX = x1 < x2 ? x1 : x2
+		maxX = x1 > x2 ? x1 : x2
+		sisterSlotDistance = maxX - minX
+		x1 = outerFrame.centerPoint.x
+		minX = x1 < x2 ? x1 : x2
+		maxX = x1 > x2 ? x1 : x2
+		myDistance = maxX - minX
+		if myDistance < sisterSlotDistance
+			{
+			return
+			}
+		menuItem!.swapSlotAndFrames(self,slot2: sisterSlot!)
 		}
 		
 	func disconnect(linkLayer:LinkManagementLayer)
@@ -152,5 +178,11 @@ class Slot:CALayer
 		
 		outerFrame = CGRect(origin:newOrigin,size:CGSize(width: 16,height: 16))
 		return(self)
+		}
+		
+	override init(layer:AnyObject?)
+		{
+		outerFrame = CGRect(x:0,y:0,width:0,height:0)
+		super.init(layer:layer)
 		}
 	}

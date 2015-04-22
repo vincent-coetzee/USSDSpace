@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "USSDSpace/USSDManagerService.swift"
-            timestampString = "451342858.644688"
+            timestampString = "451423616.163336"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
-            landmarkName = "runWorkspaceWithName(_:)"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "requestToken(_:userName:password:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -26,12 +26,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "USSDSpace/USSDManagerService.swift"
-            timestampString = "451346718.970769"
+            timestampString = "451423745.604755"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
-            landmarkName = "runWorkspaceWithName(_:)"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
+            landmarkName = "requestToken(_:userName:password:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -41,13 +41,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "USSDSpace/SimulatorView.swift"
-            timestampString = "451399926.933296"
+            filePath = "USSDSpace/ErrorSheet.swift"
+            timestampString = "451428580.523119"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "191"
-            endingLineNumber = "191"
-            landmarkName = "onCancelSend(_:)"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "loadNib()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "USSDSpace/ErrorSheet.swift"
+            timestampString = "451428703.913016"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "init(heading:message:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -3,7 +3,7 @@
 //  USSDSpace
 //
 //  Created by Vincent Coetzee on 2015/04/06.
-//  Copyright (c) 2015 Olamide. All rights reserved.
+//  Copyright (c) 2015 MacSemantics. All rights reserved.
 //
 
 import Foundation
@@ -284,6 +284,24 @@ class DesignView:NSView
 			}
 		}
 		
+	@IBAction func onSaveAs(sender:AnyObject?)
+		{
+		var savePanel:NSSavePanel;
+
+		workspace.designViewFrame = self.frame
+		workspace.windowFrame = self.window!.frame
+		savePanel = NSSavePanel()
+		savePanel.allowedFileTypes = ["USSD"]
+		savePanel.beginWithCompletionHandler()
+			{
+			(result: Int) -> Void in 
+			if result == NSFileHandlingPanelOKButton
+				{
+				self.workspace.saveOnPath(savePanel.URL!.path!)
+				}
+			}
+		}
+		
 	@IBAction func onAddMenu(sender:AnyObject?)
 		{
 		var menu:USSDMenu
@@ -400,6 +418,10 @@ class DesignView:NSView
 		var service:USSDManagerService
 		
 		service = USSDManagerService()
+		if !service.hasToken
+			{
+			service.requestToken("vincent.coetzee",userName:"vac14830B",password:"somethingObscure09@")
+			}
 		service.deployWorkspace(workspace)
 		}
 		
@@ -409,7 +431,7 @@ class DesignView:NSView
 		
 		service = USSDManagerService()
 		service.deployWorkspace(workspace)
-		service.runWorkspaceWithName(workspace.workspaceName)
+		Simulator.openNewSimulatorOn(startURL: service.startURLForWorkspace(workspace))
 		}
 		
 	@IBAction func onDeleteItem(sender:AnyObject?)

@@ -3,7 +3,7 @@
 //  USSDSpace
 //
 //  Created by Vincent Coetzee on 2015/04/22.
-//  Copyright (c) 2015 Olamide. All rights reserved.
+//  Copyright (c) 2015 MacSemantics. All rights reserved.
 //
 
 import Foundation
@@ -63,6 +63,22 @@ class SimulatorMenu:NSObject,NSXMLParserDelegate
 				}
 			}
 		layer.setNeedsDisplay()
+		}
+		
+	func itemContainingPoint(point:NSPoint) -> SimulatorMenuItem?
+		{
+		for item in items
+			{
+			if item.display
+				{
+				NSLog("COMPARING \(point) AND \(item.menuItemLayer!.frame)")
+				if CGRectContainsPoint(item.menuItemLayer!.frame,point)
+					{
+					return(item)
+					}
+				}
+			}
+		return(nil)
 		}
 		
 	func parser(parser: NSXMLParser, foundCharacters string: String?)

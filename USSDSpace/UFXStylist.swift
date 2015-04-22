@@ -3,7 +3,7 @@
 //  USSDSpace
 //
 //  Created by Vincent Coetzee on 2015/04/06.
-//  Copyright (c) 2015 Olamide. All rights reserved.
+//  Copyright (c) 2015 MacSemantics. All rights reserved.
 //
 
 import Foundation
@@ -16,7 +16,7 @@ class UFXStylist:NSObject
 	static var MenuItemFontSize:CGFloat = 10
 	static var MenuItemFont = NSFont(name:"MuseoSans-500",size:10)
 	static var MenuItemTextColor:NSColor = NSColor.blackColor()
-	static var SelectionColor:NSColor = NSColor.darkGrayColor()
+	static var SelectionColor:NSColor = NSColor.colorWithUnscaled(102,green:201,blue:250)
 	static var DeselectionColor:NSColor = NSColor.clearColor()
 	static var LinkLineColor:NSColor = NSColor.lightGrayColor()
 	static var SlotMenuImage = NSImage(named:"socket-action-empty-16x16")

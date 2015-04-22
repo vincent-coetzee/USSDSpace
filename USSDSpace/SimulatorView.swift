@@ -3,7 +3,7 @@
 //  USSDSpace
 //
 //  Created by Vincent Coetzee on 2015/04/22.
-//  Copyright (c) 2015 Olamide. All rights reserved.
+//  Copyright (c) 2015 MacSemantics. All rights reserved.
 //
 
 import Foundation
@@ -20,7 +20,7 @@ class SimulatorView:NSView,NSTextViewDelegate,NSTextDelegate
 	private var replyButton = NSButton(frame:NSRect(x:0,y:0,width:0,height:0))
 	private var rightButton = NSButton(frame:NSRect(x:0,y:0,width:0,height:0))
 	private var leftButton = NSButton(frame:NSRect(x:0,y:0,width:0,height:0))
-	
+	private var selectionHolder = SelectionHolder<SimulatorMenuItem>()
 	private let KeyboardAdjustmentHeight:CGFloat = 97
 	
 	var controller:Simulator?
@@ -65,7 +65,20 @@ class SimulatorView:NSView,NSTextViewDelegate,NSTextDelegate
 		
 	func textDidEndEditing(notification:NSNotification) 
 		{
-		onReplySend(self)
+		var number:NSNumber?
+		var value:String
+		
+		number = notification.userInfo!["NSTextMovement"] as! NSNumber?
+		if number == nil
+			{
+			}
+		else
+			{
+			if number!.longValue == NSReturnTextMovement
+				{
+				onReplySend(self)
+				}
+			}
 		}
 		
 	func hideKeyboard(move:Bool)
@@ -106,8 +119,6 @@ class SimulatorView:NSView,NSTextViewDelegate,NSTextDelegate
 	func commonInit()
 		{
 		wantsLayer = true
-		menuLayer.borderWidth = 3
-		menuLayer.borderColor = NSColor.redColor().CGColor
 		self.layer!.addSublayer(menuLayer)
 		needsLayout = true
 		needsDisplay = true
@@ -154,6 +165,7 @@ class SimulatorView:NSView,NSTextViewDelegate,NSTextDelegate
 		replyButton.alignment = NSTextAlignment.CenterTextAlignment
 		replyButton.target = self
 		replyButton.action = "onReply:"
+		replyButton.keyEquivalent = "\r"
 		self.addSubview(replyButton)
 		UFXStylist.styleTopSimulatorButton(leftButton,text: "Cancel")
 		leftButton.target = self
@@ -175,6 +187,27 @@ class SimulatorView:NSView,NSTextViewDelegate,NSTextDelegate
 	func onReply(sender:AnyObject?)
 		{
 		showKeyboard()
+		}
+		
+	override func mouseDown(event:NSEvent)
+		{
+		var point = convertPoint(event.locationInWindow,fromView:nil)
+		var menuItem = currentMenu!.itemContainingPoint(point.pointBySubtractingPoint(menuLayer!.frame.origin))
+		
+		selectionHolder.selection = menuItem
+		}
+		
+	override func mouseUp(event:NSEvent)
+		{
+		var point = convertPoint(event.locationInWindow,fromView:nil)
+		var menuItem = currentMenu!.itemContainingPoint(point.pointBySubtractingPoint(menuLayer!.frame.origin))
+		
+		if selectionHolder.selection == menuItem && menuItem != nil
+			{
+			var callbackURL = CallbackURL(base:menuItem!.callback!)
+			callbackURL.setValue("\(menuItem!.command)",forKey:"request")
+			controller!.setCallback(callbackURL)
+			}
 		}
 		
 	func onReplySend(sender:AnyObject?)
