@@ -175,13 +175,13 @@
 		BF5415101AE7107C00DA14BA /* Simulator */ = {
 			isa = PBXGroup;
 			children = (
+				BF5415291AE7572100DA14BA /* CallbackURL.swift */,
 				BF5415151AE7132F00DA14BA /* Simulator.swift */,
 				BF5415191AE7228E00DA14BA /* SimulatorMenu.swift */,
 				BF54151B1AE7249100DA14BA /* SimulatorMenuItem.swift */,
 				BF54151D1AE733D900DA14BA /* SimulatorView.swift */,
 				BF5415111AE7109900DA14BA /* SimulatorWindow.swift */,
 				BF5415131AE712DA00DA14BA /* SimulatorWindow.xib */,
-				BF5415291AE7572100DA14BA /* CallbackURL.swift */,
 			);
 			name = Simulator;
 			sourceTree = "<group>";
