@@ -57,8 +57,11 @@ class SimulatorMenu:NSObject,NSXMLParserDelegate
 		offset += height
 		for item in items
 			{
-			item.menuItemLayer!.frame = CGRect(x:xOffset,y:offset,width:newWidth,height:item.height)
-			offset += height
+			if item.display
+				{
+				item.menuItemLayer!.frame = CGRect(x:xOffset,y:offset,width:newWidth,height:item.height)
+				offset += height
+				}
 			}
 		layer.setNeedsDisplay()
 		}
@@ -70,12 +73,10 @@ class SimulatorMenu:NSObject,NSXMLParserDelegate
 			if currentItem != nil
 				{
 				currentItem!.title = string!
-				NSLog("SET MENU ITEM TITLE TO \(currentItem!.title)")
 				}
 			else
 				{
 				title = string
-				NSLog("SET MENU TITLE TO \(title)")
 				}
 			}
 		}
@@ -105,8 +106,6 @@ class SimulatorMenu:NSObject,NSXMLParserDelegate
 		{
 		var item:SimulatorMenuItem
 		
-		NSLog("ELEMENT=\(elementName)")
-		NSLog("ATTRIBUTES=\(attributeDict)")
 		if elementName == "option"
 			{
 			item = SimulatorMenuItem(order:attributeDict["order"]! as! String,display:attributeDict["display"]! as! String,command:attributeDict["command"]! as! String,callback:attributeDict["callback"]! as! String)

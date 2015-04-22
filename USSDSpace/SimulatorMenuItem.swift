@@ -30,10 +30,18 @@ class SimulatorMenuItem:NSObject,NSXMLParserDelegate
 		
 	func addToLayer(layer:CALayer,inWidth:CGFloat)
 		{
+		var label:String
+		
+		if !display
+			{
+			height = 0
+			return
+			}
+		label = "\(command).\(title)"
 		menuItemLayer = CATextLayer()
 		menuItemLayer!.wrapped = true
-		menuItemLayer!.string = title
-		height = TextHelper.heightOfString(title,forWidth:inWidth,withFont: UFXStylist.SimulatorFont!)
+		menuItemLayer!.string = label
+		height = TextHelper.heightOfString(label,forWidth:inWidth,withFont: UFXStylist.SimulatorFont!)
 		layer.addSublayer(menuItemLayer)
 		UFXStylist.styleSimulatorLayer(menuItemLayer!)
 		}

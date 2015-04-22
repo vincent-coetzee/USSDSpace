@@ -22,10 +22,11 @@ class Simulator:NSObject,NSXMLParserDelegate
 		{
 		var newSimulator:Simulator
 		var nib:NSNib
+		var callback:CallbackURL
 		
 		newSimulator = Simulator()
 		newSimulator.openWindow()
-		newSimulator.setURLString("http://197.96.167.14:8080/bei/ussdhandler")
+		newSimulator.setCallback(CallbackURL(base:"http://197.96.167.14:8080/bei/ussdhandler"))
 		return(newSimulator)
 		}
 		
@@ -43,6 +44,7 @@ class Simulator:NSObject,NSXMLParserDelegate
 		{
 		var menu:SimulatorMenu
 		var callback:String?
+		var callbackURL:CallbackURL
 		
 		menu = view!.currentMenu!
 		if menu.isDataEntryMenu()
@@ -62,17 +64,17 @@ class Simulator:NSObject,NSXMLParserDelegate
 			return
 			}
 		view!.hideKeyboard(true)
-		setURLString(callback!)
+		callbackURL = CallbackURL(base:callback!)
+		callbackURL.setValue(reply,forKey:"request")
+		setCallback(callbackURL)
 		}
 		
-	func setURLString(URLString:String)
+	func setCallback(callback:CallbackURL)
 		{
 		var parser:NSXMLParser?
 		var xml:String
 		var error:NSErrorPointer = NSErrorPointer()
-		var callback:CallbackURL
 		
-		callback = CallbackURL(base: URLString)
 		callback.setValue("Vodacom",forKey:"provider")
 		callback.setValue("27828877777",forKey:"msisdn")
 		parser = NSXMLParser(contentsOfURL:callback.finalURL())
@@ -87,8 +89,6 @@ class Simulator:NSObject,NSXMLParserDelegate
 		
 	func parser(parser: NSXMLParser,didStartElement elementName: String,namespaceURI: String?,qualifiedName: String?,attributes attributeDict: [NSObject : AnyObject])
 		{
-		NSLog("ELEMENT=\(elementName)")
-		NSLog("ATTRIBUTES=\(attributeDict)")
 		if elementName == "headertext"
 			{
 			menu = SimulatorMenu(parser: parser)
