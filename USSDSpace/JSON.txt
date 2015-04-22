@@ -1,0 +1,12 @@
+{"name":"Workspace","uuid":"65A4C61D-115B-47B2-9791-E20F3C1E8A1B","menus":
+	[{ "uuid": "D4CF1756-5A36-42CF-8BFC-C8B9E1EEE5CB", "menuName": "CAMP-2", "transferElements": 
+		[
+		{"type":"USSDSpace.USSDMenuTitleItem", "uuid":"FA0CCDC3-3D8C-42EF-B40E-006824CBF113"},
+		{ "type": "USSDSpace.USSDMenuItem", "uuid":"EC3AC63F-1549-459A-944C-C08A246FFCC5", "itemIndex": 1, "text": "Airtime" },
+		{ "type": "USSDSpace.USSDMenuItem", "uuid":"001D5F2F-D696-4646-9D5A-CD8A2FE83A76", "itemIndex": 2, "text": "Data" },
+		{ "type": "USSDSpace.USSDMenuItem", "uuid":"DD94C2E4-1965-4AC9-AC37-846268D99D68", "itemIndex": 3, "text": "Cash Out" },
+		{ "type": "USSDSpace.USSDMenuItem", "uuid":"F6BC8BD5-3B21-4096-B81D-6547CC97DEB6", "itemIndex": 4, "text": "Checkers Vouchers" },
+		{ "type": "USSDSpace.USSDMenuItem", "uuid":"80C9C725-AAAB-4A20-B945-7B33C5E90CFC", "itemIndex": 5, "text": "Return to Main Menu","actionType": "link", "actionValue": , "nextMenuUUID": "FAFEC668-913B-4F26-B841-E5C51ECCF71C" }
+		]
+	},
+	{ "uuid": "FAFEC668-913B-4F26-B841-E5C51ECCF71C", "menuName": "CAMP-1", "transferElements": [{"type":"USSDSpace.USSDMenuTitleItem", "uuid":"F1203AEC-E3AF-4469-8F1D-98E5AEF38490"},{ "type": "USSDSpace.USSDMenuItem", "uuid":"D7EC0196-FB0E-4985-B3A8-6FC620045282", "itemIndex": 1, "text": "Pay Now" },{ "type": "USSDSpace.USSDMenuItem", "uuid":"C132EBEC-D036-4B45-BBCD-336D9A47EDB5", "itemIndex": 2, "text": "Payment Arrangement" },{ "type": "USSDSpace.USSDMenuItem", "uuid":"7545546D-8B69-4601-8742-D844D0D17D3A", "itemIndex": 3, "text": "Rewards","actionType": "link", "actionValue": , "nextMenuUUID": "D4CF1756-5A36-42CF-8BFC-C8B9E1EEE5CB" },{ "type": "USSDSpace.USSDActionMenuItem", "uuid":"65D6626A-44AE-4953-8E0B-7ED8A7ECFC8E", "itemIndex": 4, "text": "Exit","actionType":"Method","actionValue":"onExit","nextMenuUUID":"FAFEC668-913B-4F26-B841-E5C51ECCF71C" }]}]}

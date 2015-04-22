@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>FF0DFAC5-B988-42F2-B1CD-88EB2367CFDE</string>
+	<key>IDESourceControlProjectName</key>
+	<string>USSDSpace</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>d0435b4f-f105-41bd-988a-02b91759f8d0</key>
+		<string>svn+ssh://olamide4/USSDSpace</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>trunk/USSDSpace.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>d0435b4f-f105-41bd-988a-02b91759f8d0</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>d0435b4f-f105-41bd-988a-02b91759f8d0</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>d0435b4f-f105-41bd-988a-02b91759f8d0</string>
+			<key>IDESourceControlWCCName</key>
+			<string>USSDSpace</string>
+		</dict>
+	</array>
+</dict>
+</plist>
