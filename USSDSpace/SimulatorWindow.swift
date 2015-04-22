@@ -28,6 +28,14 @@ class SimulatorWindow:NSWindow
 		self.movableByWindowBackground = true
 		}
 
+	override var canBecomeKeyWindow:Bool
+		{
+		get
+			{
+			return(true)
+			}
+		}
+		
 	override var contentView:AnyObject
 		{
 		get

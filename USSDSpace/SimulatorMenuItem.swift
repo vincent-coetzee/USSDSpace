@@ -11,11 +11,13 @@ import AppKit
 
 class SimulatorMenuItem:NSObject,NSXMLParserDelegate
 	{
-	var title:String?
-	var order:Int?
-	var display:Bool?
-	var command:Int?
+	var title:String = ""
+	var order:Int = 1
+	var display:Bool = true
+	var command:Int = 0
 	var callback:String?
+	var height:CGFloat = 0
+	var menuItemLayer:CATextLayer?
 	
 	init(order:String,display:String,command:String,callback:String)
 		{
@@ -24,5 +26,15 @@ class SimulatorMenuItem:NSObject,NSXMLParserDelegate
 		self.display = display == "true" 
 		self.command = command.toInt()!
 		self.callback = callback
+		}
+		
+	func addToLayer(layer:CALayer,inWidth:CGFloat)
+		{
+		menuItemLayer = CATextLayer()
+		menuItemLayer!.wrapped = true
+		menuItemLayer!.string = title
+		height = TextHelper.heightOfString(title,forWidth:inWidth,withFont: UFXStylist.SimulatorFont!)
+		layer.addSublayer(menuItemLayer)
+		UFXStylist.styleSimulatorLayer(menuItemLayer!)
 		}
 	}

@@ -21,10 +21,10 @@ class UFXStylist:NSObject
 	static var LinkLineColor:NSColor = NSColor.lightGrayColor()
 	static var SlotMenuImage = NSImage(named:"socket-action-empty-16x16")
 	static var SimulatorFontName = "Helvetica"
-	static var SimulatorFontSize:CGFloat = 13
+	static var SimulatorFontSize:CGFloat = 14
 	static var SimulatorFont = NSFont(name:UFXStylist.SimulatorFontName,size:UFXStylist.SimulatorFontSize)
 	static var SimulatorTextColor = NSColor.whiteColor()
-	static var SimulatorButtonFont = NSFont(name:"Helvetica Bold",size:14)
+	static var SimulatorButtonFont = NSFont(name:"Helvetica Bold",size:15)
 	
 	static func styleMenuEntry(item:USSDMenuEntry)
 		{

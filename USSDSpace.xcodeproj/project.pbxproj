@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		BF23E3831ADED1DB007B370F /* ActionItemEditorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF23E3821ADED1DB007B370F /* ActionItemEditorView.xib */; };
 		BF23E3851ADED312007B370F /* ActionItemEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF23E3841ADED312007B370F /* ActionItemEditor.swift */; };
-		BF23E3871ADED50A007B370F /* ItemEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF23E3861ADED50A007B370F /* ItemEditor.swift */; };
 		BF23E3891ADEE220007B370F /* USSDMenuNameItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF23E3881ADEE220007B370F /* USSDMenuNameItem.swift */; };
 		BF23E38C1ADF1BC4007B370F /* USSDManagerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF23E38B1ADF1BC4007B370F /* USSDManagerService.swift */; };
 		BF4FD49A1AD5B8E400ABBDCA /* TargetSlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4FD4991AD5B8E400ABBDCA /* TargetSlot.swift */; };
@@ -25,6 +24,7 @@
 		BF5415201AE739FE00DA14BA /* Keyboard-236x137.png in Resources */ = {isa = PBXBuildFile; fileRef = BF54151F1AE739FE00DA14BA /* Keyboard-236x137.png */; };
 		BF5415271AE74C6000DA14BA /* BlackButton-107x42.png in Resources */ = {isa = PBXBuildFile; fileRef = BF5415251AE74C6000DA14BA /* BlackButton-107x42.png */; };
 		BF5415281AE74C6000DA14BA /* WhiteButton-107x42.png in Resources */ = {isa = PBXBuildFile; fileRef = BF5415261AE74C6000DA14BA /* WhiteButton-107x42.png */; };
+		BF54152A1AE7572100DA14BA /* CallbackURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5415291AE7572100DA14BA /* CallbackURL.swift */; };
 		BF7152991AD5918800CB15B6 /* GraphicsUtilities in Resources */ = {isa = PBXBuildFile; fileRef = BF7152981AD5918800CB15B6 /* GraphicsUtilities */; };
 		BF71529B1AD5927700CB15B6 /* NSLineSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF71529A1AD5927700CB15B6 /* NSLineSegment.swift */; };
 		BF996C051AD98329007DB769 /* socket-empty-grey-16x16.png in Resources */ = {isa = PBXBuildFile; fileRef = BF996C041AD98329007DB769 /* socket-empty-grey-16x16.png */; };
@@ -76,7 +76,6 @@
 /* Begin PBXFileReference section */
 		BF23E3821ADED1DB007B370F /* ActionItemEditorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActionItemEditorView.xib; sourceTree = "<group>"; };
 		BF23E3841ADED312007B370F /* ActionItemEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionItemEditor.swift; sourceTree = "<group>"; };
-		BF23E3861ADED50A007B370F /* ItemEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemEditor.swift; sourceTree = "<group>"; };
 		BF23E3881ADEE220007B370F /* USSDMenuNameItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USSDMenuNameItem.swift; sourceTree = "<group>"; };
 		BF23E38B1ADF1BC4007B370F /* USSDManagerService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USSDManagerService.swift; sourceTree = "<group>"; };
 		BF4FD4991AD5B8E400ABBDCA /* TargetSlot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetSlot.swift; sourceTree = "<group>"; };
@@ -92,6 +91,7 @@
 		BF54151F1AE739FE00DA14BA /* Keyboard-236x137.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Keyboard-236x137.png"; sourceTree = "<group>"; };
 		BF5415251AE74C6000DA14BA /* BlackButton-107x42.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BlackButton-107x42.png"; sourceTree = "<group>"; };
 		BF5415261AE74C6000DA14BA /* WhiteButton-107x42.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WhiteButton-107x42.png"; sourceTree = "<group>"; };
+		BF5415291AE7572100DA14BA /* CallbackURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallbackURL.swift; sourceTree = "<group>"; };
 		BF7152981AD5918800CB15B6 /* GraphicsUtilities */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GraphicsUtilities; sourceTree = "<group>"; };
 		BF71529A1AD5927700CB15B6 /* NSLineSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSLineSegment.swift; sourceTree = "<group>"; };
 		BF996C041AD98329007DB769 /* socket-empty-grey-16x16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "socket-empty-grey-16x16.png"; sourceTree = "<group>"; };
@@ -181,6 +181,7 @@
 				BF54151D1AE733D900DA14BA /* SimulatorView.swift */,
 				BF5415111AE7109900DA14BA /* SimulatorWindow.swift */,
 				BF5415131AE712DA00DA14BA /* SimulatorWindow.xib */,
+				BF5415291AE7572100DA14BA /* CallbackURL.swift */,
 			);
 			name = Simulator;
 			sourceTree = "<group>";
@@ -281,7 +282,6 @@
 				BFB804581ADF4FAC00CB8DBE /* JSON.txt */,
 				BFD426461AD2AF10008C5009 /* DesignController.swift */,
 				BFD426481AD2AF1C008C5009 /* DesignView.swift */,
-				BF23E3861ADED50A007B370F /* ItemEditor.swift */,
 				BFE1A4141AD329DA0020A7E6 /* LinkManagementLayer.swift */,
 				BF71529A1AD5927700CB15B6 /* NSLineSegment.swift */,
 				BFE1A41C1AD331DB0020A7E6 /* Slot.swift */,
@@ -429,7 +429,6 @@
 				BF23E3891ADEE220007B370F /* USSDMenuNameItem.swift in Sources */,
 				BF54150A1AE6C54D00DA14BA /* JSONParser.swift in Sources */,
 				BF54151A1AE7228E00DA14BA /* SimulatorMenu.swift in Sources */,
-				BF23E3871ADED50A007B370F /* ItemEditor.swift in Sources */,
 				BF996C0B1AD9973F007DB769 /* ActionSlot.swift in Sources */,
 				BF54151C1AE7249100DA14BA /* SimulatorMenuItem.swift in Sources */,
 				BFD426591AD2D558008C5009 /* NSPointExtensions.swift in Sources */,
@@ -451,6 +450,7 @@
 				BFD426601AD2ECCF008C5009 /* TextHelper.swift in Sources */,
 				BFD426571AD2BE00008C5009 /* UFXStylist.swift in Sources */,
 				BFD426491AD2AF1C008C5009 /* DesignView.swift in Sources */,
+				BF54152A1AE7572100DA14BA /* CallbackURL.swift in Sources */,
 				BFD4264B1AD2AF45008C5009 /* USSDElement.swift in Sources */,
 				BFD426261AD2AE44008C5009 /* USSDSpace.xcdatamodeld in Sources */,
 				BF54150D1AE6FB0900DA14BA /* StringExtensions.swift in Sources */,
