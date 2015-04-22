@@ -1,0 +1,19 @@
+package za.co.olamide.ussd;
+
+import java.util.List;
+
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+import org.jboss.logging.Logger;
+
+@XmlRootElement()
+public class USSDMenu extends USSDElement
+	{
+	@XmlElement()
+	public String menuName;
+	@XmlElement()
+	public List<USSDMenuItem> menuItems;
+	@XmlElement
+	public List<USSDTransferElement> transferElements;
+	}

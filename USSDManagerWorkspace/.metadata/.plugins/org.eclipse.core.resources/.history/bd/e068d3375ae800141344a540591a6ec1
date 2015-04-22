@@ -1,0 +1,74 @@
+package za.co.olamide.ussd;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.Serializable;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+public class USSDEngine implements Serializable
+	{
+	static private final long serialVersionUID = 1L;
+	static private Log logger = LogFactory.getLog(USSDEngine.class);
+	
+	private String menuUUID;
+	private String workspaceUUID;
+	private String selectedIndex;
+	private String selectedText;
+	private String basePort;
+	private String baseURL;
+	private USSDMenu currentMenu;
+	
+	public USSDEngine(String name,String aPort,String aURL)
+		{
+		USSDWorkspace workspace;
+		
+		workspace = USSDWorkspace.workspaceForName(name);
+		workspaceUUID = workspace.uuid;
+		menuUUID = "";
+		basePort = aPort;
+		baseURL = aURL;
+		currentMenu = workspace.startMenu();
+		}
+	
+	public void handleSelection(HttpServletRequest request,HttpServletResponse response)
+		{
+		HttpSession session;
+		USSDMenuItem menuItem;
+		int menuIndex;
+		String command;
+		
+		session = request.getSession();
+		command = request.getParameter("commandIndex");
+		try
+			{
+			menuIndex = Integer.parseInt(command);
+			}
+		catch(Exception exception)
+			{
+			logger.error(exception);
+			exception.printStackTrace();
+			}
+		}
+	
+	public void renderIntoResponseForSession(HttpServletResponse response,HttpSession session)
+		{
+		PrintWriter writer;
+		
+		try
+			{
+			writer = response.getWriter();
+			currentMenu.renderOnWriterForSessionAndURL(writer,session,baseURL);
+			}
+		catch (IOException e)
+			{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			}
+		}
+	}

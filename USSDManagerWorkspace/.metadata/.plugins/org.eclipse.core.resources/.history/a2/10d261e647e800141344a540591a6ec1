@@ -1,0 +1,13 @@
+package za.co.olamide.ussd;
+
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement()
+public class USSDMenuItem extends USSDMenuEntry
+	{
+	@XmlElement()
+	public int menuIndex;
+	@XmlElement()
+	public String menuText;
+	}

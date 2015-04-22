@@ -1,0 +1,21 @@
+package za.co.olamide.ussd;
+
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement()
+public class USSDTransferElement 
+	{
+	@XmlElement()
+	public String type;
+	@XmlElement()
+	public int itemIndex;
+	@XmlElement()
+	public String text;
+	@XmlElement()
+	public String actionType;
+	@XmlElement()
+	public String actionValue;
+	@XmlElement()
+	public String nextMenuId;
+	}	

@@ -1,0 +1,9 @@
+package za.co.olamide.ussd;
+
+import javax.xml.bind.annotation.XmlElement;
+
+public class USSDElement
+	{
+	@XmlElement()
+	public String uuid;
+	}

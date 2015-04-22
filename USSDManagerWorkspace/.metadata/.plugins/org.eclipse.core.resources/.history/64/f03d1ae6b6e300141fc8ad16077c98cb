@@ -1,0 +1,8 @@
+package za.co.olamide.ussd;
+
+import javax.ws.rs.core.Application;
+
+public class JAXRSActivator extends Application
+	{
+
+	}

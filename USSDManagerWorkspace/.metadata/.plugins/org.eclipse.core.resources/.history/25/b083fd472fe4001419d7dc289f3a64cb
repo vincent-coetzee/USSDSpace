@@ -1,0 +1,62 @@
+package za.co.olamide.ussd;
+
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
+
+@Path("/USSDManager")
+public class USSDManagerService 
+	{
+	private static final Log logger = LogFactory.getLog(USSDManagerService.class);
+    /**
+     * Default constructor. 
+     */
+    public USSDManagerService() 
+    	{
+        // TODO Auto-generated constructor stub
+    	}
+    
+    @POST
+    @Path("/deployWorkspace")
+    @Consumes("application/json")
+    @Produces("application/json")
+    public USSDResponse deployWorkspace(USSDWorkspace input)
+    	{
+    	JSONObject object;
+    	
+    	logger.error("/deployWorkspace");
+    	logger.error(input);
+		return(new USSDResponse());
+    	}
+    
+    @GET
+    @Path("/workspaceNames")
+    @Produces("application/json")
+    public USSDResponse workspaceNames()
+    	{
+    	String names[] = {"Campaign1","AfricanBankRewards","Test"};
+
+		return(new USSDResponse(names));
+    	}
+    
+    @GET
+    @Path("/workspace/{identifier}")
+    @Produces("application/json")
+    public USSDResponse workspaceAtIdentifier(@PathParam("identifier") String workspaceIdentifier)
+    	{
+    	USSDWorkspace workspace;
+    	
+    	logger.error("/workspace");
+    	logger.error("identifier = "+ workspaceIdentifier);
+    	workspace = new USSDWorkspace();
+    	return(new USSDResponse(workspace));
+    	}
+	}

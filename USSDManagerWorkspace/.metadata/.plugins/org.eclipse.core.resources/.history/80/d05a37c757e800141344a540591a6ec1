@@ -1,0 +1,53 @@
+package za.co.olamide.ussd;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+import org.jboss.logging.Logger;
+
+@XmlRootElement()
+public class USSDMenu extends USSDElement
+	{
+	@XmlElement()
+	public String menuName;
+	@XmlElement()
+	public List<USSDMenuItem> menuItems;
+	@XmlElement
+	public List<USSDTransferElement> transferElements;
+	
+	private String titleText;
+	
+	public void internalize()
+		{
+		menuItems = new ArrayList<USSDMenuItem>();
+		for (USSDTransferElement element : transferElements)
+			{
+			menuItems.add(element.asMenuItem());
+			}
+		}
+	
+	public String asXMLForSessionL(HttpSession session,String urlString)
+		{
+		StringBuilder builder;
+		String url;
+		
+		url = urlString + session.getId();
+		builder = new StringBuilder();
+		builder.append("<?xml version=\"1.0\" encoding=\"utf-8\"?><request>");
+		builder.append("<headertext>"+titleText+"</headertext>");
+		builder.append("<options>");
+		for (USSDMenuItem item: menuItems)
+			{
+			builder.append("<option command=\""+item.menuIndex+"\" order=\""+item.menuIndex+"\" callback=\""+url+"?commandIndex="+item.menuIndex+"\"");
+			builder.append(item.mustDisplay() ? " display=\"true\">"  + item.menuText: " display=\"false\">");
+			builder.append("</option>");
+			}
+		builder.append("</options>");
+		builder.append("</request>");
+		return(builder.toString());
+		}
+	}

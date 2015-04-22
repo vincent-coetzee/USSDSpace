@@ -1,0 +1,16 @@
+package za.co.olamide.ussd;
+
+public class USSDElement
+	{
+	protected String uuid;
+	
+	public void setUUID(String aString)
+		{
+		uuid = aString;
+		}
+	
+	public String UUID()
+		{
+		return(uuid);
+		}
+	}

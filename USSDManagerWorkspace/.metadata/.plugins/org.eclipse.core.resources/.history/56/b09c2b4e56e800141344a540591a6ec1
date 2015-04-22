@@ -1,0 +1,16 @@
+package za.co.olamide.ussd;
+
+import java.io.Serializable;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+public class USSDEngine implements Serializable
+	{
+	static private final long serialVersionUID = 1L;
+	static private Log logger = LogFactory.getLog(USSDEngine.class);
+	public String menuUUID;
+	public String workspaceUUID;
+	public String selectedIndex;
+	public String selectedText;
+	}

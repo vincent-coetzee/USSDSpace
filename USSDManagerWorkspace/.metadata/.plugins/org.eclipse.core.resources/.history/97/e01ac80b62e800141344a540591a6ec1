@@ -1,0 +1,67 @@
+package za.co.olamide.ussd;
+
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+import org.jboss.logging.Logger;
+
+@XmlRootElement()
+public class USSDMenu extends USSDElement
+	{
+	@XmlElement()
+	public String menuName;
+	@XmlElement()
+	public List<USSDMenuItem> menuItems;
+	@XmlElement
+	public List<USSDTransferElement> transferElements;
+	
+	private String titleText;
+	private Map<Integer,USSDMenuItem> menuItemsByIndex;
+	
+	public void internalize()
+		{
+		USSDMenuItem menuItem;
+		
+		menuItems = new ArrayList<USSDMenuItem>();
+		menuItemsByIndex = new HashMap<Integer,USSDMenuItem>();
+		for (USSDTransferElement element : transferElements)
+			{
+			menuItem = element.asMenuItem();
+			menuItems.add(menuItem);
+			menuItemsByIndex.put(element.itemIndex,menuItem);
+			}
+		}
+	
+	public String asXMLForSession(HttpSession session,String urlString)
+		{
+		StringBuilder builder;
+		String url;
+		
+		url = urlString + session.getId();
+		builder = new StringBuilder();
+		builder.append("<?xml version=\"1.0\" encoding=\"utf-8\"?><request>");
+		builder.append("<headertext>"+titleText+"</headertext>");
+		builder.append("<options>");
+		for (USSDMenuItem item: menuItems)
+			{
+			builder.append("<option command=\""+item.menuText+"\" order=\""+item.menuIndex+"\" callback=\""+url+"?menuItemIndex="+item.menuIndex+"\"");
+			builder.append(item.mustDisplay() ? " display=\"true\">"  + item.menuText: " display=\"false\">");
+			builder.append("</option>");
+			}
+		builder.append("</options>");
+		builder.append("</request>");
+		return(builder.toString());
+		}
+	
+	public USSDMenuItem itemAtIndex(int index)
+		{
+		return(menuItemsByIndex.get(index));
+		}
+	}

@@ -1,0 +1,27 @@
+package za.co.olamide.ussd;
+
+import java.io.Serializable;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+public class USSDEngine implements Serializable
+	{
+	static private final long serialVersionUID = 1L;
+	static private Log logger = LogFactory.getLog(USSDEngine.class);
+	
+	private String menuUUID;
+	private String workspaceUUID;
+	private String selectedIndex;
+	private String selectedText;
+	private String basePort;
+	private String baseURL;
+	
+	public USSDEngine(String uuid,String aPort,String aURL)
+		{
+		workspaceUUID = uuid;
+		menuUUID = "";
+		basePort = aPort;
+		baseURL = aURL;
+		}
+	}

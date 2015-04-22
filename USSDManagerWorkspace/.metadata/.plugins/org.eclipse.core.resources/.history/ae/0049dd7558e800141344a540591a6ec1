@@ -1,0 +1,63 @@
+package za.co.olamide.ussd;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
+
+@XmlRootElement
+public class USSDWorkspace extends USSDElement
+	{
+	public static Map<String,USSDWorkspace> Workspaces = new HashMap<String,USSDWorkspace>();
+	
+	@XmlElement
+	public String name;
+	@XmlElement
+	public List<USSDMenu> menus;
+	@XmlElement
+	public String startMenuUUID;
+	
+	private Map<String,USSDMenu> menusByUUID;
+	
+	public USSDWorkspace()
+		{
+		uuid = "UUID";
+		name = "workspace-name";
+		}
+	
+	public static USSDWorkspace workspaceForKey(String name)
+		{
+		return(Workspaces.get(name));
+		}
+	
+	public static void setWorkspaceForKey(USSDWorkspace workspace,String key)
+		{
+		Workspaces.put(key,workspace);
+		}
+	
+	public void internalize()
+		{
+		menusByUUID = new HashMap<String,USSDMenu>();
+		for (USSDMenu menu : menus)
+			{
+			menu.internalize();
+			menusByUUID.put(menu.uuid,menu);
+			}
+		}
+	
+	public USSDMenu startMenu()
+		{
+		return(menuForUUID(startMenuUUID));
+		}
+	
+	public USSDMenu menuForUUID(String aUUID)
+		{
+		return(menusByUUID.get(aUUID));
+		}
+	}

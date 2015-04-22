@@ -1,0 +1,10 @@
+package za.co.olamide.ussd;
+
+@XmlRootElement()
+public class USSDMenu extends USSDElement
+	{
+	@XmlElement()
+	public String menuName;
+	@XmlElement()
+	public List<USSDMenuItem> menuItems;
+	}

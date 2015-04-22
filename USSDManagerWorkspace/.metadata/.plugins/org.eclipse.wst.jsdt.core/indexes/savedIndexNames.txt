@@ -1,0 +1,7 @@
+INDEX VERSION 1.3+/Users/vincent/OlamideDevelopment/USSDManagerWorkspace/.metadata/.plugins/org.eclipse.wst.jsdt.core/indexes
+670627556.index
+71810100.index
+253917962.index
+2883051417.index
+2095658000.index
+2788600319.index

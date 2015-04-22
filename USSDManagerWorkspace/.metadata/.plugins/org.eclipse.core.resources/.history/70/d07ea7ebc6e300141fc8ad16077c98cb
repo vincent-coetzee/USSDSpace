@@ -1,0 +1,17 @@
+package za.co.olamide.ussd;
+
+import javax.xml.bind.annotation.XmlElement;
+
+public class USSDElement
+	{
+	@XmlElement()
+	public String uuid;
+	
+	public void logXML()
+		{
+		JAXBContext context = JAXBContext.newInstance();
+        Marshaller m = context.createMarshaller();
+        m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+        m.marshal(cc, System.out);
+		}
+	}

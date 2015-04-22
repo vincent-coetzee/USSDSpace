@@ -1,0 +1,23 @@
+package za.co.olamide.ussd;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement()
+public class USSDMenuItem extends USSDMenuEntry
+	{
+	@XmlElement()
+	public int menuIndex;
+	@XmlElement()
+	public String menuText;
+	
+	public String actionType;
+	public String nextMenuUUID;
+	
+	public void executeInContext(USSDEngine engine,HttpServletRequest request,HttpServletResponse response)
+		{
+		
+		}
+	}

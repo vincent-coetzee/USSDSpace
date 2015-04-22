@@ -1,0 +1,38 @@
+package za.co.olamide.ussd;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.xml.bind.annotation.XmlRootElement;
+
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
+
+@XmlRootElement
+public class USSDWorkspace extends USSDElement
+	{
+	private String name;
+	
+	public USSDWorkspace()
+		{
+		}
+	
+	public USSDWorkspace()
+		{
+		uuid = "UUID";
+		name = "workspace-name";
+		}
+	private void parseJSONString(String aString)
+		{
+		}
+	
+	public String asJSONString()
+		{
+		Map object;
+		
+		object = new HashMap();
+		object.put("name",name);
+		object.put("uuid",uuid);
+		return(JSONValue.toJSONString(object));
+		}
+	}
