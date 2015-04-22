@@ -17,6 +17,7 @@ class Simulator:NSObject,NSXMLParserDelegate
 	var nib:NSNib?
 	var array:AutoreleasingUnsafeMutablePointer<NSArray?> = AutoreleasingUnsafeMutablePointer<NSArray?>()
 	var menu:SimulatorMenu?
+	var masterController:DesignController?
 	
 	class func openNewSimulator() -> Simulator
 		{
@@ -30,6 +31,15 @@ class Simulator:NSObject,NSXMLParserDelegate
 		return(newSimulator)
 		}
 		
+	func closeWindow()
+		{
+		view = nil
+		nib = nil
+		array = nil
+		menu = nil
+		window!.close()
+		}
+		
 	func openWindow()
 		{
 		nib = NSNib(nibNamed: "SimulatorWindow",bundle:NSBundle.mainBundle())
@@ -38,6 +48,11 @@ class Simulator:NSObject,NSXMLParserDelegate
 		view!.controller = self
 		window!.contentView.addSubview(view!)
 		window!.makeKeyAndOrderFront(self)
+		}
+		
+	func sendDismiss()
+		{
+		masterController!.closeSimulator(self)
 		}
 		
 	func sendReply(reply:String)

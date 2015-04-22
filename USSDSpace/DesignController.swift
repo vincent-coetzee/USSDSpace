@@ -19,6 +19,19 @@ class DesignController:NSObject
 		var simulator:Simulator
 		
 		simulator = Simulator.openNewSimulator()
+		simulator.masterController = self
 		simulators.append(simulator)
+		}
+		
+	func closeSimulator(simulator:Simulator)
+		{
+		var index:Int?
+		
+		index = find(simulators,simulator)
+		if index != nil
+			{
+			simulator.closeWindow()
+			simulators.removeAtIndex(index!)
+			}
 		}
 	}

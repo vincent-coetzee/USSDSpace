@@ -145,26 +145,21 @@ class SimulatorView:NSView,NSTextViewDelegate,NSTextDelegate
 		replyButton.target = self
 		replyButton.action = "onReply:"
 		self.addSubview(replyButton)
-		leftButton.bordered = false
-		leftButton.setButtonType(NSButtonType.MomentaryChangeButton)
-		leftButton.alignment = NSTextAlignment.CenterTextAlignment
+		UFXStylist.styleTopSimulatorButton(leftButton,text: "Cancel")
 		leftButton.target = self
 		leftButton.action = "onCancelSend:"
-		leftButton.title = "Cancel"
 		leftButton.hidden = true
 		self.addSubview(leftButton)
-		rightButton.bordered = false
-		rightButton.setButtonType(NSButtonType.MomentaryChangeButton)
-		rightButton.alignment = NSTextAlignment.CenterTextAlignment
+		UFXStylist.styleTopSimulatorButton(rightButton,text: "Reply")
 		rightButton.target = self
 		rightButton.action = "onReplySend:"
-		rightButton.title = "Reply"
 		rightButton.hidden = true
 		self.addSubview(rightButton)
 		}
 		
 	func onDismiss(sender:AnyObject?)
 		{
+		controller!.sendDismiss()
 		}
 		
 	func onReply(sender:AnyObject?)
@@ -206,7 +201,7 @@ class SimulatorView:NSView,NSTextViewDelegate,NSTextDelegate
 		dismissButton.frame = NSRect(x:29+10,y:420,width:107,height:42)
 		replyButton.frame = NSRect(x:29+10+107+4,y:420,width:107,height:42)
 		leftButton.frame = NSRect(x:29,y:107,width:50,height:16)
-		rightButton.frame = NSRect(x:236-29-29,y:107,width:50,height:16)
+		rightButton.frame = NSRect(x:236-rightButton.attributedTitle.width()+20,y:107,width:rightButton.attributedTitle.width()+10,height:16)
 		}
 		
 	func updateMenuLayer()

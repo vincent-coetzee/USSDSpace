@@ -39,7 +39,7 @@ class SimulatorMenu:NSObject,NSXMLParserDelegate
 		
 		newWidth = inWidth - 10
 		xOffset = 5
-		height = TextHelper.heightOfString(title!,forWidth:newWidth,withFont: UFXStylist.SimulatorFont!)
+		height = title!.heightInWidth(newWidth,withFont: UFXStylist.SimulatorFont!)
 		totalHeight += height
 		menuLayer = CATextLayer()
 		menuLayer!.wrapped = true

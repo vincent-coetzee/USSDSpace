@@ -84,7 +84,7 @@ class USSDMenuEntry:USSDTextElement,NSTextViewDelegate,NSTextDelegate
 	 
 	 override func sizeToFitInWidth(width:CGFloat) -> CGFloat
 		{
-		var aHeight = TextHelper.heightOfString(self.displayText,forWidth:width,withFont: UFXStylist.MenuItemFont!)
+		var aHeight = self.displayText.heightInWidth(width,withFont: UFXStylist.MenuItemFont!)
 		desiredHeight = aHeight
 		return(aHeight)
 		}

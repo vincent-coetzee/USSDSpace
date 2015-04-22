@@ -41,7 +41,7 @@ class SimulatorMenuItem:NSObject,NSXMLParserDelegate
 		menuItemLayer = CATextLayer()
 		menuItemLayer!.wrapped = true
 		menuItemLayer!.string = label
-		height = TextHelper.heightOfString(label,forWidth:inWidth,withFont: UFXStylist.SimulatorFont!)
+		height = label.heightInWidth(inWidth,withFont: UFXStylist.SimulatorFont!)
 		layer.addSublayer(menuItemLayer)
 		UFXStylist.styleSimulatorLayer(menuItemLayer!)
 		}

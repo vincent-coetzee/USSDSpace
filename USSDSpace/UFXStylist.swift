@@ -25,6 +25,8 @@ class UFXStylist:NSObject
 	static var SimulatorFont = NSFont(name:UFXStylist.SimulatorFontName,size:UFXStylist.SimulatorFontSize)
 	static var SimulatorTextColor = NSColor.whiteColor()
 	static var SimulatorButtonFont = NSFont(name:"Helvetica Bold",size:15)
+	static var SimulatorTopButtonFont = NSFont(name:"Helvetica Bold",size:13)
+	static var SimulatorTopButtonColor:NSColor = NSColor.colorWithUnscaled(0.0,green:36.0,blue:214.0)
 	
 	static func styleMenuEntry(item:USSDMenuEntry)
 		{
@@ -41,24 +43,16 @@ class UFXStylist:NSObject
 		layer.alignmentMode = kCAAlignmentCenter
 		}
 		
-	static func styledSimulatorButtonText(text:String) -> NSAttributedString
+	static func styleTopSimulatorButton(button:NSButton,text:String)
 		{
-		if text == "Dismiss"
-			{
-			var attributes:[String: AnyObject] = [String:AnyObject]()
+		var attributes:[String: AnyObject] = [String:AnyObject]()
 			
-			attributes[NSFontAttributeName] = UFXStylist.SimulatorButtonFont
-			attributes[NSForegroundColorAttributeName] = NSColor.blackColor()
-			return(NSAttributedString(string: text,attributes:attributes))
-			}
-		else
-			{
-			var attributes:[String: AnyObject] = [String:AnyObject]()
-			
-			attributes[NSFontAttributeName] = UFXStylist.SimulatorButtonFont
-			attributes[NSForegroundColorAttributeName] = NSColor.whiteColor()
-			return(NSAttributedString(string: text,attributes:attributes))
-			}
+		attributes[NSFontAttributeName] = UFXStylist.SimulatorTopButtonFont
+		attributes[NSForegroundColorAttributeName] = SimulatorTopButtonColor
+		button.bordered = false
+		button.setButtonType(NSButtonType.MomentaryChangeButton)
+		button.alignment = NSTextAlignment.CenterTextAlignment
+		button.attributedTitle = NSAttributedString(string: text,attributes:attributes)
 		}
 		
 	static func styleLayerAsMenuName(layer:CATextLayer)
