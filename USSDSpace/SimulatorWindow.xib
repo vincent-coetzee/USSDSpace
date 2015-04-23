@@ -6,7 +6,14 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="Simulator" customModule="USSDSpace" customModuleProvider="target">
             <connections>
+                <outlet property="MSISDNField" destination="tOp-KP-xBk" id="VtZ-1c-z6u"/>
+                <outlet property="USSDSessionField" destination="eZS-0G-GlA" id="QXG-QL-AoC"/>
                 <outlet property="contextWindow" destination="E5g-Yt-sbF" id="4tr-Gj-n97"/>
+                <outlet property="providerField" destination="Rgu-3d-lmF" id="Sxy-I2-Ohy"/>
+                <outlet property="shortCodeField" destination="bRf-9u-eh4" id="awx-CR-RH2"/>
+                <outlet property="sourceIPRewriteField" destination="bdr-XS-kut" id="EHO-j1-y79"/>
+                <outlet property="startURLField" destination="5Xv-9W-UFb" id="0fT-P7-tAq"/>
+                <outlet property="targetIPRewriteField" destination="lqE-l1-Vf2" id="l6n-yc-s3q"/>
                 <outlet property="viewMenu" destination="OPS-gE-kmO" id="wdM-4X-Sox"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="evG-Sj-LQd"/>
             </connections>
@@ -65,15 +72,6 @@
                                     <font key="font" size="20" name="MuseoSans-700"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField verticalHuggingPriority="750" id="5Xv-9W-UFb">
-                                <rect key="frame" x="20" y="384" width="287" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="la0-k6-otU">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="Yjg-Ue-nR8">
@@ -193,17 +191,6 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button verticalHuggingPriority="750" id="VVs-ut-sNB">
-                                <rect key="frame" x="20" y="19" width="139" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="smallSquare" title="Cancel" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0J9-rf-wzS">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="onContextCancel:" target="-2" id="o0v-df-JuR"/>
-                                </connections>
-                            </button>
                             <button verticalHuggingPriority="750" id="4RA-iy-uu9">
                                 <rect key="frame" x="168" y="19" width="139" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -215,6 +202,26 @@
                                     <action selector="onContextOk:" target="-2" id="UEo-k0-NCD"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" id="VVs-ut-sNB">
+                                <rect key="frame" x="20" y="19" width="139" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="smallSquare" title="Cancel" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0J9-rf-wzS">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="onContextCancel:" target="-2" id="o0v-df-JuR"/>
+                                </connections>
+                            </button>
+                            <textField verticalHuggingPriority="750" id="5Xv-9W-UFb">
+                                <rect key="frame" x="20" y="384" width="287" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="la0-k6-otU">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </customView>
                 </subviews>

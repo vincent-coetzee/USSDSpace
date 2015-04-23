@@ -12,9 +12,9 @@ import QuartzCore
 
 class UFXStylist:NSObject
 	{
-	static var MenuItemFontName:String = "MuseoSans-500"
+	static var MenuItemFontName:String = "SunSans"
 	static var MenuItemFontSize:CGFloat = 10
-	static var MenuItemFont = NSFont(name:"MuseoSans-500",size:10)
+	static var MenuItemFont = NSFont(name:"SunSans",size:12)
 	static var MenuItemTextColor:NSColor = NSColor.blackColor()
 	static var SelectionColor:NSColor = NSColor.colorWithUnscaled(102,green:201,blue:250)
 	static var DeselectionColor:NSColor = NSColor.clearColor()
@@ -24,8 +24,8 @@ class UFXStylist:NSObject
 	static var SimulatorFontSize:CGFloat = 14
 	static var SimulatorFont = NSFont(name:UFXStylist.SimulatorFontName,size:UFXStylist.SimulatorFontSize)
 	static var SimulatorTextColor = NSColor.whiteColor()
-	static var SimulatorButtonFont = NSFont(name:"Helvetica Bold",size:15)
-	static var SimulatorTopButtonFont = NSFont(name:"Helvetica Bold",size:13)
+	static var SimulatorButtonFont = NSFont(name:"Helvetica",size:15)
+	static var SimulatorTopButtonFont = NSFont(name:"Helvetica",size:13)
 	static var SimulatorTopButtonColor:NSColor = NSColor.colorWithUnscaled(0.0,green:36.0,blue:214.0)
 	
 	static func styleMenuEntry(item:USSDMenuEntry)
@@ -57,7 +57,7 @@ class UFXStylist:NSObject
 		
 	static func styleLayerAsMenuName(layer:CATextLayer)
 		{
-		layer.font = NSFont(name:"MuseoSans-900",size:13)
+		layer.font = MenuItemFontName
 		layer.fontSize = 14
 		layer.foregroundColor = NSColor.grayColor().CGColor
 		layer.alignmentMode = kCAAlignmentCenter
@@ -78,6 +78,10 @@ class UFXStylist:NSObject
 		menu.borderWidth = 2
 		menu.cornerRadius = 10
 		menu.borderColor = NSColor.clearColor().CGColor
+		menu.shadowColor = NSColor.blackColor().CGColor
+		menu.shadowRadius = 2
+		menu.shadowOffset = CGSize(width:2,height:2)
+		menu.shadowOpacity = 0.6
 		}
 		
 	static func dumpAllFontNames()

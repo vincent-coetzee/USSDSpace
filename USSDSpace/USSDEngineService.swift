@@ -16,7 +16,9 @@ class USSDEngineService:NSObject,NSURLSessionDelegate
 	var responseData:NSData?
 	var response:NSURLResponse?
 	var resultString:String?
-		
+	var resultData:NSData?
+	var timeoutIntervalInMs:Int = 60000
+	
 	override init()
 		{
 		super.init()
@@ -32,7 +34,7 @@ class USSDEngineService:NSObject,NSURLSessionDelegate
 		completionHandler(NSURLSessionAuthChallengeDisposition.UseCredential,credential)
 		}
 		
-	func fetchXMLAtURL(aString:String) -> String
+	func fetchXMLAtURL(aString:String) -> String?
 		{
 		var request:NSMutableURLRequest
 		var task:NSURLSessionDataTask
@@ -40,28 +42,35 @@ class USSDEngineService:NSObject,NSURLSessionDelegate
 		var time:NSDate
 		var timeString:String
 		var dict:NSDictionary?
+		var elapsedTimeInMs:Int = 0
 		
-		NSLog("\(aString)")
-		request = NSMutableURLRequest(URL:NSURL(string:aString)!)
+		string = (aString as NSString).stringByReplacingOccurrencesOfString("196.38.58.244",withString:"10.1.7.1")
+		request = NSMutableURLRequest(URL:NSURL(string:string)!)
 		request.HTTPMethod = "GET"
 		task = session.dataTaskWithRequest(request,completionHandler: 
 			{(data:NSData!,response:NSURLResponse!,error:NSError!) in 
 			self.responseData = data
 			self.response = response
-			NSLog("\(error)")
+			if error != nil
+				{
+				NSLog("\(error)")
+				}
 			if data != nil
 				{
+				self.resultData = data
 				var string = NSString(data:data!,encoding:NSUTF8StringEncoding) as! String
-				NSLog("\(string)")
-				self.resultString = (string as NSString).stringByReplacingOccurrencesOfString("196.38.58.244",withString:"10.1.7.1")
+				self.resultString = (string as NSString).stringByReplacingOccurrencesOfString("&",withString:"&amp;")
+				self.resultString = (self.resultString! as NSString).stringByReplacingOccurrencesOfString("196.38.58.244",withString:"10.1.7.1")
+				self.resultString = (self.resultString! as NSString).stringByReplacingOccurrencesOfString("utf-8",withString:"UTF8")
 				}
 			})
 		resultString = "";
 		task.resume()
-		while task.state != .Completed
+		while task.state != .Completed && elapsedTimeInMs < timeoutIntervalInMs
 			{
-			NSRunLoop.currentRunLoop().runUntilDate(NSDate(timeIntervalSinceNow:5))
+			NSRunLoop.currentRunLoop().runUntilDate(NSDate(timeIntervalSinceNow:1))
+			elapsedTimeInMs += 1000
 			}
-		return(resultString!)
+		return(resultString)
 		}
 	}

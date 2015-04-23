@@ -70,7 +70,19 @@ class Simulator:NSObject,NSXMLParserDelegate
 		view = SimulatorView(frame:window!.contentView.bounds)
 		view!.menu = viewMenu!
 		view!.controller = self
+		initTextFields()
 		window!.contentView.addSubview(view!)
+		}
+		
+	func initTextFields()
+		{
+		USSDSessionField!.stringValue = "23B1456792B2"
+		MSISDNField!.stringValue = "27828877777"
+		startURLField!.stringValue = targetURL!.baseURL
+		shortCodeField!.stringValue = "*120*33248#"
+		sourceIPRewriteField!.stringValue = "197.96.167.14"
+		targetIPRewriteField!.stringValue = "10.1.7.1"
+		providerField!.stringValue = "Vodacom"
 		}
 		
 	init(startURL:CallbackURL)
@@ -128,15 +140,20 @@ class Simulator:NSObject,NSXMLParserDelegate
 		callback.setValue("Vodacom",forKey:"provider")
 		callback.setValue("27828877777",forKey:"msisdn")
 		service = USSDEngineService()
-		xml = service.fetchXMLAtURL(callback.finalURL().absoluteString!)
-		parser = NSXMLParser(data:(xml as! NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
+		xml = service.fetchXMLAtURL(callback.finalURL().absoluteString!)!
+		parser = NSXMLParser(data:xml.dataUsingEncoding(NSUTF8StringEncoding)!)
 		if parser != nil
 			{
 			parser!.delegate = self
 			parser!.parse()
 			if parser!.parserError != nil
 				{
+				var newError:NSErrorPointer = NSErrorPointer()
+				
 				NSLog("ERROR = \(parser!.parserError)")
+				NSLog("LINENUMBER = \(parser!.lineNumber)")
+				NSLog("COLUMN = \(parser!.columnNumber)")
+				NSLog("\((xml as NSString).substringFromIndex(parser!.columnNumber))")
 				}
 			else
 				{

@@ -82,12 +82,12 @@ class USSDMenuItem:USSDMenuEntry
 		rightSource.setFrameDelta(delta)
 		if leftSource.isConnected
 			{
-			leftSource.adjustSideAccordingToTargetSlot(leftSource.link!.targetSlot!)
+//			leftSource.adjustSideAccordingToTargetSlot(leftSource.link!.targetSlot!)
 			rightSource.enabled = false
 			}
 		else if rightSource.isConnected
 			{
-			rightSource.adjustSideAccordingToTargetSlot(rightSource.link!.targetSlot!)
+//			rightSource.adjustSideAccordingToTargetSlot(rightSource.link!.targetSlot!)
 			leftSource.enabled = false
 			}
 		
@@ -108,6 +108,7 @@ class USSDMenuItem:USSDMenuEntry
 		
 	override func loadIntoLayer(menuLayer:CALayer,linkLayer:LinkManagementLayer)
 		{
+		UFXStylist.styleMenuEntry(self)
 		if leftSource.isConnected
 			{
 			linkLayer.addLink(leftSource.link!)
@@ -118,6 +119,9 @@ class USSDMenuItem:USSDMenuEntry
 			linkLayer.addLink(rightSource.link!)
 			rightSource.menuItem = self
 			}
+		layoutInFrame(self.frame)
+		setNeedsLayout()
+		setNeedsDisplay()
 		}
 		
 	func swapSlotAndFrames(slot1:Slot,slot2:Slot)

@@ -20,9 +20,11 @@ class TargetSlot:NSObject
 		outerFrame = frame
 		if link != nil
 			{
-			var centerPoint = frame.centerPoint
-			var targetPoint = frame.pointOfIntersectionWithLine(NSLineSegment(start:link!.startPoint,end:centerPoint))
-			link!.setEnd(targetPoint!)
+//			var centerPoint = frame.centerPoint
+//			var targetPoint = frame.pointOfIntersectionWithLine(NSLineSegment(start:link!.startPoint,end:centerPoint))
+//			link!.setEnd(targetPoint!)
+			var targetPoint = frame.pointOnPerimeterNearestToPoint(link!.startPoint)
+			link!.setEnd(targetPoint)
 			}
 //		sourceSlot!.adjustSideAccordingToTargetSlot(self)
 		}

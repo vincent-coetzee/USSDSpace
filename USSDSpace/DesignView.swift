@@ -274,6 +274,10 @@ class DesignView:NSView
 					menu.loadIntoLayer(self.menuContainerLayer,linkLayer:self.linkContainerLayer)
 					self.menus.append(menu)
 					}
+				self.menuContainerLayer.setNeedsLayout()
+				self.linkContainerLayer.setNeedsLayout()
+				self.menuContainerLayer.setNeedsDisplay()
+				self.linkContainerLayer.setNeedsDisplay()
 				}
 			}
 		}

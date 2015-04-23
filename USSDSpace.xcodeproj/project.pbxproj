@@ -33,6 +33,13 @@
 		BF34844B1AE89DF900F4180C /* USSDItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF34844A1AE89DF900F4180C /* USSDItem.swift */; };
 		BF34844D1AE8A6B000F4180C /* USSDEngineService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF34844C1AE8A6B000F4180C /* USSDEngineService.swift */; };
 		BF3EC9851AE7E41A00140D82 /* USSDDocument.png in Resources */ = {isa = PBXBuildFile; fileRef = BF3EC9841AE7E41A00140D82 /* USSDDocument.png */; };
+		BF430AA11AE91AB60011EFD1 /* SimulationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF430AA01AE91AB60011EFD1 /* SimulationContext.swift */; };
+		BF430AB01AE929D20011EFD1 /* Icon-Action-16x16.png in Resources */ = {isa = PBXBuildFile; fileRef = BF430AAC1AE929D20011EFD1 /* Icon-Action-16x16.png */; };
+		BF430AB11AE929D20011EFD1 /* Icon-Command-16x16.png in Resources */ = {isa = PBXBuildFile; fileRef = BF430AAD1AE929D20011EFD1 /* Icon-Command-16x16.png */; };
+		BF430AB21AE929D20011EFD1 /* Icon-Slot-16x16.png in Resources */ = {isa = PBXBuildFile; fileRef = BF430AAE1AE929D20011EFD1 /* Icon-Slot-16x16.png */; };
+		BF430AB31AE929D20011EFD1 /* WhiteIPhone6-140x284.png in Resources */ = {isa = PBXBuildFile; fileRef = BF430AAF1AE929D20011EFD1 /* WhiteIPhone6-140x284.png */; };
+		BF430AB91AE93A7C0011EFD1 /* USSDItemWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF430AB81AE93A7C0011EFD1 /* USSDItemWrapper.swift */; };
+		BF430ABB1AE93AE30011EFD1 /* USSDInsetWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF430ABA1AE93AE30011EFD1 /* USSDInsetWrapper.swift */; };
 		BF4FD49A1AD5B8E400ABBDCA /* TargetSlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4FD4991AD5B8E400ABBDCA /* TargetSlot.swift */; };
 		BF54150A1AE6C54D00DA14BA /* JSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5415091AE6C54D00DA14BA /* JSONParser.swift */; };
 		BF54150D1AE6FB0900DA14BA /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF54150C1AE6FB0900DA14BA /* StringExtensions.swift */; };
@@ -123,6 +130,13 @@
 		BF34844A1AE89DF900F4180C /* USSDItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USSDItem.swift; sourceTree = "<group>"; };
 		BF34844C1AE8A6B000F4180C /* USSDEngineService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USSDEngineService.swift; sourceTree = "<group>"; };
 		BF3EC9841AE7E41A00140D82 /* USSDDocument.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = USSDDocument.png; sourceTree = "<group>"; };
+		BF430AA01AE91AB60011EFD1 /* SimulationContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimulationContext.swift; sourceTree = "<group>"; };
+		BF430AAC1AE929D20011EFD1 /* Icon-Action-16x16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Action-16x16.png"; sourceTree = "<group>"; };
+		BF430AAD1AE929D20011EFD1 /* Icon-Command-16x16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Command-16x16.png"; sourceTree = "<group>"; };
+		BF430AAE1AE929D20011EFD1 /* Icon-Slot-16x16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Slot-16x16.png"; sourceTree = "<group>"; };
+		BF430AAF1AE929D20011EFD1 /* WhiteIPhone6-140x284.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WhiteIPhone6-140x284.png"; sourceTree = "<group>"; };
+		BF430AB81AE93A7C0011EFD1 /* USSDItemWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USSDItemWrapper.swift; sourceTree = "<group>"; };
+		BF430ABA1AE93AE30011EFD1 /* USSDInsetWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USSDInsetWrapper.swift; sourceTree = "<group>"; };
 		BF4FD4991AD5B8E400ABBDCA /* TargetSlot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetSlot.swift; sourceTree = "<group>"; };
 		BF5415091AE6C54D00DA14BA /* JSONParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONParser.swift; sourceTree = "<group>"; };
 		BF54150C1AE6FB0900DA14BA /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
@@ -211,7 +225,6 @@
 			isa = PBXGroup;
 			children = (
 				BF3484261AE8529B00F4180C /* Script.swift */,
-				BF3484421AE8878500F4180C /* ScriptBrowser.xib */,
 				BF3484441AE887B000F4180C /* ScriptBrowserController.swift */,
 				BF3484381AE8833400F4180C /* ScriptEntry.swift */,
 				BF34843E1AE8837C00F4180C /* ScriptEntryLoop.swift */,
@@ -223,18 +236,29 @@
 			name = Scripting;
 			sourceTree = "<group>";
 		};
+		BF430AAB1AE929980011EFD1 /* Design Item Resources */ = {
+			isa = PBXGroup;
+			children = (
+				BF430AAC1AE929D20011EFD1 /* Icon-Action-16x16.png */,
+				BF430AAD1AE929D20011EFD1 /* Icon-Command-16x16.png */,
+				BF430AAE1AE929D20011EFD1 /* Icon-Slot-16x16.png */,
+				BF430AAF1AE929D20011EFD1 /* WhiteIPhone6-140x284.png */,
+			);
+			name = "Design Item Resources";
+			sourceTree = "<group>";
+		};
 		BF54150B1AE6FADF00DA14BA /* Utilities and Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				BF71529A1AD5927700CB15B6 /* NSLineSegment.swift */,
+				BF34841D1AE820F100F4180C /* AuthenticationPacket.swift */,
 				BF5415091AE6C54D00DA14BA /* JSONParser.swift */,
 				BF54152D1AE77F6E00DA14BA /* NSAttributedStringExtensions.swift */,
 				BFE1A4181AD32F310020A7E6 /* NSBezierPathExtensions.swift */,
 				BF54152B1AE77B5C00DA14BA /* NSColorExtensions.swift */,
+				BF71529A1AD5927700CB15B6 /* NSLineSegment.swift */,
 				BFD426581AD2D558008C5009 /* NSPointExtensions.swift */,
 				BFE1A40E1AD310360020A7E6 /* NSRectExtensions.swift */,
 				BF54150C1AE6FB0900DA14BA /* StringExtensions.swift */,
-				BF34841D1AE820F100F4180C /* AuthenticationPacket.swift */,
 			);
 			name = "Utilities and Extensions";
 			sourceTree = "<group>";
@@ -243,6 +267,7 @@
 			isa = PBXGroup;
 			children = (
 				BF5415291AE7572100DA14BA /* CallbackURL.swift */,
+				BF430AA01AE91AB60011EFD1 /* SimulationContext.swift */,
 				BF5415151AE7132F00DA14BA /* Simulator.swift */,
 				BF5415191AE7228E00DA14BA /* SimulatorMenu.swift */,
 				BF54151B1AE7249100DA14BA /* SimulatorMenuItem.swift */,
@@ -275,6 +300,7 @@
 		BFD4261F1AD2AE44008C5009 /* USSDSpace */ = {
 			isa = PBXGroup;
 			children = (
+				BF430AAB1AE929980011EFD1 /* Design Item Resources */,
 				BF3484251AE8528700F4180C /* Scripting */,
 				BFD426411AD2AE96008C5009 /* Application Related */,
 				BF23E38A1ADF1BAA007B370F /* Deployment */,
@@ -317,22 +343,26 @@
 		BFD426401AD2AE88008C5009 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				BF3484341AE8767D00F4180C /* left-full-peg-16x16.png */,
-				BF3484351AE8767D00F4180C /* right-full-peg-16x16.png */,
-				BF34842C1AE86B2100F4180C /* left-empty-peg-16x16.png */,
-				BF34842A1AE86A3200F4180C /* right-empty-peg-16x16.png */,
+				BF23E3821ADED1DB007B370F /* ActionItemEditorView.xib */,
 				BF5415251AE74C6000DA14BA /* BlackButton-107x42.png */,
-				BF5415261AE74C6000DA14BA /* WhiteButton-107x42.png */,
-				BF54151F1AE739FE00DA14BA /* Keyboard-236x137.png */,
-				BF54150E1AE70F5000DA14BA /* WhiteiPhone-292x597.png */,
-				BF996C081AD9971F007DB769 /* socket-action-empty-16x16.png */,
-				BF996C041AD98329007DB769 /* socket-empty-grey-16x16.png */,
-				BFE1A4121AD3217F0020A7E6 /* iPhone6WhiteUSSD-170x347.png */,
-				BFE1A4101AD317090020A7E6 /* iPhone6BlackUSSD-170x347.png */,
-				BFE1A4081AD304600020A7E6 /* socket-empty-16x16.png */,
-				BFE1A4091AD304600020A7E6 /* socket-full-16x16.png */,
+				BF34841F1AE838D000F4180C /* ErrorSheet.xib */,
 				BFD426271AD2AE44008C5009 /* Images.xcassets */,
+				BFE1A4101AD317090020A7E6 /* iPhone6BlackUSSD-170x347.png */,
+				BFE1A4121AD3217F0020A7E6 /* iPhone6WhiteUSSD-170x347.png */,
+				BF54151F1AE739FE00DA14BA /* Keyboard-236x137.png */,
+				BF34842C1AE86B2100F4180C /* left-empty-peg-16x16.png */,
+				BF3484341AE8767D00F4180C /* left-full-peg-16x16.png */,
+				BFD426291AD2AE44008C5009 /* MainMenu.xib */,
+				BF34842A1AE86A3200F4180C /* right-empty-peg-16x16.png */,
+				BF3484351AE8767D00F4180C /* right-full-peg-16x16.png */,
+				BF3484421AE8878500F4180C /* ScriptBrowser.xib */,
+				BF996C081AD9971F007DB769 /* socket-action-empty-16x16.png */,
+				BFE1A4081AD304600020A7E6 /* socket-empty-16x16.png */,
+				BF996C041AD98329007DB769 /* socket-empty-grey-16x16.png */,
+				BFE1A4091AD304600020A7E6 /* socket-full-16x16.png */,
 				BFD426241AD2AE44008C5009 /* USSDSpace.xcdatamodeld */,
+				BF5415261AE74C6000DA14BA /* WhiteButton-107x42.png */,
+				BF54150E1AE70F5000DA14BA /* WhiteiPhone-292x597.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -349,16 +379,13 @@
 			isa = PBXGroup;
 			children = (
 				BF23E3841ADED312007B370F /* ActionItemEditor.swift */,
-				BF23E3821ADED1DB007B370F /* ActionItemEditorView.xib */,
 				BF996C0A1AD9973F007DB769 /* ActionSlot.swift */,
 				BF3484321AE86E6E00F4180C /* ActionSlotLink.swift */,
 				BFD426461AD2AF10008C5009 /* DesignController.swift */,
 				BFD426481AD2AF1C008C5009 /* DesignView.swift */,
 				BF3484211AE8398600F4180C /* ErrorSheet.swift */,
-				BF34841F1AE838D000F4180C /* ErrorSheet.xib */,
 				BFB804581ADF4FAC00CB8DBE /* JSON.txt */,
 				BFE1A4141AD329DA0020A7E6 /* LinkManagementLayer.swift */,
-				BFD426291AD2AE44008C5009 /* MainMenu.xib */,
 				BF3484281AE8669400F4180C /* OldMenuAction.swift */,
 				BFE1A41C1AD331DB0020A7E6 /* Slot.swift */,
 				BFE1A4161AD32A6E0020A7E6 /* SlotLink.swift */,
@@ -368,7 +395,9 @@
 				BF996C061AD993F3007DB769 /* USSDActionMenuItem.swift */,
 				BFD4264A1AD2AF45008C5009 /* USSDElement.swift */,
 				BF3484461AE8966C00F4180C /* USSDEntryFieldMenuItem.swift */,
+				BF430ABA1AE93AE30011EFD1 /* USSDInsetWrapper.swift */,
 				BF34844A1AE89DF900F4180C /* USSDItem.swift */,
+				BF430AB81AE93A7C0011EFD1 /* USSDItemWrapper.swift */,
 				BFD4264C1AD2AF57008C5009 /* USSDMenu.swift */,
 				BFE1A40C1AD305650020A7E6 /* USSDMenuEntry.swift */,
 				BFD4264E1AD2AF85008C5009 /* USSDMenuItem.swift */,
@@ -483,6 +512,8 @@
 				BF7152991AD5918800CB15B6 /* GraphicsUtilities in Resources */,
 				BF3EC9851AE7E41A00140D82 /* USSDDocument.png in Resources */,
 				BF5415281AE74C6000DA14BA /* WhiteButton-107x42.png in Resources */,
+				BF430AB11AE929D20011EFD1 /* Icon-Command-16x16.png in Resources */,
+				BF430AB21AE929D20011EFD1 /* Icon-Slot-16x16.png in Resources */,
 				BFD426281AD2AE44008C5009 /* Images.xcassets in Resources */,
 				BFE1A40A1AD304600020A7E6 /* socket-empty-16x16.png in Resources */,
 				BF34842D1AE86B2100F4180C /* left-empty-peg-16x16.png in Resources */,
@@ -492,6 +523,8 @@
 				BF996C091AD9971F007DB769 /* socket-action-empty-16x16.png in Resources */,
 				BFE1A4111AD317090020A7E6 /* iPhone6BlackUSSD-170x347.png in Resources */,
 				BFD4262B1AD2AE44008C5009 /* MainMenu.xib in Resources */,
+				BF430AB31AE929D20011EFD1 /* WhiteIPhone6-140x284.png in Resources */,
+				BF430AB01AE929D20011EFD1 /* Icon-Action-16x16.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -521,10 +554,12 @@
 				BFD426591AD2D558008C5009 /* NSPointExtensions.swift in Sources */,
 				BF71529B1AD5927700CB15B6 /* NSLineSegment.swift in Sources */,
 				BF3484411AE8875500F4180C /* ScriptEntrySelect.swift in Sources */,
+				BF430AB91AE93A7C0011EFD1 /* USSDItemWrapper.swift in Sources */,
 				BF3484331AE86E6E00F4180C /* ActionSlotLink.swift in Sources */,
 				BFE1A4171AD32A6E0020A7E6 /* SlotLink.swift in Sources */,
 				BFE1A4151AD329DA0020A7E6 /* LinkManagementLayer.swift in Sources */,
 				BFD426451AD2AEF2008C5009 /* USSDWorkspace.swift in Sources */,
+				BF430AA11AE91AB60011EFD1 /* SimulationContext.swift in Sources */,
 				BFD426531AD2B18C008C5009 /* USSDTextElement.swift in Sources */,
 				BFE1A40D1AD305650020A7E6 /* USSDMenuEntry.swift in Sources */,
 				BF996C071AD993F3007DB769 /* USSDActionMenuItem.swift in Sources */,
@@ -543,6 +578,7 @@
 				BF34843B1AE8834C00F4180C /* ScriptEntryStart.swift in Sources */,
 				BFE1A41F1AD332570020A7E6 /* SlotSet.swift in Sources */,
 				BFD426571AD2BE00008C5009 /* UFXStylist.swift in Sources */,
+				BF430ABB1AE93AE30011EFD1 /* USSDInsetWrapper.swift in Sources */,
 				BF54152E1AE77F6E00DA14BA /* NSAttributedStringExtensions.swift in Sources */,
 				BFD426491AD2AF1C008C5009 /* DesignView.swift in Sources */,
 				BF54152A1AE7572100DA14BA /* CallbackURL.swift in Sources */,

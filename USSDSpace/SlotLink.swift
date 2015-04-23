@@ -60,6 +60,10 @@ class SlotLink:USSDItem
 		shapeLayer.lineCap = kCALineCapRound
 		shapeLayer.strokeColor = lineColor.CGColor
 		shapeLayer.fillColor = lineColor.CGColor
+		shapeLayer.shadowColor = NSColor.blackColor().CGColor
+		shapeLayer.shadowRadius = 2
+		shapeLayer.shadowOffset = CGSize(width:2,height:2)
+		shapeLayer.shadowOpacity = 0.6
 		}
 		
 	override func containsPoint(point:NSPoint) -> Bool

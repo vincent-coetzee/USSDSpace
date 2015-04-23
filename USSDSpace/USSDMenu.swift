@@ -69,6 +69,7 @@ class USSDMenu:USSDElement
 	func loadIntoLayer(menuLayer:CALayer,linkLayer:LinkManagementLayer)
 		{
 		menuLayer.addSublayer(self)
+		UFXStylist.styleMenu(self)
 		for item in items!
 			{
 			item.loadIntoLayer(menuLayer,linkLayer:linkLayer)

@@ -40,3 +40,8 @@
 		<option command="2" order="2" callback="https://196.38.58.244:18443/ABWeb/ProcessUSSD;jsessionid=0v90UT9X1mNni2nuSwXbp2wh?menu=15" display="true">Exit</option>
 	</options>
 </request>
+
+
+<?xml version="1.0" encoding="utf-8"?><request><headertext>Claim Rewards</headertext><options><option command="1" order="1" callback="https://196.38.58.244:18443/ABWeb/ProcessUSSD;jsessionid=-7idRktcXCHWshCyqF+xlZhZ?menu=100" display="true">Airtime</option><option command="2" order="2" callback="https://196.38.58.244:18443/ABWeb/ProcessUSSD;jsessionid=-7idRktcXCHWshCyqF+xlZhZ?menu=200" display="true">Data</option><option command="3" order="3" callback="https://196.38.58.244:18443/ABWeb/ProcessUSSD;jsessionid=-7idRktcXCHWshCyqF+xlZhZ?menu=49" display="true">Cash Out</option><option command="4" order="4" callback="https://196.38.58.244:18443/ABWeb/ProcessUSSD;jsessionid=-7idRktcXCHWshCyqF+xlZhZ?menu=42&input=1" display="true">Back</option></options></request>
+
+<?xml version="1.0" encoding="utf-8"?><request><headertext>Claim Rewards</headertext><options><option command="1" order="1" callback="https://196.38.58.244:18443/ABWeb/ProcessUSSD;jsessionid=Nufq16a4O9JSj+qpnRezL9s6?menu=100" display="true">Airtime</option><option command="2" order="2" callback="https://196.38.58.244:18443/ABWeb/ProcessUSSD;jsessionid=Nufq16a4O9JSj+qpnRezL9s6?menu=200" display="true">Data</option><option command="3" order="3" callback="https://196.38.58.244:18443/ABWeb/ProcessUSSD;jsessionid=Nufq16a4O9JSj+qpnRezL9s6?menu=49" display="true">Cash Out</option><option command="4" order="4" callback="https://196.38.58.244:18443/ABWeb/ProcessUSSD;jsessionid=Nufq16a4O9JSj+qpnRezL9s6?menu=42&input=1" display="true">Back</option></options></request>
