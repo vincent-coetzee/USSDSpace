@@ -13,7 +13,16 @@ import QuartzCore
 class Simulator:NSObject,NSXMLParserDelegate
 	{
 	@IBOutlet var window:SimulatorWindow?
+	@IBOutlet var contextWindow:NSWindow?
 	@IBOutlet var viewMenu:NSMenu?
+	@IBOutlet var contextView:NSView?
+	@IBOutlet var USSDSessionField:NSTextField?
+	@IBOutlet var MSISDNField:NSTextField?
+	@IBOutlet var startURLField:NSTextField?
+	@IBOutlet var shortCodeField:NSTextField?
+	@IBOutlet var sourceIPRewriteField:NSTextField?
+	@IBOutlet var targetIPRewriteField:NSTextField?
+	@IBOutlet var providerField:NSTextField?
 	
 	var view:SimulatorView?
 	var nib:NSNib?
@@ -34,6 +43,17 @@ class Simulator:NSObject,NSXMLParserDelegate
 		return(newSimulator)
 		}
 		
+	@IBAction func onContextOk(sender:AnyObject?)
+		{
+		window!.makeKeyAndOrderFront(self)
+		contextWindow!.close()
+		setCallback(targetURL!)
+		}
+		
+	@IBAction func onContextCancel(sender:AnyObject?)
+		{
+		}
+		
 	func closeWindow()
 		{
 		view = nil
@@ -51,8 +71,6 @@ class Simulator:NSObject,NSXMLParserDelegate
 		view!.menu = viewMenu!
 		view!.controller = self
 		window!.contentView.addSubview(view!)
-		window!.makeKeyAndOrderFront(self)
-		setCallback(targetURL!)
 		}
 		
 	init(startURL:CallbackURL)

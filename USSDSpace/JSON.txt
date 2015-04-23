@@ -21,3 +21,22 @@
 
 
  mvn archetype:generate -DgroupId=com.macsemantics -DartifactId=USSDManager -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false
+ 
+ 
+ 
+ <?xml version="1.0" encoding="utf-8"?>
+	<request>
+		<headertext>You are Enrolled. Make your first payment to move to Achiever level. Pay R1831.32 now to qualify for Gold level.</headertext>
+		<options>
+			<option command="1" order="1" callback="https://196.38.58.244:18443/ABWeb/ProcessUSSD;jsessionid=0v90UT9X1mNni2nuSwXbp2wh?menu=42&input=1" display="true">Back</option>
+			<option command="2" order="2" callback="https://196.38.58.244:18443/ABWeb/ProcessUSSD;jsessionid=0v90UT9X1mNni2nuSwXbp2wh?menu=41" display="true">Main Menu</option>
+		</options>
+	</request>
+	
+<?xml version="1.0" encoding="utf-8"?>
+	<request><headertext>Invalid selection</headertext>
+	<options>
+		<option command="1" order="1" callback="https://196.38.58.244:18443/ABWeb/ProcessUSSD;jsessionid=0v90UT9X1mNni2nuSwXbp2wh?menu=15" display="true">Retry</option>
+		<option command="2" order="2" callback="https://196.38.58.244:18443/ABWeb/ProcessUSSD;jsessionid=0v90UT9X1mNni2nuSwXbp2wh?menu=15" display="true">Exit</option>
+	</options>
+</request>
