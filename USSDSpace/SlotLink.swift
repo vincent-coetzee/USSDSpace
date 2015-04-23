@@ -10,7 +10,7 @@ import Foundation
 import AppKit
 import QuartzCore
 
-class SlotLink:NSObject
+class SlotLink:USSDItem
 	{
 	var startPoint:NSPoint = NSPoint(x:0,y:0)
 	var endPoint:NSPoint = NSPoint(x:0,y:0)
@@ -28,7 +28,15 @@ class SlotLink:NSObject
 		targetMenu!.removeLinkedTargetSlot(targetSlot!)
 		}
 		
-	func encodeWithCoder(coder:NSCoder)
+	override func select()
+		{
+		}
+		
+	override func deselect()
+		{
+		}
+		
+	override func encodeWithCoder(coder:NSCoder)
 		{
 		coder.encodePoint(startPoint,forKey:"startPoint")
 		coder.encodePoint(endPoint,forKey:"endPoint")
@@ -41,6 +49,7 @@ class SlotLink:NSObject
 		
 	required init(coder aDecoder: NSCoder) 
 		{
+		super.init(coder:aDecoder)
 	    startPoint = aDecoder.decodePointForKey("startPoint")
 		endPoint = aDecoder.decodePointForKey("endPoint")
 		shapeLayer = aDecoder.decodeObjectForKey("shapeLayer") as! CAShapeLayer
@@ -51,6 +60,15 @@ class SlotLink:NSObject
 		shapeLayer.lineCap = kCALineCapRound
 		shapeLayer.strokeColor = lineColor.CGColor
 		shapeLayer.fillColor = lineColor.CGColor
+		}
+		
+	override func containsPoint(point:NSPoint) -> Bool
+		{
+		if link.containsPoint(point)
+			{
+			return(true)
+			}
+		return(false)
 		}
 		
 	override init()

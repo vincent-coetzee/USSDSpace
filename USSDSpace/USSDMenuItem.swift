@@ -12,8 +12,8 @@ import QuartzCore
 
 class USSDMenuItem:USSDMenuEntry
 	{
-	var leftSource:Slot = Slot()
-	var rightSource:Slot = Slot()
+	var leftSource:Slot
+	var rightSource:Slot
 		
 	override func encodeWithCoder(coder:NSCoder)
 		{
@@ -24,11 +24,31 @@ class USSDMenuItem:USSDMenuEntry
 		
 	required init(coder aDecoder: NSCoder) 
 		{
+		leftSource = self.dynamicType.newLeftSlot()
+		rightSource = self.dynamicType.newRightSlot()
 	    super.init(coder:aDecoder)
 		leftSource = aDecoder.decodeObjectForKey("leftSource") as! Slot
 		leftSource.menuItem = self
 		rightSource = aDecoder.decodeObjectForKey("rightSource") as! Slot
 		rightSource.menuItem = self
+		}
+		
+	class func newLeftSlot() -> Slot
+		{
+		var aSlot:Slot
+		
+		aSlot = Slot()
+		aSlot.isLeft = true
+		return(aSlot)
+		}
+		
+	class func newRightSlot() -> Slot
+		{
+		var aSlot:Slot
+		
+		aSlot = Slot()
+		aSlot.isRight = true
+		return(aSlot)
 		}
 		
 	override var displayText:String
@@ -145,14 +165,16 @@ class USSDMenuItem:USSDMenuEntry
 		var rect:CGRect
 		
 		self.frame = frame;
-		rect = CGRect(x:-16,y:0,width:16,height:16)
+		rect = CGRect(x:-24,y:0,width:16,height:16)
 		leftSource.frame = rect
-		rect = CGRect(x:frame.size.width,y:0,width:16,height:16)
+		rect = CGRect(x:frame.size.width+8,y:0,width:16,height:16)
 		rightSource.frame = rect
 		}
 	
 	override init()
 		{
+		leftSource = self.dynamicType.newLeftSlot()
+		rightSource = self.dynamicType.newRightSlot()
 		super.init()
 		addSublayer(leftSource)
 		addSublayer(rightSource)
@@ -164,6 +186,8 @@ class USSDMenuItem:USSDMenuEntry
 		
 	override init(layer:AnyObject?)
 		{
+		leftSource = self.dynamicType.newLeftSlot()
+		rightSource = self.dynamicType.newRightSlot()
 		super.init(layer:layer)
 		addSublayer(leftSource)
 		addSublayer(rightSource)
@@ -175,6 +199,8 @@ class USSDMenuItem:USSDMenuEntry
 		
 	override init(text:String)
 		{
+		leftSource = self.dynamicType.newLeftSlot()
+		rightSource = self.dynamicType.newRightSlot()
 		super.init(text:text)
 		addSublayer(leftSource)
 		addSublayer(rightSource)

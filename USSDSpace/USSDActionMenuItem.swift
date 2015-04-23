@@ -10,12 +10,31 @@ import Foundation
 import AppKit
 import QuartzCore
 
-class USSDActionMenuItem:USSDMenuEntry,NSPopoverDelegate
+class USSDActionMenuItem:USSDMenuItem,NSPopoverDelegate
 	{
-	let slotSize = CGSize(width:12,height:12)
+//	let slotSize = CGSize(width:12,height:12)
 	var actionSlot:ActionSlot = ActionSlot(rect: CGRect(x:130,y:0,width:12,height:12))
 	var actionItemEditor:ActionItemEditor?
 	
+	override class func newLeftSlot() -> Slot
+		{
+		var aSlot:ActionSlot
+		
+		aSlot = ActionSlot()
+		aSlot.isLeft = true
+		return(aSlot)
+		}
+		
+	override class func newRightSlot() -> Slot
+		{
+		var aSlot:ActionSlot
+		
+		aSlot = ActionSlot()
+		aSlot.isRight = true
+		return(aSlot)
+		}
+		
+		
 	override func encodeWithCoder(coder:NSCoder)
 		{
 		super.encodeWithCoder(coder)
@@ -46,14 +65,14 @@ class USSDActionMenuItem:USSDMenuEntry,NSPopoverDelegate
 			return("\(menuIndex).\(text)")
 			}
 		}
-		
-	override func setFrameDelta(delta:NSPoint)
-		{
-		}
-		
-	override func addSourceSlotsToSet(set:SlotSet)
-		{
-		}
+//		
+//	override func setFrameDelta(delta:NSPoint)
+//		{
+//		}
+//		
+//	override func addSourceSlotsToSet(set:SlotSet)
+//		{
+//		}
 		
 	override func isMenuActionItem() -> Bool
 		{
@@ -64,22 +83,22 @@ class USSDActionMenuItem:USSDMenuEntry,NSPopoverDelegate
 		{
 		return(true)
 		}
+//		
+//	override func loadIntoLayer(menuLayer:CALayer,linkLayer:LinkManagementLayer)
+//		{
+//		}
 		
-	override func loadIntoLayer(menuLayer:CALayer,linkLayer:LinkManagementLayer)
-		{
-		}
-		
-	override func layoutInFrame(aFrame:CGRect)
-		{
-		var newRect:CGRect 
-		
-		self.frame = aFrame;
-		newRect = CGRect(x:self.bounds.size.width,y:0,width:12,height:12)
-		actionSlot.outerFrame = newRect
-		actionSlot.frame = newRect
-		actionSlot.backgroundColor = NSColor.redColor().CGColor
-		setNeedsDisplay()
-		}
+//	override func layoutInFrame(aFrame:CGRect)
+//		{
+//		var newRect:CGRect 
+//		
+//		self.frame = aFrame;
+//		newRect = CGRect(x:self.bounds.size.width,y:0,width:12,height:12)
+//		actionSlot.outerFrame = newRect
+//		actionSlot.frame = newRect
+//		actionSlot.backgroundColor = NSColor.redColor().CGColor
+//		setNeedsDisplay()
+//		}
 		
 	override func frameContainsPoint(point:NSPoint) -> Bool
 		{
@@ -110,24 +129,24 @@ class USSDActionMenuItem:USSDMenuEntry,NSPopoverDelegate
 		{
 		actionItemEditor = nil
 		}
-	
-	override func layoutSublayers()
-		{
-		var newRect:CGRect
-		var someBounds:CGRect
-		
-		super.layoutSublayers()
-		someBounds = self.bounds
-		newRect = CGRect(x:someBounds.size.width,y:0,width:12,height:12)
-		actionSlot.outerFrame = newRect
-		actionSlot.frame = newRect
-		setNeedsDisplay()
-		}
-		
+//	
+//	override func layoutSublayers()
+//		{
+//		var newRect:CGRect
+//		var someBounds:CGRect
+//		
+//		super.layoutSublayers()
+//		someBounds = self.bounds
+//		newRect = CGRect(x:someBounds.size.width,y:0,width:12,height:12)
+//		actionSlot.outerFrame = newRect
+//		actionSlot.frame = newRect
+//		setNeedsDisplay()
+//		}
+//		
 	override init()
 		{
 		super.init()
-		addSublayer(actionSlot)
+//		addSublayer(actionSlot)
 		}
 		
 	override init(layer:AnyObject?)
@@ -135,14 +154,14 @@ class USSDActionMenuItem:USSDMenuEntry,NSPopoverDelegate
 		super.init(layer:layer)
 		var slotLayer = layer as! USSDActionMenuItem
 		actionSlot = slotLayer.actionSlot
-		addSublayer(actionSlot)
+//		addSublayer(actionSlot)
 		setNeedsLayout()
 		}
 		
 	override init(text:String)
 		{
 		super.init(text:text)
-		addSublayer(actionSlot)
+//		addSublayer(actionSlot)
 		setNeedsLayout()
 		}
 	}

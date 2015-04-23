@@ -90,7 +90,7 @@ class ActionItemEditor:NSObject
 			menuNameButton!.selectItemWithTitle(slotNextMenuName)
 			slotActionTypeName = "Save Selected Index"
 			slotValueName = methodName
-		case let .SaveIndex(key,methodName,menuName):
+		case let .SaveText(key,methodName,menuName):
 			actionNameButton!.selectItemWithTitle("Save Selected Text")
 			nameField!.stringValue = methodName
 			slotNextMenuName = actionItem!.menu().menuNameForMenuUUID(menuName)

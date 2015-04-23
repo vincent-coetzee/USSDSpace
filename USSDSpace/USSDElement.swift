@@ -10,7 +10,7 @@ import Foundation
 import AppKit
 import QuartzCore
 
-class USSDElement:CATextLayer,Selectable
+class USSDElement:USSDItem
 	{
 	var desiredHeight:CGFloat = 0
 	var selected:Bool = false
@@ -44,42 +44,6 @@ class USSDElement:CATextLayer,Selectable
 		desiredHeight = CGFloat(aDecoder.decodeDoubleForKey("desiredHeight"))
 		selected = aDecoder.decodeBoolForKey("selected")
 		uuid = aDecoder.decodeObjectForKey("UUID") as! String
-		}
-		
-	func isMenu() -> Bool
-		{
-		return(false)
-		}
-		
-	func isMenuItem() -> Bool
-		{
-		return(false)
-		}
-		
-	func isMenuTitleItem() -> Bool
-		{
-		return(false)
-		}
-		
-	func isMenuActionItem() -> Bool
-		{
-		return(false)
-		}
-		
-	override func contentsAreFlipped() -> Bool
-		{
-		return(true)
-		}
-		
-	override var geometryFlipped:Bool
-		{
-		get
-			{
-			return(true)
-			}
-		set
-			{
-			}
 		}
 		
 	override init()
@@ -122,13 +86,13 @@ class USSDElement:CATextLayer,Selectable
 		self.frame = oldFrame
 		}
 		
-	func select()
+	override func select()
 		{
 		selected = true
 		UFXStylist.styleElementAsSelected(self)
 		}
 		
-	func deselect()
+	override func deselect()
 		{
 		selected = false
 		UFXStylist.styleElementAsNotSelected(self)

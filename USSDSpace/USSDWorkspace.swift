@@ -48,6 +48,7 @@ class USSDWorkspace:USSDElement
 		
 		workspace = NSKeyedUnarchiver.unarchiveObjectWithFile(path) as! USSDWorkspace
 		workspace.workspaceName = path.lastPathComponent
+		workspace.reIndexMenus()
 		return(workspace)
 		}
 		
@@ -86,6 +87,17 @@ class USSDWorkspace:USSDElement
 				}
 			}
 		return(nil)
+		}
+		
+	func reIndexMenus()
+		{
+		var oldMenus = menus
+		
+		menus = [String:USSDMenu]()
+		for (key,menu) in oldMenus
+			{
+			menus[menu.menuName] = menu
+			}
 		}
 		
 	func saveOnPath(path:String) -> Bool

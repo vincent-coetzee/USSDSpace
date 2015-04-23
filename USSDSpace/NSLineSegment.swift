@@ -18,29 +18,15 @@ class NSLineSegment: NSObject
 		startPoint = start
 		endPoint = end
 		}
-		
-//	func pointOfIntersectionWithLine(other:NSLineSegment) -> NSPoint?
-//		{
-//		// return the intersecting point of two lines SEGMENTS p1-p2 and p3-p4, whose end points are passed in. If the lines are parallel,
-//		// the result is NSNotFoundPoint. Uses an alternative algorithm from Intersection() - this is faster and more usable. This only returns a
-//		// point if the two segments actually intersect - it doesn't project the lines.
-//	
-//		var d = (other.endPoint.y - other.startPoint.y)*(endPoint.x - startPoint.x) - (other.endPoint.x - other.startPoint.x)*(endPoint.y-startPoint.y);
-//	
-//		if d == 0.0
-//			{
-//			return(nil);
-//			}
-//		var ua = ((other.endPoint.x - other.startPoint.x)*(startPoint.y - other.startPoint.y) - (other.endPoint.y - other.startPoint.y)*(startPoint.x - other.startPoint.x))/d;		
-//		if ua >= 0.0 && ua <= 1.0
-//			{
-//			var ip:NSPoint = NSPoint(x:0,y:0)
-//			ip.x = startPoint.x + ua*(endPoint.x - startPoint.x);
-//			ip.y = startPoint.y + ua*(endPoint.y - startPoint.y);
-//			return(ip);
-//			}
-//		return(nil)
-//		}
+	
+	func midPoint() -> NSPoint
+		{
+		var midPoint = NSPoint(x:0,y:0)
+	
+		midPoint.x = ( startPoint.x + endPoint.x ) * 0.5
+		midPoint.y = ( startPoint.y + endPoint.y ) * 0.5
+		return(midPoint)
+		}
 
 	func numbersHaveSameSign(first:CGFloat,second:CGFloat) -> Bool
 		{

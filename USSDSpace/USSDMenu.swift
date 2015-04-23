@@ -19,7 +19,8 @@ class USSDMenu:USSDElement
 	private var menuNameLayer = USSDMenuNameItem(text: "")
 	private var actualMenuName:String = ""
 	private var linkedTargetSlots:[TargetSlot] = [TargetSlot]()
-		
+	private var selectionLayer:CALayer = CALayer()
+	
 	let menuEdgeInsets = NSEdgeInsets(top:30,left:20,bottom:60,right:20)
 	let interlineSpacing:CGFloat = 4
 	let menuNameFrame = CGRect(x:10,y:24,width:150,height:20)
@@ -30,13 +31,14 @@ class USSDMenu:USSDElement
 		{
 		get
 			{
-			return(actualMenuName)
+			return(menuNameLayer.text)
 			}
 		set
 			{
 			actualMenuName = newValue
 			menuNameLayer.text = actualMenuName
 			setNeedsDisplay()
+			self.workspace!.reIndexMenus()
 			}
 		}
 		
@@ -168,13 +170,16 @@ class USSDMenu:USSDElement
 		
 	override func select()
 		{
-		imageLayer.contents = NSImage(named:"iPhone6BlackUSSD-170x347")
+		self.insertSublayer(selectionLayer,below:menuTitleItem)
+		selectionLayer.backgroundColor = UFXStylist.SelectionColor.CGColor
+//		imageLayer.contents = NSImage(named:"iPhone6BlackUSSD-170x347")
 //		menuNameLayer.foregroundColor = NSColor.whiteColor().CGColor
 		}
 		
 	override func deselect()
 		{
-		imageLayer.contents = NSImage(named:"iPhone6WhiteUSSD-170x347")
+		selectionLayer.removeFromSuperlayer()
+//		imageLayer.contents = NSImage(named:"iPhone6WhiteUSSD-170x347")
 //		menuNameLayer.foregroundColor = NSColor.blackColor().CGColor
 		}
 		
@@ -295,9 +300,14 @@ class USSDMenu:USSDElement
 			{
 			height = item.desiredHeight
 			item.layoutInFrame(CGRect(x:menuEdgeInsets.left,y:topOffset+1,width:textWidth,height:height))
-//			NSLog("INDEX(\(index)) CLASS(\(item.dynamicType)) HEIGHT(\(height)) FRAME(\(item.frame))")
 			topOffset += height + interlineSpacing/2
 			}
+		var newFrame:CGRect = self.bounds
+		newFrame.origin.x = newFrame.origin.x + 10
+		newFrame.origin.y = newFrame.origin.y + 36
+		newFrame.size.width = newFrame.width - 2*10
+		newFrame.size.height = newFrame.height - 2*36
+		selectionLayer.frame = newFrame
 		}
 		
 	}

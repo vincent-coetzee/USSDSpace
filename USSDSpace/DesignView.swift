@@ -13,7 +13,7 @@ import QuartzCore
 class DesignView:NSView
 	{
 	var menus:[USSDMenu] = [USSDMenu]()
-	var selectedElementHolder:SelectionHolder<USSDElement> = SelectionHolder<USSDElement>()
+	var selectedElementHolder:SelectionHolder<USSDItem> = SelectionHolder<USSDItem>()
 	
 	var dragMenu:USSDMenu?
 	var dragOffset:CGPoint?
@@ -62,6 +62,13 @@ class DesignView:NSView
 		return(nil)
 		}
 		
+	func linkContainingPoint(point:NSPoint) -> SlotLink?
+		{
+		var link:SlotLink?
+		link = linkContainerLayer.linkContainingPoint(point)
+		return(link)
+		}
+		
 	func menuContainingPoint(point:CGPoint) -> USSDMenu?
 		{
 		for menu in menus
@@ -88,7 +95,7 @@ class DesignView:NSView
 			{
 			slot.disconnect(linkContainerLayer)
 			}
-		activeLink = SlotLink()
+		activeLink = slot.newLink()
 		startPoint = slot.centerPoint
 		activeLink.setLine(startPoint,toPoint:point)
 		linkContainerLayer.addPotentialLink(activeLink)
@@ -188,6 +195,16 @@ class DesignView:NSView
 					selectedElementHolder.selection = element
 					NSLog("SELECTED ELEMENT IS \(element)")
 					element!.handleClick(point,inView:self)
+					}
+				}
+			else
+				{
+				var link:SlotLink?
+				
+				link = linkContainingPoint(point)
+				if link != nil
+					{
+					selectedElementHolder.selection = link;
 					}
 				}
 			}
@@ -307,13 +324,13 @@ class DesignView:NSView
 		var menu:USSDMenu
 		
 		menu = USSDMenu()
+		menu.workspace = workspace
 		menu.menuName = workspace.nextMenuName()
 		menu.addItem(USSDMenuItem(text:"First Menu Item"))
 		menu.addItem(USSDMenuItem(text:"Second long menu Item."))
 		menu.addItem(USSDMenuItem(text:"Third shorter Item"))
 		menu.addItem(USSDMenuItem(text:"Return to other menu"))
 		menu.setFrameOrigin(currentMousePoint())
-		menu.workspace = workspace
 		menus.append(menu)
 		menuContainerLayer.addSublayer(menu)
 		menuContainerLayer.setNeedsDisplay()
@@ -351,6 +368,15 @@ class DesignView:NSView
 		
 		menuItem.actionSlot = ActionSlot(rect: CGRect(x:0,y:0,width:16,height:16))
 		
+		if selectedElementHolder.selection != nil && selectedElementHolder.selection!.isMenu()
+			{
+			(selectedElementHolder.selection! as! USSDMenu).addItem(menuItem)
+			}
+		}
+		
+	@IBAction func onEntryFieldMenuItem(sender:AnyObject?)
+		{
+		var menuItem = USSDEntryFieldMenuItem(text: "REQUEST=")
 		if selectedElementHolder.selection != nil && selectedElementHolder.selection!.isMenu()
 			{
 			(selectedElementHolder.selection! as! USSDMenu).addItem(menuItem)

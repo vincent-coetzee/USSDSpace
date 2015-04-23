@@ -10,7 +10,7 @@ import Foundation
 import AppKit
 import QuartzCore
 
-class ActionSlot:CALayer
+class ActionSlot:Slot
 	{
 	enum ActionType
 		{
@@ -18,8 +18,7 @@ class ActionSlot:CALayer
 		case SaveIndex(Int,String,String) 
 		case SaveText(Int,String,String) 
 		}
-		
-	var outerFrame:CGRect = CGRect(x:0,y:0,width:16,height:16)
+
 	var actionType:ActionType?
 	var menu:USSDMenu?
 	
@@ -28,8 +27,13 @@ class ActionSlot:CALayer
 		super.init()
 		frame = rect
 		outerFrame = rect
-		actionType = ActionType.Invoke(1,"doNothing","0000-0000-0000-0000")
+		actionType = ActionType.Invoke(1,"onNothing","0000-0000-0000-0000")
 		self.contents = UFXStylist.SlotMenuImage
+		}
+		
+	override func newLink() -> SlotLink
+		{
+		return(ActionSlotLink())
 		}
 		
 	func asJSONString() -> String
@@ -50,7 +54,6 @@ class ActionSlot:CALayer
 	override func encodeWithCoder(coder:NSCoder)
 		{
 		super.encodeWithCoder(coder)
-		coder.encodeRect(outerFrame,forKey:"outerFrame")
 		encodeActionTypeWithCoder(coder,aType:actionType!,forKey:"actionType")
 		}
 		
@@ -61,17 +64,17 @@ class ActionSlot:CALayer
 		case let .Invoke(code,invokeMethodName,menuName):
 			coder.encodeInteger(code,forKey:"\(forKey).code")
 			coder.encodeObject(invokeMethodName,forKey:"\(forKey).invokeMethodName")
-			coder.encodeObject(menuName,forKey:"\(forKey).nextMenuName")
+			coder.encodeObject(menuName,forKey:"\(forKey).nextMenuUUID")
 			break;
 		case let .SaveIndex(code,name,menuName):
 			coder.encodeInteger(code,forKey:"\(forKey).code")
 			coder.encodeObject(name,forKey:"\(forKey).name")
-			coder.encodeObject(menuName,forKey:"\(forKey).nextMenuName")
+			coder.encodeObject(menuName,forKey:"\(forKey).nextMenuUUID")
 			break;
 		case let .SaveText(code,name,menuName):
 			coder.encodeInteger(code,forKey:"\(forKey).code")
 			coder.encodeObject(name,forKey:"\(forKey).name")
-			coder.encodeObject(menuName,forKey:"\(forKey).nextMenuName")
+			coder.encodeObject(menuName,forKey:"\(forKey).nextMenuUUID")
 			break;
 		default:
 			break;
@@ -84,33 +87,35 @@ class ActionSlot:CALayer
 		switch(code)
 			{
 		case 1:
-			return(ActionType.Invoke(code,coder.decodeObjectForKey("\(forKey).invokeMethodName") as! String,coder.decodeObjectForKey("\(forKey).nextMenuName") as! String))
+			return(ActionType.Invoke(code,coder.decodeObjectForKey("\(forKey).invokeMethodName") as! String,coder.decodeObjectForKey("\(forKey).nextMenuUUID") as! String))
 		case 2:
-			return(ActionType.SaveIndex(code,coder.decodeObjectForKey("\(forKey).name") as! String,coder.decodeObjectForKey("\(forKey).nextMenuName") as! String))
+			return(ActionType.SaveIndex(code,coder.decodeObjectForKey("\(forKey).name") as! String,coder.decodeObjectForKey("\(forKey).nextMenuUUID") as! String))
 		case 3:
-			return(ActionType.SaveText(code,coder.decodeObjectForKey("\(forKey).name") as! String,coder.decodeObjectForKey("\(forKey).nextMenuName") as! String))
+			return(ActionType.SaveText(code,coder.decodeObjectForKey("\(forKey).name") as! String,coder.decodeObjectForKey("\(forKey).nextMenuUUID") as! String))
 		default:
-			return(ActionType.Invoke(code,coder.decodeObjectForKey("\(forKey).invokeMethodName") as! String,""))
+			return(ActionType.Invoke(1,"",""))
 			}
 		}
 		
 	override init()
 		{
 		super.init()
-		self.contents = UFXStylist.SlotMenuImage
+//		self.contents = UFXStylist.SlotMenuImage
+		actionType = ActionType.Invoke(1,"onNothing","0000-0000-0000-0000")
 		}
 		
 	override init(layer:AnyObject?)
 		{
 		super.init(layer: layer)
-		self.contents = UFXStylist.SlotMenuImage
+//		self.contents = UFXStylist.SlotMenuImage
+		actionType = ActionType.Invoke(1,"onNothing","0000-0000-0000-0000")
 		}
 
 	required init(coder aDecoder: NSCoder) 
 		{
 	    super.init(coder:aDecoder)
-		outerFrame = aDecoder.decodeRectForKey("outerFrame")
+//		outerFrame = aDecoder.decodeRectForKey("outerFrame")
 		actionType = decodeActionType(aDecoder,forKey:"actionType") 
-		self.contents = UFXStylist.SlotMenuImage
+//		self.contents = UFXStylist.SlotMenuImage
 		}
 	}

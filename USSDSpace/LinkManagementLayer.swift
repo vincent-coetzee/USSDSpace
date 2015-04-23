@@ -35,6 +35,18 @@ class LinkManagementLayer:CALayer
 		super.init()
 		}
 		
+	func linkContainingPoint(point:NSPoint) -> SlotLink?
+		{
+		for link in links
+			{
+			if link.containsPoint(point)
+				{
+				return(link)
+				}
+			}
+		return(nil)
+		}
+		
 	func reset()
 		{
 		for link in links

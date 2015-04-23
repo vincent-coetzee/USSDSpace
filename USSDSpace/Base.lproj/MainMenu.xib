@@ -771,6 +771,12 @@
                         <action selector="onAddActionMenuItem:" target="j8y-F0-NRR" id="Cxx-cz-CqN"/>
                     </connections>
                 </menuItem>
+                <menuItem title="Add Entry Field Menu Item" id="Pxa-hH-lgK">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="onEntryFieldMenuItem:" target="j8y-F0-NRR" id="S3y-BF-BkA"/>
+                    </connections>
+                </menuItem>
                 <menuItem isSeparatorItem="YES" id="XsQ-vq-65S"/>
                 <menuItem title="Delete Menu" id="if7-bc-uJH">
                     <modifierMask key="keyEquivalentModifierMask"/>

@@ -16,6 +16,37 @@ class Slot:CALayer
 	var link:SlotLink?
 	var sisterSlot:Slot?
 	var menuItem:USSDMenuItem?
+	private var _isLeft = false
+	private var _isRight = false
+	
+	var isLeft:Bool
+		{
+		get
+			{
+			return(_isLeft)
+			}
+		set
+			{
+			_isLeft = newValue
+			_isRight = !_isLeft
+			self.contents = self.slotImage
+			}
+		}
+		
+		
+	var isRight:Bool
+		{
+		get
+			{
+			return(_isRight)
+			}
+		set
+			{
+			_isRight = newValue
+			_isLeft = !_isRight
+			self.contents = self.slotImage
+			}
+		}
 	
 	var centerPoint:NSPoint
 		{
@@ -25,6 +56,35 @@ class Slot:CALayer
 			}
 		}
 	
+	var slotImage:NSImage
+		{
+		get
+			{
+			if _isLeft 
+				{
+				if isConnected
+					{
+					return(NSImage(named:"left-full-peg-16x16")!)
+					}
+				else
+					{
+					return(NSImage(named:"left-empty-peg-16x16")!)
+					}
+				}
+			else
+				{
+				if isConnected
+					{
+					return(NSImage(named:"right-full-peg-16x16")!)
+					}
+				else
+					{
+					return(NSImage(named:"right-empty-peg-16x16")!)
+					}
+				}
+			}
+		}
+		
 	var enabled:Bool = true
 		{
 		didSet
@@ -35,14 +95,7 @@ class Slot:CALayer
 				}
 			else
 				{
-				if isConnected
-					{
-					self.contents = NSImage(named:"socket-full-16x16")
-					}
-				else
-					{
-					self.contents = NSImage(named:"socket-empty-16x16")
-					}
+				self.contents = self.slotImage
 				}
 			}
 			
@@ -54,12 +107,12 @@ class Slot:CALayer
 			{
 			if isConnected 
 				{
-				self.contents = NSImage(named:"socket-full-16x16")
+				self.contents = self.slotImage
 				sisterSlot!.enabled = false
 				}
 			else
 				{
-				self.contents = NSImage(named:"socket-empty-16x16")
+				self.contents = nil
 				sisterSlot!.enabled = true
 				}
 			}
@@ -106,6 +159,8 @@ class Slot:CALayer
 		coder.encodeObject(link,forKey:"link")
 		coder.encodeObject(sisterSlot,forKey:"sisterSlot")
 		coder.encodeBool(enabled,forKey:"enabled")
+		coder.encodeBool(_isLeft,forKey:"isLeft")
+		coder.encodeBool(_isRight,forKey:"isRight")
 		}
 		
 	required init(coder aDecoder: NSCoder) 
@@ -115,17 +170,12 @@ class Slot:CALayer
 		outerFrame = aDecoder.decodeRectForKey("outerFrame")
 		removeAllAnimations()
 		isConnected = aDecoder.decodeBoolForKey("isConnected")
-		if isConnected 
-			{
-			self.contents = NSImage(named:"socket-full-16x16")
-			}
-		else
-			{
-			self.contents = NSImage(named:"socket-empty-16x16")
-			}
+		enabled = aDecoder.decodeBoolForKey("enabled");
+		_isLeft = aDecoder.decodeBoolForKey("isLeft")
+		_isRight = aDecoder.decodeBoolForKey("isRight")
+		self.contents = self.slotImage
 		link = aDecoder.decodeObjectForKey("link") as! SlotLink?
 		sisterSlot = aDecoder.decodeObjectForKey("sisterSlot") as! Slot?
-		enabled = aDecoder.decodeBoolForKey("enabled");
 		}
 		
 	init(origin:NSPoint)
@@ -134,7 +184,7 @@ class Slot:CALayer
 		super.init()
 		frame = CGRect(origin:origin,size:CGSize(width:16,height:16))
 		outerFrame = frame
-		self.contents = NSImage(named:"socket-empty-16x16")
+		self.contents = self.slotImage
 		}
 		
 	func resetOuterFrame()
@@ -162,13 +212,18 @@ class Slot:CALayer
 			}
 		}
 		
+	func newLink() -> SlotLink
+		{
+		return(SlotLink())
+		}
+		
 	override init()
 		{
 		outerFrame = CGRect(x:0,y:0,width:16,height:16)
 		super.init()
 		frame = CGRect(x:0,y:0,width:16,height:16)
 		outerFrame = frame
-		self.contents = NSImage(named:"socket-empty-16x16")
+		self.contents = self.slotImage
 		}
 		
 	func offsetByPoint(point:NSPoint) -> Slot

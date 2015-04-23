@@ -39,6 +39,6 @@ class CallbackURL
 			arguments = (values as NSArray).componentsJoinedByString("&")
 			url = url + ((url as NSString).containsString("?") ? "&" : "?") + arguments
 			}
-		return(NSURL(string:url))!
+		return(NSURL(string:url.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!))!
 		}
 	}

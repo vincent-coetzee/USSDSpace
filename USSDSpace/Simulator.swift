@@ -27,7 +27,9 @@ class Simulator:NSObject,NSXMLParserDelegate
 		var newSimulator:Simulator
 		var nib:NSNib
 		var callback:CallbackURL
-		newSimulator = Simulator(startURL: CallbackURL(base:startURL))
+		callback = CallbackURL(base:startURL)
+		callback.setValue("*120*33248#",forKey:"request")
+		newSimulator = Simulator(startURL:callback)
 		newSimulator.openWindow()
 		return(newSimulator)
 		}
@@ -103,10 +105,13 @@ class Simulator:NSObject,NSXMLParserDelegate
 		var parser:NSXMLParser?
 		var xml:String
 		var error:NSErrorPointer = NSErrorPointer()
+		var service:USSDEngineService
 		
 		callback.setValue("Vodacom",forKey:"provider")
 		callback.setValue("27828877777",forKey:"msisdn")
-		parser = NSXMLParser(contentsOfURL:callback.finalURL())
+		service = USSDEngineService()
+		xml = service.fetchXMLAtURL(callback.finalURL().absoluteString!)
+		parser = NSXMLParser(data:(xml as! NSString).dataUsingEncoding(NSUTF8StringEncoding)!)
 		if parser != nil
 			{
 			parser!.delegate = self

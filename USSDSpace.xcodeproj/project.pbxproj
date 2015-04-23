@@ -14,6 +14,24 @@
 		BF34841E1AE820F100F4180C /* AuthenticationPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF34841D1AE820F100F4180C /* AuthenticationPacket.swift */; };
 		BF3484201AE838D000F4180C /* ErrorSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF34841F1AE838D000F4180C /* ErrorSheet.xib */; };
 		BF3484221AE8398600F4180C /* ErrorSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3484211AE8398600F4180C /* ErrorSheet.swift */; };
+		BF3484241AE8528100F4180C /* ScriptRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3484231AE8528100F4180C /* ScriptRecorder.swift */; };
+		BF3484271AE8529B00F4180C /* Script.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3484261AE8529B00F4180C /* Script.swift */; };
+		BF3484291AE8669400F4180C /* OldMenuAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3484281AE8669400F4180C /* OldMenuAction.swift */; };
+		BF34842B1AE86A3200F4180C /* right-empty-peg-16x16.png in Resources */ = {isa = PBXBuildFile; fileRef = BF34842A1AE86A3200F4180C /* right-empty-peg-16x16.png */; };
+		BF34842D1AE86B2100F4180C /* left-empty-peg-16x16.png in Resources */ = {isa = PBXBuildFile; fileRef = BF34842C1AE86B2100F4180C /* left-empty-peg-16x16.png */; };
+		BF3484331AE86E6E00F4180C /* ActionSlotLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3484321AE86E6E00F4180C /* ActionSlotLink.swift */; };
+		BF3484361AE8767D00F4180C /* left-full-peg-16x16.png in Resources */ = {isa = PBXBuildFile; fileRef = BF3484341AE8767D00F4180C /* left-full-peg-16x16.png */; };
+		BF3484371AE8767D00F4180C /* right-full-peg-16x16.png in Resources */ = {isa = PBXBuildFile; fileRef = BF3484351AE8767D00F4180C /* right-full-peg-16x16.png */; };
+		BF3484391AE8833400F4180C /* ScriptEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3484381AE8833400F4180C /* ScriptEntry.swift */; };
+		BF34843B1AE8834C00F4180C /* ScriptEntryStart.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF34843A1AE8834C00F4180C /* ScriptEntryStart.swift */; };
+		BF34843D1AE8835C00F4180C /* ScriptEntryStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF34843C1AE8835C00F4180C /* ScriptEntryStop.swift */; };
+		BF34843F1AE8837C00F4180C /* ScriptEntryLoop.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF34843E1AE8837C00F4180C /* ScriptEntryLoop.swift */; };
+		BF3484411AE8875500F4180C /* ScriptEntrySelect.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3484401AE8875500F4180C /* ScriptEntrySelect.swift */; };
+		BF3484431AE8878500F4180C /* ScriptBrowser.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF3484421AE8878500F4180C /* ScriptBrowser.xib */; };
+		BF3484451AE887B100F4180C /* ScriptBrowserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3484441AE887B000F4180C /* ScriptBrowserController.swift */; };
+		BF3484471AE8966C00F4180C /* USSDEntryFieldMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3484461AE8966C00F4180C /* USSDEntryFieldMenuItem.swift */; };
+		BF34844B1AE89DF900F4180C /* USSDItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF34844A1AE89DF900F4180C /* USSDItem.swift */; };
+		BF34844D1AE8A6B000F4180C /* USSDEngineService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF34844C1AE8A6B000F4180C /* USSDEngineService.swift */; };
 		BF3EC9851AE7E41A00140D82 /* USSDDocument.png in Resources */ = {isa = PBXBuildFile; fileRef = BF3EC9841AE7E41A00140D82 /* USSDDocument.png */; };
 		BF4FD49A1AD5B8E400ABBDCA /* TargetSlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4FD4991AD5B8E400ABBDCA /* TargetSlot.swift */; };
 		BF54150A1AE6C54D00DA14BA /* JSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5415091AE6C54D00DA14BA /* JSONParser.swift */; };
@@ -86,6 +104,24 @@
 		BF34841D1AE820F100F4180C /* AuthenticationPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationPacket.swift; sourceTree = "<group>"; };
 		BF34841F1AE838D000F4180C /* ErrorSheet.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ErrorSheet.xib; sourceTree = "<group>"; };
 		BF3484211AE8398600F4180C /* ErrorSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorSheet.swift; sourceTree = "<group>"; };
+		BF3484231AE8528100F4180C /* ScriptRecorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScriptRecorder.swift; sourceTree = "<group>"; };
+		BF3484261AE8529B00F4180C /* Script.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Script.swift; sourceTree = "<group>"; };
+		BF3484281AE8669400F4180C /* OldMenuAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OldMenuAction.swift; sourceTree = "<group>"; };
+		BF34842A1AE86A3200F4180C /* right-empty-peg-16x16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "right-empty-peg-16x16.png"; sourceTree = "<group>"; };
+		BF34842C1AE86B2100F4180C /* left-empty-peg-16x16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "left-empty-peg-16x16.png"; sourceTree = "<group>"; };
+		BF3484321AE86E6E00F4180C /* ActionSlotLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionSlotLink.swift; sourceTree = "<group>"; };
+		BF3484341AE8767D00F4180C /* left-full-peg-16x16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "left-full-peg-16x16.png"; sourceTree = "<group>"; };
+		BF3484351AE8767D00F4180C /* right-full-peg-16x16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "right-full-peg-16x16.png"; sourceTree = "<group>"; };
+		BF3484381AE8833400F4180C /* ScriptEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScriptEntry.swift; sourceTree = "<group>"; };
+		BF34843A1AE8834C00F4180C /* ScriptEntryStart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScriptEntryStart.swift; sourceTree = "<group>"; };
+		BF34843C1AE8835C00F4180C /* ScriptEntryStop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScriptEntryStop.swift; sourceTree = "<group>"; };
+		BF34843E1AE8837C00F4180C /* ScriptEntryLoop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScriptEntryLoop.swift; sourceTree = "<group>"; };
+		BF3484401AE8875500F4180C /* ScriptEntrySelect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScriptEntrySelect.swift; sourceTree = "<group>"; };
+		BF3484421AE8878500F4180C /* ScriptBrowser.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScriptBrowser.xib; sourceTree = "<group>"; };
+		BF3484441AE887B000F4180C /* ScriptBrowserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScriptBrowserController.swift; sourceTree = "<group>"; };
+		BF3484461AE8966C00F4180C /* USSDEntryFieldMenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USSDEntryFieldMenuItem.swift; sourceTree = "<group>"; };
+		BF34844A1AE89DF900F4180C /* USSDItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USSDItem.swift; sourceTree = "<group>"; };
+		BF34844C1AE8A6B000F4180C /* USSDEngineService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USSDEngineService.swift; sourceTree = "<group>"; };
 		BF3EC9841AE7E41A00140D82 /* USSDDocument.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = USSDDocument.png; sourceTree = "<group>"; };
 		BF4FD4991AD5B8E400ABBDCA /* TargetSlot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetSlot.swift; sourceTree = "<group>"; };
 		BF5415091AE6C54D00DA14BA /* JSONParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONParser.swift; sourceTree = "<group>"; };
@@ -166,8 +202,25 @@
 			isa = PBXGroup;
 			children = (
 				BF23E38B1ADF1BC4007B370F /* USSDManagerService.swift */,
+				BF34844C1AE8A6B000F4180C /* USSDEngineService.swift */,
 			);
 			name = Deployment;
+			sourceTree = "<group>";
+		};
+		BF3484251AE8528700F4180C /* Scripting */ = {
+			isa = PBXGroup;
+			children = (
+				BF3484261AE8529B00F4180C /* Script.swift */,
+				BF3484421AE8878500F4180C /* ScriptBrowser.xib */,
+				BF3484441AE887B000F4180C /* ScriptBrowserController.swift */,
+				BF3484381AE8833400F4180C /* ScriptEntry.swift */,
+				BF34843E1AE8837C00F4180C /* ScriptEntryLoop.swift */,
+				BF3484401AE8875500F4180C /* ScriptEntrySelect.swift */,
+				BF34843A1AE8834C00F4180C /* ScriptEntryStart.swift */,
+				BF34843C1AE8835C00F4180C /* ScriptEntryStop.swift */,
+				BF3484231AE8528100F4180C /* ScriptRecorder.swift */,
+			);
+			name = Scripting;
 			sourceTree = "<group>";
 		};
 		BF54150B1AE6FADF00DA14BA /* Utilities and Extensions */ = {
@@ -222,6 +275,7 @@
 		BFD4261F1AD2AE44008C5009 /* USSDSpace */ = {
 			isa = PBXGroup;
 			children = (
+				BF3484251AE8528700F4180C /* Scripting */,
 				BFD426411AD2AE96008C5009 /* Application Related */,
 				BF23E38A1ADF1BAA007B370F /* Deployment */,
 				BFD426401AD2AE88008C5009 /* Resources */,
@@ -263,6 +317,10 @@
 		BFD426401AD2AE88008C5009 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				BF3484341AE8767D00F4180C /* left-full-peg-16x16.png */,
+				BF3484351AE8767D00F4180C /* right-full-peg-16x16.png */,
+				BF34842C1AE86B2100F4180C /* left-empty-peg-16x16.png */,
+				BF34842A1AE86A3200F4180C /* right-empty-peg-16x16.png */,
 				BF5415251AE74C6000DA14BA /* BlackButton-107x42.png */,
 				BF5415261AE74C6000DA14BA /* WhiteButton-107x42.png */,
 				BF54151F1AE739FE00DA14BA /* Keyboard-236x137.png */,
@@ -293,6 +351,7 @@
 				BF23E3841ADED312007B370F /* ActionItemEditor.swift */,
 				BF23E3821ADED1DB007B370F /* ActionItemEditorView.xib */,
 				BF996C0A1AD9973F007DB769 /* ActionSlot.swift */,
+				BF3484321AE86E6E00F4180C /* ActionSlotLink.swift */,
 				BFD426461AD2AF10008C5009 /* DesignController.swift */,
 				BFD426481AD2AF1C008C5009 /* DesignView.swift */,
 				BF3484211AE8398600F4180C /* ErrorSheet.swift */,
@@ -300,6 +359,7 @@
 				BFB804581ADF4FAC00CB8DBE /* JSON.txt */,
 				BFE1A4141AD329DA0020A7E6 /* LinkManagementLayer.swift */,
 				BFD426291AD2AE44008C5009 /* MainMenu.xib */,
+				BF3484281AE8669400F4180C /* OldMenuAction.swift */,
 				BFE1A41C1AD331DB0020A7E6 /* Slot.swift */,
 				BFE1A4161AD32A6E0020A7E6 /* SlotLink.swift */,
 				BFE1A41E1AD332570020A7E6 /* SlotSet.swift */,
@@ -307,6 +367,8 @@
 				BFD426561AD2BE00008C5009 /* UFXStylist.swift */,
 				BF996C061AD993F3007DB769 /* USSDActionMenuItem.swift */,
 				BFD4264A1AD2AF45008C5009 /* USSDElement.swift */,
+				BF3484461AE8966C00F4180C /* USSDEntryFieldMenuItem.swift */,
+				BF34844A1AE89DF900F4180C /* USSDItem.swift */,
 				BFD4264C1AD2AF57008C5009 /* USSDMenu.swift */,
 				BFE1A40C1AD305650020A7E6 /* USSDMenuEntry.swift */,
 				BFD4264E1AD2AF85008C5009 /* USSDMenuItem.swift */,
@@ -409,6 +471,8 @@
 			files = (
 				BFE1A40B1AD304600020A7E6 /* socket-full-16x16.png in Resources */,
 				BF23E3831ADED1DB007B370F /* ActionItemEditorView.xib in Resources */,
+				BF3484361AE8767D00F4180C /* left-full-peg-16x16.png in Resources */,
+				BF3484371AE8767D00F4180C /* right-full-peg-16x16.png in Resources */,
 				BFE1A4131AD3217F0020A7E6 /* iPhone6WhiteUSSD-170x347.png in Resources */,
 				BF5415201AE739FE00DA14BA /* Keyboard-236x137.png in Resources */,
 				BF3484201AE838D000F4180C /* ErrorSheet.xib in Resources */,
@@ -421,7 +485,10 @@
 				BF5415281AE74C6000DA14BA /* WhiteButton-107x42.png in Resources */,
 				BFD426281AD2AE44008C5009 /* Images.xcassets in Resources */,
 				BFE1A40A1AD304600020A7E6 /* socket-empty-16x16.png in Resources */,
+				BF34842D1AE86B2100F4180C /* left-empty-peg-16x16.png in Resources */,
+				BF3484431AE8878500F4180C /* ScriptBrowser.xib in Resources */,
 				BF5415271AE74C6000DA14BA /* BlackButton-107x42.png in Resources */,
+				BF34842B1AE86A3200F4180C /* right-empty-peg-16x16.png in Resources */,
 				BF996C091AD9971F007DB769 /* socket-action-empty-16x16.png in Resources */,
 				BFE1A4111AD317090020A7E6 /* iPhone6BlackUSSD-170x347.png in Resources */,
 				BFD4262B1AD2AE44008C5009 /* MainMenu.xib in Resources */,
@@ -446,11 +513,15 @@
 				BF34841E1AE820F100F4180C /* AuthenticationPacket.swift in Sources */,
 				BF23E3891ADEE220007B370F /* USSDMenuNameItem.swift in Sources */,
 				BF54150A1AE6C54D00DA14BA /* JSONParser.swift in Sources */,
+				BF34844B1AE89DF900F4180C /* USSDItem.swift in Sources */,
+				BF34843D1AE8835C00F4180C /* ScriptEntryStop.swift in Sources */,
 				BF54151A1AE7228E00DA14BA /* SimulatorMenu.swift in Sources */,
 				BF996C0B1AD9973F007DB769 /* ActionSlot.swift in Sources */,
 				BF54151C1AE7249100DA14BA /* SimulatorMenuItem.swift in Sources */,
 				BFD426591AD2D558008C5009 /* NSPointExtensions.swift in Sources */,
 				BF71529B1AD5927700CB15B6 /* NSLineSegment.swift in Sources */,
+				BF3484411AE8875500F4180C /* ScriptEntrySelect.swift in Sources */,
+				BF3484331AE86E6E00F4180C /* ActionSlotLink.swift in Sources */,
 				BFE1A4171AD32A6E0020A7E6 /* SlotLink.swift in Sources */,
 				BFE1A4151AD329DA0020A7E6 /* LinkManagementLayer.swift in Sources */,
 				BFD426451AD2AEF2008C5009 /* USSDWorkspace.swift in Sources */,
@@ -460,17 +531,26 @@
 				BFD426231AD2AE44008C5009 /* AppDelegate.swift in Sources */,
 				BFE1A4191AD32F310020A7E6 /* NSBezierPathExtensions.swift in Sources */,
 				BF5415121AE7109900DA14BA /* SimulatorWindow.swift in Sources */,
+				BF3484451AE887B100F4180C /* ScriptBrowserController.swift in Sources */,
+				BF34844D1AE8A6B000F4180C /* USSDEngineService.swift in Sources */,
 				BFD426511AD2AF9B008C5009 /* USSDMenuTitleItem.swift in Sources */,
 				BF54151E1AE733D900DA14BA /* SimulatorView.swift in Sources */,
 				BF23E3851ADED312007B370F /* ActionItemEditor.swift in Sources */,
+				BF3484291AE8669400F4180C /* OldMenuAction.swift in Sources */,
 				BFD4265C1AD2D7A0008C5009 /* SelectionHolder.swift in Sources */,
+				BF3484271AE8529B00F4180C /* Script.swift in Sources */,
 				BF3484221AE8398600F4180C /* ErrorSheet.swift in Sources */,
+				BF34843B1AE8834C00F4180C /* ScriptEntryStart.swift in Sources */,
 				BFE1A41F1AD332570020A7E6 /* SlotSet.swift in Sources */,
 				BFD426571AD2BE00008C5009 /* UFXStylist.swift in Sources */,
 				BF54152E1AE77F6E00DA14BA /* NSAttributedStringExtensions.swift in Sources */,
 				BFD426491AD2AF1C008C5009 /* DesignView.swift in Sources */,
 				BF54152A1AE7572100DA14BA /* CallbackURL.swift in Sources */,
+				BF34843F1AE8837C00F4180C /* ScriptEntryLoop.swift in Sources */,
+				BF3484391AE8833400F4180C /* ScriptEntry.swift in Sources */,
+				BF3484471AE8966C00F4180C /* USSDEntryFieldMenuItem.swift in Sources */,
 				BFD4264B1AD2AF45008C5009 /* USSDElement.swift in Sources */,
+				BF3484241AE8528100F4180C /* ScriptRecorder.swift in Sources */,
 				BFD426261AD2AE44008C5009 /* USSDSpace.xcdatamodeld in Sources */,
 				BF54150D1AE6FB0900DA14BA /* StringExtensions.swift in Sources */,
 				BFD426471AD2AF10008C5009 /* DesignController.swift in Sources */,
