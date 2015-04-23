@@ -80,14 +80,6 @@ class USSDMenuItem:USSDMenuEntry
 		{
 		leftSource.setFrameDelta(delta)
 		rightSource.setFrameDelta(delta)
-//		if leftSource.isConnected
-//			{
-//			rightSource.enabled = false
-//			}
-//		else if rightSource.isConnected
-//			{
-//			leftSource.enabled = false
-//			}
 		}
 		
 	override func addSourceSlotsToSet(set:SlotSet)
@@ -126,9 +118,9 @@ class USSDMenuItem:USSDMenuEntry
 		var rect:CGRect
 		
 		self.frame = frame;
-		rect = CGRect(x:-24,y:0,width:16,height:16)
+		rect = CGRect(x:-15,y:-2,width:16,height:16)
 		leftSource.frame = rect
-		rect = CGRect(x:frame.size.width+8,y:0,width:16,height:16)
+		rect = CGRect(x:frame.size.width-1,y:-2,width:16,height:16)
 		rightSource.frame = rect
 		}
 	

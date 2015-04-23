@@ -21,9 +21,9 @@ class USSDMenu:USSDElement
 	private var linkedTargetSlots:[TargetSlot] = [TargetSlot]()
 	private var selectionLayer:CALayer = CALayer()
 	
-	let menuEdgeInsets = NSEdgeInsets(top:30,left:20,bottom:60,right:20)
+	let menuEdgeInsets = NSEdgeInsets(top:30,left:10,bottom:60,right:10)
 	let interlineSpacing:CGFloat = 4
-	let menuNameFrame = CGRect(x:10,y:24,width:150,height:20)
+	let menuNameFrame = CGRect(x:10,y:22,width:150,height:20)
 	
 	var workspace:USSDWorkspace?
 	
@@ -85,6 +85,7 @@ class USSDMenu:USSDElement
 		coder.encodeObject(imageLayer,forKey:"imageLayer")
 		coder.encodeObject(menuNameLayer,forKey:"menuNameLayer")
 		coder.encodeObject(workspace,forKey:"workspace")
+		coder.encodeObject(selectionLayer,forKey:"selectionLayer")
 		}
 		
 	required init(coder aDecoder: NSCoder) 
@@ -104,8 +105,29 @@ class USSDMenu:USSDElement
 		menuNameLayer = aDecoder.decodeObjectForKey("menuNameLayer") as! USSDMenuNameItem
 		UFXStylist.styleLayerAsMenuName(menuNameLayer)
 		workspace = aDecoder.decodeObjectForKey("workspace") as! USSDWorkspace?
+		selectionLayer = aDecoder.decodeObjectForKey("selectionLayer") as! CALayer
+		if selectionLayer.superlayer != nil
+			{
+			selectionLayer.removeFromSuperlayer()
+			}
 		borderColor = NSColor.clearColor().CGColor
 		setNeedsLayout()
+		}
+		
+	func startDrag()
+		{
+		self.shadowColor = NSColor.blackColor().CGColor
+		self.shadowRadius = 4
+		self.shadowOffset = CGSize(width:3,height:3)
+		self.shadowOpacity = 0.9
+		}
+		
+	func endDrag()
+		{
+		self.shadowColor = NSColor.blackColor().CGColor
+		self.shadowRadius = 2
+		self.shadowOffset = CGSize(width:2,height:2)
+		self.shadowOpacity = 0.6
 		}
 		
 	func addSlotLink(link:SlotLink,fromSlot:Slot)

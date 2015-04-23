@@ -150,6 +150,7 @@ class DesignView:NSView
 				}
 				
 			dragMenu = menu!
+			dragMenu!.startDrag()
 			dragOffset = point.pointBySubtractingPoint(menu!.frame.origin)
 			}
 		}
@@ -173,6 +174,7 @@ class DesignView:NSView
 		if dragMenu != nil
 			{
 			dragMenu!.setFrameOrigin(point.pointBySubtractingPoint(dragOffset!))
+			dragMenu!.endDrag()
 			dragMenu = nil
 			}
 		menu = menuContainingPoint(point)

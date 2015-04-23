@@ -24,6 +24,11 @@ class Simulator:NSObject,NSXMLParserDelegate
 	@IBOutlet var targetIPRewriteField:NSTextField?
 	@IBOutlet var providerField:NSTextField?
 	var simulationContext:SimulationContext = SimulationContext()
+	var hostView:NSView?
+	var topView:NSView?
+	var bottomView:NSView?
+	var topLayer:CALayer?
+	var bottomLayer:CALayer?
 	
 	var view:SimulatorView?
 	var nib:NSNib?
@@ -91,6 +96,70 @@ class Simulator:NSObject,NSXMLParserDelegate
 			}
 		}
 		
+	func flipAnimationWithDuration(duration:NSTimeInterval, beginsOnTop:Bool, scale: CGFloat) -> CAAnimation
+		{
+		var animation:CABasicAnimation
+		var shrinkAnimation:CABasicAnimation
+		var startValue:CGFloat
+		var endValue:CGFloat
+		var group:CAAnimationGroup
+		
+		animation = CABasicAnimation(keyPath:"transform.rotation.y")
+		startValue = beginsOnTop ? 0 : CGFloat(M_PI)
+		endValue = beginsOnTop ? CGFloat(-M_PI) : 0
+		animation.fromValue = startValue
+		animation.toValue = endValue
+		shrinkAnimation = CABasicAnimation(keyPath:"transform.scale")
+		shrinkAnimation.toValue = scale
+		shrinkAnimation.duration = duration * 0.5
+		shrinkAnimation.autoreverses = true
+		group = CAAnimationGroup()
+		group.animations = [animation,shrinkAnimation]
+		group.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+		group.fillMode = kCAFillModeForwards
+		group.removedOnCompletion = false
+		return(group)
+		}
+		
+	@IBAction func onFlip(sender:AnyObject?)
+		{
+		var topAnimation = flipAnimationWithDuration(1.0, beginsOnTop: true, scale: 1.3)
+		var bottomAnimation = flipAnimationWithDuration(1.0, beginsOnTop: false, scale: 1.3)
+		var topLayer = topView!.layerFromContents()
+		var bottomLayer = bottomView!.layerFromContents()
+		var distance:CGFloat = 1500
+		var perspective:CATransform3D = CATransform3DIdentity
+		
+		perspective.m34 = -1 / distance
+		topLayer.transform = perspective
+		bottomLayer.transform = perspective
+		bottomLayer.frame = topView!.frame
+		bottomLayer.doubleSided = false
+		hostView!.layer!.addSublayer(bottomLayer)
+		topLayer.frame = bottomView!.frame
+		topLayer.doubleSided = false
+		hostView!.layer!.addSublayer(topLayer)
+		CATransaction.begin()
+		CATransaction.setValue(true,forKey:kCATransactionDisableActions)
+		topView!.removeFromSuperview()
+		CATransaction.commit()
+		topAnimation.delegate = self
+		CATransaction.begin()
+		topLayer.addAnimation(topAnimation,forKey:"flip")
+		bottomLayer.addAnimation(bottomAnimation,forKey:"flip")
+		CATransaction.commit()
+		}
+
+	override func animationDidStop(animation:CAAnimation,finished:Bool)
+		{
+		CATransaction.begin()
+		CATransaction.setValue(true,forKey:kCATransactionDisableActions)
+		hostView!.addSubview(bottomView!)
+		topLayer!.removeFromSuperlayer()
+		bottomLayer!.removeFromSuperlayer()
+		CATransaction.commit()
+		}
+
 	func sendReply(reply:String)
 		{
 		var menu:SimulatorMenu

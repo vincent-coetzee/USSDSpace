@@ -16,6 +16,9 @@ class UFXStylist:NSObject
 	static var MenuItemFontSize:CGFloat = 11
 	static var MenuItemFont = NSFont(name:"LucidaGrande",size:11)
 	static var MenuItemTextColor:NSColor = NSColor.blackColor()
+	static var MenuNameFontName = "MuseoSans-900"
+	static var MenuNameFontSize:CGFloat = 13
+	static var MenuNameTextColor = NSColor.blackColor()
 	static var SelectionColor:NSColor = NSColor.colorWithUnscaled(102,green:201,blue:250)
 	static var DeselectionColor:NSColor = NSColor.clearColor()
 	static var LinkLineColor:NSColor = NSColor.lightGrayColor()
@@ -57,9 +60,9 @@ class UFXStylist:NSObject
 		
 	static func styleLayerAsMenuName(layer:CATextLayer)
 		{
-		layer.font = MenuItemFontName
-		layer.fontSize = 14
-		layer.foregroundColor = NSColor.grayColor().CGColor
+		layer.font = MenuNameFontName
+		layer.fontSize = MenuNameFontSize
+		layer.foregroundColor = MenuNameTextColor.CGColor
 		layer.alignmentMode = kCAAlignmentCenter
 		}
 		

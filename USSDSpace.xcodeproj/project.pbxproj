@@ -92,6 +92,8 @@
 		BFE1A41D1AD331DB0020A7E6 /* Slot.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE1A41C1AD331DB0020A7E6 /* Slot.swift */; };
 		BFE1A41F1AD332570020A7E6 /* SlotSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE1A41E1AD332570020A7E6 /* SlotSet.swift */; };
 		BFF4E2F81AE97E8A00CB6141 /* NSViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF4E2F71AE97E8A00CB6141 /* NSViewExtensions.swift */; };
+		BFF4E2FB1AE9B34300CB6141 /* Back.png in Resources */ = {isa = PBXBuildFile; fileRef = BFF4E2F91AE9B34300CB6141 /* Back.png */; };
+		BFF4E2FC1AE9B34300CB6141 /* Front.png in Resources */ = {isa = PBXBuildFile; fileRef = BFF4E2FA1AE9B34300CB6141 /* Front.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -194,6 +196,8 @@
 		BFE1A41C1AD331DB0020A7E6 /* Slot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Slot.swift; sourceTree = "<group>"; };
 		BFE1A41E1AD332570020A7E6 /* SlotSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlotSet.swift; sourceTree = "<group>"; };
 		BFF4E2F71AE97E8A00CB6141 /* NSViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSViewExtensions.swift; sourceTree = "<group>"; };
+		BFF4E2F91AE9B34300CB6141 /* Back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Back.png; sourceTree = "<group>"; };
+		BFF4E2FA1AE9B34300CB6141 /* Front.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Front.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -346,6 +350,8 @@
 		BFD426401AD2AE88008C5009 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				BFF4E2F91AE9B34300CB6141 /* Back.png */,
+				BFF4E2FA1AE9B34300CB6141 /* Front.png */,
 				BF23E3821ADED1DB007B370F /* ActionItemEditorView.xib */,
 				BF5415251AE74C6000DA14BA /* BlackButton-107x42.png */,
 				BF34841F1AE838D000F4180C /* ErrorSheet.xib */,
@@ -509,7 +515,9 @@
 				BF5415201AE739FE00DA14BA /* Keyboard-236x137.png in Resources */,
 				BF3484201AE838D000F4180C /* ErrorSheet.xib in Resources */,
 				BF5415141AE712DA00DA14BA /* SimulatorWindow.xib in Resources */,
+				BFF4E2FB1AE9B34300CB6141 /* Back.png in Resources */,
 				BFB804591ADF4FAC00CB8DBE /* JSON.txt in Resources */,
+				BFF4E2FC1AE9B34300CB6141 /* Front.png in Resources */,
 				BF996C051AD98329007DB769 /* socket-empty-grey-16x16.png in Resources */,
 				BF54150F1AE70F5000DA14BA /* WhiteiPhone-292x597.png in Resources */,
 				BF7152991AD5918800CB15B6 /* GraphicsUtilities in Resources */,

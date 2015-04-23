@@ -137,14 +137,13 @@ class Slot:CALayer
 		startPoint = sisterSlot!.outerFrame.centerPoint
 		endPoint = targetSlot.outerFrame!.pointOnPerimeterNearestToPoint(startPoint)
 		sisterDistance = startPoint.distanceToPoint(endPoint)
-		if myDistance < sisterDistance
+		if myDistance <= sisterDistance
 			{
 			return;
 			}
-		targetSlot.sourceSlot = sisterSlot
 		sisterSlot!.acceptLink(link!)
 		link = nil
-		self.enabled = false
+		isConnected = false
 		}
 		
 	func acceptLink(aLink:SlotLink)
@@ -152,8 +151,9 @@ class Slot:CALayer
 		var startPoint:NSPoint
 		var endPoint:NSPoint
 		
-		self.enabled = true
 		link = aLink
+		self.isConnected = true
+		link!.targetSlot!.sourceSlot = self
 		startPoint = outerFrame.centerPoint
 		endPoint = link!.targetSlot!.outerFrame!.pointOnPerimeterNearestToPoint(startPoint)
 		link!.setLine(startPoint,toPoint:endPoint)
@@ -222,7 +222,12 @@ class Slot:CALayer
 			}
 		if link != nil
 			{
-			link!.setStart(outerFrame.centerPoint)
+			var endPoint:CGPoint
+			var startPoint:CGPoint
+			
+			startPoint = outerFrame.centerPoint
+			endPoint = link!.targetSlot!.outerFrame!.pointOnPerimeterNearestToPoint(startPoint)
+			link!.setLine(startPoint,toPoint:endPoint)
 			adjustSideIfNeeded()
 			}
 		}

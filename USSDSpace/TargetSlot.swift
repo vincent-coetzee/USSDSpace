@@ -20,12 +20,11 @@ class TargetSlot:NSObject
 		outerFrame = frame
 		if link != nil
 			{
-			var targetPoint = frame.pointOnPerimeterNearestToPoint(link!.startPoint)
-			link!.setEnd(targetPoint)
 			sourceSlot!.adjustSideIfNeeded()
+			var targetPoint = frame.pointOnPerimeterNearestToPoint(sourceSlot!.centerPoint)
+			link!.setEnd(targetPoint)
 			}
 		}
-		
 		
 	override init()
 		{
