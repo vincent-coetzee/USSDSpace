@@ -9,7 +9,7 @@
 import Foundation
 import AppKit
 
-class SimulationContext
+class SimulationContext:NSObject
 	{
 	var initialURL = "http://localhost:8080/USSDManager/rest/runWorkspace/Sample.USSD"
 	var USSDSessionId = "B0479FA7F4"

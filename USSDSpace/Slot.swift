@@ -118,29 +118,45 @@ class Slot:CALayer
 			}
 		}
 		
-	func adjustSideAccordingToTargetSlot(targetSlot:TargetSlot)
+	func adjustSideIfNeeded()
 		{
-		var sisterSlotDistance:CGFloat
+		var targetSlot:TargetSlot
 		var myDistance:CGFloat
-		var minX:CGFloat
-		var maxX:CGFloat
-		var x1:CGFloat
-		var x2:CGFloat
+		var sisterDistance:CGFloat
+		var endPoint:CGPoint
+		var startPoint:CGPoint
 		
-		x1 = sisterSlot!.outerFrame.centerPoint.x
-		x2 = targetSlot.outerFrame!.centerPoint.x
-		minX = x1 < x2 ? x1 : x2
-		maxX = x1 > x2 ? x1 : x2
-		sisterSlotDistance = maxX - minX
-		x1 = outerFrame.centerPoint.x
-		minX = x1 < x2 ? x1 : x2
-		maxX = x1 > x2 ? x1 : x2
-		myDistance = maxX - minX
-		if myDistance < sisterSlotDistance
+		if link == nil
 			{
 			return
 			}
-		menuItem!.swapSlotAndFrames(self,slot2: sisterSlot!)
+		targetSlot = link!.targetSlot!
+		startPoint = outerFrame.centerPoint
+		endPoint = targetSlot.outerFrame!.pointOnPerimeterNearestToPoint(startPoint)
+		myDistance = startPoint.distanceToPoint(endPoint)
+		startPoint = sisterSlot!.outerFrame.centerPoint
+		endPoint = targetSlot.outerFrame!.pointOnPerimeterNearestToPoint(startPoint)
+		sisterDistance = startPoint.distanceToPoint(endPoint)
+		if myDistance < sisterDistance
+			{
+			return;
+			}
+		targetSlot.sourceSlot = sisterSlot
+		sisterSlot!.acceptLink(link!)
+		link = nil
+		self.enabled = false
+		}
+		
+	func acceptLink(aLink:SlotLink)
+		{
+		var startPoint:NSPoint
+		var endPoint:NSPoint
+		
+		self.enabled = true
+		link = aLink
+		startPoint = outerFrame.centerPoint
+		endPoint = link!.targetSlot!.outerFrame!.pointOnPerimeterNearestToPoint(startPoint)
+		link!.setLine(startPoint,toPoint:endPoint)
 		}
 		
 	func disconnect(linkLayer:LinkManagementLayer)
@@ -199,16 +215,15 @@ class Slot:CALayer
 		
 	func setFrameDelta(delta:NSPoint)
 		{
+		outerFrame.origin = outerFrame.origin.pointByAddingPoint(delta)
 		if !isConnected
 			{
 			return
 			}
-		var origin = outerFrame.origin
-		origin = origin.pointByAddingPoint(delta)
-		outerFrame.origin = origin
 		if link != nil
 			{
 			link!.setStart(outerFrame.centerPoint)
+			adjustSideIfNeeded()
 			}
 		}
 		

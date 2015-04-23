@@ -94,7 +94,6 @@ class SimulatorMenu:NSObject,NSXMLParserDelegate
 				title = string
 				}
 			}
-		NSLog("PARSER FOUND CHARS \(string)")
 		}
 		
 	func isDataEntryMenu() -> Bool
@@ -122,7 +121,6 @@ class SimulatorMenu:NSObject,NSXMLParserDelegate
 		{
 		var item:SimulatorMenuItem
 		
-		NSLog("PARSER FOUND ELEMENT \(elementName) \(attributeDict)")
 		if elementName == "option"
 			{
 			item = SimulatorMenuItem(order:attributeDict["order"]! as! String,display:attributeDict["display"]! as! String,command:attributeDict["command"]! as! String,callback:attributeDict["callback"]! as! String)

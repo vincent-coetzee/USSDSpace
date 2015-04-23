@@ -36,8 +36,22 @@ class SlotLink:USSDItem
 		{
 		}
 		
+	func initStyle()
+		{
+		shapeLayer.lineCap = kCALineCapRound
+		shapeLayer.strokeColor = lineColor.CGColor
+		shapeLayer.fillColor = lineColor.CGColor
+		shapeLayer.shadowColor = NSColor.blackColor().CGColor
+		shapeLayer.shadowRadius = 2
+		shapeLayer.shadowOffset = CGSize(width:2,height:2)
+		shapeLayer.shadowOpacity = 0.6
+		shapeLayer.lineWidth = lineWidth
+		shapeLayer.removeAllAnimations()
+		}
+		
 	override func encodeWithCoder(coder:NSCoder)
 		{
+		initStyle()
 		coder.encodePoint(startPoint,forKey:"startPoint")
 		coder.encodePoint(endPoint,forKey:"endPoint")
 		coder.encodeObject(shapeLayer,forKey:"shapeLayer")
@@ -57,13 +71,7 @@ class SlotLink:USSDItem
 		link = aDecoder.decodeObjectForKey("link") as! NSBezierPath
 		targetMenu = aDecoder.decodeObjectForKey("targetMenu") as? USSDMenu
 		targetSlot = aDecoder.decodeObjectForKey("targetSlot") as! TargetSlot?
-		shapeLayer.lineCap = kCALineCapRound
-		shapeLayer.strokeColor = lineColor.CGColor
-		shapeLayer.fillColor = lineColor.CGColor
-		shapeLayer.shadowColor = NSColor.blackColor().CGColor
-		shapeLayer.shadowRadius = 2
-		shapeLayer.shadowOffset = CGSize(width:2,height:2)
-		shapeLayer.shadowOpacity = 0.6
+		initStyle()
 		}
 		
 	override func containsPoint(point:NSPoint) -> Bool
@@ -78,11 +86,7 @@ class SlotLink:USSDItem
 	override init()
 		{
 		super.init()
-		shapeLayer.strokeColor = lineColor.CGColor
-		shapeLayer.fillColor = lineColor.CGColor
-		shapeLayer.lineWidth = lineWidth
-		shapeLayer.removeAllAnimations()
-		shapeLayer.lineCap = kCALineCapRound
+		initStyle()
 		}
 		
 	func shapeLayerFrame() -> CGRect
@@ -128,8 +132,6 @@ class SlotLink:USSDItem
 		link.lineToPoint(addPoints(endPoint,makePolarPoint(12,angle+160.0)))
 		link.lineToPoint(addPoints(endPoint,makePolarPoint(12,angle-160.0)))
 		shapeLayer.path = link.CGPath
-//		shapeFrame = link.bounds
-//		shapeLayer.frame = shapeFrame
 		shapeLayer.setNeedsDisplay()
 		}
 		

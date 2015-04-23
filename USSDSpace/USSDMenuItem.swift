@@ -80,17 +80,14 @@ class USSDMenuItem:USSDMenuEntry
 		{
 		leftSource.setFrameDelta(delta)
 		rightSource.setFrameDelta(delta)
-		if leftSource.isConnected
-			{
-//			leftSource.adjustSideAccordingToTargetSlot(leftSource.link!.targetSlot!)
-			rightSource.enabled = false
-			}
-		else if rightSource.isConnected
-			{
-//			rightSource.adjustSideAccordingToTargetSlot(rightSource.link!.targetSlot!)
-			leftSource.enabled = false
-			}
-		
+//		if leftSource.isConnected
+//			{
+//			rightSource.enabled = false
+//			}
+//		else if rightSource.isConnected
+//			{
+//			leftSource.enabled = false
+//			}
 		}
 		
 	override func addSourceSlotsToSet(set:SlotSet)
@@ -114,7 +111,7 @@ class USSDMenuItem:USSDMenuEntry
 			linkLayer.addLink(leftSource.link!)
 			leftSource.menuItem = self
 			}
-		if rightSource.isConnected
+		else if rightSource.isConnected
 			{
 			linkLayer.addLink(rightSource.link!)
 			rightSource.menuItem = self
@@ -122,46 +119,6 @@ class USSDMenuItem:USSDMenuEntry
 		layoutInFrame(self.frame)
 		setNeedsLayout()
 		setNeedsDisplay()
-		}
-		
-	func swapSlotAndFrames(slot1:Slot,slot2:Slot)
-		{
-		var tempOuterFrame:CGRect
-		var tempInnerFrame:CGRect
-		var tempSlot:Slot
-		var line:NSLineSegment
-		var point:NSPoint
-		
-		tempOuterFrame = slot1.outerFrame
-		tempInnerFrame = slot1.frame
-		slot1.outerFrame = slot2.outerFrame
-		slot1.frame = slot2.frame
-		slot2.outerFrame = tempOuterFrame
-		slot2.frame = tempInnerFrame
-		if (slot1 == leftSource)
-			{
-			tempSlot = leftSource
-			leftSource = slot2
-			rightSource = tempSlot
-			}
-		else
-			{
-			tempSlot = rightSource
-			rightSource = slot2
-			leftSource = tempSlot
-			}
-		if leftSource.link != nil
-			{
-			line = NSLineSegment(start:leftSource.outerFrame.centerPoint,end:leftSource.link!.targetSlot!.outerFrame!.centerPoint)
-			point = leftSource.link!.targetSlot!.outerFrame!.pointOfIntersectionWithLine(line)!
-			leftSource.link!.setLine(leftSource.outerFrame.centerPoint,toPoint: point)
-			}
-		else
-			{
-			line = NSLineSegment(start:rightSource.outerFrame.centerPoint,end:rightSource.link!.targetSlot!.outerFrame!.centerPoint)
-			point = rightSource.link!.targetSlot!.outerFrame!.pointOfIntersectionWithLine(line)!
-			rightSource.link!.setLine(rightSource.outerFrame.centerPoint,toPoint: point)
-			}
 		}
 		
 	override func layoutInFrame(frame:CGRect)

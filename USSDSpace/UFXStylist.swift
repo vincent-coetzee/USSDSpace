@@ -12,16 +12,16 @@ import QuartzCore
 
 class UFXStylist:NSObject
 	{
-	static var MenuItemFontName:String = "SunSans"
-	static var MenuItemFontSize:CGFloat = 10
-	static var MenuItemFont = NSFont(name:"SunSans",size:12)
+	static var MenuItemFontName:String = "LucidaGrande"
+	static var MenuItemFontSize:CGFloat = 11
+	static var MenuItemFont = NSFont(name:"LucidaGrande",size:11)
 	static var MenuItemTextColor:NSColor = NSColor.blackColor()
 	static var SelectionColor:NSColor = NSColor.colorWithUnscaled(102,green:201,blue:250)
 	static var DeselectionColor:NSColor = NSColor.clearColor()
 	static var LinkLineColor:NSColor = NSColor.lightGrayColor()
 	static var SlotMenuImage = NSImage(named:"socket-action-empty-16x16")
 	static var SimulatorFontName = "Helvetica"
-	static var SimulatorFontSize:CGFloat = 14
+	static var SimulatorFontSize:CGFloat = 13
 	static var SimulatorFont = NSFont(name:UFXStylist.SimulatorFontName,size:UFXStylist.SimulatorFontSize)
 	static var SimulatorTextColor = NSColor.whiteColor()
 	static var SimulatorButtonFont = NSFont(name:"Helvetica",size:15)

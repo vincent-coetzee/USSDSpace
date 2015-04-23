@@ -193,7 +193,6 @@ class DesignView:NSView
 				else
 					{
 					selectedElementHolder.selection = element
-					NSLog("SELECTED ELEMENT IS \(element)")
 					element!.handleClick(point,inView:self)
 					}
 				}

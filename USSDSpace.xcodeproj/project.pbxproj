@@ -91,6 +91,7 @@
 		BFE1A4191AD32F310020A7E6 /* NSBezierPathExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE1A4181AD32F310020A7E6 /* NSBezierPathExtensions.swift */; };
 		BFE1A41D1AD331DB0020A7E6 /* Slot.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE1A41C1AD331DB0020A7E6 /* Slot.swift */; };
 		BFE1A41F1AD332570020A7E6 /* SlotSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE1A41E1AD332570020A7E6 /* SlotSet.swift */; };
+		BFF4E2F81AE97E8A00CB6141 /* NSViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF4E2F71AE97E8A00CB6141 /* NSViewExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -192,6 +193,7 @@
 		BFE1A4181AD32F310020A7E6 /* NSBezierPathExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSBezierPathExtensions.swift; sourceTree = "<group>"; };
 		BFE1A41C1AD331DB0020A7E6 /* Slot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Slot.swift; sourceTree = "<group>"; };
 		BFE1A41E1AD332570020A7E6 /* SlotSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlotSet.swift; sourceTree = "<group>"; };
+		BFF4E2F71AE97E8A00CB6141 /* NSViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSViewExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -259,6 +261,7 @@
 				BFD426581AD2D558008C5009 /* NSPointExtensions.swift */,
 				BFE1A40E1AD310360020A7E6 /* NSRectExtensions.swift */,
 				BF54150C1AE6FB0900DA14BA /* StringExtensions.swift */,
+				BFF4E2F71AE97E8A00CB6141 /* NSViewExtensions.swift */,
 			);
 			name = "Utilities and Extensions";
 			sourceTree = "<group>";
@@ -567,6 +570,7 @@
 				BFE1A4191AD32F310020A7E6 /* NSBezierPathExtensions.swift in Sources */,
 				BF5415121AE7109900DA14BA /* SimulatorWindow.swift in Sources */,
 				BF3484451AE887B100F4180C /* ScriptBrowserController.swift in Sources */,
+				BFF4E2F81AE97E8A00CB6141 /* NSViewExtensions.swift in Sources */,
 				BF34844D1AE8A6B000F4180C /* USSDEngineService.swift in Sources */,
 				BFD426511AD2AF9B008C5009 /* USSDMenuTitleItem.swift in Sources */,
 				BF54151E1AE733D900DA14BA /* SimulatorView.swift in Sources */,

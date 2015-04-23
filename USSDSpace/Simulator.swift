@@ -23,6 +23,7 @@ class Simulator:NSObject,NSXMLParserDelegate
 	@IBOutlet var sourceIPRewriteField:NSTextField?
 	@IBOutlet var targetIPRewriteField:NSTextField?
 	@IBOutlet var providerField:NSTextField?
+	var simulationContext:SimulationContext = SimulationContext()
 	
 	var view:SimulatorView?
 	var nib:NSNib?
@@ -70,19 +71,7 @@ class Simulator:NSObject,NSXMLParserDelegate
 		view = SimulatorView(frame:window!.contentView.bounds)
 		view!.menu = viewMenu!
 		view!.controller = self
-		initTextFields()
 		window!.contentView.addSubview(view!)
-		}
-		
-	func initTextFields()
-		{
-		USSDSessionField!.stringValue = "23B1456792B2"
-		MSISDNField!.stringValue = "27828877777"
-		startURLField!.stringValue = targetURL!.baseURL
-		shortCodeField!.stringValue = "*120*33248#"
-		sourceIPRewriteField!.stringValue = "197.96.167.14"
-		targetIPRewriteField!.stringValue = "10.1.7.1"
-		providerField!.stringValue = "Vodacom"
 		}
 		
 	init(startURL:CallbackURL)
