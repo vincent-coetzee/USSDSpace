@@ -15,6 +15,21 @@ class USSDMenuItem:USSDMenuEntry
 	var leftSource:Slot
 	var rightSource:Slot
 		
+	override var zOrder:CGFloat
+		{
+		get
+			{
+			return(self.zPosition)
+			}
+		set
+			{
+			zPosition = newValue
+			leftSource.zOrder = newValue - 10
+			rightSource.zOrder = newValue - 10
+			setNeedsDisplay()
+			}
+		}
+		
 	override func encodeWithCoder(coder:NSCoder)
 		{
 		super.encodeWithCoder(coder)
@@ -29,8 +44,65 @@ class USSDMenuItem:USSDMenuEntry
 	    super.init(coder:aDecoder)
 		leftSource = aDecoder.decodeObjectForKey("leftSource") as! Slot
 		leftSource.menuItem = self
+		leftSource.enabled = false
+		if leftSource.isConnected
+			{
+			leftSource.link!.sourceItem = self
+			leftSource.enabled = true
+			}
 		rightSource = aDecoder.decodeObjectForKey("rightSource") as! Slot
 		rightSource.menuItem = self
+		rightSource.enabled = false
+		if rightSource.isConnected
+			{
+			rightSource.link!.sourceItem = self
+			rightSource.enabled = true
+			}
+		if !leftSource.isConnected && !rightSource.isConnected
+			{
+			leftSource.enabled = true
+			rightSource.enabled = true
+			}
+		self.borderWidth = 0.5
+		self.borderColor = NSColor.lightGrayColor().CGColor
+		}
+		
+	override func popupMenu() -> NSMenu?
+		{
+		var newMenu = NSMenu()
+		var menuItem:NSMenuItem
+		
+		menuItem = newMenu.addItemWithTitle("Move Up",action:"onMoveUp:",keyEquivalent:"")!
+		menuItem.target = self
+		menuItem = newMenu.addItemWithTitle("Move Down",action:"onMoveDown:",keyEquivalent:"")!
+		menuItem.target = self
+		newMenu.addItem(NSMenuItem.separatorItem())
+		menuItem = newMenu.addItemWithTitle("Delete this Item",action:"onDeleteItem:",keyEquivalent:"")!
+		menuItem.target = self
+		return(newMenu)
+		}
+		
+	func onDeleteItem(sender:AnyObject?)
+		{
+		if leftSource.isConnected
+			{
+			self.menu().menuView!.linkContainerLayer.removeLink(leftSource.link!)
+			}
+		if rightSource.isConnected
+			{
+			self.menu().menuView!.linkContainerLayer.removeLink(rightSource.link!)
+			}
+		self.menu().removeItem(self)
+		}
+		
+	func onMoveUp(sender:AnyObject?)
+		{
+		self.menu().moveItemUp(self)
+		}
+		
+	func onMoveDown(sender:AnyObject?)
+		{
+		self.menu().moveItemDown(self)
 		}
 		
 	class func newLeftSlot() -> Slot
@@ -95,6 +167,19 @@ class USSDMenuItem:USSDMenuEntry
 		return(true)
 		}
 		
+	func connectedSlot() -> Slot?
+		{
+		if leftSource.isConnected
+			{
+			return(leftSource)
+			}
+		else if rightSource.isConnected
+			{
+			return(rightSource)
+			}
+		return(nil)
+		}
+		
 	override func loadIntoLayer(menuLayer:CALayer,linkLayer:LinkManagementLayer)
 		{
 		UFXStylist.styleMenuEntry(self)
@@ -129,12 +214,21 @@ class USSDMenuItem:USSDMenuEntry
 		leftSource = self.dynamicType.newLeftSlot()
 		rightSource = self.dynamicType.newRightSlot()
 		super.init()
+		initSlots()
+		}
+		
+	func initSlots()
+		{
 		addSublayer(leftSource)
+		leftSource.menuItem = self
 		addSublayer(rightSource)
+		rightSource.menuItem = self
 		leftSource.sisterSlot = rightSource
 		rightSource.sisterSlot = leftSource
 		rightSource.menuItem = self
 		leftSource.menuItem = self
+		self.borderWidth = 0.5
+		self.borderColor = NSColor.lightGrayColor().CGColor
 		}
 		
 	override init(layer:AnyObject?)
@@ -142,12 +236,7 @@ class USSDMenuItem:USSDMenuEntry
 		leftSource = self.dynamicType.newLeftSlot()
 		rightSource = self.dynamicType.newRightSlot()
 		super.init(layer:layer)
-		addSublayer(leftSource)
-		addSublayer(rightSource)
-		leftSource.sisterSlot = rightSource
-		rightSource.sisterSlot = leftSource
-		rightSource.menuItem = self
-		leftSource.menuItem = self
+		initSlots()
 		}
 		
 	override init(text:String)
@@ -155,11 +244,6 @@ class USSDMenuItem:USSDMenuEntry
 		leftSource = self.dynamicType.newLeftSlot()
 		rightSource = self.dynamicType.newRightSlot()
 		super.init(text:text)
-		addSublayer(leftSource)
-		addSublayer(rightSource)
-		leftSource.sisterSlot = rightSource
-		rightSource.sisterSlot = leftSource
-		rightSource.menuItem = self
-		leftSource.menuItem = self
+		initSlots()
 		}
 	}

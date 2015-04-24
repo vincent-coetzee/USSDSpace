@@ -21,6 +21,8 @@ class SlotLink:USSDItem
 	var shapeFrame:CGRect = CGRect(x:0,y:0,width:0,height:0)
 	var targetMenu:USSDMenu?
 	var targetSlot:TargetSlot?
+	var oldLineColor:NSColor?
+	var sourceItem:USSDItem?
 	
 	func disconnect(linkLayer:LinkManagementLayer)
 		{
@@ -30,9 +32,34 @@ class SlotLink:USSDItem
 		
 	override func select()
 		{
+		if !isSelected
+			{
+			oldLineColor = lineColor
+			lineColor = UFXStylist.SelectionColor
+			shapeLayer.strokeColor = lineColor.CGColor
+			shapeLayer.fillColor = lineColor.CGColor
+			isSelected = true
+			setLine(startPoint,toPoint:endPoint)
+			}
 		}
 		
 	override func deselect()
+		{
+		if isSelected
+			{
+			lineColor = oldLineColor!
+			shapeLayer.strokeColor = lineColor.CGColor
+			shapeLayer.fillColor = lineColor.CGColor
+			isSelected = false
+			setLine(startPoint,toPoint:endPoint)
+			}
+		}
+		
+	func editLinkInView(aView:NSView)
+		{
+		}
+		
+	func closeEditor()
 		{
 		}
 		
@@ -51,7 +78,6 @@ class SlotLink:USSDItem
 		
 	override func encodeWithCoder(coder:NSCoder)
 		{
-		initStyle()
 		coder.encodePoint(startPoint,forKey:"startPoint")
 		coder.encodePoint(endPoint,forKey:"endPoint")
 		coder.encodeObject(shapeLayer,forKey:"shapeLayer")
@@ -59,6 +85,7 @@ class SlotLink:USSDItem
 		coder.encodeObject(link,forKey:"link")
 		coder.encodeObject(targetMenu,forKey:"targetMenu")
 		coder.encodeObject(targetSlot,forKey:"targetSlot")
+		coder.encodeObject(lineColor,forKey:"lineColor")
 		}
 		
 	required init(coder aDecoder: NSCoder) 
@@ -71,6 +98,7 @@ class SlotLink:USSDItem
 		link = aDecoder.decodeObjectForKey("link") as! NSBezierPath
 		targetMenu = aDecoder.decodeObjectForKey("targetMenu") as? USSDMenu
 		targetSlot = aDecoder.decodeObjectForKey("targetSlot") as! TargetSlot?
+		lineColor = aDecoder.decodeObjectForKey("lineColor") as! NSColor
 		initStyle()
 		}
 		

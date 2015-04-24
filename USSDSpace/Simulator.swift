@@ -43,7 +43,8 @@ class Simulator:NSObject,NSXMLParserDelegate
 		var nib:NSNib
 		var callback:CallbackURL
 		callback = CallbackURL(base:startURL)
-		callback.setValue("*120*33248#",forKey:"request")
+		callback.setValue("*120*33248",forKey:"request")
+		callback.setValue("1234567890",forKey:"USSDSessionId")
 		newSimulator = Simulator(startURL:callback)
 		newSimulator.openWindow()
 		return(newSimulator)
@@ -199,8 +200,10 @@ class Simulator:NSObject,NSXMLParserDelegate
 		
 		callback.setValue("Vodacom",forKey:"provider")
 		callback.setValue("27828877777",forKey:"msisdn")
+		NSLog("CALLING \(callback.finalURL())")
 		service = USSDEngineService()
 		xml = service.fetchXMLAtURL(callback.finalURL().absoluteString!)!
+		NSLog("\(xml)")
 		parser = NSXMLParser(data:xml.dataUsingEncoding(NSUTF8StringEncoding)!)
 		if parser != nil
 			{
@@ -217,6 +220,7 @@ class Simulator:NSObject,NSXMLParserDelegate
 				}
 			else
 				{
+				NSLog("MENU TITLE = \(menu!.title)")
 				view!.currentMenu = menu!
 				}
 			}
@@ -227,6 +231,7 @@ class Simulator:NSObject,NSXMLParserDelegate
 		if elementName == "headertext"
 			{
 			menu = SimulatorMenu(parser: parser)
+			parser.delegate = menu
 			}
 		}
 	}

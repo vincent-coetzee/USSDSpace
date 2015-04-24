@@ -14,7 +14,6 @@ class ActionItemEditor:NSObject
 	@IBOutlet var nameField:NSTextField?
 	@IBOutlet var labelField:NSTextField?
 	@IBOutlet var view:NSView?
-	@IBOutlet var menuNameButton:NSPopUpButton?
 	@IBOutlet var actionNameButton:NSPopUpButton?
 	
 	var valueName:String?
@@ -24,11 +23,8 @@ class ActionItemEditor:NSObject
 	var popover:NSPopover?
 	var controller:NSViewController?
 	var rectView:NSView?
-	var slotNextMenuName = ""
-	var slotValueName = ""
-	var slotActionTypeName = ""
-	var actionType:Int = 1
-	var slotActionType:ActionSlot.ActionType?
+	var actionTargetName = ""
+	var actionType = ""
 	
 	func openOnRect(rect:CGRect,inView:NSView,actionItem:USSDActionMenuItem)
 		{
@@ -36,7 +32,6 @@ class ActionItemEditor:NSObject
 		nib = NSNib(nibNamed: "ActionItemEditorView",bundle:NSBundle.mainBundle())
 		nib!.instantiateWithOwner(self,topLevelObjects:array)
 		nameField!.stringValue = "onNothing"
-		setMenuNames()
 		controller = NSViewController()
 		controller!.view = view!
 		controller!.preferredContentSize = view!.frame.size
@@ -46,101 +41,39 @@ class ActionItemEditor:NSObject
 		rectView = NSView(frame: rect)
 		inView.addSubview(rectView!)
 		popover!.showRelativeToRect(rectView!.bounds,ofView:rectView!,preferredEdge:NSMaxXEdge)
-		slotActionType = actionItem.actionSlot.actionType
 		self.actionItem = actionItem
+		nameField!.stringValue = self.actionItem!.actionTargetName
 		setAction()
 		}
 		
 	@IBAction func onInvokeMethodSelected(sender:AnyObject?)
 		{
-		labelField!.stringValue = "Method Name :"
-		slotActionTypeName = "Invoke Method"
-		actionType = 1
+		actionItem!.actionType = "INVOKE"
 		}
 		
 	@IBAction func onSaveSelectedIndexSelected(sender:AnyObject?)
 		{
-		labelField!.stringValue = "Variable Name :"
-		actionType = 2
-		slotActionTypeName = "Save Selected Index"
+		actionItem!.actionType = "INDEX"
 		}
 		
 	@IBAction func onSaveSelectedTextSelected(sender:AnyObject?)
 		{
-		labelField!.stringValue = "Variable Name :"
-		actionType = 3
-		slotActionTypeName = "Save Selected Text"
+		actionItem!.actionType = "TEXT"
 		}
 	
 	func setAction()
 		{
-		switch(slotActionType!)
+		switch(actionItem!.actionType)
 			{
-		case let .Invoke(key,methodName,menuName):
+		case "INVOKE":
 			actionNameButton!.selectItemWithTitle("Invoke Method")
-			nameField!.stringValue = methodName
-			slotActionTypeName = "Invoke Method"
-			slotNextMenuName = actionItem!.menu().menuNameForMenuUUID(menuName)
-			menuNameButton!.selectItemWithTitle(slotNextMenuName)
-			slotValueName = methodName
-		case let .SaveIndex(key,methodName,menuName):
+		case "INDEX":
 			actionNameButton!.selectItemWithTitle("Save Selected Index")
-			nameField!.stringValue = methodName
-			slotNextMenuName = actionItem!.menu().menuNameForMenuUUID(menuName)
-			menuNameButton!.selectItemWithTitle(slotNextMenuName)
-			slotActionTypeName = "Save Selected Index"
-			slotValueName = methodName
-		case let .SaveText(key,methodName,menuName):
+		case "TEXT":
 			actionNameButton!.selectItemWithTitle("Save Selected Text")
-			nameField!.stringValue = methodName
-			slotNextMenuName = actionItem!.menu().menuNameForMenuUUID(menuName)
-			menuNameButton!.selectItemWithTitle(slotNextMenuName)
-			slotActionTypeName = "Save Selected Text"
-			slotValueName = methodName
 		default:
 			break;
 			}
-		}
-		
-	func updateSlot()
-		{
-		var menuUUID:String
-		
-		slotValueName = nameField!.stringValue
-		menuUUID = actionItem!.menu().menuUUIDForMenuName(slotNextMenuName)
-		switch(slotActionTypeName)
-			{
-			case "Invoke Method":
-				actionItem!.actionSlot.actionType = ActionSlot.ActionType.Invoke(actionType,slotValueName,menuUUID)
-			case "Save Selected Index":
-				actionItem!.actionSlot.actionType = ActionSlot.ActionType.SaveIndex(actionType,slotValueName,menuUUID)
-			case "Save Selected Text":
-				actionItem!.actionSlot.actionType = ActionSlot.ActionType.SaveText(actionType,slotValueName,menuUUID)
-			default:
-				break
-			}
-		}
-		
-	func setMenuNames()
-		{
-		menuNameButton!.removeAllItems()
-		for name in actionItem!.workspace.allMenuNames()
-			{
-			var menuItem:NSMenuItem?
-			
-			menuNameButton!.addItemWithTitle(name)
-			menuItem = menuNameButton!.itemWithTitle(name)
-			menuItem!.action = "onNextMenuNameSelected:"
-			menuItem!.target = self
-			}
-		}
-		
-	func onNextMenuNameSelected(sender:AnyObject?)
-		{
-		var menuItemSender:NSMenuItem?
-		
-		menuItemSender = sender as! NSMenuItem?
-		slotNextMenuName = menuItemSender!.title
 		}
 		
 	func close()
@@ -156,12 +89,12 @@ class ActionItemEditor:NSObject
 		
 	@IBAction func onOK(sender:AnyObject?)
 		{
-		updateSlot()
-		close()
+		actionItem!.actionTargetName = nameField!.stringValue
+		actionItem!.connectedSlot()!.link!.closeEditor()
 		}
 		
 	@IBAction func onCancel(sender:AnyObject?)
 		{
-		close()
+		actionItem!.connectedSlot()!.link!.closeEditor()
 		}
 	}

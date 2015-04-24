@@ -158,16 +158,24 @@ class USSDManagerService
 		
 		request = prepareRequest("deployWorkspace",contentType:"application/json")
 		request.HTTPMethod = "POST"
+		NSLog("\(JSONParser.formatJSON(workspace.asJSONString()))")
 		task = session.uploadTaskWithRequest(request,fromData:workspace.asJSONString().dataUsingEncoding(NSUTF8StringEncoding),completionHandler: 
 			{(data:NSData!,response:NSURLResponse!,error:NSError!) in 
 			self.responseData = data
 			self.response = response
-			if data != nil
+			if error != nil
 				{
-				dict = JSONParser.parseJSON(NSString(data:data!,encoding:NSUTF8StringEncoding) as! String) as! NSDictionary
-				if !(dict!.objectForKey("successful") as! NSNumber).boolValue
+				NSLog("ERROR = \(error)")
+				}
+			else
+				{
+				if data != nil
 					{
-					self.handleServiceError(dict!)
+					dict = JSONParser.parseJSON(NSString(data:data!,encoding:NSUTF8StringEncoding) as! String) as! NSDictionary
+					if !(dict!.objectForKey("successful") as! NSNumber).boolValue
+						{
+						NSLog("\(dict)")
+						}
 					}
 				}
 			})

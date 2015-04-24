@@ -12,6 +12,55 @@ import QuartzCore
 
 class USSDItem:CATextLayer,Selectable
 	{
+	let zBackground:CGFloat = -1000
+	let zMenu:CGFloat = 0
+	let zLink:CGFloat = 1000
+	let zDrag:CGFloat = 2000
+	
+	var isSelected:Bool = false
+	
+	override init()
+		{
+		super.init()
+//		self.zOrder = zMenu
+		}
+
+	required init(coder aDecoder: NSCoder) 
+		{
+	    super.init(coder:aDecoder)
+		self.borderWidth = 0
+		self.borderColor = nil
+//		self.zOrder = zMenu
+		}
+		
+	override init(layer:AnyObject?)
+		{
+		super.init(layer:layer)
+//		self.zOrder = zMenu
+		}
+		
+	var zOrder:CGFloat
+		{
+		get
+			{
+			return(self.zPosition)
+			}
+		set
+			{
+			zPosition = newValue
+			setNeedsDisplay()
+			}
+		}
+		
+	func updateAfterEdit()
+		{
+		}
+		
+	func popupMenu() -> NSMenu?
+		{
+		return(nil)
+		}
+		
 	func select()
 		{
 		}

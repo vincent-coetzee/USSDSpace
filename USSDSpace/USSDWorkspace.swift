@@ -49,6 +49,7 @@ class USSDWorkspace:USSDElement
 		workspace = NSKeyedUnarchiver.unarchiveObjectWithFile(path) as! USSDWorkspace
 		workspace.workspaceName = path.lastPathComponent
 		workspace.reIndexMenus()
+		workspace.recalibrate()
 		return(workspace)
 		}
 		
@@ -136,6 +137,14 @@ class USSDWorkspace:USSDElement
 		workspacePath = aDecoder.decodeObjectForKey("workspacePath") as? String
 		designViewFrame = aDecoder.decodeRectForKey("designViewFrame")
 		windowFrame = aDecoder.decodeRectForKey("windowFrame")
+		}
+		
+	func recalibrate()
+		{
+		for (key,menu) in menus
+			{
+			menu.recalibrate()
+			}
 		}
 		
 	func addMenu(menu:USSDMenu)

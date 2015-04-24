@@ -12,9 +12,8 @@ import QuartzCore
 
 class USSDActionMenuItem:USSDMenuItem,NSPopoverDelegate
 	{
-//	let slotSize = CGSize(width:12,height:12)
-	var actionSlot:ActionSlot = ActionSlot(rect: CGRect(x:130,y:0,width:12,height:12))
-	var actionItemEditor:ActionItemEditor?
+	var actionType = "INVOKE"
+	var actionTargetName = "NULL"
 	
 	override class func newLeftSlot() -> Slot
 		{
@@ -34,26 +33,35 @@ class USSDActionMenuItem:USSDMenuItem,NSPopoverDelegate
 		return(aSlot)
 		}
 		
+	func connectedActionSlot() -> ActionSlot?
+		{
+		return(self.connectedSlot() as! ActionSlot?)
+		}
 		
 	override func encodeWithCoder(coder:NSCoder)
 		{
 		super.encodeWithCoder(coder)
-		coder.encodeObject(actionSlot,forKey:"actionSlot")
+		coder.encodeObject(actionType,forKey:"actionType")
+		coder.encodeObject(actionTargetName,forKey:"actionTargetName")
 		}
 		
 	required init(coder aDecoder: NSCoder) 
 		{
 	    super.init(coder:aDecoder)
-		actionSlot = aDecoder.decodeObjectForKey("actionSlot") as! ActionSlot
+		actionType = aDecoder.decodeObjectForKey("actionType") as! String
+		actionTargetName = aDecoder.decodeObjectForKey("actionTargetName") as! String
 		}
 		
 	override func asJSONString() -> String
 		{
 		var aString:String = ""
+		var nextMenu:String = self.connectedActionSlot() != nil ? self.connectedActionSlot()!.link!.targetMenu!.uuid : ""
 		
-		aString = "{ \"type\": \"\(self.dynamicType)\", \"uuid\":\"\(uuid)\", \"itemIndex\": \(menuIndex), \"text\": \"\(text)\","
-		actionSlot.menu = self.menu()
-		aString += actionSlot.asJSONString()
+		aString = "{ \"type\": \"\(self.dynamicType)\", \"uuid\":\"\(uuid)\", \"itemIndex\": \(menuIndex), \"text\": \"\(text)\",\"actionType\":\"\(actionType)\",\"actionTargetName\":\"\(actionTargetName)\""
+		if nextMenu != ""
+			{
+			aString += ",\"nextMenuUUID\":\"\(nextMenu)\""
+			}
 		aString += " }"
 		return(aString)
 		}
@@ -65,14 +73,6 @@ class USSDActionMenuItem:USSDMenuItem,NSPopoverDelegate
 			return("\(menuIndex).\(text)")
 			}
 		}
-//		
-//	override func setFrameDelta(delta:NSPoint)
-//		{
-//		}
-//		
-//	override func addSourceSlotsToSet(set:SlotSet)
-//		{
-//		}
 		
 	override func isMenuActionItem() -> Bool
 		{
@@ -83,22 +83,6 @@ class USSDActionMenuItem:USSDMenuItem,NSPopoverDelegate
 		{
 		return(true)
 		}
-//		
-//	override func loadIntoLayer(menuLayer:CALayer,linkLayer:LinkManagementLayer)
-//		{
-//		}
-		
-//	override func layoutInFrame(aFrame:CGRect)
-//		{
-//		var newRect:CGRect 
-//		
-//		self.frame = aFrame;
-//		newRect = CGRect(x:self.bounds.size.width,y:0,width:12,height:12)
-//		actionSlot.outerFrame = newRect
-//		actionSlot.frame = newRect
-//		actionSlot.backgroundColor = NSColor.redColor().CGColor
-//		setNeedsDisplay()
-//		}
 		
 	override func frameContainsPoint(point:NSPoint) -> Bool
 		{
@@ -111,37 +95,11 @@ class USSDActionMenuItem:USSDMenuItem,NSPopoverDelegate
 		
 	override func handleClick(point:NSPoint,inView:DesignView)
 		{
-		var myFrame:CGRect
-		var innerPoint = point.pointBySubtractingPoint(self.menu().frame.origin)
-		
-		actionSlot.menu = self.menu()
-		innerPoint = innerPoint.pointBySubtractingPoint(self.frame.origin)
-		if CGRectContainsPoint(actionSlot.frame,innerPoint)
-			{
-			myFrame = self.frame
-			myFrame.origin = myFrame.origin.pointByAddingPoint(self.menu().frame.origin)
-			actionItemEditor = ActionItemEditor()
-			actionItemEditor!.openOnRect(myFrame,inView:inView,actionItem:self)
-			}
 		}
 		
 	func popoverDidClose(note:NSNotification)
 		{
-		actionItemEditor = nil
 		}
-//	
-//	override func layoutSublayers()
-//		{
-//		var newRect:CGRect
-//		var someBounds:CGRect
-//		
-//		super.layoutSublayers()
-//		someBounds = self.bounds
-//		newRect = CGRect(x:someBounds.size.width,y:0,width:12,height:12)
-//		actionSlot.outerFrame = newRect
-//		actionSlot.frame = newRect
-//		setNeedsDisplay()
-//		}
 //		
 	override init()
 		{
@@ -153,7 +111,6 @@ class USSDActionMenuItem:USSDMenuItem,NSPopoverDelegate
 		{
 		super.init(layer:layer)
 		var slotLayer = layer as! USSDActionMenuItem
-		actionSlot = slotLayer.actionSlot
 //		addSublayer(actionSlot)
 		setNeedsLayout()
 		}

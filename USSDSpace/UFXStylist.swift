@@ -13,11 +13,11 @@ import QuartzCore
 class UFXStylist:NSObject
 	{
 	static var MenuItemFontName:String = "LucidaGrande"
-	static var MenuItemFontSize:CGFloat = 11
-	static var MenuItemFont = NSFont(name:"LucidaGrande",size:11)
+	static var MenuItemFontSize:CGFloat = 9
+	static var MenuItemFont = NSFont(name:"LucidaGrande",size:9)
 	static var MenuItemTextColor:NSColor = NSColor.blackColor()
 	static var MenuNameFontName = "MuseoSans-900"
-	static var MenuNameFontSize:CGFloat = 13
+	static var MenuNameFontSize:CGFloat = 12
 	static var MenuNameTextColor = NSColor.blackColor()
 	static var SelectionColor:NSColor = NSColor.colorWithUnscaled(102,green:201,blue:250)
 	static var DeselectionColor:NSColor = NSColor.clearColor()
@@ -30,6 +30,9 @@ class UFXStylist:NSObject
 	static var SimulatorButtonFont = NSFont(name:"Helvetica",size:15)
 	static var SimulatorTopButtonFont = NSFont(name:"Helvetica",size:13)
 	static var SimulatorTopButtonColor:NSColor = NSColor.colorWithUnscaled(0.0,green:36.0,blue:214.0)
+	static var ActionSlotLinkColor = NSColor.colorWithUnscaled(248,green:179,blue:168)
+	static var SlotLinkColor = NSColor.colorWithUnscaled(180,green:210,blue:180)
+	static var DataSlotLinkColor = NSColor.colorWithUnscaled(255,green:201,blue:111)
 	
 	static func styleMenuEntry(item:USSDMenuEntry)
 		{
@@ -85,6 +88,24 @@ class UFXStylist:NSObject
 		menu.shadowRadius = 2
 		menu.shadowOffset = CGSize(width:2,height:2)
 		menu.shadowOpacity = 0.6
+		}
+		
+	static func styleActionSlotLink(link:ActionSlotLink)
+		{
+		link.lineColor = ActionSlotLinkColor
+		link.initStyle()
+		}
+		
+	static func styleSlotLink(link:SlotLink)
+		{
+		link.lineColor = SlotLinkColor
+		link.initStyle()
+		}
+		
+	static func styleDataEntrySlotLink(link:ActionSlotLink)
+		{
+		link.lineColor = DataSlotLinkColor
+		link.initStyle()
 		}
 		
 	static func dumpAllFontNames()

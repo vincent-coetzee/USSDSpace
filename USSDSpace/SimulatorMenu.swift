@@ -13,12 +13,13 @@ class SimulatorMenu:NSObject,NSXMLParserDelegate
 	{
 	var oldDelegate:NSXMLParserDelegate?
 	var parser:NSXMLParser?
-	var title:String?
+	var title:String = ""
 	var menu:SimulatorMenu?
 	var items:[SimulatorMenuItem] = [SimulatorMenuItem]()
 	var currentItem:SimulatorMenuItem?
 	var menuLayer:CATextLayer?
 	var height:CGFloat = 0
+	var lastElement:String = "headertext"
 	
 	init(parser:NSXMLParser)
 		{
@@ -38,7 +39,7 @@ class SimulatorMenu:NSObject,NSXMLParserDelegate
 		
 		newWidth = inWidth - 10
 		xOffset = 5
-		height = title!.heightInWidth(newWidth,withFont: UFXStylist.SimulatorFont!)
+		height = title.heightInWidth(newWidth,withFont: UFXStylist.SimulatorFont!)
 		totalHeight += height
 		menuLayer = CATextLayer()
 		menuLayer!.wrapped = true
@@ -83,15 +84,16 @@ class SimulatorMenu:NSObject,NSXMLParserDelegate
 		
 	func parser(parser: NSXMLParser, foundCharacters string: String?)
 		{
+		NSLog("foundCharacters \(string)")
 		if string != nil
 			{
 			if currentItem != nil
 				{
-				currentItem!.title = string!
+				currentItem!.title += string!
 				}
-			else
+			else if lastElement == "headertext"
 				{
-				title = string
+				title += string!
 				}
 			}
 		}
@@ -121,12 +123,13 @@ class SimulatorMenu:NSObject,NSXMLParserDelegate
 		{
 		var item:SimulatorMenuItem
 		
+		NSLog("\(elementName)")
+		lastElement = elementName
 		if elementName == "option"
 			{
 			item = SimulatorMenuItem(order:attributeDict["order"]! as! String,display:attributeDict["display"]! as! String,command:attributeDict["command"]! as! String,callback:attributeDict["callback"]! as! String)
 			items.append(item)
 			currentItem = item
-			
 			}
 		}
 	}

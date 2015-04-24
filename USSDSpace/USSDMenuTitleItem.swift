@@ -20,6 +20,11 @@ class USSDMenuTitleItem:USSDMenuEntry
 			}
 		}
 		
+	override func asJSONString() -> String
+		{
+		return("{\"type\":\"\(self.dynamicType)\", \"uuid\":\"\(uuid)\",\"text\":\"\(self.text)\"}")
+		}
+		
 	override func layoutInFrame(frame:CGRect)
 		{
 		self.frame = frame;

@@ -42,6 +42,31 @@ class DesignView:NSView
 		linkContainerLayer.reset()
 		}
 		
+	override func menuForEvent(event:NSEvent) -> NSMenu?
+		{
+		var itemUnderPoint:USSDItem?
+		var point = convertPoint(event.locationInWindow,fromView:nil)
+		var newMenu:NSMenu = NSMenu()
+		
+		NSLog("\(event)")
+		if event.type == NSEventType.LeftMouseDown && (event.modifierFlags & NSEventModifierFlags.ControlKeyMask == NSEventModifierFlags.ControlKeyMask)
+			{
+			itemUnderPoint = elementContainingPoint(point)
+			if itemUnderPoint != nil
+				{
+				return(itemUnderPoint!.popupMenu())
+				}
+			itemUnderPoint = linkContainingPoint(point)
+			if itemUnderPoint != nil
+				{
+				return(itemUnderPoint!.popupMenu())
+				}
+			}
+		var newItem = newMenu.addItemWithTitle("Add Menu",action:"onAddMenu:",keyEquivalent:"")
+		newItem!.target = self
+		return(newMenu)
+		}
+		
 	func elementContainingPoint(point:CGPoint) -> USSDElement?
 		{
 		for menu in menus
@@ -120,8 +145,8 @@ class DesignView:NSView
 				if targetMenu != nil && targetMenu != sourceMenu 
 					{
 					slot.link = activeLink
+					targetMenu!.addIncomingSlotLink(activeLink,fromSlot: slot)
 					slot.isConnected = true
-					targetMenu!.addSlotLink(activeLink,fromSlot: slot)
 					linkContainerLayer.addLink(activeLink)
 					}
 				}
@@ -205,7 +230,14 @@ class DesignView:NSView
 				link = linkContainingPoint(point)
 				if link != nil
 					{
-					selectedElementHolder.selection = link;
+					if selectedElementHolder.selection == link
+						{
+						selectedElementHolder.selection = nil
+						}
+					else
+						{
+						selectedElementHolder.selection = link
+						}
 					}
 				}
 			}
@@ -217,6 +249,16 @@ class DesignView:NSView
 				if menuEntry != nil
 					{
 					menuEntry!.editTextInView(self)
+					}
+				}
+			else
+				{
+				var link:SlotLink?
+				
+				link = linkContainingPoint(point)
+				if link != nil
+					{
+					link!.editLinkInView(self)
 					}
 				}
 			}
@@ -272,6 +314,7 @@ class DesignView:NSView
 				self.menus = [USSDMenu]()
 				for (key,menu) in self.workspace.menus
 					{
+					menu.menuView = self
 					menu.loadIntoLayer(self.menuContainerLayer,linkLayer:self.linkContainerLayer)
 					self.menus.append(menu)
 					}
@@ -329,12 +372,10 @@ class DesignView:NSView
 		var menu:USSDMenu
 		
 		menu = USSDMenu()
+		menu.menuView = self
 		menu.workspace = workspace
 		menu.menuName = workspace.nextMenuName()
-		menu.addItem(USSDMenuItem(text:"First Menu Item"))
-		menu.addItem(USSDMenuItem(text:"Second long menu Item."))
-		menu.addItem(USSDMenuItem(text:"Third shorter Item"))
-		menu.addItem(USSDMenuItem(text:"Return to other menu"))
+		menu.addItem(USSDMenuItem(text:"Menu Item"))
 		menu.setFrameOrigin(currentMousePoint())
 		menus.append(menu)
 		menuContainerLayer.addSublayer(menu)
@@ -361,27 +402,6 @@ class DesignView:NSView
 		{
 		var menuItem = USSDMenuItem(text: "New Item")
 		
-		if selectedElementHolder.selection != nil && selectedElementHolder.selection!.isMenu()
-			{
-			(selectedElementHolder.selection! as! USSDMenu).addItem(menuItem)
-			}
-		}
-		
-	@IBAction func onAddActionMenuItem(sender:AnyObject?)
-		{
-		var menuItem = USSDActionMenuItem(text: "New Item")
-		
-		menuItem.actionSlot = ActionSlot(rect: CGRect(x:0,y:0,width:16,height:16))
-		
-		if selectedElementHolder.selection != nil && selectedElementHolder.selection!.isMenu()
-			{
-			(selectedElementHolder.selection! as! USSDMenu).addItem(menuItem)
-			}
-		}
-		
-	@IBAction func onEntryFieldMenuItem(sender:AnyObject?)
-		{
-		var menuItem = USSDEntryFieldMenuItem(text: "REQUEST=")
 		if selectedElementHolder.selection != nil && selectedElementHolder.selection!.isMenu()
 			{
 			(selectedElementHolder.selection! as! USSDMenu).addItem(menuItem)

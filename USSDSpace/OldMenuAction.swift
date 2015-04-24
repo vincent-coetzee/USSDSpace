@@ -33,8 +33,6 @@ class OldUSSDActionMenuItem:USSDMenuEntry,NSPopoverDelegate
 		var aString:String = ""
 		
 		aString = "{ \"type\": \"\(self.dynamicType)\", \"uuid\":\"\(uuid)\", \"itemIndex\": \(menuIndex), \"text\": \"\(text)\","
-		actionSlot.menu = self.menu()
-		aString += actionSlot.asJSONString()
 		aString += " }"
 		return(aString)
 		}
@@ -134,7 +132,6 @@ class OldUSSDActionMenuItem:USSDMenuEntry,NSPopoverDelegate
 		{
 		super.init(layer:layer)
 		var slotLayer = layer as! USSDActionMenuItem
-		actionSlot = slotLayer.actionSlot
 		addSublayer(actionSlot)
 		setNeedsLayout()
 		}

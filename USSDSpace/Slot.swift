@@ -19,6 +19,23 @@ class Slot:CALayer
 	private var _isLeft = false
 	private var _isRight = false
 	
+	var zOrder:CGFloat
+		{
+		get
+			{
+			return(self.zPosition)
+			}
+		set
+			{
+			zPosition = newValue
+			if link != nil
+				{
+				link!.zPosition = newValue
+				}
+			setNeedsDisplay()
+			}
+		}
+		
 	var isLeft:Bool
 		{
 		get
@@ -105,16 +122,8 @@ class Slot:CALayer
 		{
 		didSet
 			{
-			if isConnected 
-				{
-				self.contents = self.slotImage
-				sisterSlot!.enabled = false
-				}
-			else
-				{
-				self.contents = nil
-				sisterSlot!.enabled = true
-				}
+			self.enabled = self.isConnected
+			sisterSlot!.enabled = !self.isConnected
 			}
 		}
 		
@@ -234,7 +243,10 @@ class Slot:CALayer
 		
 	func newLink() -> SlotLink
 		{
-		return(SlotLink())
+		var aLink:SlotLink = SlotLink()
+		aLink.sourceItem = menuItem
+		UFXStylist.styleSlotLink(aLink)
+		return(aLink)
 		}
 		
 	override init()

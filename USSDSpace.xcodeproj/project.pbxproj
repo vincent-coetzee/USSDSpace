@@ -11,6 +11,8 @@
 		BF23E3851ADED312007B370F /* ActionItemEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF23E3841ADED312007B370F /* ActionItemEditor.swift */; };
 		BF23E3891ADEE220007B370F /* USSDMenuNameItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF23E3881ADEE220007B370F /* USSDMenuNameItem.swift */; };
 		BF23E38C1ADF1BC4007B370F /* USSDManagerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF23E38B1ADF1BC4007B370F /* USSDManagerService.swift */; };
+		BF300E3D1AEA662900D82FC2 /* DataEntrySlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF300E3C1AEA662900D82FC2 /* DataEntrySlot.swift */; };
+		BF300E3F1AEAAC1900D82FC2 /* iPhone6WhiteUSSD-137x280.png in Resources */ = {isa = PBXBuildFile; fileRef = BF300E3E1AEAAC1900D82FC2 /* iPhone6WhiteUSSD-137x280.png */; };
 		BF34841E1AE820F100F4180C /* AuthenticationPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF34841D1AE820F100F4180C /* AuthenticationPacket.swift */; };
 		BF3484201AE838D000F4180C /* ErrorSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF34841F1AE838D000F4180C /* ErrorSheet.xib */; };
 		BF3484221AE8398600F4180C /* ErrorSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3484211AE8398600F4180C /* ErrorSheet.swift */; };
@@ -29,7 +31,7 @@
 		BF3484411AE8875500F4180C /* ScriptEntrySelect.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3484401AE8875500F4180C /* ScriptEntrySelect.swift */; };
 		BF3484431AE8878500F4180C /* ScriptBrowser.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF3484421AE8878500F4180C /* ScriptBrowser.xib */; };
 		BF3484451AE887B100F4180C /* ScriptBrowserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3484441AE887B000F4180C /* ScriptBrowserController.swift */; };
-		BF3484471AE8966C00F4180C /* USSDEntryFieldMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3484461AE8966C00F4180C /* USSDEntryFieldMenuItem.swift */; };
+		BF3484471AE8966C00F4180C /* USSDDataEntryMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3484461AE8966C00F4180C /* USSDDataEntryMenuItem.swift */; };
 		BF34844B1AE89DF900F4180C /* USSDItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF34844A1AE89DF900F4180C /* USSDItem.swift */; };
 		BF34844D1AE8A6B000F4180C /* USSDEngineService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF34844C1AE8A6B000F4180C /* USSDEngineService.swift */; };
 		BF3EC9851AE7E41A00140D82 /* USSDDocument.png in Resources */ = {isa = PBXBuildFile; fileRef = BF3EC9841AE7E41A00140D82 /* USSDDocument.png */; };
@@ -111,6 +113,8 @@
 		BF23E3841ADED312007B370F /* ActionItemEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionItemEditor.swift; sourceTree = "<group>"; };
 		BF23E3881ADEE220007B370F /* USSDMenuNameItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USSDMenuNameItem.swift; sourceTree = "<group>"; };
 		BF23E38B1ADF1BC4007B370F /* USSDManagerService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USSDManagerService.swift; sourceTree = "<group>"; };
+		BF300E3C1AEA662900D82FC2 /* DataEntrySlot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataEntrySlot.swift; sourceTree = "<group>"; };
+		BF300E3E1AEAAC1900D82FC2 /* iPhone6WhiteUSSD-137x280.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone6WhiteUSSD-137x280.png"; sourceTree = "<group>"; };
 		BF34841D1AE820F100F4180C /* AuthenticationPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationPacket.swift; sourceTree = "<group>"; };
 		BF34841F1AE838D000F4180C /* ErrorSheet.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ErrorSheet.xib; sourceTree = "<group>"; };
 		BF3484211AE8398600F4180C /* ErrorSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorSheet.swift; sourceTree = "<group>"; };
@@ -129,7 +133,7 @@
 		BF3484401AE8875500F4180C /* ScriptEntrySelect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScriptEntrySelect.swift; sourceTree = "<group>"; };
 		BF3484421AE8878500F4180C /* ScriptBrowser.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScriptBrowser.xib; sourceTree = "<group>"; };
 		BF3484441AE887B000F4180C /* ScriptBrowserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScriptBrowserController.swift; sourceTree = "<group>"; };
-		BF3484461AE8966C00F4180C /* USSDEntryFieldMenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USSDEntryFieldMenuItem.swift; sourceTree = "<group>"; };
+		BF3484461AE8966C00F4180C /* USSDDataEntryMenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USSDDataEntryMenuItem.swift; sourceTree = "<group>"; };
 		BF34844A1AE89DF900F4180C /* USSDItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USSDItem.swift; sourceTree = "<group>"; };
 		BF34844C1AE8A6B000F4180C /* USSDEngineService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USSDEngineService.swift; sourceTree = "<group>"; };
 		BF3EC9841AE7E41A00140D82 /* USSDDocument.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = USSDDocument.png; sourceTree = "<group>"; };
@@ -350,6 +354,7 @@
 		BFD426401AD2AE88008C5009 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				BF300E3E1AEAAC1900D82FC2 /* iPhone6WhiteUSSD-137x280.png */,
 				BFF4E2F91AE9B34300CB6141 /* Back.png */,
 				BFF4E2FA1AE9B34300CB6141 /* Front.png */,
 				BF23E3821ADED1DB007B370F /* ActionItemEditorView.xib */,
@@ -390,6 +395,7 @@
 				BF23E3841ADED312007B370F /* ActionItemEditor.swift */,
 				BF996C0A1AD9973F007DB769 /* ActionSlot.swift */,
 				BF3484321AE86E6E00F4180C /* ActionSlotLink.swift */,
+				BF300E3C1AEA662900D82FC2 /* DataEntrySlot.swift */,
 				BFD426461AD2AF10008C5009 /* DesignController.swift */,
 				BFD426481AD2AF1C008C5009 /* DesignView.swift */,
 				BF3484211AE8398600F4180C /* ErrorSheet.swift */,
@@ -403,7 +409,7 @@
 				BFD426561AD2BE00008C5009 /* UFXStylist.swift */,
 				BF996C061AD993F3007DB769 /* USSDActionMenuItem.swift */,
 				BFD4264A1AD2AF45008C5009 /* USSDElement.swift */,
-				BF3484461AE8966C00F4180C /* USSDEntryFieldMenuItem.swift */,
+				BF3484461AE8966C00F4180C /* USSDDataEntryMenuItem.swift */,
 				BF430ABA1AE93AE30011EFD1 /* USSDInsetWrapper.swift */,
 				BF34844A1AE89DF900F4180C /* USSDItem.swift */,
 				BF430AB81AE93A7C0011EFD1 /* USSDItemWrapper.swift */,
@@ -519,6 +525,7 @@
 				BFB804591ADF4FAC00CB8DBE /* JSON.txt in Resources */,
 				BFF4E2FC1AE9B34300CB6141 /* Front.png in Resources */,
 				BF996C051AD98329007DB769 /* socket-empty-grey-16x16.png in Resources */,
+				BF300E3F1AEAAC1900D82FC2 /* iPhone6WhiteUSSD-137x280.png in Resources */,
 				BF54150F1AE70F5000DA14BA /* WhiteiPhone-292x597.png in Resources */,
 				BF7152991AD5918800CB15B6 /* GraphicsUtilities in Resources */,
 				BF3EC9851AE7E41A00140D82 /* USSDDocument.png in Resources */,
@@ -555,6 +562,7 @@
 			files = (
 				BFD4264F1AD2AF85008C5009 /* USSDMenuItem.swift in Sources */,
 				BF34841E1AE820F100F4180C /* AuthenticationPacket.swift in Sources */,
+				BF300E3D1AEA662900D82FC2 /* DataEntrySlot.swift in Sources */,
 				BF23E3891ADEE220007B370F /* USSDMenuNameItem.swift in Sources */,
 				BF54150A1AE6C54D00DA14BA /* JSONParser.swift in Sources */,
 				BF34844B1AE89DF900F4180C /* USSDItem.swift in Sources */,
@@ -596,7 +604,7 @@
 				BF54152A1AE7572100DA14BA /* CallbackURL.swift in Sources */,
 				BF34843F1AE8837C00F4180C /* ScriptEntryLoop.swift in Sources */,
 				BF3484391AE8833400F4180C /* ScriptEntry.swift in Sources */,
-				BF3484471AE8966C00F4180C /* USSDEntryFieldMenuItem.swift in Sources */,
+				BF3484471AE8966C00F4180C /* USSDDataEntryMenuItem.swift in Sources */,
 				BFD4264B1AD2AF45008C5009 /* USSDElement.swift in Sources */,
 				BF3484241AE8528100F4180C /* ScriptRecorder.swift in Sources */,
 				BFD426261AD2AE44008C5009 /* USSDSpace.xcdatamodeld in Sources */,

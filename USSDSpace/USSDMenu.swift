@@ -12,8 +12,8 @@ import QuartzCore
 
 class USSDMenu:USSDElement
 	{
-	private let menuSize = CGSize(width: 170,height: 347)
-	private var items:[USSDMenuEntry]?
+	private let menuSize = CGSize(width: 137,height: 280)
+	private var items:[USSDMenuEntry] = [USSDMenuEntry]()
 	private var menuTitleItem:USSDMenuTitleItem = USSDMenuTitleItem(text: "Menu")
 	private var imageLayer = CALayer()
 	private var menuNameLayer = USSDMenuNameItem(text: "")
@@ -21,11 +21,13 @@ class USSDMenu:USSDElement
 	private var linkedTargetSlots:[TargetSlot] = [TargetSlot]()
 	private var selectionLayer:CALayer = CALayer()
 	
-	let menuEdgeInsets = NSEdgeInsets(top:30,left:10,bottom:60,right:10)
-	let interlineSpacing:CGFloat = 4
-	let menuNameFrame = CGRect(x:10,y:22,width:150,height:20)
+	let menuEdgeInsets = NSEdgeInsets(top:30,left:8,bottom:60,right:8)
+	let interlineSpacing:CGFloat = 2
+	let menuNameFrame = CGRect(x:8,y:16,width:120,height:20)
+	let menuImage = NSImage(named:"iPhone6WhiteUSSD-137x280")
 	
 	var workspace:USSDWorkspace?
+	var menuView:DesignView?
 	
 	var menuName:String
 		{
@@ -39,6 +41,23 @@ class USSDMenu:USSDElement
 			menuNameLayer.text = actualMenuName
 			setNeedsDisplay()
 			self.workspace!.reIndexMenus()
+			}
+		}
+		
+	override var zOrder:CGFloat
+		{
+		get
+			{
+			return(self.zPosition)
+			}
+		set
+			{
+			zPosition = newValue
+			for item in items
+				{
+				item.zOrder = newValue
+				}
+			setNeedsDisplay()
 			}
 		}
 		
@@ -57,7 +76,7 @@ class USSDMenu:USSDElement
 		var stringItems:[String] = [String]()
 		
 		aString = "{ \"uuid\": \"\(uuid)\", \"text\": \"\(menuTitleItem.text.cleanString)\", \"menuName\": \"\(actualMenuName)\", \"transferElements\": [";
-		for item in items!
+		for item in items
 			{
 			stringItems.append(item.asJSONString())
 			}
@@ -70,7 +89,7 @@ class USSDMenu:USSDElement
 		{
 		menuLayer.addSublayer(self)
 		UFXStylist.styleMenu(self)
-		for item in items!
+		for item in items
 			{
 			item.loadIntoLayer(menuLayer,linkLayer:linkLayer)
 			}
@@ -88,11 +107,23 @@ class USSDMenu:USSDElement
 		coder.encodeObject(selectionLayer,forKey:"selectionLayer")
 		}
 		
+	func recalibrate()
+		{
+		imageLayer.removeFromSuperlayer()
+		imageLayer = CALayer()
+		self.insertSublayer(imageLayer,below:menuNameLayer)
+		imageLayer.contents = menuImage
+		imageLayer.frame = CGRect(origin:CGPoint(x:0,y:0),size:menuSize)
+		self.frame = CGRect(origin:self.frame.origin,size:menuSize)
+		self.setNeedsLayout()
+		self.setNeedsDisplay()
+		}
+		
 	required init(coder aDecoder: NSCoder) 
 		{
 	    super.init(coder:aDecoder)
-		items = aDecoder.decodeObjectForKey("items") as! [USSDMenuEntry]?
-		for entry in items!
+		items = aDecoder.decodeObjectForKey("items") as! [USSDMenuEntry]
+		for entry in items
 			{
 			if entry.isMenuTitleItem()
 				{
@@ -114,12 +145,56 @@ class USSDMenu:USSDElement
 		setNeedsLayout()
 		}
 		
+	override func popupMenu() -> NSMenu?
+		{
+		var newMenu = NSMenu()
+		var menuItem:NSMenuItem
+		
+		menuItem = newMenu.addItemWithTitle("Set as Start Menu",action:"onBecomeStartMenu:",keyEquivalent:"")!
+		menuItem.target = self
+		newMenu.addItem(NSMenuItem.separatorItem())
+		menuItem = newMenu.addItemWithTitle("Add Menu Item",action:"onAddMenuItem:",keyEquivalent:"")!
+		menuItem.target = self
+		menuItem = newMenu.addItemWithTitle("Add Data Entry Item",action:"onAddDataEntryItem:",keyEquivalent:"")!
+		menuItem.target = self
+		menuItem = newMenu.addItemWithTitle("Add Action Menu Item",action:"onAddActionMenuItem:",keyEquivalent:"")!
+		menuItem.target = self
+		newMenu.addItem(NSMenuItem.separatorItem())
+		menuItem = newMenu.addItemWithTitle("Delete this Menu",action:"onDeleteMenu:",keyEquivalent:"")!
+		menuItem.target = self
+		return(newMenu)
+		}
+		
+	func onBecomeStartMenu(sender:AnyObject?)
+		{
+		self.workspace!.startMenu = self
+		}
+		
+	func onAddDataEntryItem(sender:AnyObject?)
+		{
+		var menuItem = USSDDataEntryMenuItem(text: "REQUEST=")
+		addItem(menuItem)
+		}
+		
+	func onAddActionMenuItem(sender:AnyObject?)
+		{
+		var menuItem = USSDActionMenuItem(text: "Action Item")
+		addItem(menuItem)
+		}
+		
+	func onAddMenuItem(sender:AnyObject?)
+		{
+		var menuItem = USSDMenuItem(text: "Menu Item")
+		addItem(menuItem)
+		}
+		
 	func startDrag()
 		{
 		self.shadowColor = NSColor.blackColor().CGColor
 		self.shadowRadius = 4
 		self.shadowOffset = CGSize(width:3,height:3)
 		self.shadowOpacity = 0.9
+		self.zPosition = zDrag
 		}
 		
 	func endDrag()
@@ -128,9 +203,10 @@ class USSDMenu:USSDElement
 		self.shadowRadius = 2
 		self.shadowOffset = CGSize(width:2,height:2)
 		self.shadowOpacity = 0.6
+		self.zPosition = zMenu
 		}
 		
-	func addSlotLink(link:SlotLink,fromSlot:Slot)
+	func addIncomingSlotLink(link:SlotLink,fromSlot:Slot)
 		{
 		var targetSlot:TargetSlot
 		
@@ -147,7 +223,7 @@ class USSDMenu:USSDElement
 		{
 		var slotSet = SlotSet()
 		
-		for item in items!
+		for item in items
 			{
 			item.addSourceSlotsToSet(slotSet)
 			}
@@ -162,8 +238,8 @@ class USSDMenu:USSDElement
 		var delta:NSPoint
 		
 		delta = origin.pointBySubtractingPoint(frame.origin)
-		frame = CGRect(origin:origin,size:CGSize(width:170,height:347))
-		for item in items!
+		frame = CGRect(origin:origin,size:menuSize)
+		for item in items
 			{
 			item.setFrameDelta(delta)
 			}
@@ -181,14 +257,13 @@ class USSDMenu:USSDElement
 		super.init()
 		UFXStylist.styleMenu(self)
 		UFXStylist.styleMenuEntry(menuTitleItem)
-		imageLayer.contents = NSImage(named:"iPhone6WhiteUSSD-170x347")
+		imageLayer.contents = menuImage
 		addSublayer(imageLayer)
-		imageLayer.frame = CGRect(x:0,y:0,width:170,height:347)
+		imageLayer.frame = CGRect(x:0,y:0,width:menuSize.width,height:menuSize.height)
 		addTitleItem(menuTitleItem)
 		addSublayer(menuNameLayer)
 		UFXStylist.styleLayerAsMenuName(menuNameLayer)
 		menuNameLayer.frame = menuNameFrame
-		borderColor = NSColor.clearColor().CGColor
 		}
 		
 	override func select()
@@ -218,11 +293,11 @@ class USSDMenu:USSDElement
 		
 	func removeItem(item:USSDMenuEntry)
 		{
-		var index = find(items!,item)
+		var index = find(items,item)
 		if index != nil
 			{
 			item.removeFromSuperlayer()
-			items!.removeAtIndex(index!)
+			items.removeAtIndex(index!)
 			setNeedsLayout()
 			setNeedsDisplay()
 			}
@@ -242,13 +317,13 @@ class USSDMenu:USSDElement
 		{
 		var index:Int?
 		
-		index = find(items!,item)
+		index = find(items,item)
 		if index == nil || index! == 0
 			{
 			return;
 			}
-		items!.removeAtIndex(index!)
-		items!.insert(item,atIndex:index!-1)
+		items.removeAtIndex(index!)
+		items.insert(item,atIndex:index!-1)
 		setNeedsLayout();
 		setNeedsDisplay()
 		}
@@ -257,13 +332,13 @@ class USSDMenu:USSDElement
 		{
 		var index:Int?
 		
-		index = find(items!,item)
-		if index == nil || index! == (items!.count - 1)
+		index = find(items,item)
+		if index == nil || index! == (items.count - 1)
 			{
 			return;
 			}
-		items!.removeAtIndex(index!)
-		items!.insert(item,atIndex:index!+1)
+		items.removeAtIndex(index!)
+		items.insert(item,atIndex:index!+1)
 		setNeedsLayout();
 		setNeedsDisplay()
 		}
@@ -271,7 +346,7 @@ class USSDMenu:USSDElement
 	func addItem(item:USSDMenuEntry)
 		{
 		UFXStylist.styleMenuEntry(item)
-		items!.append(item)
+		items.append(item)
 		addSublayer(item)
 		setNeedsLayout()
 		setNeedsDisplay()
@@ -279,7 +354,7 @@ class USSDMenu:USSDElement
 		
 	func addTitleItem(item:USSDMenuTitleItem)
 		{
-		items!.append(item)
+		items.append(item)
 		addSublayer(item)
 		setNeedsLayout()
 		setNeedsDisplay()
@@ -290,7 +365,7 @@ class USSDMenu:USSDElement
 		let myFrame = frame
 		let newPoint = point.pointBySubtractingPoint(myFrame.origin)
 		
-		for item in items!
+		for item in items
 			{
 			if item.frameContainsPoint(newPoint)
 				{
@@ -313,13 +388,13 @@ class USSDMenu:USSDElement
 		var textWidth:CGFloat
 		
 		textWidth = menuSize.width-menuEdgeInsets.left-menuEdgeInsets.right
-		for (index,item) in enumerate(items!)
+		for (index,item) in enumerate(items)
 			{
 			item.menuIndex = menuIndex++
 			totalHeight += item.sizeToFitInWidth(textWidth) + interlineSpacing
 			}
 		topOffset = menuEdgeInsets.top + (menuSize.height - menuEdgeInsets.top - menuEdgeInsets.bottom - totalHeight)/2
-		for (index,item) in enumerate(items!)
+		for (index,item) in enumerate(items)
 			{
 			height = item.desiredHeight
 			item.layoutInFrame(CGRect(x:menuEdgeInsets.left,y:topOffset+1,width:textWidth,height:height))

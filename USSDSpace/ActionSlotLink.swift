@@ -12,6 +12,9 @@ import QuartzCore
 
 class ActionSlotLink:SlotLink
 	{
+	var bubbleRect:CGRect?
+	var editor:ActionItemEditor?
+	
 	override func calculateBoundsAndUpdateTarget()
 		{
 		var vertex:NSPoint
@@ -28,15 +31,27 @@ class ActionSlotLink:SlotLink
 		link.moveToPoint(addPoints(endPoint,makePolarPoint(0,angle)))
 		link.lineToPoint(addPoints(endPoint,makePolarPoint(12,angle+160.0)))
 		link.lineToPoint(addPoints(endPoint,makePolarPoint(12,angle-160.0)))
+		link.lineToPoint(addPoints(endPoint,makePolarPoint(0,angle)))
 		segment = NSLineSegment(start: startPoint,end:endPoint)
 		midPoint = segment.midPoint()
 		link.moveToPoint(midPoint)
-		rect = CGRect(x:midPoint.x-10,y:midPoint.y-10,width:20,height:20)
+		rect = CGRect(x:midPoint.x-15,y:midPoint.y-15,width:30,height:30)
+		bubbleRect = rect
 		link.appendBezierPathWithOvalInRect(rect)
 		shapeLayer.path = link.CGPath
-//		shapeFrame = link.bounds
-//		shapeLayer.frame = shapeFrame
-		lineColor = UFXStylist.SelectionColor 
 		shapeLayer.setNeedsDisplay()
+		}
+		
+	override func closeEditor()
+		{
+		sourceItem!.updateAfterEdit()
+		editor!.close()
+		editor = nil
+		}
+		
+	override func editLinkInView(aView:NSView)
+		{
+		editor = ActionItemEditor()
+		editor!.openOnRect(bubbleRect!,inView:aView,actionItem:(sourceItem as! USSDActionMenuItem))
 		}
 	}
