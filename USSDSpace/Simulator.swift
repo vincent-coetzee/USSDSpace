@@ -51,8 +51,11 @@ class Simulator:NSObject,NSXMLParserDelegate
 		
 	@IBAction func onContextOk(sender:AnyObject?)
 		{
-		window!.makeKeyAndOrderFront(self)
-		contextWindow!.close()
+		contextView!.removeFromSuperview()
+		window!.contentView.addSubview(view!)
+		window!.contentView.layer!!.contents = NSImage(named:"WhiteiPhone-292x597")
+//		window!.makeKeyAndOrderFront(self)
+//		contextWindow!.close()
 		setCallback(targetURL!)
 		}
 		
@@ -76,7 +79,6 @@ class Simulator:NSObject,NSXMLParserDelegate
 		view = SimulatorView(frame:window!.contentView.bounds)
 		view!.menu = viewMenu!
 		view!.controller = self
-		window!.contentView.addSubview(view!)
 		}
 		
 	init(startURL:CallbackURL)

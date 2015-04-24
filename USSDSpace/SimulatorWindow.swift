@@ -47,7 +47,7 @@ class SimulatorWindow:NSWindow
 			let newView = newValue as! NSView
 			newView.wantsLayer = true
 			newView.layer!.masksToBounds = true
-			newView.layer!.contents = NSImage(named:"WhiteiPhone-292x597")
+			newView.layer!.contents = NSImage(named:"Back")
 			super.contentView = newView
 			}
 		}

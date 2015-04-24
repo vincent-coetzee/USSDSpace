@@ -122,12 +122,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "USSDSpace/Simulator.swift"
-            timestampString = "451510112.914199"
+            timestampString = "451535147.229421"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "145"
-            endingLineNumber = "145"
-            landmarkName = "setCallback(_:)"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
+            landmarkName = "onFlip(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "USSDSpace/Simulator.swift"
+            timestampString = "451535478.5104"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "onContextOk(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
