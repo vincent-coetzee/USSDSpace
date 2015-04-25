@@ -73,7 +73,7 @@ class Slot:CALayer
 			}
 		}
 	
-	var slotImage:NSImage
+	var slotImage:NSImage?
 		{
 		get
 			{
@@ -217,11 +217,6 @@ class Slot:CALayer
 		outerFrame = frame
 		}
 		
-	func print()
-		{
-		NSLog("SLOT(\(frame))")
-		}
-		
 	func setFrameDelta(delta:NSPoint)
 		{
 		outerFrame.origin = outerFrame.origin.pointByAddingPoint(delta)
@@ -244,6 +239,7 @@ class Slot:CALayer
 	func newLink() -> SlotLink
 		{
 		var aLink:SlotLink = SlotLink()
+		aLink.removeAllAnimations()
 		aLink.sourceItem = menuItem
 		UFXStylist.styleSlotLink(aLink)
 		return(aLink)

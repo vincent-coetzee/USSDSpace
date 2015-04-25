@@ -15,14 +15,15 @@ class USSDWorkspace:USSDElement
 	var selectedMenu:USSDMenu?
 	var selectedElement:USSDElement?
 	
-	var startMenu:USSDMenu?
-	var menus:[String:USSDMenu] = [String:USSDMenu]()
+	var startMenu:USSDElement?
+	var elements:[USSDElement] = [USSDElement]()
 	var workspacePath:String?
-	var campaignName:String = "CAMP"
+	var campaignName:String = "WORKS"
 	var nextMenuNumber:Int = 1
 	var designViewFrame:CGRect = CGRect(x:0,y:0,width:0,height:0)
 	var windowFrame:CGRect = CGRect(x:0,y:0,width:0,height:0)
 	var workspaceName = USSDWorkspace.newUUIDString()
+	var workspaceItem:USSDWorkspaceItem?
 	
 	override func asJSONString() -> String
 		{
@@ -32,9 +33,9 @@ class USSDWorkspace:USSDElement
 		var aString:String = "{\"name\":\"\(workspaceName)\",\"uuid\":\"\(uuid)\",\"startMenuUUID\":\"\(targetUUID)\","
 		var menuStrings:[String] = [String]()
 		
-		for (key,menu) in menus
+		for element in elements
 			{
-			menuStrings.append(menu.asJSONString())
+			menuStrings.append(element.asJSONString())
 			}
 		var menusString = (menuStrings as NSArray).componentsJoinedByString(",")
 		aString += "\"menus\":[\(menusString)]"
@@ -48,7 +49,6 @@ class USSDWorkspace:USSDElement
 		
 		workspace = NSKeyedUnarchiver.unarchiveObjectWithFile(path) as! USSDWorkspace
 		workspace.workspaceName = path.lastPathComponent
-		workspace.reIndexMenus()
 		workspace.recalibrate()
 		return(workspace)
 		}
@@ -66,39 +66,14 @@ class USSDWorkspace:USSDElement
 			{
 			return("0000-0000-0000-0000")
 			}
-		NSLog("menu name = \(name)")
-		for (key,menu) in menus
+		for element in elements
 			{
-			NSLog("key = \(key) menu name = \(menu.menuName)")
-			}
-		return(menus[name]!.uuid)
-		}
-		
-	func menuNameForMenuUUID(aUUID:String) -> String?
-		{
-		if aUUID == "0000-0000-0000-0000"
-			{
-			return("NULL-MENU")
-			}
-		for (key,menu) in menus
-			{
-			if menu.uuid == aUUID
+			if element.menuName == name
 				{
-				return(menu.menuName)
+				return(element.uuid)
 				}
 			}
-		return(nil)
-		}
-		
-	func reIndexMenus()
-		{
-		var oldMenus = menus
-		
-		menus = [String:USSDMenu]()
-		for (key,menu) in oldMenus
-			{
-			menus[menu.menuName] = menu
-			}
+		return("0000-0000-0000-0000")
 		}
 		
 	func saveOnPath(path:String) -> Bool
@@ -110,7 +85,7 @@ class USSDWorkspace:USSDElement
 		
 	override init()
 		{
-		menus = [String:USSDMenu]()
+		elements = [USSDElement]()
 		workspaceName = "Workspace"
 		super.init()
 		}
@@ -119,47 +94,48 @@ class USSDWorkspace:USSDElement
 		{
 		super.encodeWithCoder(coder)
 		coder.encodeObject(startMenu,forKey:"startMenu")
-		coder.encodeObject(menus,forKey:"menus")
+		coder.encodeObject(elements,forKey:"elements")
 		coder.encodeObject(workspaceName,forKey:"workspaceName")
 		coder.encodeInteger(nextMenuNumber,forKey:"nextMenuNumber")
 		coder.encodeObject(workspacePath,forKey:"workspacePath")
 		coder.encodeRect(designViewFrame,forKey:"designViewFrame")
 		coder.encodeRect(windowFrame,forKey:"windowFrame")
+		coder.encodeObject(workspaceItem,forKey:"workspaceItem")
 		}
 		
 	required init(coder aDecoder: NSCoder) 
 		{
 		super.init(coder:aDecoder)
 		startMenu = aDecoder.decodeObjectForKey("startMenu") as! USSDMenu?
-		menus = aDecoder.decodeObjectForKey("menus") as! [String:USSDMenu]
+		elements = aDecoder.decodeObjectForKey("elements") as! [USSDElement]
 		workspaceName = (aDecoder.decodeObjectForKey("workspaceName") as? String)!
 		nextMenuNumber = aDecoder.decodeIntegerForKey("nextMenuNumber")
 		workspacePath = aDecoder.decodeObjectForKey("workspacePath") as? String
 		designViewFrame = aDecoder.decodeRectForKey("designViewFrame")
 		windowFrame = aDecoder.decodeRectForKey("windowFrame")
+		workspaceItem = (aDecoder.decodeObjectForKey("workspaceItem") as? USSDWorkspaceItem)!
 		}
 		
-	func recalibrate()
+	override func recalibrate()
 		{
-		for (key,menu) in menus
+		for element in elements
 			{
-			menu.recalibrate()
+			element.recalibrate()
 			}
 		}
 		
-	func addMenu(menu:USSDMenu)
+	func addMenu(menu:USSDElement)
 		{
-		menus[menu.menuName] = menu
-		menu.workspace = self
+		elements.append(menu)
 		}
 		
 	func allMenuNames() -> [String]
 		{
 		var names = [String]()
 		
-		for (key,menu) in menus
+		for element in elements
 			{
-			names.append(menu.menuName)
+			names.append(element.menuName)
 			}
 		return(sorted(names,<))
 		}

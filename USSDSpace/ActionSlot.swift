@@ -28,8 +28,11 @@ class ActionSlot:Slot
 			sisterSlot!.enabled = !self.isConnected
 			if self.isConnected
 				{
-				setTargetMenuUUID(link!.targetMenu!.uuid)
-				UFXStylist.styleActionSlotLink(self.link as! ActionSlotLink)
+				if link != nil
+					{
+					setTargetMenuUUID(link!.targetMenu!.uuid)
+					UFXStylist.styleActionSlotLink(self.link as! ActionSlotLink)
+					}
 				}
 			}
 		}
@@ -42,6 +45,7 @@ class ActionSlot:Slot
 		{
 		var aLink:ActionSlotLink = ActionSlotLink()
 		aLink.sourceItem = menuItem
+		aLink.removeAllAnimations()
 		UFXStylist.styleActionSlotLink(aLink)
 		return(aLink)
 		}
@@ -55,6 +59,7 @@ class ActionSlot:Slot
 		{
 		super.init()
 //		self.contents = UFXStylist.SlotMenuImage
+		self.removeAllAnimations()
 		}
 		
 	override init(layer:AnyObject?)

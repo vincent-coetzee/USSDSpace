@@ -27,9 +27,8 @@ class USSDMenu:USSDElement
 	let menuImage = NSImage(named:"iPhone6WhiteUSSD-137x280")
 	
 	var workspace:USSDWorkspace?
-	var menuView:DesignView?
 	
-	var menuName:String
+	override var menuName:String
 		{
 		get
 			{
@@ -40,7 +39,7 @@ class USSDMenu:USSDElement
 			actualMenuName = newValue
 			menuNameLayer.text = actualMenuName
 			setNeedsDisplay()
-			self.workspace!.reIndexMenus()
+//			self.workspace!.reIndexMenus()
 			}
 		}
 		
@@ -61,7 +60,7 @@ class USSDMenu:USSDElement
 			}
 		}
 		
-	func removeLinkedTargetSlot(targetSlot:TargetSlot)
+	override func removeLinkedTargetSlot(targetSlot:TargetSlot)
 		{
 		var index = find(linkedTargetSlots,targetSlot)
 		if index != nil
@@ -85,7 +84,7 @@ class USSDMenu:USSDElement
 		return(aString)
 		}
 		
-	func loadIntoLayer(menuLayer:CALayer,linkLayer:LinkManagementLayer)
+	override func loadIntoLayer(menuLayer:CALayer,linkLayer:LinkManagementLayer)
 		{
 		menuLayer.addSublayer(self)
 		UFXStylist.styleMenu(self)
@@ -107,16 +106,16 @@ class USSDMenu:USSDElement
 		coder.encodeObject(selectionLayer,forKey:"selectionLayer")
 		}
 		
-	func recalibrate()
+	override func recalibrate()
 		{
-		imageLayer.removeFromSuperlayer()
-		imageLayer = CALayer()
-		self.insertSublayer(imageLayer,below:menuNameLayer)
-		imageLayer.contents = menuImage
-		imageLayer.frame = CGRect(origin:CGPoint(x:0,y:0),size:menuSize)
-		self.frame = CGRect(origin:self.frame.origin,size:menuSize)
-		self.setNeedsLayout()
-		self.setNeedsDisplay()
+//		imageLayer.removeFromSuperlayer()
+//		imageLayer = CALayer()
+//		self.insertSublayer(imageLayer,below:menuNameLayer)
+//		imageLayer.contents = menuImage
+//		imageLayer.frame = CGRect(origin:CGPoint(x:0,y:0),size:menuSize)
+//		self.frame = CGRect(origin:self.frame.origin,size:menuSize)
+//		self.setNeedsLayout()
+//		self.setNeedsDisplay()
 		}
 		
 	required init(coder aDecoder: NSCoder) 
@@ -128,6 +127,8 @@ class USSDMenu:USSDElement
 			if entry.isMenuTitleItem()
 				{
 				menuTitleItem = entry as! USSDMenuTitleItem
+				menuTitleItem.removeFromSuperlayer()
+				addSublayer(menuTitleItem)
 				}
 			}
 		actualMenuName = aDecoder.decodeObjectForKey("menuName") as! String
@@ -188,7 +189,7 @@ class USSDMenu:USSDElement
 		addItem(menuItem)
 		}
 		
-	func startDrag()
+	override func startDrag()
 		{
 		self.shadowColor = NSColor.blackColor().CGColor
 		self.shadowRadius = 4
@@ -197,7 +198,7 @@ class USSDMenu:USSDElement
 		self.zPosition = zDrag
 		}
 		
-	func endDrag()
+	override func endDrag()
 		{
 		self.shadowColor = NSColor.blackColor().CGColor
 		self.shadowRadius = 2
@@ -206,7 +207,7 @@ class USSDMenu:USSDElement
 		self.zPosition = zMenu
 		}
 		
-	func addIncomingSlotLink(link:SlotLink,fromSlot:Slot)
+	override func addIncomingSlotLink(link:SlotLink,fromSlot:Slot)
 		{
 		var targetSlot:TargetSlot
 		
@@ -214,12 +215,13 @@ class USSDMenu:USSDElement
 		targetSlot.link = link
 		targetSlot.sourceSlot = fromSlot
 		targetSlot.link!.targetMenu = self
+		fromSlot.link = link
 		linkedTargetSlots.append(targetSlot)
 		link.targetSlot = targetSlot
 		targetSlot.setMenuFrame(frame)
 		}
 		
-	func sourceSlotSet() -> SlotSet
+	override func sourceSlotSet() -> SlotSet
 		{
 		var slotSet = SlotSet()
 		
@@ -227,9 +229,7 @@ class USSDMenu:USSDElement
 			{
 			item.addSourceSlotsToSet(slotSet)
 			}
-		slotSet.print()
 		slotSet.offsetSlotsByPoint(self.frame.origin)
-		slotSet.print()
 		return(slotSet)
 		}
 		
@@ -308,10 +308,10 @@ class USSDMenu:USSDElement
 		return(workspace!.menuUUIDForMenuName(name))
 		}
 		
-	func menuNameForMenuUUID(name:String) -> String
-		{
-		return(workspace!.menuNameForMenuUUID(name)!)
-		}
+//	func menuNameForMenuUUID(name:String) -> String
+//		{
+//		return(workspace!.menuNameForMenuUUID(name)!)
+//		}
 		
 	func moveItemUp(item:USSDMenuEntry)
 		{
@@ -360,7 +360,7 @@ class USSDMenu:USSDElement
 		setNeedsDisplay()
 		}
 		
-	func itemContainingPoint(point:NSPoint) -> USSDMenuEntry?
+	override func itemContainingPoint(point:NSPoint) -> USSDMenuEntry?
 		{
 		let myFrame = frame
 		let newPoint = point.pointBySubtractingPoint(myFrame.origin)

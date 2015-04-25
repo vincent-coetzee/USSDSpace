@@ -19,14 +19,6 @@ class SlotSet
 		slots = [Slot]()
 		}
 		
-	func print()
-		{
-		for slot in slots
-			{
-			slot.print()
-			}
-		}
-		
 	func addSlot(slot:Slot)
 		{
 		slots.append(slot)

@@ -99,7 +99,7 @@ class USSDMenuEntry:USSDTextElement,NSTextViewDelegate,NSTextDelegate
 		self.frame = frame;
 		}
 		
-	func loadIntoLayer(menuLayer:CALayer,linkLayer:LinkManagementLayer)
+	override func loadIntoLayer(menuLayer:CALayer,linkLayer:LinkManagementLayer)
 		{
 		}
 		

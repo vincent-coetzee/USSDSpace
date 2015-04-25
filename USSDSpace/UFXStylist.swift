@@ -33,6 +33,7 @@ class UFXStylist:NSObject
 	static var ActionSlotLinkColor = NSColor.colorWithUnscaled(248,green:179,blue:168)
 	static var SlotLinkColor = NSColor.colorWithUnscaled(180,green:210,blue:180)
 	static var DataSlotLinkColor = NSColor.colorWithUnscaled(255,green:201,blue:111)
+	static var StartMenuLinkColor = NSColor.colorWithUnscaled(208,green:180,blue:209)
 	
 	static func styleMenuEntry(item:USSDMenuEntry)
 		{
@@ -93,6 +94,12 @@ class UFXStylist:NSObject
 	static func styleActionSlotLink(link:ActionSlotLink)
 		{
 		link.lineColor = ActionSlotLinkColor
+		link.initStyle()
+		}
+		
+	static func styleStartMenuLink(link:ActionSlotLink)
+		{
+		link.lineColor = StartMenuLinkColor
 		link.initStyle()
 		}
 		

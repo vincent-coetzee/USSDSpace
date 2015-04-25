@@ -13,12 +13,29 @@
 		BF23E38C1ADF1BC4007B370F /* USSDManagerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF23E38B1ADF1BC4007B370F /* USSDManagerService.swift */; };
 		BF300E3D1AEA662900D82FC2 /* DataEntrySlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF300E3C1AEA662900D82FC2 /* DataEntrySlot.swift */; };
 		BF300E3F1AEAAC1900D82FC2 /* iPhone6WhiteUSSD-137x280.png in Resources */ = {isa = PBXBuildFile; fileRef = BF300E3E1AEAAC1900D82FC2 /* iPhone6WhiteUSSD-137x280.png */; };
+		BF300E411AEB1F9B00D82FC2 /* RemoteUSSDPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF300E401AEB1F9B00D82FC2 /* RemoteUSSDPackage.swift */; };
+		BF300E431AEB201900D82FC2 /* RemoteUSSDActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF300E421AEB201900D82FC2 /* RemoteUSSDActivity.swift */; };
+		BF300E451AEB277100D82FC2 /* RemoteUSSDActivityState.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF300E441AEB277100D82FC2 /* RemoteUSSDActivityState.swift */; };
+		BF300E491AEB3CCD00D82FC2 /* USSDPlaceHolderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF300E481AEB3CCD00D82FC2 /* USSDPlaceHolderItem.swift */; };
+		BF300E4B1AEB420800D82FC2 /* PackageService-180x60.png in Resources */ = {isa = PBXBuildFile; fileRef = BF300E4A1AEB420800D82FC2 /* PackageService-180x60.png */; };
+		BF300E4F1AEB788800D82FC2 /* USSDBindingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF300E4E1AEB788800D82FC2 /* USSDBindingItem.swift */; };
+		BF300E511AEB793600D82FC2 /* USSDExecutionPointItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF300E501AEB793600D82FC2 /* USSDExecutionPointItem.swift */; };
+		BF300E531AEB795D00D82FC2 /* USSDEntryPointItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF300E521AEB795D00D82FC2 /* USSDEntryPointItem.swift */; };
+		BF300E551AEB79D500D82FC2 /* USSDExitPointItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF300E541AEB79D500D82FC2 /* USSDExitPointItem.swift */; };
+		BF300E571AEB821F00D82FC2 /* USSDWorkspaceItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF300E561AEB821F00D82FC2 /* USSDWorkspaceItem.swift */; };
+		BF300E591AEB849900D82FC2 /* WorkspaceProxy-32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = BF300E581AEB849900D82FC2 /* WorkspaceProxy-32x32.png */; };
+		BF300E5B1AEB84C500D82FC2 /* WorkspaceSlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF300E5A1AEB84C500D82FC2 /* WorkspaceSlot.swift */; };
+		BF300E5D1AEB851F00D82FC2 /* StartMenuLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF300E5C1AEB851F00D82FC2 /* StartMenuLink.swift */; };
+		BF300E5F1AEB92B600D82FC2 /* SlotBall-24x24.png in Resources */ = {isa = PBXBuildFile; fileRef = BF300E5E1AEB92B600D82FC2 /* SlotBall-24x24.png */; };
+		BF300E611AEBA60C00D82FC2 /* BlackHole.png in Resources */ = {isa = PBXBuildFile; fileRef = BF300E601AEBA60C00D82FC2 /* BlackHole.png */; };
+		BF300E651AEBD05E00D82FC2 /* ActiveItemBall-24x24.png in Resources */ = {isa = PBXBuildFile; fileRef = BF300E621AEBD05E00D82FC2 /* ActiveItemBall-24x24.png */; };
+		BF300E661AEBD05E00D82FC2 /* DataBall-24x24.png in Resources */ = {isa = PBXBuildFile; fileRef = BF300E631AEBD05E00D82FC2 /* DataBall-24x24.png */; };
+		BF300E671AEBD05E00D82FC2 /* StartMenuBall-24x24.png in Resources */ = {isa = PBXBuildFile; fileRef = BF300E641AEBD05E00D82FC2 /* StartMenuBall-24x24.png */; };
 		BF34841E1AE820F100F4180C /* AuthenticationPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF34841D1AE820F100F4180C /* AuthenticationPacket.swift */; };
 		BF3484201AE838D000F4180C /* ErrorSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF34841F1AE838D000F4180C /* ErrorSheet.xib */; };
 		BF3484221AE8398600F4180C /* ErrorSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3484211AE8398600F4180C /* ErrorSheet.swift */; };
 		BF3484241AE8528100F4180C /* ScriptRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3484231AE8528100F4180C /* ScriptRecorder.swift */; };
 		BF3484271AE8529B00F4180C /* Script.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3484261AE8529B00F4180C /* Script.swift */; };
-		BF3484291AE8669400F4180C /* OldMenuAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3484281AE8669400F4180C /* OldMenuAction.swift */; };
 		BF34842B1AE86A3200F4180C /* right-empty-peg-16x16.png in Resources */ = {isa = PBXBuildFile; fileRef = BF34842A1AE86A3200F4180C /* right-empty-peg-16x16.png */; };
 		BF34842D1AE86B2100F4180C /* left-empty-peg-16x16.png in Resources */ = {isa = PBXBuildFile; fileRef = BF34842C1AE86B2100F4180C /* left-empty-peg-16x16.png */; };
 		BF3484331AE86E6E00F4180C /* ActionSlotLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3484321AE86E6E00F4180C /* ActionSlotLink.swift */; };
@@ -115,12 +132,29 @@
 		BF23E38B1ADF1BC4007B370F /* USSDManagerService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USSDManagerService.swift; sourceTree = "<group>"; };
 		BF300E3C1AEA662900D82FC2 /* DataEntrySlot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataEntrySlot.swift; sourceTree = "<group>"; };
 		BF300E3E1AEAAC1900D82FC2 /* iPhone6WhiteUSSD-137x280.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone6WhiteUSSD-137x280.png"; sourceTree = "<group>"; };
+		BF300E401AEB1F9B00D82FC2 /* RemoteUSSDPackage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteUSSDPackage.swift; sourceTree = "<group>"; };
+		BF300E421AEB201900D82FC2 /* RemoteUSSDActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteUSSDActivity.swift; sourceTree = "<group>"; };
+		BF300E441AEB277100D82FC2 /* RemoteUSSDActivityState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteUSSDActivityState.swift; sourceTree = "<group>"; };
+		BF300E481AEB3CCD00D82FC2 /* USSDPlaceHolderItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USSDPlaceHolderItem.swift; sourceTree = "<group>"; };
+		BF300E4A1AEB420800D82FC2 /* PackageService-180x60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PackageService-180x60.png"; sourceTree = "<group>"; };
+		BF300E4E1AEB788800D82FC2 /* USSDBindingItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USSDBindingItem.swift; sourceTree = "<group>"; };
+		BF300E501AEB793600D82FC2 /* USSDExecutionPointItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USSDExecutionPointItem.swift; sourceTree = "<group>"; };
+		BF300E521AEB795D00D82FC2 /* USSDEntryPointItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USSDEntryPointItem.swift; sourceTree = "<group>"; };
+		BF300E541AEB79D500D82FC2 /* USSDExitPointItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USSDExitPointItem.swift; sourceTree = "<group>"; };
+		BF300E561AEB821F00D82FC2 /* USSDWorkspaceItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USSDWorkspaceItem.swift; sourceTree = "<group>"; };
+		BF300E581AEB849900D82FC2 /* WorkspaceProxy-32x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WorkspaceProxy-32x32.png"; sourceTree = "<group>"; };
+		BF300E5A1AEB84C500D82FC2 /* WorkspaceSlot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkspaceSlot.swift; sourceTree = "<group>"; };
+		BF300E5C1AEB851F00D82FC2 /* StartMenuLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartMenuLink.swift; sourceTree = "<group>"; };
+		BF300E5E1AEB92B600D82FC2 /* SlotBall-24x24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SlotBall-24x24.png"; sourceTree = "<group>"; };
+		BF300E601AEBA60C00D82FC2 /* BlackHole.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BlackHole.png; sourceTree = "<group>"; };
+		BF300E621AEBD05E00D82FC2 /* ActiveItemBall-24x24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ActiveItemBall-24x24.png"; sourceTree = "<group>"; };
+		BF300E631AEBD05E00D82FC2 /* DataBall-24x24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DataBall-24x24.png"; sourceTree = "<group>"; };
+		BF300E641AEBD05E00D82FC2 /* StartMenuBall-24x24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "StartMenuBall-24x24.png"; sourceTree = "<group>"; };
 		BF34841D1AE820F100F4180C /* AuthenticationPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationPacket.swift; sourceTree = "<group>"; };
 		BF34841F1AE838D000F4180C /* ErrorSheet.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ErrorSheet.xib; sourceTree = "<group>"; };
 		BF3484211AE8398600F4180C /* ErrorSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorSheet.swift; sourceTree = "<group>"; };
 		BF3484231AE8528100F4180C /* ScriptRecorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScriptRecorder.swift; sourceTree = "<group>"; };
 		BF3484261AE8529B00F4180C /* Script.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Script.swift; sourceTree = "<group>"; };
-		BF3484281AE8669400F4180C /* OldMenuAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OldMenuAction.swift; sourceTree = "<group>"; };
 		BF34842A1AE86A3200F4180C /* right-empty-peg-16x16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "right-empty-peg-16x16.png"; sourceTree = "<group>"; };
 		BF34842C1AE86B2100F4180C /* left-empty-peg-16x16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "left-empty-peg-16x16.png"; sourceTree = "<group>"; };
 		BF3484321AE86E6E00F4180C /* ActionSlotLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionSlotLink.swift; sourceTree = "<group>"; };
@@ -227,6 +261,9 @@
 			children = (
 				BF23E38B1ADF1BC4007B370F /* USSDManagerService.swift */,
 				BF34844C1AE8A6B000F4180C /* USSDEngineService.swift */,
+				BF300E401AEB1F9B00D82FC2 /* RemoteUSSDPackage.swift */,
+				BF300E421AEB201900D82FC2 /* RemoteUSSDActivity.swift */,
+				BF300E441AEB277100D82FC2 /* RemoteUSSDActivityState.swift */,
 			);
 			name = Deployment;
 			sourceTree = "<group>";
@@ -354,6 +391,13 @@
 		BFD426401AD2AE88008C5009 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				BF300E621AEBD05E00D82FC2 /* ActiveItemBall-24x24.png */,
+				BF300E631AEBD05E00D82FC2 /* DataBall-24x24.png */,
+				BF300E641AEBD05E00D82FC2 /* StartMenuBall-24x24.png */,
+				BF300E601AEBA60C00D82FC2 /* BlackHole.png */,
+				BF300E5E1AEB92B600D82FC2 /* SlotBall-24x24.png */,
+				BF300E581AEB849900D82FC2 /* WorkspaceProxy-32x32.png */,
+				BF300E4A1AEB420800D82FC2 /* PackageService-180x60.png */,
 				BF300E3E1AEAAC1900D82FC2 /* iPhone6WhiteUSSD-137x280.png */,
 				BFF4E2F91AE9B34300CB6141 /* Back.png */,
 				BFF4E2FA1AE9B34300CB6141 /* Front.png */,
@@ -401,15 +445,19 @@
 				BF3484211AE8398600F4180C /* ErrorSheet.swift */,
 				BFB804581ADF4FAC00CB8DBE /* JSON.txt */,
 				BFE1A4141AD329DA0020A7E6 /* LinkManagementLayer.swift */,
-				BF3484281AE8669400F4180C /* OldMenuAction.swift */,
 				BFE1A41C1AD331DB0020A7E6 /* Slot.swift */,
 				BFE1A4161AD32A6E0020A7E6 /* SlotLink.swift */,
 				BFE1A41E1AD332570020A7E6 /* SlotSet.swift */,
+				BF300E5C1AEB851F00D82FC2 /* StartMenuLink.swift */,
 				BF4FD4991AD5B8E400ABBDCA /* TargetSlot.swift */,
 				BFD426561AD2BE00008C5009 /* UFXStylist.swift */,
 				BF996C061AD993F3007DB769 /* USSDActionMenuItem.swift */,
-				BFD4264A1AD2AF45008C5009 /* USSDElement.swift */,
+				BF300E4E1AEB788800D82FC2 /* USSDBindingItem.swift */,
 				BF3484461AE8966C00F4180C /* USSDDataEntryMenuItem.swift */,
+				BFD4264A1AD2AF45008C5009 /* USSDElement.swift */,
+				BF300E521AEB795D00D82FC2 /* USSDEntryPointItem.swift */,
+				BF300E501AEB793600D82FC2 /* USSDExecutionPointItem.swift */,
+				BF300E541AEB79D500D82FC2 /* USSDExitPointItem.swift */,
 				BF430ABA1AE93AE30011EFD1 /* USSDInsetWrapper.swift */,
 				BF34844A1AE89DF900F4180C /* USSDItem.swift */,
 				BF430AB81AE93A7C0011EFD1 /* USSDItemWrapper.swift */,
@@ -418,8 +466,11 @@
 				BFD4264E1AD2AF85008C5009 /* USSDMenuItem.swift */,
 				BF23E3881ADEE220007B370F /* USSDMenuNameItem.swift */,
 				BFD426501AD2AF9B008C5009 /* USSDMenuTitleItem.swift */,
+				BF300E481AEB3CCD00D82FC2 /* USSDPlaceHolderItem.swift */,
 				BFD426521AD2B18C008C5009 /* USSDTextElement.swift */,
 				BFD426441AD2AEF2008C5009 /* USSDWorkspace.swift */,
+				BF300E561AEB821F00D82FC2 /* USSDWorkspaceItem.swift */,
+				BF300E5A1AEB84C500D82FC2 /* WorkspaceSlot.swift */,
 			);
 			name = UFX;
 			sourceTree = "<group>";
@@ -516,26 +567,33 @@
 				BFE1A40B1AD304600020A7E6 /* socket-full-16x16.png in Resources */,
 				BF23E3831ADED1DB007B370F /* ActionItemEditorView.xib in Resources */,
 				BF3484361AE8767D00F4180C /* left-full-peg-16x16.png in Resources */,
+				BF300E4B1AEB420800D82FC2 /* PackageService-180x60.png in Resources */,
 				BF3484371AE8767D00F4180C /* right-full-peg-16x16.png in Resources */,
 				BFE1A4131AD3217F0020A7E6 /* iPhone6WhiteUSSD-170x347.png in Resources */,
 				BF5415201AE739FE00DA14BA /* Keyboard-236x137.png in Resources */,
 				BF3484201AE838D000F4180C /* ErrorSheet.xib in Resources */,
+				BF300E671AEBD05E00D82FC2 /* StartMenuBall-24x24.png in Resources */,
 				BF5415141AE712DA00DA14BA /* SimulatorWindow.xib in Resources */,
 				BFF4E2FB1AE9B34300CB6141 /* Back.png in Resources */,
 				BFB804591ADF4FAC00CB8DBE /* JSON.txt in Resources */,
+				BF300E591AEB849900D82FC2 /* WorkspaceProxy-32x32.png in Resources */,
 				BFF4E2FC1AE9B34300CB6141 /* Front.png in Resources */,
+				BF300E651AEBD05E00D82FC2 /* ActiveItemBall-24x24.png in Resources */,
 				BF996C051AD98329007DB769 /* socket-empty-grey-16x16.png in Resources */,
 				BF300E3F1AEAAC1900D82FC2 /* iPhone6WhiteUSSD-137x280.png in Resources */,
 				BF54150F1AE70F5000DA14BA /* WhiteiPhone-292x597.png in Resources */,
 				BF7152991AD5918800CB15B6 /* GraphicsUtilities in Resources */,
 				BF3EC9851AE7E41A00140D82 /* USSDDocument.png in Resources */,
+				BF300E661AEBD05E00D82FC2 /* DataBall-24x24.png in Resources */,
 				BF5415281AE74C6000DA14BA /* WhiteButton-107x42.png in Resources */,
+				BF300E611AEBA60C00D82FC2 /* BlackHole.png in Resources */,
 				BF430AB11AE929D20011EFD1 /* Icon-Command-16x16.png in Resources */,
 				BF430AB21AE929D20011EFD1 /* Icon-Slot-16x16.png in Resources */,
 				BFD426281AD2AE44008C5009 /* Images.xcassets in Resources */,
 				BFE1A40A1AD304600020A7E6 /* socket-empty-16x16.png in Resources */,
 				BF34842D1AE86B2100F4180C /* left-empty-peg-16x16.png in Resources */,
 				BF3484431AE8878500F4180C /* ScriptBrowser.xib in Resources */,
+				BF300E5F1AEB92B600D82FC2 /* SlotBall-24x24.png in Resources */,
 				BF5415271AE74C6000DA14BA /* BlackButton-107x42.png in Resources */,
 				BF34842B1AE86A3200F4180C /* right-empty-peg-16x16.png in Resources */,
 				BF996C091AD9971F007DB769 /* socket-action-empty-16x16.png in Resources */,
@@ -563,16 +621,19 @@
 				BFD4264F1AD2AF85008C5009 /* USSDMenuItem.swift in Sources */,
 				BF34841E1AE820F100F4180C /* AuthenticationPacket.swift in Sources */,
 				BF300E3D1AEA662900D82FC2 /* DataEntrySlot.swift in Sources */,
+				BF300E511AEB793600D82FC2 /* USSDExecutionPointItem.swift in Sources */,
 				BF23E3891ADEE220007B370F /* USSDMenuNameItem.swift in Sources */,
 				BF54150A1AE6C54D00DA14BA /* JSONParser.swift in Sources */,
 				BF34844B1AE89DF900F4180C /* USSDItem.swift in Sources */,
 				BF34843D1AE8835C00F4180C /* ScriptEntryStop.swift in Sources */,
 				BF54151A1AE7228E00DA14BA /* SimulatorMenu.swift in Sources */,
 				BF996C0B1AD9973F007DB769 /* ActionSlot.swift in Sources */,
+				BF300E551AEB79D500D82FC2 /* USSDExitPointItem.swift in Sources */,
 				BF54151C1AE7249100DA14BA /* SimulatorMenuItem.swift in Sources */,
 				BFD426591AD2D558008C5009 /* NSPointExtensions.swift in Sources */,
 				BF71529B1AD5927700CB15B6 /* NSLineSegment.swift in Sources */,
 				BF3484411AE8875500F4180C /* ScriptEntrySelect.swift in Sources */,
+				BF300E411AEB1F9B00D82FC2 /* RemoteUSSDPackage.swift in Sources */,
 				BF430AB91AE93A7C0011EFD1 /* USSDItemWrapper.swift in Sources */,
 				BF3484331AE86E6E00F4180C /* ActionSlotLink.swift in Sources */,
 				BFE1A4171AD32A6E0020A7E6 /* SlotLink.swift in Sources */,
@@ -589,9 +650,12 @@
 				BFF4E2F81AE97E8A00CB6141 /* NSViewExtensions.swift in Sources */,
 				BF34844D1AE8A6B000F4180C /* USSDEngineService.swift in Sources */,
 				BFD426511AD2AF9B008C5009 /* USSDMenuTitleItem.swift in Sources */,
+				BF300E491AEB3CCD00D82FC2 /* USSDPlaceHolderItem.swift in Sources */,
 				BF54151E1AE733D900DA14BA /* SimulatorView.swift in Sources */,
 				BF23E3851ADED312007B370F /* ActionItemEditor.swift in Sources */,
-				BF3484291AE8669400F4180C /* OldMenuAction.swift in Sources */,
+				BF300E5B1AEB84C500D82FC2 /* WorkspaceSlot.swift in Sources */,
+				BF300E571AEB821F00D82FC2 /* USSDWorkspaceItem.swift in Sources */,
+				BF300E5D1AEB851F00D82FC2 /* StartMenuLink.swift in Sources */,
 				BFD4265C1AD2D7A0008C5009 /* SelectionHolder.swift in Sources */,
 				BF3484271AE8529B00F4180C /* Script.swift in Sources */,
 				BF3484221AE8398600F4180C /* ErrorSheet.swift in Sources */,
@@ -607,13 +671,17 @@
 				BF3484471AE8966C00F4180C /* USSDDataEntryMenuItem.swift in Sources */,
 				BFD4264B1AD2AF45008C5009 /* USSDElement.swift in Sources */,
 				BF3484241AE8528100F4180C /* ScriptRecorder.swift in Sources */,
+				BF300E531AEB795D00D82FC2 /* USSDEntryPointItem.swift in Sources */,
 				BFD426261AD2AE44008C5009 /* USSDSpace.xcdatamodeld in Sources */,
 				BF54150D1AE6FB0900DA14BA /* StringExtensions.swift in Sources */,
 				BFD426471AD2AF10008C5009 /* DesignController.swift in Sources */,
 				BF23E38C1ADF1BC4007B370F /* USSDManagerService.swift in Sources */,
 				BF5415161AE7132F00DA14BA /* Simulator.swift in Sources */,
 				BF4FD49A1AD5B8E400ABBDCA /* TargetSlot.swift in Sources */,
+				BF300E451AEB277100D82FC2 /* RemoteUSSDActivityState.swift in Sources */,
+				BF300E4F1AEB788800D82FC2 /* USSDBindingItem.swift in Sources */,
 				BFE1A40F1AD310360020A7E6 /* NSRectExtensions.swift in Sources */,
+				BF300E431AEB201900D82FC2 /* RemoteUSSDActivity.swift in Sources */,
 				BF54152C1AE77B5C00DA14BA /* NSColorExtensions.swift in Sources */,
 				BFD4264D1AD2AF57008C5009 /* USSDMenu.swift in Sources */,
 				BFD4265E1AD2D96C008C5009 /* Selectable.swift in Sources */,

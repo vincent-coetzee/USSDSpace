@@ -18,6 +18,7 @@ class USSDItem:CATextLayer,Selectable
 	let zDrag:CGFloat = 2000
 	
 	var isSelected:Bool = false
+	var menuView:DesignView?
 	
 	override init()
 		{
@@ -85,6 +86,11 @@ class USSDItem:CATextLayer,Selectable
 		}
 		
 	func isMenuActionItem() -> Bool
+		{
+		return(false)
+		}
+		
+	func isWorkspaceItem() -> Bool
 		{
 		return(false)
 		}

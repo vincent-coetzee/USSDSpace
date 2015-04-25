@@ -21,7 +21,9 @@ class USSDManagerService
 	var responseData:NSData?
 	var response:NSURLResponse?
 	var resultString:String?
+	var resultObject:AnyObject?
 	var token:String?
+	var resultPackage = RemoteUSSDPackage(string: "")
 	
 	var hasToken:Bool
 		{
@@ -99,6 +101,69 @@ class USSDManagerService
 			{
 			NSRunLoop.currentRunLoop().runUntilDate(NSDate(timeIntervalSinceNow:5))
 			}
+		}
+		
+	func packageNames() -> [String]
+		{
+		var request:NSMutableURLRequest
+		var task:NSURLSessionDataTask
+		
+		request = prepareRequest("packageNames",contentType: "application/json")
+		request.HTTPMethod = "GET"
+		task = session.dataTaskWithRequest(request,completionHandler: 
+			{(data:NSData!,response:NSURLResponse!,error:NSError!) in 
+			self.responseData = data
+			self.response = response
+			if error != nil
+				{
+				NSLog("\(error!)")
+				}
+			else if data != nil
+				{
+				var object:AnyObject = JSONParser.parseJSON(data)
+				NSLog("\(object)")
+				self.resultObject = (object as! NSDictionary).valueForKey("result")!
+				}
+			})
+		resultString = "";
+		task.resume()
+		while task.state != .Completed
+			{
+			NSRunLoop.currentRunLoop().runUntilDate(NSDate(timeIntervalSinceNow:5))
+			}
+		return(resultObject!) as! [String]
+		}
+		
+	func packageForName(name:String) -> RemoteUSSDPackage?
+		{
+		var request:NSMutableURLRequest
+		var task:NSURLSessionDataTask
+		
+		request = prepareRequest("package/\(name)",contentType: "application/json")
+		request.HTTPMethod = "GET"
+		task = session.dataTaskWithRequest(request,completionHandler: 
+			{(data:NSData!,response:NSURLResponse!,error:NSError!) in 
+			self.responseData = data
+			self.response = response
+			if error != nil
+				{
+				NSLog("\(error!)")
+				}
+			else if data != nil
+				{
+				var object:AnyObject = JSONParser.parseJSON(data)
+				NSLog("\(object)")
+				var dict1 = (object as! NSDictionary).valueForKey("result")! as! NSDictionary
+				self.resultPackage = RemoteUSSDPackage(dict: dict1)
+				}
+			})
+		resultString = "";
+		task.resume()
+		while task.state != .Completed
+			{
+			NSRunLoop.currentRunLoop().runUntilDate(NSDate(timeIntervalSinceNow:5))
+			}
+		return(resultPackage)
 		}
 		
 //	func runWorkspaceWithName(name:String) -> String

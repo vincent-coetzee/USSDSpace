@@ -12,17 +12,21 @@ import QuartzCore
 
 class DesignView:NSView
 	{
-	var menus:[USSDMenu] = [USSDMenu]()
+	var elements:[USSDElement] = [USSDElement]()
 	var selectedElementHolder:SelectionHolder<USSDItem> = SelectionHolder<USSDItem>()
 	
-	var dragMenu:USSDMenu?
+	var dragElement:USSDElement?
 	var dragOffset:CGPoint?
 	
 	var workspace = USSDWorkspace()
+	var workspaceItem = USSDWorkspaceItem()
 	
 	var menuContainerLayer:CALayer = CALayer()
 	var primaryContainerLayer:CALayer = CALayer()
 	var linkContainerLayer = LinkManagementLayer()
+	
+	var packages:[String:RemoteUSSDPackage] = [String:RemoteUSSDPackage]()
+	var packageNames:[String]?
 	
 	override var flipped:Bool
 		{
@@ -34,12 +38,51 @@ class DesignView:NSView
 		
 	func reset()
 		{
-		for menu in menus
+		for element in elements
 			{
-			menu.removeFromSuperlayer()
+			element.removeFromSuperlayer()
 			}
-		menus = [USSDMenu]()
+		workspaceItem.removeFromSuperlayer()
+		workspaceItem = USSDWorkspaceItem()
+		elements = [USSDElement]()
 		linkContainerLayer.reset()
+		}
+		
+	required init?(coder: NSCoder) 
+		{
+	    super.init(coder:coder)
+		wantsLayer = true
+		initLayers()
+		NSOperationQueue.mainQueue().addOperationWithBlock({() in self.loadPackages()})
+		workspaceItem.menuView = self
+		workspaceItem.loadIntoLayer(menuContainerLayer,linkLayer:linkContainerLayer)
+		workspaceItem.actualWorkspace = workspace
+		workspaceItem.layoutInFrame(self.frame)
+		workspace.workspaceItem = workspaceItem
+		workspace.addMenu(workspaceItem)
+		elements.append(workspaceItem)
+		}
+		
+	func loadPackages()
+		{
+		packageNames = [String]()
+		
+//		var service = USSDManagerService()
+//		
+//		packageNames = service.packageNames()
+//		for aName in packageNames!
+//			{
+//			var package = service.packageForName(aName)
+//			packages[package!.name] = package;
+//			}
+//		NSLog("WOW")
+		}
+		
+	override func layout()
+		{
+		super.layout()
+		workspaceItem.layoutInFrame(self.frame)
+		menuContainerLayer.setNeedsLayout()
 		}
 		
 	override func menuForEvent(event:NSEvent) -> NSMenu?
@@ -64,19 +107,66 @@ class DesignView:NSView
 			}
 		var newItem = newMenu.addItemWithTitle("Add Menu",action:"onAddMenu:",keyEquivalent:"")
 		newItem!.target = self
+		newItem = newMenu.addItemWithTitle("Add Package Activity",action:"onAddActivity:",keyEquivalent:"")
+		newItem!.target = self
+		newMenu.addItem(NSMenuItem.separatorItem())
+		newItem = newMenu.addItemWithTitle("Packages",action:"onSomething:",keyEquivalent:"")
+		newItem!.target = self;
+		var subMenu:NSMenu = NSMenu()
+		newItem!.submenu = subMenu
+		for (key,package) in packages
+			{
+			var item = NSMenuItem(title: key,action:Selector("onSomething:") ,keyEquivalent:"")
+			subMenu.addItem(item)
+			item.target = self
+			var packMenu = NSMenu()
+			item.submenu = packMenu
+			for (actName,act) in package.activities
+				{
+				var lowerItem = NSMenuItem(title:act.name,action:"onSomething:",keyEquivalent:"")
+				packMenu.addItem(lowerItem)
+				lowerItem.target = self
+				}
+			}
 		return(newMenu)
+		}
+		
+	func onSomething(sender:AnyObject?)
+		{
+		}
+		
+	func onAddActivityEntryPoint(sender:AnyObject?)
+		{
+		var item:USSDEntryPointItem
+		
+		item = USSDEntryPointItem()
+		item.setFrameOrigin(currentMousePoint())
+		elements.append(item)
+		menuContainerLayer.addSublayer(item)
+		menuContainerLayer.setNeedsDisplay()
+		}
+		
+	func onAddActivityExitPoint(sender:AnyObject?)
+		{
+		var item:USSDExitPointItem
+		
+		item = USSDExitPointItem()
+		item.setFrameOrigin(currentMousePoint())
+		elements.append(item)
+		menuContainerLayer.addSublayer(item)
+		menuContainerLayer.setNeedsDisplay()
 		}
 		
 	func elementContainingPoint(point:CGPoint) -> USSDElement?
 		{
-		for menu in menus
+		for element in elements
 			{
-			if CGRectContainsPoint(menu.frame,point)
+			if CGRectContainsPoint(element.frame,point)
 				{
-				let item = menu.itemContainingPoint(point)
+				let item = element.itemContainingPoint(point)
 				if item == nil
 					{
-					return(menu)
+					return(element)
 					}
 				else
 					{
@@ -94,25 +184,25 @@ class DesignView:NSView
 		return(link)
 		}
 		
-	func menuContainingPoint(point:CGPoint) -> USSDMenu?
+	func menuContainingPoint(point:CGPoint) -> USSDElement?
 		{
-		for menu in menus
+		for element in elements
 			{
-			if CGRectContainsPoint(menu.frame,point)
+			if CGRectContainsPoint(element.frame,point)
 				{
-				return(menu)
+				return(element)
 				}
 			}
 		return(nil)
 		}
 		
-	func handleLinkDrag(sourceMenu:USSDMenu,slot:Slot,point:NSPoint)
+	func handleLinkDrag(sourceMenu:USSDElement,slot:Slot,point:NSPoint)
 		{
 		var continueToLoop:Bool = true
 		var localEvent:NSEvent
 		var activeLink:SlotLink
 		var startPoint:NSPoint
-		var targetMenu:USSDMenu?
+		var targetMenu:USSDElement?
 		var line:NSLineSegment
 		var targetPoint:NSPoint?
 		
@@ -174,8 +264,8 @@ class DesignView:NSView
 				return
 				}
 				
-			dragMenu = menu!
-			dragMenu!.startDrag()
+			dragElement = menu!
+			dragElement!.startDrag()
 			dragOffset = point.pointBySubtractingPoint(menu!.frame.origin)
 			}
 		}
@@ -184,23 +274,23 @@ class DesignView:NSView
 		{
 		var point = convertPoint(event.locationInWindow,fromView:nil)
 		
-		if dragMenu != nil
+		if dragElement != nil
 			{
-			dragMenu!.setFrameOrigin(point.pointBySubtractingPoint(dragOffset!))
+			dragElement!.setFrameOrigin(point.pointBySubtractingPoint(dragOffset!))
 			}
 		}
 		
 	override func mouseUp(event:NSEvent)
 		{
 		var point = convertPoint(event.locationInWindow,fromView:nil)
-		var menu:USSDMenu?
+		var menu:USSDElement?
 		var menuEntry:USSDMenuEntry?
 		
-		if dragMenu != nil
+		if dragElement != nil
 			{
-			dragMenu!.setFrameOrigin(point.pointBySubtractingPoint(dragOffset!))
-			dragMenu!.endDrag()
-			dragMenu = nil
+			dragElement!.setFrameOrigin(point.pointBySubtractingPoint(dragOffset!))
+			dragElement!.endDrag()
+			dragElement = nil
 			}
 		menu = menuContainingPoint(point)
 		if event.clickCount == 1
@@ -277,16 +367,9 @@ class DesignView:NSView
 		primaryContainerLayer.geometryFlipped = true
 		linkContainerLayer.removeAllAnimations()
 		menuContainerLayer.removeAllAnimations()
-		layer = primaryContainerLayer
-		layer!.addSublayer(menuContainerLayer)
-		layer!.insertSublayer(linkContainerLayer,above:menuContainerLayer)
-		}
-
-	required init?(coder: NSCoder) 
-		{
-	    super.init(coder:coder)
-		wantsLayer = true
-		initLayers()
+		self.layer = primaryContainerLayer
+		self.layer!.addSublayer(menuContainerLayer)
+		self.layer!.insertSublayer(linkContainerLayer,above:menuContainerLayer)
 		}
 		
 	func currentMousePoint() -> CGPoint
@@ -299,7 +382,7 @@ class DesignView:NSView
 	@IBAction func onOpen(sender:AnyObject?)
 		{
 		var openPanel:NSOpenPanel;
-
+		
 		openPanel = NSOpenPanel()
 		openPanel.allowedFileTypes = ["USSD"]
 		openPanel.beginWithCompletionHandler()
@@ -307,29 +390,37 @@ class DesignView:NSView
 			(result: Int) -> Void in 
 			if result == NSFileHandlingPanelOKButton
 				{
-				self.workspace = USSDWorkspace.loadFromPath(openPanel.URL!.path!)
-				self.selectedElementHolder.selection = nil
-				self.window!.setFrame(self.workspace.windowFrame,display:true)
-				self.reset()
-				self.menus = [USSDMenu]()
-				for (key,menu) in self.workspace.menus
-					{
-					menu.menuView = self
-					menu.loadIntoLayer(self.menuContainerLayer,linkLayer:self.linkContainerLayer)
-					self.menus.append(menu)
-					}
-				self.menuContainerLayer.setNeedsLayout()
-				self.linkContainerLayer.setNeedsLayout()
-				self.menuContainerLayer.setNeedsDisplay()
-				self.linkContainerLayer.setNeedsDisplay()
+				self.restoreFromWorkspace(USSDWorkspace.loadFromPath(openPanel.URL!.path!))
 				}
 			}
+		}
+		
+	func restoreFromWorkspace(aNewWorkspace:USSDWorkspace)
+		{
+		var theNewOne = aNewWorkspace
+		
+		reset()
+		workspace = theNewOne
+		workspaceItem = theNewOne.workspaceItem!
+		selectedElementHolder.selection = nil
+		self.window!.setFrame(theNewOne.windowFrame,display:true)
+		elements = theNewOne.elements
+		for element in elements
+			{
+			element.menuView = self
+			element.loadIntoLayer(self.menuContainerLayer,linkLayer:self.linkContainerLayer)
+			}
+		menuContainerLayer.setNeedsLayout()
+		linkContainerLayer.setNeedsLayout()
+		menuContainerLayer.setNeedsDisplay()
+		linkContainerLayer.setNeedsDisplay()
 		}
 	
 	@IBAction func onSave(sender:AnyObject?)
 		{
 		var savePanel:NSSavePanel;
-
+	
+		workspace.workspaceItem = workspaceItem
 		workspace.designViewFrame = self.frame
 		workspace.windowFrame = self.window!.frame
 		if workspace.workspacePath != nil
@@ -353,6 +444,7 @@ class DesignView:NSView
 		{
 		var savePanel:NSSavePanel;
 
+		workspace.workspaceItem = workspaceItem
 		workspace.designViewFrame = self.frame
 		workspace.windowFrame = self.window!.frame
 		savePanel = NSSavePanel()
@@ -377,7 +469,7 @@ class DesignView:NSView
 		menu.menuName = workspace.nextMenuName()
 		menu.addItem(USSDMenuItem(text:"Menu Item"))
 		menu.setFrameOrigin(currentMousePoint())
-		menus.append(menu)
+		elements.append(menu)
 		menuContainerLayer.addSublayer(menu)
 		menuContainerLayer.setNeedsDisplay()
 		workspace.addMenu(menu)

@@ -19,10 +19,14 @@ class SlotLink:USSDItem
 	var lineWidth:CGFloat = 4
 	var lineColor:NSColor = UFXStylist.LinkLineColor
 	var shapeFrame:CGRect = CGRect(x:0,y:0,width:0,height:0)
-	var targetMenu:USSDMenu?
+	var targetMenu:USSDElement?
 	var targetSlot:TargetSlot?
 	var oldLineColor:NSColor?
 	var sourceItem:USSDItem?
+	var parentLayer:CALayer?
+	var bubbleImage:NSImage?
+	var bubbleRect:CGRect?
+	var bubbleLayer:CALayer?
 	
 	func disconnect(linkLayer:LinkManagementLayer)
 		{
@@ -115,6 +119,7 @@ class SlotLink:USSDItem
 		{
 		super.init()
 		initStyle()
+		bubbleLayer = CALayer()
 		}
 		
 	func shapeLayerFrame() -> CGRect
@@ -150,7 +155,9 @@ class SlotLink:USSDItem
 		{
 		var vertex:NSPoint
 		var angle:CGFloat
-
+		
+		CATransaction.begin()
+		CATransaction.setValue(kCFBooleanTrue,forKey:kCATransactionDisableActions)
 		vertex = subtractPoints(endPoint,startPoint)
 		angle = radiansToDegrees(theta(vertex))
 		link = NSBezierPath()
@@ -161,6 +168,11 @@ class SlotLink:USSDItem
 		link.lineToPoint(addPoints(endPoint,makePolarPoint(12,angle-160.0)))
 		shapeLayer.path = link.CGPath
 		shapeLayer.setNeedsDisplay()
+//		if parentLayer != nil
+//			{
+//			parentLayer!.setNeedsDisplay()
+//			}
+		CATransaction.commit()
 		}
 		
 	func radiansToDegrees(r:CGFloat) -> CGFloat
@@ -213,7 +225,7 @@ class SlotLink:USSDItem
 				}
 			}
 		}
-
+		
 	func makePolarPoint(r:Int,_ theta:CGFloat) -> NSPoint
 		{
 		var rho:CGFloat

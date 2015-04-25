@@ -1,8 +1,8 @@
 //
-//  ActionSlotLink.swift
+//  StartMenuLink.swift
 //  USSDSpace
 //
-//  Created by Vincent Coetzee on 2015/04/23.
+//  Created by Vincent Coetzee on 2015/04/25.
 //  Copyright (c) 2015 Olamide. All rights reserved.
 //
 
@@ -10,9 +10,10 @@ import Foundation
 import AppKit
 import QuartzCore
 
-class ActionSlotLink:SlotLink
+class StartMenuLink:SlotLink
 	{
-	var editor:ActionItemEditor?
+//	var bubbleRect:CGRect?
+//	var editor:ActionItemEditor?
 	
 	override func calculateBoundsAndUpdateTarget()
 		{
@@ -38,6 +39,7 @@ class ActionSlotLink:SlotLink
 		midPoint = segment.midPoint()
 		link.moveToPoint(midPoint)
 		rect = CGRect(x:midPoint.x-15,y:midPoint.y-15,width:30,height:30)
+//		bubbleLayer!.position = midPoint
 		bubbleLayer!.frame = rect
 		bubbleRect = rect
 		link.appendBezierPathWithOvalInRect(rect)
@@ -49,31 +51,29 @@ class ActionSlotLink:SlotLink
 	override init()
 		{
 		super.init()
-		bubbleImage = NSImage(named:"ActiveItemBall-24x24")
+		bubbleImage = NSImage(named:"StartMenuBall-24x24")
 		bubbleLayer!.frame = CGRect(x:0,y:0,width:24,height:24)
 		bubbleLayer!.contents = bubbleImage
 		}
 
-	override func encodeWithCoder(coder:NSCoder)
-		{
-		super.encodeWithCoder(coder)
-		}
-		
 	required init(coder aDecoder: NSCoder) 
 		{
 	    super.init(coder:aDecoder)
+		bubbleImage = NSImage(named:"StartMenuBall-24x24")
+		bubbleLayer!.frame = CGRect(x:0,y:0,width:24,height:24)
+		bubbleLayer!.contents = bubbleImage
 		}
 		
 	override func closeEditor()
 		{
-		sourceItem!.updateAfterEdit()
-		editor!.close()
-		editor = nil
+//		sourceItem!.updateAfterEdit()
+//		editor!.close()
+//		editor = nil
 		}
 		
 	override func editLinkInView(aView:NSView)
 		{
-		editor = ActionItemEditor()
-		editor!.openOnRect(bubbleRect!,inView:aView,actionItem:(sourceItem as! USSDActionMenuItem))
+//		editor = ActionItemEditor()
+//		editor!.openOnRect(bubbleRect!,inView:aView,actionItem:(sourceItem as! USSDActionMenuItem))
 		}
 	}

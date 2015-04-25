@@ -22,6 +22,12 @@ class JSONParser
 		return(object)
 		}
 		
+	class func parseJSON(data:NSData) -> AnyObject
+		{
+		self.formatJSON((NSString(data:data,encoding:NSUTF8StringEncoding)) as! String)
+		return(self.parseJSON((NSString(data:data,encoding:NSUTF8StringEncoding)) as! String));
+		}
+		
 	class func formatJSON(string:String) -> String
 		{
 		var object:AnyObject
