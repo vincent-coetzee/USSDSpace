@@ -15,4 +15,9 @@ extension NSColor
 		{
 		return(NSColor(red:red/255.0,green:green/255.0,blue:blue/255.0,alpha:1.0))
 		}
+		
+	class func percentGray(percentage:CGFloat) -> NSColor
+		{
+		return(NSColor(calibratedWhite:percentage,alpha:1.0))
+		}
 	}

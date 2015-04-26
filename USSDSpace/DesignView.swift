@@ -9,8 +9,8 @@
 import Foundation
 import AppKit
 import QuartzCore
-
-class DesignView:NSView
+	
+class DesignView:NSView,VisualContainer
 	{
 	var elements:[USSDElement] = [USSDElement]()
 	var selectedElementHolder:SelectionHolder<USSDItem> = SelectionHolder<USSDItem>()
@@ -34,6 +34,36 @@ class DesignView:NSView
 			{
 			return(true)
 			}
+		}
+		
+	var isView:Bool
+		{
+		return(true)
+		}
+		
+	var containerView:DesignView
+		{
+		return(self)
+		}
+		
+	var container:VisualContainer
+		{
+		return(self)
+		}
+		
+	var topItem:VisualItem?
+		{
+		return(nil)
+		}
+		
+	func markForLayout()
+		{
+		needsLayout = true
+		}
+		
+	func markForDisplay()
+		{
+		needsDisplay = true
 		}
 		
 	func reset()
@@ -461,18 +491,26 @@ class DesignView:NSView
 		
 	@IBAction func onAddMenu(sender:AnyObject?)
 		{
-		var menu:USSDMenu
+//		var menu:USSDMenu
+//		
+//		menu = USSDMenu()
+//		menu.menuView = self
+//		menu.workspace = workspace
+//		menu.menuName = workspace.nextMenuName()
+//		menu.addItem(USSDMenuItem(text:"Menu Item"))
+//		menu.setFrameOrigin(currentMousePoint())
+//		elements.append(menu)
+//		menuContainerLayer.addSublayer(menu)
+//		menuContainerLayer.setNeedsDisplay()
+//		workspace.addMenu(menu)
+
+		var menu:VisualMenu
 		
-		menu = USSDMenu()
-		menu.menuView = self
-		menu.workspace = workspace
-		menu.menuName = workspace.nextMenuName()
-		menu.addItem(USSDMenuItem(text:"Menu Item"))
+		menu = VisualMenu()
+		menu.title = "START-MENU"
 		menu.setFrameOrigin(currentMousePoint())
-		elements.append(menu)
+		menu.container = self
 		menuContainerLayer.addSublayer(menu)
-		menuContainerLayer.setNeedsDisplay()
-		workspace.addMenu(menu)
 		}
 		
 	func menu(menu: NSMenu,updateItem item: NSMenuItem,atIndex index: Int,shouldCancel: Bool) -> Bool

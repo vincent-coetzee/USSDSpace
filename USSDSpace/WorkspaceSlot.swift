@@ -41,7 +41,7 @@ class WorkspaceSlot:Slot
 			{
 			if self.isConnected
 				{
-				self.menuItem!.workspace.startMenu = link!.targetMenu!
+				((self.menuItem!) as! USSDWorkspaceItem).actualWorkspace!.startMenu = link!.targetMenu!
 				}
 			}
 		}

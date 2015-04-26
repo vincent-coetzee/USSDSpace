@@ -14,6 +14,7 @@ class LinkManagementLayer:CALayer
 	{
 	private var potentialLink:SlotLink?
 	private var links:[SlotLink] = [SlotLink]()
+	private var visualLinks:[VisualLink] = [VisualLink]()
 	
 	override func contentsAreFlipped() -> Bool
 		{
@@ -52,6 +53,28 @@ class LinkManagementLayer:CALayer
 				}
 			}
 		return(nil)
+		}
+		
+	func addVisualLink(link:VisualLink)
+		{
+		CATransaction.begin()
+		CATransaction.setValue(kCFBooleanTrue,forKey:kCATransactionDisableActions)
+		visualLinks.append(link)
+		link.addToLayer(self)
+		CATransaction.commit()
+		}
+		
+	func removeVisualLink(link:VisualLink)
+		{
+		var index = find(visualLinks,link)
+		if index != nil
+			{
+			CATransaction.begin()
+			CATransaction.setValue(kCFBooleanTrue,forKey:kCATransactionDisableActions)
+			link.removeFromLayer(self)
+			visualLinks.removeAtIndex(index!)
+			CATransaction.commit()
+			}
 		}
 		
 	func reset()

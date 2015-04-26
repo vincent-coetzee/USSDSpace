@@ -76,6 +76,30 @@ class USSDWorkspaceItem:USSDPlaceHolderItem
 		initSlots()
 		}
 		
+//	var menu:USSDMenu?
+//		{
+//		get
+//			{
+//			return(nil)
+//			}
+//		set
+//			{
+//			}
+//		}
+		
+	override init(layer:AnyObject?)
+		{
+		var incomingLayer = (layer as! USSDWorkspaceItem)
+		super.init(layer:incomingLayer)
+		leftSource = incomingLayer.leftSource
+		rightSource = incomingLayer.rightSource
+		if rightSource.isConnected
+			{
+			rightSource.link!.sourceItem = self
+			rightSource.link!.setLine(rightSource.link!.startPoint,toPoint: rightSource.link!.endPoint)
+			}
+		}
+		
 	required init(coder aDecoder: NSCoder) 
 		{
 		super.init(coder:aDecoder)
@@ -98,6 +122,7 @@ class USSDWorkspaceItem:USSDPlaceHolderItem
 	override func loadIntoLayer(menuLayer:CALayer,linkLayer:LinkManagementLayer)
 		{
 		menuLayer.addSublayer(self)
+		rightSource.menuItem = self
 		if rightSource.isConnected
 			{
 			rightSource.menuItem = self

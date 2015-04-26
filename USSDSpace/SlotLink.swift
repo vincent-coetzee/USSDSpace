@@ -158,81 +158,16 @@ class SlotLink:USSDItem
 		
 		CATransaction.begin()
 		CATransaction.setValue(kCFBooleanTrue,forKey:kCATransactionDisableActions)
-		vertex = subtractPoints(endPoint,startPoint)
-		angle = radiansToDegrees(theta(vertex))
+		vertex = endPoint.pointBySubtractingPoint(startPoint)
+		angle = NSPoint.radiansToDegrees(vertex.theta())
 		link = NSBezierPath()
 		link.moveToPoint(startPoint)
 		link.lineToPoint(endPoint)
-		link.moveToPoint(addPoints(endPoint,makePolarPoint(0,angle)))
-		link.lineToPoint(addPoints(endPoint,makePolarPoint(12,angle+160.0)))
-		link.lineToPoint(addPoints(endPoint,makePolarPoint(12,angle-160.0)))
+		link.moveToPoint(endPoint.pointByAddingPoint(CGPoint(rho:0,theta:angle)))
+		link.lineToPoint(endPoint.pointByAddingPoint(CGPoint(rho:12,theta:angle+160.0)))
+		link.lineToPoint(endPoint.pointByAddingPoint(CGPoint(rho:12,theta:angle-160.0)))
 		shapeLayer.path = link.CGPath
 		shapeLayer.setNeedsDisplay()
-//		if parentLayer != nil
-//			{
-//			parentLayer!.setNeedsDisplay()
-//			}
 		CATransaction.commit()
-		}
-		
-	func radiansToDegrees(r:CGFloat) -> CGFloat
-		{
-		return(CGFloat(r)*(CGFloat(180.0)/CGFloat(M_PI)))
-		}
-		
-	func degreesToRadians(d:CGFloat) -> CGFloat
-		{
-		return(CGFloat(d*(CGFloat(M_PI)/CGFloat(180.0))))
-		}
-		
-	func subtractPoints(s:NSPoint,_ f:NSPoint) -> NSPoint
-		{
-		return(NSPoint(x:s.x - f.x,y:s.y - f.y))
-		}
-	
-	func addPoints(s:NSPoint,_ f:NSPoint) -> NSPoint
-		{
-		return(NSPoint(x:s.x+f.x,y:s.y+f.y))
-		}
-		
-	func theta(point:NSPoint) -> CGFloat
-		{
-		var tan:CGFloat
-		var theta:CGFloat
-		
-		if (point.x == 0)
-			{
-			return(point.y >= 0 ?  1.5708  :  4.71239);
-			}
-		else
-			{
-			tan = CGFloat(point.y)/CGFloat(point.x)
-			theta = atan(tan)
-			if point.x >= CGFloat(0) 
-				{
-				if point.y >= CGFloat(0) 
-					{
-					return(theta)
-					}
-				else
-					{
-					return(degreesToRadians(CGFloat(360))+theta)
-					}
-				}
-			else
-				{
-				return(self.degreesToRadians(CGFloat(180))+theta)
-				}
-			}
-		}
-		
-	func makePolarPoint(r:Int,_ theta:CGFloat) -> NSPoint
-		{
-		var rho:CGFloat
-		var radians:CGFloat
-		
-		rho=CGFloat(r)
-		radians = theta*CGFloat(M_PI)/CGFloat(180.0)
-		return(NSPoint(x:rho*cos(radians),y:rho*sin(radians)))
 		}	
 	}

@@ -34,7 +34,33 @@ class UFXStylist:NSObject
 	static var SlotLinkColor = NSColor.colorWithUnscaled(180,green:210,blue:180)
 	static var DataSlotLinkColor = NSColor.colorWithUnscaled(255,green:201,blue:111)
 	static var StartMenuLinkColor = NSColor.colorWithUnscaled(208,green:180,blue:209)
+	static var MenuItemStyle:[NSObject:AnyObject]?
+	static var MenuStyle:[NSObject:AnyObject]?
 	
+	class func menuItemStyle() -> [NSObject:AnyObject]
+		{
+		if MenuItemStyle == nil
+			{
+			MenuItemStyle = [NSObject:AnyObject]()
+			MenuItemStyle!["foregroundColor"] = NSColor.blackColor().CGColor
+			MenuItemStyle!["font"] = "MuseoSans-300"
+			MenuItemStyle!["fontSize"] = 11
+			}
+		return(MenuItemStyle!)
+		}
+		
+	class func menuStyle() -> [NSObject:AnyObject]
+		{
+		if MenuStyle == nil
+			{
+			MenuStyle = [NSObject:AnyObject]()
+			MenuStyle!["foregroundColor"] = NSColor.blackColor().CGColor
+			MenuStyle!["font"] = "MuseoSans-700"
+			MenuItemStyle!["fontSize"] = 13
+			}
+		return(MenuStyle!)
+		}
+		
 	static func styleMenuEntry(item:USSDMenuEntry)
 		{
 		item.font = MenuItemFont
