@@ -12,9 +12,9 @@ import QuartzCore
 
 class UFXStylist:NSObject
 	{
-	static var MenuItemFontName:String = "LucidaGrande"
+	static var MenuItemFontName:String = "MuseoSans-300"
 	static var MenuItemFontSize:CGFloat = 9
-	static var MenuItemFont = NSFont(name:"LucidaGrande",size:9)
+	static var MenuItemFont = NSFont(name:"MuseoSans-300",size:9)
 	static var MenuItemTextColor:NSColor = NSColor.blackColor()
 	static var MenuNameFontName = "MuseoSans-900"
 	static var MenuNameFontSize:CGFloat = 12
@@ -45,7 +45,7 @@ class UFXStylist:NSObject
 			MenuItemStyle = [NSObject:AnyObject]()
 			MenuItemStyle!["foregroundColor"] = NSColor.blackColor().CGColor
 			MenuItemStyle!["fontName"] = "MuseoSans-300"
-			MenuItemStyle!["fontSize"] = 11
+			MenuItemStyle!["fontSize"] = 9
 			}
 		return(MenuItemStyle!)
 		}
@@ -56,7 +56,7 @@ class UFXStylist:NSObject
 			{
 			MenuStyle = [NSObject:AnyObject]()
 			MenuStyle!["foregroundColor"] = NSColor.blackColor().CGColor
-			MenuStyle!["fontName"] = "MuseoSans-700"
+			MenuStyle!["fontName"] = "MuseoSans-900"
 			MenuStyle!["fontSize"] = 13
 			}
 		return(MenuStyle!)
@@ -69,7 +69,7 @@ class UFXStylist:NSObject
 			MenuTitleStyle = [NSObject:AnyObject]()
 			MenuTitleStyle!["foregroundColor"] = NSColor.blackColor().CGColor
 			MenuTitleStyle!["fontName"] = "MuseoSans-500"
-			MenuTitleStyle!["fontSize"] = 12
+			MenuTitleStyle!["fontSize"] = 11
 			}
 		return(MenuTitleStyle!)
 		}

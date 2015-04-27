@@ -12,24 +12,66 @@ import QuartzCore
 
 class VisualLinkingMenuEntry:VisualMenuEntry
 	{
-	var leftSlot:VisualSlot = VisualSlot()
-	var rightSlot:VisualSlot = VisualSlot()
+	var leftSlot:VisualPairedSlot = VisualPairedSlot()
+	var rightSlot:VisualPairedSlot = VisualPairedSlot()
 	
 	override init()
 		{
 		super.init()
-		leftSlot.layoutFrame = LayoutFrame(leftRatio:0,leftOffset:0,topRatio:0,topOffset:0,rightRatio:0,rightOffset:16,bottomRatio:0,bottomOffset:16)
+		leftSlot.layoutFrame = LayoutFrame(leftRatio:0,leftOffset:-4,topRatio:0,topOffset:0,rightRatio:0,rightOffset:12,bottomRatio:0,bottomOffset:16)
 		leftSlot.container = self
+		leftSlot.containingMenuEntry = self
+		leftSlot.makeLeft()
+		leftSlot.pairWithSlot(rightSlot)
 		addSublayer(leftSlot)
-		rightSlot.layoutFrame = LayoutFrame(leftRatio:1,leftOffset:-16,topRatio:0,topOffset:0,rightRatio:1,rightOffset:0,bottomRatio:0,bottomOffset:16)
+		rightSlot.layoutFrame = LayoutFrame(leftRatio:1,leftOffset:-13,topRatio:0,topOffset:0,rightRatio:1,rightOffset:3,bottomRatio:0,bottomOffset:16)
 		rightSlot.container = self
+		rightSlot.containingMenuEntry = self
+		rightSlot.makeRight()
+		rightSlot.pairWithSlot(leftSlot)
 		addSublayer(rightSlot)
+		labelItem.backgroundColor = UFXStylist.SlotLinkColor.lighter().withAlpha(0.2).CGColor
+		}
+		
+	override init(layer:AnyObject?)
+		{
+		super.init(layer:layer)
 		}
 
-	required init(coder aDecoder: NSCoder) {
-	    fatalError("init(coder:) has not been implemented")
-	}
-	
+	required init(coder aDecoder: NSCoder) 
+		{
+	    super.init(coder:aDecoder)
+		leftSlot = aDecoder.decodeObjectForKey("leftSlot") as! VisualPairedSlot
+		rightSlot = aDecoder.decodeObjectForKey("rightSlot") as! VisualPairedSlot
+		}
+		
+	override func encodeWithCoder(coder:NSCoder)
+		{
+		super.encodeWithCoder(coder)
+		coder.encodeObject(leftSlot,forKey:"leftSlot")
+		coder.encodeObject(rightSlot,forKey:"rightSlot")
+		}
+		
+	override func slotWasLinked(slot:VisualSlot)
+		{
+		if slot == leftSlot
+			{
+			rightSlot.enabled = false
+			leftSlot.enabled = true
+			}
+		else if slot == rightSlot
+			{
+			leftSlot.enabled = false
+			rightSlot.enabled = true
+			}
+		}
+		
+	override func slotWasUnLinked(slot:VisualSlot)
+		{
+		rightSlot.enabled = true
+		leftSlot.enabled = true
+		}
+		
 	override func hitTest(point:CGPoint) -> CALayer?
 		{
 		if CGRectContainsPoint(self.frame,point)

@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF124AB61AEEA66A00BC22AE /* VisualPairedSlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF124AB51AEEA66A00BC22AE /* VisualPairedSlot.swift */; };
+		BF124AB81AEEB44600BC22AE /* VisualActionMenuEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF124AB71AEEB44600BC22AE /* VisualActionMenuEntry.swift */; };
+		BF124ABA1AEEB64400BC22AE /* VisualActionLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF124AB91AEEB64400BC22AE /* VisualActionLink.swift */; };
+		BF124ABC1AEEBA5A00BC22AE /* VisualWorkspaceProxyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF124ABB1AEEBA5A00BC22AE /* VisualWorkspaceProxyItem.swift */; };
+		BF124ABE1AEEC31500BC22AE /* VisualDataMenuEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF124ABD1AEEC31500BC22AE /* VisualDataMenuEntry.swift */; };
+		BF124AC01AEEC32D00BC22AE /* VisualDataLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF124ABF1AEEC32D00BC22AE /* VisualDataLink.swift */; };
+		BF124AC21AEED21800BC22AE /* WhiteiPhone-140x249.png in Resources */ = {isa = PBXBuildFile; fileRef = BF124AC11AEED21800BC22AE /* WhiteiPhone-140x249.png */; };
+		BF124AC61AEED4D700BC22AE /* WhiteiPhone-150x271.png in Resources */ = {isa = PBXBuildFile; fileRef = BF124AC51AEED4D700BC22AE /* WhiteiPhone-150x271.png */; };
 		BF23E3831ADED1DB007B370F /* ActionItemEditorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF23E3821ADED1DB007B370F /* ActionItemEditorView.xib */; };
 		BF23E3851ADED312007B370F /* ActionItemEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF23E3841ADED312007B370F /* ActionItemEditor.swift */; };
 		BF23E3891ADEE220007B370F /* USSDMenuNameItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF23E3881ADEE220007B370F /* USSDMenuNameItem.swift */; };
@@ -139,6 +147,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BF124AB51AEEA66A00BC22AE /* VisualPairedSlot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisualPairedSlot.swift; sourceTree = "<group>"; };
+		BF124AB71AEEB44600BC22AE /* VisualActionMenuEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisualActionMenuEntry.swift; sourceTree = "<group>"; };
+		BF124AB91AEEB64400BC22AE /* VisualActionLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisualActionLink.swift; sourceTree = "<group>"; };
+		BF124ABB1AEEBA5A00BC22AE /* VisualWorkspaceProxyItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisualWorkspaceProxyItem.swift; sourceTree = "<group>"; };
+		BF124ABD1AEEC31500BC22AE /* VisualDataMenuEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisualDataMenuEntry.swift; sourceTree = "<group>"; };
+		BF124ABF1AEEC32D00BC22AE /* VisualDataLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisualDataLink.swift; sourceTree = "<group>"; };
+		BF124AC11AEED21800BC22AE /* WhiteiPhone-140x249.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WhiteiPhone-140x249.png"; sourceTree = "<group>"; };
+		BF124AC51AEED4D700BC22AE /* WhiteiPhone-150x271.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WhiteiPhone-150x271.png"; sourceTree = "<group>"; };
 		BF23E3821ADED1DB007B370F /* ActionItemEditorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActionItemEditorView.xib; sourceTree = "<group>"; };
 		BF23E3841ADED312007B370F /* ActionItemEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionItemEditor.swift; sourceTree = "<group>"; };
 		BF23E3881ADEE220007B370F /* USSDMenuNameItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USSDMenuNameItem.swift; sourceTree = "<group>"; };
@@ -327,15 +343,21 @@
 				BF46F1651AED4F9E000E63F5 /* LayoutFrame.swift */,
 				BF46F17B1AED9B12000E63F5 /* RectangleEdge.swift */,
 				BF46F1791AED97D3000E63F5 /* Shadow.swift */,
+				BF124AB91AEEB64400BC22AE /* VisualActionLink.swift */,
+				BF124AB71AEEB44600BC22AE /* VisualActionMenuEntry.swift */,
 				BF46F1691AED5C64000E63F5 /* VisualContainer.swift */,
+				BF124ABD1AEEC31500BC22AE /* VisualDataMenuEntry.swift */,
 				BF46F1621AED4D5A000E63F5 /* VisualItem.swift */,
 				BF46F16B1AED5E8D000E63F5 /* VisualItemSet.swift */,
 				BF46F16D1AED6C4D000E63F5 /* VisualLink.swift */,
 				BF46F1771AED9301000E63F5 /* VisualLinkingMenuEntry.swift */,
 				BF46F16F1AED7FFB000E63F5 /* VisualMenu.swift */,
 				BF46F1751AED8E9F000E63F5 /* VisualMenuEntry.swift */,
+				BF124AB51AEEA66A00BC22AE /* VisualPairedSlot.swift */,
 				BF46F1731AED857E000E63F5 /* VisualSlot.swift */,
 				BF46F1711AED8092000E63F5 /* VisualText.swift */,
+				BF124ABB1AEEBA5A00BC22AE /* VisualWorkspaceProxyItem.swift */,
+				BF124ABF1AEEC32D00BC22AE /* VisualDataLink.swift */,
 			);
 			name = UFX2;
 			sourceTree = "<group>";
@@ -438,6 +460,8 @@
 		BFD426401AD2AE88008C5009 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				BF124AC51AEED4D700BC22AE /* WhiteiPhone-150x271.png */,
+				BF124AC11AEED21800BC22AE /* WhiteiPhone-140x249.png */,
 				BF300E621AEBD05E00D82FC2 /* ActiveItemBall-24x24.png */,
 				BF300E631AEBD05E00D82FC2 /* DataBall-24x24.png */,
 				BF300E641AEBD05E00D82FC2 /* StartMenuBall-24x24.png */,
@@ -625,6 +649,7 @@
 				BFB804591ADF4FAC00CB8DBE /* JSON.txt in Resources */,
 				BF300E591AEB849900D82FC2 /* WorkspaceProxy-32x32.png in Resources */,
 				BFF4E2FC1AE9B34300CB6141 /* Front.png in Resources */,
+				BF124AC61AEED4D700BC22AE /* WhiteiPhone-150x271.png in Resources */,
 				BF300E651AEBD05E00D82FC2 /* ActiveItemBall-24x24.png in Resources */,
 				BF996C051AD98329007DB769 /* socket-empty-grey-16x16.png in Resources */,
 				BF300E3F1AEAAC1900D82FC2 /* iPhone6WhiteUSSD-137x280.png in Resources */,
@@ -640,6 +665,7 @@
 				BFE1A40A1AD304600020A7E6 /* socket-empty-16x16.png in Resources */,
 				BF34842D1AE86B2100F4180C /* left-empty-peg-16x16.png in Resources */,
 				BF3484431AE8878500F4180C /* ScriptBrowser.xib in Resources */,
+				BF124AC21AEED21800BC22AE /* WhiteiPhone-140x249.png in Resources */,
 				BF300E5F1AEB92B600D82FC2 /* SlotBall-24x24.png in Resources */,
 				BF5415271AE74C6000DA14BA /* BlackButton-107x42.png in Resources */,
 				BF34842B1AE86A3200F4180C /* right-empty-peg-16x16.png in Resources */,
@@ -718,11 +744,14 @@
 				BF3484271AE8529B00F4180C /* Script.swift in Sources */,
 				BF3484221AE8398600F4180C /* ErrorSheet.swift in Sources */,
 				BF34843B1AE8834C00F4180C /* ScriptEntryStart.swift in Sources */,
+				BF124AB81AEEB44600BC22AE /* VisualActionMenuEntry.swift in Sources */,
 				BFE1A41F1AD332570020A7E6 /* SlotSet.swift in Sources */,
 				BFD426571AD2BE00008C5009 /* UFXStylist.swift in Sources */,
 				BF430ABB1AE93AE30011EFD1 /* USSDInsetWrapper.swift in Sources */,
 				BF54152E1AE77F6E00DA14BA /* NSAttributedStringExtensions.swift in Sources */,
 				BF46F1781AED9301000E63F5 /* VisualLinkingMenuEntry.swift in Sources */,
+				BF124AB61AEEA66A00BC22AE /* VisualPairedSlot.swift in Sources */,
+				BF124AC01AEEC32D00BC22AE /* VisualDataLink.swift in Sources */,
 				BFD426491AD2AF1C008C5009 /* DesignView.swift in Sources */,
 				BF54152A1AE7572100DA14BA /* CallbackURL.swift in Sources */,
 				BF34843F1AE8837C00F4180C /* ScriptEntryLoop.swift in Sources */,
@@ -730,8 +759,10 @@
 				BF3484471AE8966C00F4180C /* USSDDataEntryMenuItem.swift in Sources */,
 				BFD4264B1AD2AF45008C5009 /* USSDElement.swift in Sources */,
 				BF3484241AE8528100F4180C /* ScriptRecorder.swift in Sources */,
+				BF124ABC1AEEBA5A00BC22AE /* VisualWorkspaceProxyItem.swift in Sources */,
 				BF300E531AEB795D00D82FC2 /* USSDEntryPointItem.swift in Sources */,
 				BFD426261AD2AE44008C5009 /* USSDSpace.xcdatamodeld in Sources */,
+				BF124ABA1AEEB64400BC22AE /* VisualActionLink.swift in Sources */,
 				BF54150D1AE6FB0900DA14BA /* StringExtensions.swift in Sources */,
 				BFD426471AD2AF10008C5009 /* DesignController.swift in Sources */,
 				BF23E38C1ADF1BC4007B370F /* USSDManagerService.swift in Sources */,
@@ -746,6 +777,7 @@
 				BFD4265E1AD2D96C008C5009 /* Selectable.swift in Sources */,
 				BFE1A41D1AD331DB0020A7E6 /* Slot.swift in Sources */,
 				BF46F1661AED4F9E000E63F5 /* LayoutFrame.swift in Sources */,
+				BF124ABE1AEEC31500BC22AE /* VisualDataMenuEntry.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

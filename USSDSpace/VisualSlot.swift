@@ -12,26 +12,57 @@ import QuartzCore
 
 class VisualSlot:VisualItem
 	{
-	private var link:VisualLink?
+	var link:VisualLink?
 	
 	var slotImage:NSImage = NSImage(named:"socket-empty-16x16")!
-		
+	var containingMenuEntry:VisualMenuEntry?
+	var linkCreationClosure:(()-> VisualLink)?
+	
 	override init()
 		{
 		super.init()
 		self.contents = slotImage
+		linkCreationClosure = {() in return(VisualLink())}
 		}
 
 	required init(coder aDecoder: NSCoder) 
 		{
-	    fatalError("init(coder:) has not been implemented")
+	    super.init(coder: aDecoder)
+		link = aDecoder.decodeObjectForKey("link") as? VisualLink
+		slotImage = (aDecoder.decodeObjectForKey("slotImage") as? NSImage)!
+		containingMenuEntry = aDecoder.decodeObjectForKey("containingMenuEntry") as? VisualMenuEntry
 		}
+		
+	override func encodeWithCoder(coder:NSCoder)
+		{
+		super.encodeWithCoder(coder)
+		coder.encodeObject(link,forKey:"link")
+		coder.encodeObject(slotImage,forKey:"slotImage")
+		coder.encodeObject(containingMenuEntry,forKey:"containingMenuEntry")
+		}
+		
 		
 	func newLink() -> VisualLink
 		{
-		var aLink = VisualLink()
-		aLink.setSourceItem(self)
+		var aLink = linkCreationClosure!()
+		aLink.setSource(self)
 		return(aLink)
+		}
+		
+	var enabled:Bool = false
+		{
+		didSet
+			{
+			if self.enabled 
+				{
+				slotImage = link != nil ? NSImage(named:"socket-full-16x16")! : NSImage(named:"socket-empty-16x16")!
+				self.contents = slotImage
+				}
+			else
+				{
+				self.contents = nil
+				}
+			}
 		}
 		
 	override func handleMouseDownAtPoint(point:CGPoint,inView:DesignView)
@@ -42,6 +73,8 @@ class VisualSlot:VisualItem
 		if self.link != nil
 			{
 			self.link!.disconnect(inView)
+			self.link = nil
+			(self.containerItem as! VisualMenuEntry).slotWasUnLinked(self)
 			}
 		aLink = newLink()
 		inView.addLink(aLink)
@@ -51,8 +84,9 @@ class VisualSlot:VisualItem
 				var targetItem = inView.items.itemContainingPoint(point)
 				if targetItem != nil
 					{
-					aLink.setTargetItem(targetItem!.topItem!)
+					aLink.setTarget(targetItem!.topItem!)
 					self.link = aLink
+					(self.containerItem as! VisualMenuEntry).slotWasLinked(self)
 					}
 				else
 					{
@@ -61,7 +95,7 @@ class VisualSlot:VisualItem
 				}
 			else
 				{
-				aLink.setTargetPoint(point)
+				aLink.setDirectTargetPoint(point)
 				}
 			})
 		}

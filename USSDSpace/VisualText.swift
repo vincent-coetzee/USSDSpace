@@ -15,6 +15,25 @@ class VisualText:VisualItem
 	private var textLayer:CATextLayer = CATextLayer()
 	private var realFont:NSFont?
 	
+	override init(layer:AnyObject?)
+		{
+		super.init(layer:layer)
+		}
+		
+	required init(coder aDecoder: NSCoder) 
+		{
+	    super.init(coder:aDecoder)
+		textLayer = aDecoder.decodeObjectForKey("textLayer") as! CATextLayer
+		realFont = aDecoder.decodeObjectForKey("realFont") as? NSFont
+		}
+		
+	override func encodeWithCoder(coder:NSCoder)
+		{
+		super.encodeWithCoder(coder)
+		coder.encodeObject(textLayer,forKey:"textLayer")
+		coder.encodeObject(realFont,forKey:"realFont")
+		}
+		
 	var text:String
 		{
 		get
@@ -72,12 +91,6 @@ class VisualText:VisualItem
 		addSublayer(textLayer)
 		textLayer.alignmentMode = kCAAlignmentCenter
 		textLayer.wrapped = true
-		}
-
-	required init(coder aDecoder: NSCoder) 
-		{
-	    super.init(coder:aDecoder)
-		textLayer = aDecoder.decodeObjectForKey("textLayer") as! CATextLayer
 		}
 		
 	override func layoutSublayers()

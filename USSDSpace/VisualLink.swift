@@ -12,13 +12,13 @@ import QuartzCore
 
 class VisualLink:VisualItem
 	{
-	private var sourceItem:VisualItem?
-	private var targetItem:VisualItem?
-	private var displayLayer:CAShapeLayer = CAShapeLayer()
-	private var sourcePoint:CGPoint
-	private var targetPoint:CGPoint
-	private var linkColor:NSColor
-	private var lineWidth:CGFloat 
+	internal var sourceItem:VisualItem?
+	internal var targetItem:VisualItem?
+	internal var displayLayer:CAShapeLayer = CAShapeLayer()
+	internal var sourcePoint:CGPoint
+	internal var targetPoint:CGPoint
+	internal var linkColor:NSColor
+	internal var lineWidth:CGFloat 
 	internal var linkShadow:Shadow = Shadow()
 	
 	override init()
@@ -29,13 +29,13 @@ class VisualLink:VisualItem
 		linkShadow.radius = 2
 		linkShadow.opacity = 0.6
 		linkShadow.color = NSColor.blackColor()
-		linkColor = NSColor.lightGrayColor()
+		linkColor = UFXStylist.SlotLinkColor
 		lineWidth = 4
 		super.init()
 		applyStyle()
 		}
 		
-	convenience required init(coder aDecoder: NSCoder) 
+	required convenience init(coder aDecoder: NSCoder) 
 		{
 		self.init(coder:aDecoder)
 		sourcePoint = aDecoder.decodePointForKey("sourcePoint")
@@ -48,6 +48,29 @@ class VisualLink:VisualItem
 		linkShadow = aDecoder.decodeObjectForKey("linkShadow") as! Shadow
 		linkShadow.setOnLayer(displayLayer)
 		applyStyle()
+		}
+		
+	func closestSlotToTarget(slot1:VisualSlot,slot2:VisualSlot) -> VisualSlot
+		{
+		var targetSlot:TargetSlot
+		var slot1Distance:CGFloat
+		var slot2Distance:CGFloat
+		var sisterDistance:CGFloat
+		var startPoint:CGPoint
+		var aStartPoint:CGPoint
+		
+		aStartPoint = slot1.frameAsViewFrame().centerPoint
+		slot1Distance = aStartPoint.distanceToPoint(targetPoint)
+		aStartPoint = slot2.frameAsViewFrame().centerPoint
+		slot2Distance = aStartPoint.distanceToPoint(targetPoint)
+		if slot1Distance < slot2Distance
+			{
+			return(slot1)
+			}
+		else
+			{
+			return(slot2)
+			}
 		}
 		
 	func applyStyle()
@@ -78,7 +101,7 @@ class VisualLink:VisualItem
 		coder.encodeObject(linkShadow,forKey:"linkShadow")
 		}
 		
-	func setSourceItem(item:VisualItem)
+	func setSource(item:VisualItem)
 		{
 		sourceItem = item
 		sourceItem!.topItem!.addFrameDependent(self)
@@ -98,7 +121,7 @@ class VisualLink:VisualItem
 		targetItem = nil
 		}
 		
-	func setTargetItem(item:VisualItem)
+	func setTarget(item:VisualItem)
 		{
 		targetItem = item
 		targetItem!.addFrameDependent(self)
@@ -119,7 +142,7 @@ class VisualLink:VisualItem
 		displayLayer.removeFromSuperlayer()
 		}
 		
-	func setTargetPoint(point:CGPoint)
+	func setDirectTargetPoint(point:CGPoint)
 		{
 		targetPoint = point
 		updateDisplay()
@@ -127,16 +150,10 @@ class VisualLink:VisualItem
 		
 	override func frameChanged(item:VisualItem)
 		{
-		if item == sourceItem!.topItem
-			{
-			sourcePoint = sourceItem!.frameAsViewFrame().centerPoint
-			updateDisplay()
-			}
-		else if item == targetItem!
-			{
-			targetPoint = targetItem!.frameAsViewFrame().pointOnPerimeterNearestToPoint(sourcePoint)
-			updateDisplay()
-			}
+		sourcePoint = sourceItem!.frameAsViewFrame().centerPoint
+		targetPoint = targetItem!.frameAsViewFrame().pointOnPerimeterNearestToPoint(sourcePoint)
+		sourceItem!.adjustForLinkChanges(self,source:sourceItem!,target:targetItem!)
+		updateDisplay()
 		}
 		
 	func sourceFrameChanged()

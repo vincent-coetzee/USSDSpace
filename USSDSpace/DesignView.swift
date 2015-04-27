@@ -119,19 +119,13 @@ class DesignView:NSView,VisualContainer
 		
 	override func menuForEvent(event:NSEvent) -> NSMenu?
 		{
-		var itemUnderPoint:USSDItem?
 		var point = convertPoint(event.locationInWindow,fromView:nil)
 		var newMenu:NSMenu = NSMenu()
 		
 		NSLog("\(event)")
 		if event.type == NSEventType.LeftMouseDown && (event.modifierFlags & NSEventModifierFlags.ControlKeyMask == NSEventModifierFlags.ControlKeyMask)
 			{
-			itemUnderPoint = elementContainingPoint(point)
-			if itemUnderPoint != nil
-				{
-				return(itemUnderPoint!.popupMenu())
-				}
-			itemUnderPoint = linkContainingPoint(point)
+			var itemUnderPoint = items.itemContainingPoint(point)
 			if itemUnderPoint != nil
 				{
 				return(itemUnderPoint!.popupMenu())
@@ -336,73 +330,13 @@ class DesignView:NSView,VisualContainer
 	override func mouseUp(event:NSEvent)
 		{
 		var point = convertPoint(event.locationInWindow,fromView:nil)
-		var menu:USSDElement?
-		var menuEntry:USSDMenuEntry?
+		var item = items.itemContainingPoint(point)
 		
-		if dragElement != nil
+		if item != nil
 			{
-			dragElement!.setFrameOrigin(point.pointBySubtractingPoint(dragOffset!))
-			dragElement!.endDrag()
-			dragElement = nil
-			}
-		menu = menuContainingPoint(point)
-		if event.clickCount == 1
-			{
-			if menu != nil
+			if event.clickCount == 2
 				{
-				var element = elementContainingPoint(point)
-				if element == selectedElementHolder.selection || element == nil
-					{
-					selectedElementHolder.selection = nil
-					if element != nil
-						{
-						element!.handleClick(point,inView:self)
-						}
-					return
-					}
-				else
-					{
-					selectedElementHolder.selection = element
-					element!.handleClick(point,inView:self)
-					}
-				}
-			else
-				{
-				var link:SlotLink?
-				
-				link = linkContainingPoint(point)
-				if link != nil
-					{
-					if selectedElementHolder.selection == link
-						{
-						selectedElementHolder.selection = nil
-						}
-					else
-						{
-						selectedElementHolder.selection = link
-						}
-					}
-				}
-			}
-		else if event.clickCount == 2
-			{
-			if menu != nil
-				{
-				menuEntry = menu!.itemContainingPoint(point)
-				if menuEntry != nil
-					{
-					menuEntry!.editTextInView(self)
-					}
-				}
-			else
-				{
-				var link:SlotLink?
-				
-				link = linkContainingPoint(point)
-				if link != nil
-					{
-					link!.editLinkInView(self)
-					}
+				item!.handleDoubleClickAtPoint(point,inView:self)
 				}
 			}
 		}
@@ -535,6 +469,7 @@ class DesignView:NSView,VisualContainer
 		menu.container = self
 		menuContainerLayer.addSublayer(menu)
 		items.addItem(menu)
+		workspace.addItem(menu)
 		}
 		
 	func menu(menu: NSMenu,updateItem item: NSMenuItem,atIndex index: Int,shouldCancel: Bool) -> Bool

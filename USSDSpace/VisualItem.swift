@@ -31,6 +31,23 @@ class VisualItem:CALayer,VisualContainer
 			}
 		}
 		
+	required init(coder aDecoder: NSCoder) 
+		{
+		layoutFrame = LayoutFrame()
+	    super.init(coder:aDecoder)
+		parent = aDecoder.decodeObjectForKey("parent") as! VisualContainer?
+		layoutFrame = aDecoder.decodeObjectForKey("layoutFrame") as! LayoutFrame
+//		_styling = aDecoder.decodeObjectForKey("_styling") as! [NSObject:AnyObject]?
+		}
+		
+	override func encodeWithCoder(coder:NSCoder)
+		{
+		super.encodeWithCoder(coder)
+		coder.encodeObject(parent as! VisualItem,forKey:"parent")
+		coder.encodeObject(layoutFrame,forKey:"layoutFrame")
+//		coder.encodeObject(_styling as! NSDictionary,forKey:"_styling")
+		}
+		
 	override init(layer:AnyObject?)
 		{
 		layoutFrame = LayoutFrame()
@@ -162,6 +179,14 @@ class VisualItem:CALayer,VisualContainer
 			}
 		}
 		
+	var containerItem:VisualItem
+		{
+		get
+			{
+			return(self.container as! VisualItem)
+			}
+		}
+		
 	var containerView:DesignView
 		{
 		get
@@ -219,16 +244,10 @@ class VisualItem:CALayer,VisualContainer
 		{
 		layoutFrame = LayoutFrame()
 		super.init()
-		self.borderWidth = 1
-		self.borderColor = NSColor.blackColor().CGColor
 		}
-
-	required init(coder aDecoder: NSCoder) 
+		
+	func adjustForLinkChanges(link:VisualLink,source:VisualItem,target:VisualItem)
 		{
-		layoutFrame = LayoutFrame()
-	    super.init(coder:aDecoder)
-		parent = aDecoder.decodeObjectForKey("parent") as! VisualContainer?
-		layoutFrame = aDecoder.decodeObjectForKey("layoutFrame") as! LayoutFrame
 		}
 		
 	func addItem(item:VisualItem)
@@ -255,11 +274,13 @@ class VisualItem:CALayer,VisualContainer
 		{
 		}
 		
-	override func encodeWithCoder(coder:NSCoder)
+	func handleDoubleClickAtPoint(point:CGPoint,inView:DesignView)
 		{
-		super.encodeWithCoder(coder)
-		coder.encodeObject(parent as! VisualItem,forKey:"parent")
-		coder.encodeObject(layoutFrame,forKey:"layoutFrame")
+		}
+		
+	func popupMenu() -> NSMenu?
+		{
+		return(nil)
 		}
 		
 	override func layoutSublayers()

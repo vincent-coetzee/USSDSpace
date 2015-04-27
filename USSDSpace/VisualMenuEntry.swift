@@ -10,24 +10,47 @@ import Foundation
 import AppKit
 import QuartzCore
 
-class VisualMenuEntry:VisualItem
+class VisualMenuEntry:VisualItem,NSTextViewDelegate,NSTextDelegate
 	{
 	internal var labelItem:VisualText = VisualText()
 	private var actualText:String = ""
 	private var menuIndex:Int = 0
-		
+	private var textView:NSTextView?
+	
+	var containingMenu:VisualMenu?
+	
 	override init()
 		{
 		super.init()
 		labelItem.text = "text"
-		labelItem.layoutFrame = LayoutFrame(leftRatio:0,leftOffset:16,topRatio:0,topOffset:0,rightRatio:1,rightOffset:-16,bottomRatio:1,bottomOffset:0)
+		labelItem.layoutFrame = LayoutFrame(leftRatio:0,leftOffset:14,topRatio:0,topOffset:2,rightRatio:1,rightOffset:-14,bottomRatio:1,bottomOffset:0)
 		addSublayer(labelItem)
 		markForLayout()
 		markForDisplay()
-		self.backgroundColor = NSColor.redColor().CGColor
 		self.styling = UFXStylist.menuItemStyle()
 		}
-
+		
+	override init(layer:AnyObject?)
+		{
+		super.init(layer:layer)
+		}
+		
+	required init(coder aDecoder: NSCoder) 
+		{
+	    super.init(coder:aDecoder)
+		labelItem = aDecoder.decodeObjectForKey("labelItem") as! VisualText
+		actualText = aDecoder.decodeObjectForKey("actualText") as! String
+		menuIndex = aDecoder.decodeIntegerForKey("menuIndex")
+		}
+		
+	override func encodeWithCoder(coder:NSCoder)
+		{
+		super.encodeWithCoder(coder)
+		coder.encodeObject(labelItem,forKey:"labelItem")
+		coder.encodeObject(actualText,forKey:"actualText")
+		coder.encodeInteger(menuIndex,forKey:"menuIndex")
+		}
+		
 	override func hitTest(point:CGPoint) -> CALayer?
 		{
 		if CGRectContainsPoint(self.frame,point)
@@ -37,10 +60,41 @@ class VisualMenuEntry:VisualItem
 		return(nil)
 		}
 		
-	required init(coder aDecoder: NSCoder) 
+	func editTextInView(view:NSView)
 		{
-	    super.init(coder:aDecoder)
-		labelItem = aDecoder.decodeObjectForKey("labelItem") as! VisualText
+		var editFrame = self.frameAsViewFrame()
+		textView = NSTextView(frame:editFrame)
+		textView!.string = self.text
+		textView!.font = UFXStylist.MenuItemFont;
+		textView!.delegate = self
+		textView!.fieldEditor = true
+		view.addSubview(textView!)
+		view.window!.makeKeyAndOrderFront(nil)
+		view.window!.makeFirstResponder(textView)
+		}
+		
+	func textDidEndEditing(notification:NSNotification) 
+		{
+		var oldText:String = self.text
+		var newText:String = textView!.string!
+		
+		self.text = newText
+		textView!.removeFromSuperview()
+		textView = nil
+		self.container.markForLayout()
+		}
+		
+	override func handleDoubleClickAtPoint(point:CGPoint,inView:DesignView)
+		{
+		editTextInView(inView)
+		}
+		
+	func slotWasLinked(slot:VisualSlot)
+		{
+		}
+		
+	func slotWasUnLinked(slot:VisualSlot)
+		{
 		}
 		
 	override func setIndex(index:Int)
@@ -72,8 +126,8 @@ class VisualMenuEntry:VisualItem
 		
 	override func desiredSizeInFrame(frame:CGRect) -> CGSize
 		{
-		var revisedFrame = frame
-		revisedFrame.size.width -= 32
+		var revisedFrame = self.layoutFrame.rectInRect(frame)
+		revisedFrame.size.width -= 34
 		var aSize = labelItem.desiredSizeInFrame(revisedFrame)
 		aSize.width += 32
 		aSize.height = maximum(aSize.height,16)
@@ -93,8 +147,8 @@ class VisualMenuEntry:VisualItem
 		CGContextBeginPath(context)
 		CGContextMoveToPoint(context,0,0)
 		CGContextAddLineToPoint(context,CGRectGetMaxX(self.bounds),0)
-		CGContextMoveToPoint(context,0,CGRectGetMaxY(self.bounds))
-		CGContextMoveToPoint(context,CGRectGetMaxX(self.bounds),CGRectGetMaxY(self.bounds))
+		CGContextMoveToPoint(context,0,CGRectGetMaxY(self.bounds)-1)
+		CGContextMoveToPoint(context,CGRectGetMaxX(self.bounds),CGRectGetMaxY(self.bounds)-1)
 		CGContextStrokePath(context)
 		}
 	}

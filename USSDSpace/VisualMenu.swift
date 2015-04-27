@@ -12,12 +12,30 @@ import QuartzCore
 
 class VisualMenu:VisualItem
 	{
-	private let menuSize = CGSize(width:140,height:260)
+	private let menuSize = CGSize(width:150,height:271)
 	private var titleItem:VisualText?
 	private var entries:VisualItemSet = VisualItemSet()
 	private var nameItem:VisualText?
 	private var frameDependents = VisualItemSet()
 	
+	required init(coder aDecoder: NSCoder) 
+		{
+		super.init(coder:aDecoder)
+		titleItem = aDecoder.decodeObjectForKey("titleItem") as? VisualText
+		entries = aDecoder.decodeObjectForKey("entries") as! VisualItemSet
+		nameItem = aDecoder.decodeObjectForKey("nameItem") as? VisualText
+		frameDependents = aDecoder.decodeObjectForKey("frameDependents") as! VisualItemSet
+		}
+	
+	override func encodeWithCoder(coder:NSCoder)
+		{
+		super.encodeWithCoder(coder)
+		coder.encodeObject(titleItem,forKey:"titleItem")
+		coder.encodeObject(entries,forKey:"entries")
+		coder.encodeObject(nameItem,forKey:"nameItem")
+		coder.encodeObject(frameDependents,forKey:"frameDependents")
+		}
+		
 	var menuName:String = "MENU"
 		{
 		didSet
@@ -51,9 +69,8 @@ class VisualMenu:VisualItem
 		addTitleItem()
 		addNameItem()
 		addEntries()
-		self.cornerRadius = 14
-		self.backgroundColor = NSColor.percentGray(0.95).CGColor
 		self.shadow = Shadow()
+		self.contents = NSImage(named:"WhiteiPhone-150x271")
 		}
 		
 	override init(layer:AnyObject?)
@@ -61,9 +78,25 @@ class VisualMenu:VisualItem
 		super.init(layer:layer)
 		}
 		
-	required init(coder aDecoder: NSCoder) {
-	    fatalError("init(coder:) has not been implemented")
-	}
+	override func popupMenu() -> NSMenu?
+		{
+		var newMenu = NSMenu()
+		var menuItem:NSMenuItem
+		
+		menuItem = newMenu.addItemWithTitle("Set as Start Menu",action:"onBecomeStartMenu:",keyEquivalent:"")!
+		menuItem.target = self
+		newMenu.addItem(NSMenuItem.separatorItem())
+		menuItem = newMenu.addItemWithTitle("Add Menu Item",action:"onAddMenuItem:",keyEquivalent:"")!
+		menuItem.target = self
+		menuItem = newMenu.addItemWithTitle("Add Data Entry Item",action:"onAddDataEntryItem:",keyEquivalent:"")!
+		menuItem.target = self
+		menuItem = newMenu.addItemWithTitle("Add Action Menu Item",action:"onAddActionMenuItem:",keyEquivalent:"")!
+		menuItem.target = self
+		newMenu.addItem(NSMenuItem.separatorItem())
+		menuItem = newMenu.addItemWithTitle("Delete this Menu",action:"onDeleteMenu:",keyEquivalent:"")!
+		menuItem.target = self
+		return(newMenu)
+		}
 		
 	override func addFrameDependent(dependent:VisualItem)
 		{
@@ -87,7 +120,7 @@ class VisualMenu:VisualItem
 		{
 		nameItem = VisualText()
 		nameItem!.text = "MENU-NAME"
-		nameItem!.layoutFrame = LayoutFrame(leftRatio:0,leftOffset:2,topRatio:0,topOffset:2,rightRatio:1,rightOffset:-2,bottomRatio:0,bottomOffset:20)
+		nameItem!.layoutFrame = LayoutFrame(leftRatio:0,leftOffset:2,topRatio:0,topOffset:15,rightRatio:1,rightOffset:-2,bottomRatio:0,bottomOffset:35)
 		nameItem!.styling = UFXStylist.menuStyle()
 		addSublayer(nameItem!)
 		}
@@ -109,12 +142,23 @@ class VisualMenu:VisualItem
 		{
 		var entry = VisualLinkingMenuEntry()
 		entry.text = "Item Number 1"
+		entry.containingMenu = self
+		addItem(entry)
+		entry = VisualDataMenuEntry()
+		entry.text = "Item Number 2 - which is a slightly longer piece of text"
+		entry.containingMenu = self
 		addItem(entry)
 		entry = VisualLinkingMenuEntry()
-		entry.text = "Item Number 2"
+		entry.text = "Item Number 3 - which in the case of number 3 it could have been written by George R.R. Martin, because it uses many words when one would actually do."
+		entry.containingMenu = self
 		addItem(entry)
-		entry = VisualLinkingMenuEntry()
-		entry.text = "Item Number 3"
+		entry = VisualActionMenuEntry()
+		entry.text = "Action Item Number 4"
+		entry.containingMenu = self
+		addItem(entry)
+		entry = VisualActionMenuEntry()
+		entry.text = "Action Item Number 5 - which causes something to be done on the server"
+		entry.containingMenu = self
 		addItem(entry)
 		}
 		
@@ -151,9 +195,9 @@ class VisualMenu:VisualItem
 		nameItem!.frame = nameItem!.layoutFrame.rectInRect(myFrame)
 		for entry in entries
 			{
-			totalHeight += (entry.desiredSizeInFrame(myFrame).height+2)
+			totalHeight += (entry.desiredSizeInFrame(myFrame).height+1)
 			}
-		offset = (menuSize.height - -30 - totalHeight)/2 - 30
+		offset = (menuSize.height - totalHeight)/2
 		for entry in entries
 			{
 			size = entry.desiredSizeInFrame(myFrame)
