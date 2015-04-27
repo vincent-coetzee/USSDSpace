@@ -18,7 +18,7 @@ class DesignView:NSView,VisualContainer
 	var dragElement:USSDElement?
 	var dragOffset:CGPoint?
 	
-	var workspace = USSDWorkspace()
+	var workspace = Workspace()
 	var workspaceItem = USSDWorkspaceItem()
 	
 	var menuContainerLayer:CALayer = CALayer()
@@ -70,13 +70,10 @@ class DesignView:NSView,VisualContainer
 		
 	func reset()
 		{
-		for element in elements
-			{
-			element.removeFromSuperlayer()
-			}
+		items.removeFromLayer()
 		workspaceItem.removeFromSuperlayer()
 		workspaceItem = USSDWorkspaceItem()
-		elements = [USSDElement]()
+		items = VisualItemSet()
 		linkContainerLayer.reset()
 		}
 		
@@ -86,12 +83,12 @@ class DesignView:NSView,VisualContainer
 		wantsLayer = true
 		initLayers()
 		NSOperationQueue.mainQueue().addOperationWithBlock({() in self.loadPackages()})
-		workspaceItem.menuView = self
-		workspaceItem.loadIntoLayer(menuContainerLayer,linkLayer:linkContainerLayer)
-		workspaceItem.actualWorkspace = workspace
-		workspaceItem.layoutInFrame(self.frame)
-		workspace.workspaceItem = workspaceItem
-		workspace.addMenu(workspaceItem)
+//		workspaceItem.menuView = self
+//		workspaceItem.loadIntoLayer(menuContainerLayer,linkLayer:linkContainerLayer)
+//		workspaceItem.actualWorkspace = workspace
+//		workspaceItem.layoutInFrame(self.frame)
+//		workspace.workspaceItem = workspaceItem
+//		workspace.addMenu(workspaceItem)
 		elements.append(workspaceItem)
 		}
 		
@@ -113,7 +110,7 @@ class DesignView:NSView,VisualContainer
 	override func layout()
 		{
 		super.layout()
-		workspaceItem.layoutInFrame(self.frame)
+//		workspaceItem.layoutInFrame(self.frame)
 		menuContainerLayer.setNeedsLayout()
 		}
 		
@@ -277,33 +274,12 @@ class DesignView:NSView,VisualContainer
 	func addLink(link:VisualLink)
 		{
 		linkContainerLayer.addVisualLink(link)
+		link.container = self
 		}
 		
 	func removeLink(link:VisualLink)
 		{
 		linkContainerLayer.removeVisualLink(link)
-		}
-		
-	func OldmouseDown(event:NSEvent)
-		{
-		var point = convertPoint(event.locationInWindow,fromView:nil)
-		var menu = menuContainingPoint(point)
-		
-		if menu != nil
-			{
-			var slotSet = menu!.sourceSlotSet()
-			var slot = slotSet.slotContainingPoint(point)
-			
-			if slot != nil
-				{
-				handleLinkDrag(menu!,slot: slot!,point: point)
-				return
-				}
-				
-			dragElement = menu!
-			dragElement!.startDrag()
-			dragOffset = point.pointBySubtractingPoint(menu!.frame.origin)
-			}
 		}
 		
 	override func mouseDown(event:NSEvent)
@@ -377,25 +353,30 @@ class DesignView:NSView,VisualContainer
 			(result: Int) -> Void in 
 			if result == NSFileHandlingPanelOKButton
 				{
-				self.restoreFromWorkspace(USSDWorkspace.loadFromPath(openPanel.URL!.path!))
+				self.restoreFromWorkspace(Workspace.loadFromPath(openPanel.URL!.path!))
 				}
 			}
 		}
 		
-	func restoreFromWorkspace(aNewWorkspace:USSDWorkspace)
+	func restoreFromWorkspace(aNewWorkspace:Workspace)
 		{
 		var theNewOne = aNewWorkspace
 		
 		reset()
 		workspace = theNewOne
-		workspaceItem = theNewOne.workspaceItem!
+//		workspaceItem = theNewOne.workspaceItem!
 		selectedElementHolder.selection = nil
 		self.window!.setFrame(theNewOne.windowFrame,display:true)
-		elements = theNewOne.elements
-		for element in elements
+		items = theNewOne.items
+		for item in items
 			{
-			element.menuView = self
-			element.loadIntoLayer(self.menuContainerLayer,linkLayer:self.linkContainerLayer)
+			item.container = self
+			item.loadIntoLayer(self.menuContainerLayer,linkLayer:self.linkContainerLayer)
+			}
+		for link in aNewWorkspace.visualLinks
+			{
+			linkContainerLayer.addVisualLink(link)
+			link.container = self
 			}
 		menuContainerLayer.setNeedsLayout()
 		linkContainerLayer.setNeedsLayout()
@@ -407,7 +388,8 @@ class DesignView:NSView,VisualContainer
 		{
 		var savePanel:NSSavePanel;
 	
-		workspace.workspaceItem = workspaceItem
+//		workspace.workspaceItem = workspaceItem
+		workspace.visualLinks = linkContainerLayer.visualLinks
 		workspace.designViewFrame = self.frame
 		workspace.windowFrame = self.window!.frame
 		if workspace.workspacePath != nil
@@ -431,7 +413,7 @@ class DesignView:NSView,VisualContainer
 		{
 		var savePanel:NSSavePanel;
 
-		workspace.workspaceItem = workspaceItem
+//		workspace.workspaceItem = workspaceItem
 		workspace.designViewFrame = self.frame
 		workspace.windowFrame = self.window!.frame
 		savePanel = NSSavePanel()
@@ -547,10 +529,10 @@ class DesignView:NSView,VisualContainer
 		
 	@IBAction func onSetStartMenu(sender:AnyObject?)
 		{
-		if selectedElementHolder.selection != nil && selectedElementHolder.selection!.isMenu()
-			{
-			workspace.startMenu = selectedElementHolder.selection! as! USSDMenu
-			}
+//		if selectedElementHolder.selection != nil && selectedElementHolder.selection!.isMenu()
+//			{
+//			workspace.startMenu = selectedElementHolder.selection! as! USSDMenu
+//			}
 		}
 		
 	@IBAction func onDeploy(sender:AnyObject?)
@@ -562,7 +544,7 @@ class DesignView:NSView,VisualContainer
 			{
 			service.requestToken("vincent.coetzee",userName:"vac14830B",password:"somethingObscure09@")
 			}
-		service.deployWorkspace(workspace)
+//		service.deployWorkspace(workspace)
 		}
 		
 	@IBAction func onDeployAndRun(sender:AnyObject?)
@@ -570,8 +552,8 @@ class DesignView:NSView,VisualContainer
 		var service:USSDManagerService
 		
 		service = USSDManagerService()
-		service.deployWorkspace(workspace)
-		Simulator.openNewSimulatorOn(startURL: service.startURLForWorkspace(workspace))
+//		service.deployWorkspace(workspace)
+//		Simulator.openNewSimulatorOn(startURL: service.startURLForWorkspace(workspace))
 		}
 		
 	@IBAction func onDeleteItem(sender:AnyObject?)

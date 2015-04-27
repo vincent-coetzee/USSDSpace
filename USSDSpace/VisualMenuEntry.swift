@@ -23,6 +23,7 @@ class VisualMenuEntry:VisualItem,NSTextViewDelegate,NSTextDelegate
 		{
 		super.init()
 		labelItem.text = "text"
+		labelItem.container = self
 		labelItem.layoutFrame = LayoutFrame(leftRatio:0,leftOffset:14,topRatio:0,topOffset:2,rightRatio:1,rightOffset:-14,bottomRatio:1,bottomOffset:0)
 		addSublayer(labelItem)
 		markForLayout()
@@ -41,6 +42,8 @@ class VisualMenuEntry:VisualItem,NSTextViewDelegate,NSTextDelegate
 		labelItem = aDecoder.decodeObjectForKey("labelItem") as! VisualText
 		actualText = aDecoder.decodeObjectForKey("actualText") as! String
 		menuIndex = aDecoder.decodeIntegerForKey("menuIndex")
+		markForLayout()
+		markForDisplay()
 		}
 		
 	override func encodeWithCoder(coder:NSCoder)

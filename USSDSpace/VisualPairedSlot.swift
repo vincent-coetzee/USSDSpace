@@ -15,6 +15,11 @@ class VisualPairedSlot:VisualSlot
 	var pairedSlot:VisualPairedSlot?
 	var direction:String = "left"
 
+	override init()
+		{
+		super.init()
+		}
+		
 	required init(coder aDecoder:NSCoder)
 		{
 		super.init(coder: aDecoder)

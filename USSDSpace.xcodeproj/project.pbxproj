@@ -15,6 +15,7 @@
 		BF124AC01AEEC32D00BC22AE /* VisualDataLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF124ABF1AEEC32D00BC22AE /* VisualDataLink.swift */; };
 		BF124AC21AEED21800BC22AE /* WhiteiPhone-140x249.png in Resources */ = {isa = PBXBuildFile; fileRef = BF124AC11AEED21800BC22AE /* WhiteiPhone-140x249.png */; };
 		BF124AC61AEED4D700BC22AE /* WhiteiPhone-150x271.png in Resources */ = {isa = PBXBuildFile; fileRef = BF124AC51AEED4D700BC22AE /* WhiteiPhone-150x271.png */; };
+		BF124AC81AEEE38E00BC22AE /* Workspace.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF124AC71AEEE38E00BC22AE /* Workspace.swift */; };
 		BF23E3831ADED1DB007B370F /* ActionItemEditorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF23E3821ADED1DB007B370F /* ActionItemEditorView.xib */; };
 		BF23E3851ADED312007B370F /* ActionItemEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF23E3841ADED312007B370F /* ActionItemEditor.swift */; };
 		BF23E3891ADEE220007B370F /* USSDMenuNameItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF23E3881ADEE220007B370F /* USSDMenuNameItem.swift */; };
@@ -155,6 +156,7 @@
 		BF124ABF1AEEC32D00BC22AE /* VisualDataLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisualDataLink.swift; sourceTree = "<group>"; };
 		BF124AC11AEED21800BC22AE /* WhiteiPhone-140x249.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WhiteiPhone-140x249.png"; sourceTree = "<group>"; };
 		BF124AC51AEED4D700BC22AE /* WhiteiPhone-150x271.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WhiteiPhone-150x271.png"; sourceTree = "<group>"; };
+		BF124AC71AEEE38E00BC22AE /* Workspace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Workspace.swift; sourceTree = "<group>"; };
 		BF23E3821ADED1DB007B370F /* ActionItemEditorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActionItemEditorView.xib; sourceTree = "<group>"; };
 		BF23E3841ADED312007B370F /* ActionItemEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionItemEditor.swift; sourceTree = "<group>"; };
 		BF23E3881ADEE220007B370F /* USSDMenuNameItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USSDMenuNameItem.swift; sourceTree = "<group>"; };
@@ -358,6 +360,7 @@
 				BF46F1711AED8092000E63F5 /* VisualText.swift */,
 				BF124ABB1AEEBA5A00BC22AE /* VisualWorkspaceProxyItem.swift */,
 				BF124ABF1AEEC32D00BC22AE /* VisualDataLink.swift */,
+				BF124AC71AEEE38E00BC22AE /* Workspace.swift */,
 			);
 			name = UFX2;
 			sourceTree = "<group>";
@@ -700,6 +703,7 @@
 				BF46F1741AED857E000E63F5 /* VisualSlot.swift in Sources */,
 				BF23E3891ADEE220007B370F /* USSDMenuNameItem.swift in Sources */,
 				BF46F16C1AED5E8D000E63F5 /* VisualItemSet.swift in Sources */,
+				BF124AC81AEEE38E00BC22AE /* Workspace.swift in Sources */,
 				BF54150A1AE6C54D00DA14BA /* JSONParser.swift in Sources */,
 				BF34844B1AE89DF900F4180C /* USSDItem.swift in Sources */,
 				BF34843D1AE8835C00F4180C /* ScriptEntryStop.swift in Sources */,

@@ -14,7 +14,7 @@ class LinkManagementLayer:CALayer
 	{
 	private var potentialLink:SlotLink?
 	private var links:[SlotLink] = [SlotLink]()
-	private var visualLinks:[VisualLink] = [VisualLink]()
+	var visualLinks:[VisualLink] = [VisualLink]()
 	
 	override func contentsAreFlipped() -> Bool
 		{
@@ -79,6 +79,11 @@ class LinkManagementLayer:CALayer
 		
 	func reset()
 		{
+		for link in visualLinks
+			{
+			link.removeFromLayer(self)
+			}
+		visualLinks = [VisualLink]()
 		for link in links
 			{
 			link.shapeLayer.removeFromSuperlayer()

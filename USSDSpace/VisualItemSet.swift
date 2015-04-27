@@ -9,12 +9,13 @@
 import Foundation
 import AppKit
 
-class VisualItemSet:SequenceType
+class VisualItemSet:NSObject,SequenceType
 	{
-	private var items:[VisualItem]
+	var items:[VisualItem] = [VisualItem]()
 	
-	init()
+	override init()
 		{
+		super.init()
 		items = [VisualItem]()
 		}
 		
@@ -39,6 +40,14 @@ class VisualItemSet:SequenceType
 		if index != nil
 			{
 			items.removeAtIndex(index!)
+			}
+		}
+		
+	func removeFromLayer()
+		{
+		for item in items
+			{
+			item.removeFromSuperlayer()
 			}
 		}
 		

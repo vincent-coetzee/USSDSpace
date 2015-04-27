@@ -17,14 +17,17 @@ class VisualMenu:VisualItem
 	private var entries:VisualItemSet = VisualItemSet()
 	private var nameItem:VisualText?
 	private var frameDependents = VisualItemSet()
+	private var imageLayer:CALayer = CALayer()
 	
 	required init(coder aDecoder: NSCoder) 
 		{
 		super.init(coder:aDecoder)
+		self.shadow = Shadow()
 		titleItem = aDecoder.decodeObjectForKey("titleItem") as? VisualText
 		entries = aDecoder.decodeObjectForKey("entries") as! VisualItemSet
 		nameItem = aDecoder.decodeObjectForKey("nameItem") as? VisualText
 		frameDependents = aDecoder.decodeObjectForKey("frameDependents") as! VisualItemSet
+		imageLayer = aDecoder.decodeObjectForKey("imageLayer") as! CALayer
 		}
 	
 	override func encodeWithCoder(coder:NSCoder)
@@ -34,6 +37,7 @@ class VisualMenu:VisualItem
 		coder.encodeObject(entries,forKey:"entries")
 		coder.encodeObject(nameItem,forKey:"nameItem")
 		coder.encodeObject(frameDependents,forKey:"frameDependents")
+		coder.encodeObject(imageLayer,forKey:"imageLayer")
 		}
 		
 	var menuName:String = "MENU"
@@ -45,6 +49,22 @@ class VisualMenu:VisualItem
 				titleItem!.text = self.menuName
 				}
 			}
+		}
+		
+	override func loadIntoLayer(menuLayer:CALayer,linkLayer:LinkManagementLayer)
+		{
+		var newFrame = self.frame
+		newFrame.size = menuSize
+		self.frame =  newFrame
+		menuLayer.addSublayer(self)
+		imageLayer.removeFromSuperlayer()
+		imageLayer = CALayer()
+		imageLayer.frame = self.bounds
+		imageLayer.contents = NSImage(named:"WhiteiPhone-150x271")
+		imageLayer.zPosition = -10
+		addSublayer(imageLayer)
+		markForLayout()
+		markForDisplay()
 		}
 		
 	override func hitTest(point:CGPoint) -> CALayer?
@@ -119,13 +139,14 @@ class VisualMenu:VisualItem
 	func addNameItem()
 		{
 		nameItem = VisualText()
+		nameItem!.container = self
 		nameItem!.text = "MENU-NAME"
 		nameItem!.layoutFrame = LayoutFrame(leftRatio:0,leftOffset:2,topRatio:0,topOffset:15,rightRatio:1,rightOffset:-2,bottomRatio:0,bottomOffset:35)
 		nameItem!.styling = UFXStylist.menuStyle()
 		addSublayer(nameItem!)
 		}
 		
-	override func addItem(entry:VisualItem)
+	func addItem(entry:VisualItem)
 		{
 		entries.addItem(entry)
 		entry.container = self
@@ -192,6 +213,7 @@ class VisualMenu:VisualItem
 		var offset:CGFloat = 0
 		var totalHeight:CGFloat = 0
 		
+		imageLayer.frame = self.bounds
 		nameItem!.frame = nameItem!.layoutFrame.rectInRect(myFrame)
 		for entry in entries
 			{

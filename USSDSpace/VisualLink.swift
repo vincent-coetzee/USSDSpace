@@ -12,14 +12,14 @@ import QuartzCore
 
 class VisualLink:VisualItem
 	{
-	internal var sourceItem:VisualItem?
-	internal var targetItem:VisualItem?
-	internal var displayLayer:CAShapeLayer = CAShapeLayer()
-	internal var sourcePoint:CGPoint
-	internal var targetPoint:CGPoint
-	internal var linkColor:NSColor
-	internal var lineWidth:CGFloat 
-	internal var linkShadow:Shadow = Shadow()
+	var sourceItem:VisualItem?
+	var targetItem:VisualItem?
+	var displayLayer:CAShapeLayer = CAShapeLayer()
+	var sourcePoint:CGPoint = CGPoint(x:0,y:0)
+	var targetPoint:CGPoint = CGPoint(x:0,y:0)
+	var linkColor:NSColor = NSColor.blackColor()
+	var lineWidth:CGFloat = 1
+	var linkShadow:Shadow = Shadow()
 	
 	override init()
 		{
@@ -35,19 +35,36 @@ class VisualLink:VisualItem
 		applyStyle()
 		}
 		
-	required convenience init(coder aDecoder: NSCoder) 
+	required init(coder aDecoder: NSCoder) 
 		{
-		self.init(coder:aDecoder)
+		super.init(coder: aDecoder)
 		sourcePoint = aDecoder.decodePointForKey("sourcePoint")
 		targetPoint = aDecoder.decodePointForKey("targetPoint")
 		displayLayer = aDecoder.decodeObjectForKey("displayLayer") as! CAShapeLayer
 		linkColor = aDecoder.decodeObjectForKey("linkColor") as! NSColor
 		sourceItem = aDecoder.decodeObjectForKey("sourceItem") as! VisualItem?
 		targetItem = aDecoder.decodeObjectForKey("targetItem") as! VisualItem?
-		lineWidth = CGFloat(aDecoder.decodeDoubleForKey("lineWidth"))
+		lineWidth = CGFloat(aDecoder.decodeDoubleForKey("VL.lineWidth"))
 		linkShadow = aDecoder.decodeObjectForKey("linkShadow") as! Shadow
 		linkShadow.setOnLayer(displayLayer)
 		applyStyle()
+		}
+		
+	override func encodeWithCoder(coder:NSCoder)
+		{
+		super.encodeWithCoder(coder)
+		coder.encodePoint(sourcePoint,forKey:"sourcePoint")
+		coder.encodePoint(targetPoint,forKey:"targetPoint")
+		coder.encodeObject(displayLayer,forKey:"displayLayer")
+		coder.encodeObject(linkColor,forKey:"linkColor")
+		coder.encodeObject(sourceItem,forKey:"sourceItem")
+		if targetItem == nil
+			{
+			NSLog("halt")
+			}
+		coder.encodeObject(targetItem,forKey:"targetItem")
+		coder.encodeDouble(Double(lineWidth),forKey:"VL.lineWidth")
+		coder.encodeObject(linkShadow,forKey:"linkShadow")
 		}
 		
 	func closestSlotToTarget(slot1:VisualSlot,slot2:VisualSlot) -> VisualSlot
@@ -85,20 +102,6 @@ class VisualLink:VisualItem
 		displayLayer.lineCap = kCALineCapRound
 		displayLayer.borderColor = NSColor.cyanColor().CGColor
 		displayLayer.borderWidth = 5
-		}
-		
-	override func encodeWithCoder(coder:NSCoder)
-		{
-		super.encodeWithCoder(coder)
-		coder.encodePoint(sourcePoint,forKey:"sourcePoint")
-		coder.encodePoint(targetPoint,forKey:"targetPoint")
-		coder.encodeObject(displayLayer,forKey:"displayLayer")
-		coder.encodeObject(linkColor,forKey:"linkColor")
-		coder.encodeObject(shadowColor,forKey:"shadowColor")
-		coder.encodeObject(sourceItem,forKey:"sourceItem")
-		coder.encodeObject(targetItem,forKey:"targetItem")
-		coder.encodeDouble(Double(lineWidth),forKey:"lineWidth")
-		coder.encodeObject(linkShadow,forKey:"linkShadow")
 		}
 		
 	func setSource(item:VisualItem)

@@ -10,7 +10,7 @@ import Foundation
 import AppKit
 import QuartzCore
 
-class LayoutFrame
+class LayoutFrame:NSObject
 	{
 	var leftRatio:CGFloat
 	var leftOffset:CGFloat
@@ -21,7 +21,7 @@ class LayoutFrame
 	var bottomRatio:CGFloat
 	var bottomOffset:CGFloat
 	
-	init()
+	override init()
 		{
 		leftRatio = 0
 		leftOffset = 0
@@ -31,18 +31,19 @@ class LayoutFrame
 		rightOffset = 0
 		bottomRatio = 1
 		bottomOffset = 0
+		super.init()
 		}
 		
-	required init(coder:NSCoder)
+	init(coder aDecoder:NSCoder)
 		{
-		leftRatio = CGFloat(coder.decodeDoubleForKey("leftRatio"))
-		leftOffset = CGFloat(coder.decodeDoubleForKey("leftOffset"))
-		topRatio = CGFloat(coder.decodeDoubleForKey("topRatio"))
-		topOffset = CGFloat(coder.decodeDoubleForKey("topOffset"))
-		rightRatio = CGFloat(coder.decodeDoubleForKey("rightRatio"))
-		rightOffset = CGFloat(coder.decodeDoubleForKey("rightOffset"))
-		bottomRatio = CGFloat(coder.decodeDoubleForKey("bottomRatio"))
-		bottomOffset = CGFloat(coder.decodeDoubleForKey("bottomOffset"))
+		leftRatio = CGFloat(aDecoder.decodeDoubleForKey("leftRatio"))
+		leftOffset = CGFloat(aDecoder.decodeDoubleForKey("leftOffset"))
+		topRatio = CGFloat(aDecoder.decodeDoubleForKey("topRatio"))
+		topOffset = CGFloat(aDecoder.decodeDoubleForKey("topOffset"))
+		rightRatio = CGFloat(aDecoder.decodeDoubleForKey("rightRatio"))
+		rightOffset = CGFloat(aDecoder.decodeDoubleForKey("rightOffset"))
+		bottomRatio = CGFloat(aDecoder.decodeDoubleForKey("bottomRatio"))
+		bottomOffset = CGFloat(aDecoder.decodeDoubleForKey("bottomOffset"))
 		}
 		
 	convenience init(leftRatio:CGFloat,leftOffset:CGFloat,topRatio:CGFloat,topOffset:CGFloat,rightRatio:CGFloat,rightOffset:CGFloat,bottomRatio:CGFloat,bottomOffset:CGFloat)
@@ -62,12 +63,12 @@ class LayoutFrame
 		{
 		coder.encodeDouble(Double(leftRatio),forKey:"leftRatio")
 		coder.encodeDouble(Double(leftOffset),forKey:"leftOffset")
-		coder.encodeDouble(Double(leftRatio),forKey:"topRatio")
-		coder.encodeDouble(Double(leftOffset),forKey:"topOffset")
-		coder.encodeDouble(Double(leftRatio),forKey:"rightRatio")
-		coder.encodeDouble(Double(leftOffset),forKey:"rightOffset")
-		coder.encodeDouble(Double(leftRatio),forKey:"bottomRatio")
-		coder.encodeDouble(Double(leftOffset),forKey:"bottomOffset")
+		coder.encodeDouble(Double(topRatio),forKey:"topRatio")
+		coder.encodeDouble(Double(topOffset),forKey:"topOffset")
+		coder.encodeDouble(Double(rightRatio),forKey:"rightRatio")
+		coder.encodeDouble(Double(rightOffset),forKey:"rightOffset")
+		coder.encodeDouble(Double(bottomRatio),forKey:"bottomRatio")
+		coder.encodeDouble(Double(bottomOffset),forKey:"bottomOffset")
 		}
 		
 	func rectInRect(rect:CGRect) -> CGRect

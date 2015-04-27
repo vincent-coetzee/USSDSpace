@@ -15,9 +15,14 @@ class VisualDataLink:VisualLink
 	var bubbleLayer:CALayer = CALayer()
 	var bubbleRect:CGRect = CGRect(x:0,y:0,width:0,height:0)
 	
-	required convenience init(coder aDecoder: NSCoder) 
+	override init()
 		{
-		self.init(coder:aDecoder)
+		super.init()
+		}
+		
+	required init(coder aDecoder: NSCoder) 
+		{
+		super.init(coder:aDecoder)
 		bubbleLayer = aDecoder.decodeObjectForKey("bubbleLayer") as! CALayer
 		bubbleRect = aDecoder.decodeRectForKey("bubbleRect")
 		}

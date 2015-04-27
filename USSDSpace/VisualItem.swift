@@ -35,7 +35,11 @@ class VisualItem:CALayer,VisualContainer
 		{
 		layoutFrame = LayoutFrame()
 	    super.init(coder:aDecoder)
-		parent = aDecoder.decodeObjectForKey("parent") as! VisualContainer?
+		var anObject = aDecoder.decodeObjectForKey("parent") 
+		if anObject != nil
+			{
+			parent = anObject as! VisualContainer?
+			}
 		layoutFrame = aDecoder.decodeObjectForKey("layoutFrame") as! LayoutFrame
 //		_styling = aDecoder.decodeObjectForKey("_styling") as! [NSObject:AnyObject]?
 		}
@@ -43,7 +47,14 @@ class VisualItem:CALayer,VisualContainer
 	override func encodeWithCoder(coder:NSCoder)
 		{
 		super.encodeWithCoder(coder)
-		coder.encodeObject(parent as! VisualItem,forKey:"parent")
+		if self.container.isView
+			{
+			coder.encodeObject(nil,forKey:"parent")
+			}
+		else
+			{
+			coder.encodeObject(parent as! VisualItem,forKey:"parent")
+			}
 		coder.encodeObject(layoutFrame,forKey:"layoutFrame")
 //		coder.encodeObject(_styling as! NSDictionary,forKey:"_styling")
 		}
@@ -52,6 +63,10 @@ class VisualItem:CALayer,VisualContainer
 		{
 		layoutFrame = LayoutFrame()
 		super.init(layer:layer)
+		}
+		
+	func loadIntoLayer(menuLayer:CALayer,linkLayer:LinkManagementLayer)
+		{
 		}
 		
 	func loopUntilMouseUp(inView:DesignView,closure: (point:CGPoint,atEnd:Bool) -> ())
@@ -220,7 +235,7 @@ class VisualItem:CALayer,VisualContainer
 		return(CGSize(width:-1,height:-1))
 		}
 		
-	var workspace:USSDWorkspace?
+	var workspace:Workspace?
 		{
 		get
 			{
@@ -248,12 +263,6 @@ class VisualItem:CALayer,VisualContainer
 		
 	func adjustForLinkChanges(link:VisualLink,source:VisualItem,target:VisualItem)
 		{
-		}
-		
-	func addItem(item:VisualItem)
-		{
-		item.container = self
-		addSublayer(item)
 		}
 		
 	func frameChanged(item:VisualItem)

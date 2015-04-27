@@ -24,6 +24,22 @@ class Shadow:NSObject
 		color = NSColor.blackColor()
 		}
 		
+	init(coder aDecoder:NSCoder)
+		{
+		radius = CGFloat(aDecoder.decodeDoubleForKey("Shadow.radius"))
+		offset = aDecoder.decodeSizeForKey("Shadow.offset")
+		opacity = CGFloat(aDecoder.decodeDoubleForKey("Shadow.opacity"))
+		color = aDecoder.decodeObjectForKey("Shadow.color") as! NSColor
+		}
+		
+	func encodeWithCoder(coder:NSCoder)
+		{
+		coder.encodeDouble(Double(radius),forKey:"Shadow.radius")
+		coder.encodeSize(offset,forKey:"Shadow.offset")
+		coder.encodeDouble(Double(opacity),forKey:"Shadow.opacity")
+		coder.encodeObject(color,forKey:"Shadow.color")
+		}
+		
 	func setOnLayer(layer:CALayer)
 		{
 		layer.shadowRadius = radius
