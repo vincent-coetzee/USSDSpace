@@ -89,6 +89,7 @@
 		BF54152E1AE77F6E00DA14BA /* NSAttributedStringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF54152D1AE77F6E00DA14BA /* NSAttributedStringExtensions.swift */; };
 		BF7152991AD5918800CB15B6 /* GraphicsUtilities in Resources */ = {isa = PBXBuildFile; fileRef = BF7152981AD5918800CB15B6 /* GraphicsUtilities */; };
 		BF71529B1AD5927700CB15B6 /* NSLineSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF71529A1AD5927700CB15B6 /* NSLineSegment.swift */; };
+		BF96C1321AEE8AE400B5D4E8 /* FrameDependent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF96C1311AEE8AE400B5D4E8 /* FrameDependent.swift */; };
 		BF996C051AD98329007DB769 /* socket-empty-grey-16x16.png in Resources */ = {isa = PBXBuildFile; fileRef = BF996C041AD98329007DB769 /* socket-empty-grey-16x16.png */; };
 		BF996C071AD993F3007DB769 /* USSDActionMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF996C061AD993F3007DB769 /* USSDActionMenuItem.swift */; };
 		BF996C091AD9971F007DB769 /* socket-action-empty-16x16.png in Resources */ = {isa = PBXBuildFile; fileRef = BF996C081AD9971F007DB769 /* socket-action-empty-16x16.png */; };
@@ -220,6 +221,7 @@
 		BF54152D1AE77F6E00DA14BA /* NSAttributedStringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAttributedStringExtensions.swift; sourceTree = "<group>"; };
 		BF7152981AD5918800CB15B6 /* GraphicsUtilities */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GraphicsUtilities; sourceTree = "<group>"; };
 		BF71529A1AD5927700CB15B6 /* NSLineSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSLineSegment.swift; sourceTree = "<group>"; };
+		BF96C1311AEE8AE400B5D4E8 /* FrameDependent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrameDependent.swift; sourceTree = "<group>"; };
 		BF996C041AD98329007DB769 /* socket-empty-grey-16x16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "socket-empty-grey-16x16.png"; sourceTree = "<group>"; };
 		BF996C061AD993F3007DB769 /* USSDActionMenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USSDActionMenuItem.swift; sourceTree = "<group>"; };
 		BF996C081AD9971F007DB769 /* socket-action-empty-16x16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "socket-action-empty-16x16.png"; sourceTree = "<group>"; };
@@ -321,18 +323,19 @@
 		BF46F1641AED4F7B000E63F5 /* UFX2 */ = {
 			isa = PBXGroup;
 			children = (
-				BF46F1621AED4D5A000E63F5 /* VisualItem.swift */,
+				BF96C1311AEE8AE400B5D4E8 /* FrameDependent.swift */,
 				BF46F1651AED4F9E000E63F5 /* LayoutFrame.swift */,
+				BF46F17B1AED9B12000E63F5 /* RectangleEdge.swift */,
+				BF46F1791AED97D3000E63F5 /* Shadow.swift */,
 				BF46F1691AED5C64000E63F5 /* VisualContainer.swift */,
+				BF46F1621AED4D5A000E63F5 /* VisualItem.swift */,
 				BF46F16B1AED5E8D000E63F5 /* VisualItemSet.swift */,
 				BF46F16D1AED6C4D000E63F5 /* VisualLink.swift */,
-				BF46F16F1AED7FFB000E63F5 /* VisualMenu.swift */,
-				BF46F1711AED8092000E63F5 /* VisualText.swift */,
-				BF46F1731AED857E000E63F5 /* VisualSlot.swift */,
-				BF46F1751AED8E9F000E63F5 /* VisualMenuEntry.swift */,
 				BF46F1771AED9301000E63F5 /* VisualLinkingMenuEntry.swift */,
-				BF46F1791AED97D3000E63F5 /* Shadow.swift */,
-				BF46F17B1AED9B12000E63F5 /* RectangleEdge.swift */,
+				BF46F16F1AED7FFB000E63F5 /* VisualMenu.swift */,
+				BF46F1751AED8E9F000E63F5 /* VisualMenuEntry.swift */,
+				BF46F1731AED857E000E63F5 /* VisualSlot.swift */,
+				BF46F1711AED8092000E63F5 /* VisualText.swift */,
 			);
 			name = UFX2;
 			sourceTree = "<group>";
@@ -693,6 +696,7 @@
 				BFD426451AD2AEF2008C5009 /* USSDWorkspace.swift in Sources */,
 				BF430AA11AE91AB60011EFD1 /* SimulationContext.swift in Sources */,
 				BFD426531AD2B18C008C5009 /* USSDTextElement.swift in Sources */,
+				BF96C1321AEE8AE400B5D4E8 /* FrameDependent.swift in Sources */,
 				BFE1A40D1AD305650020A7E6 /* USSDMenuEntry.swift in Sources */,
 				BF996C071AD993F3007DB769 /* USSDActionMenuItem.swift in Sources */,
 				BFD426231AD2AE44008C5009 /* AppDelegate.swift in Sources */,

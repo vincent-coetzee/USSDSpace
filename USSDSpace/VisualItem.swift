@@ -13,7 +13,7 @@ import QuartzCore
 class VisualItem:CALayer,VisualContainer
 	{
 	private var parent:VisualContainer?
-	private var frameDependents:VisualItemSet = VisualItemSet()
+	private var _styling:[NSObject:AnyObject?]?
 	
 	override func contentsAreFlipped() -> Bool
 		{
@@ -31,6 +31,105 @@ class VisualItem:CALayer,VisualContainer
 			}
 		}
 		
+	override init(layer:AnyObject?)
+		{
+		layoutFrame = LayoutFrame()
+		super.init(layer:layer)
+		}
+		
+	func loopUntilMouseUp(inView:DesignView,closure: (point:CGPoint,atEnd:Bool) -> ())
+		{
+		var continueToLoop:Bool = true
+		var mask:NSEventMask = NSEventMask.LeftMouseUpMask | NSEventMask.LeftMouseDraggedMask
+		
+		while continueToLoop == true
+			{
+			var localEvent = inView.window!.nextEventMatchingMask(Int(mask.rawValue))!
+			let point = inView.convertPoint(localEvent.locationInWindow,fromView:nil)
+			CATransaction.begin()
+			CATransaction.setValue(kCFBooleanTrue,forKey:kCATransactionDisableActions)
+			if localEvent.type == NSEventType.LeftMouseDragged
+				{
+				inView.autoscroll(localEvent)
+				closure(point: point,atEnd:false)
+				}
+			else if localEvent.type == NSEventType.LeftMouseUp
+				{
+				continueToLoop = false
+				closure(point:point,atEnd:true)
+				}
+			CATransaction.commit()
+			}
+		}
+		
+	func addFrameDependent(dependent:VisualItem)
+		{
+		}
+		
+	func removeFrameDependent(dependent:VisualItem)
+		{
+		}
+		
+	func setIndex(index:Int)
+		{
+		}
+		
+	var centerPointInView:CGPoint
+		{
+		get
+			{
+			return(self.frameAsViewFrame().centerPoint)
+			}
+		}
+		
+	func frameAsViewFrame() -> CGRect
+		{
+		var rect:CGRect = self.frame
+		var aContainer = self.container
+		
+		while !aContainer.isView
+			{
+			var anItem = aContainer as! VisualItem
+			rect.origin = rect.origin.pointByAddingPoint(anItem.frame.origin)
+			aContainer = aContainer.container
+			}
+		return(rect)
+		}
+		
+	func printHierarchy()
+		{
+		var anItem:VisualContainer
+		
+		anItem = self
+		do
+			{
+			var avi:VisualItem
+			avi = anItem as! VisualItem
+			NSLog("\(anItem.dynamicType)(\(avi.frame.origin.x),\(avi.frame.origin.y))")
+			anItem = anItem.container
+			}
+		while !anItem.isView
+		NSLog("MY-FRAME = \(self.frame)")
+		NSLog("VIEW-FRAME = \(self.frameAsViewFrame())")
+		}
+		
+	var styling:[NSObject:AnyObject?]?
+		{
+		get
+			{
+			return(_styling)
+			}
+		set
+			{
+			_styling = newValue
+			applyStyling()
+			}
+		}
+		
+	func applyStyling()
+		{
+		}
+		
 	var centerPoint:CGPoint
 		{
 		get
@@ -40,7 +139,7 @@ class VisualItem:CALayer,VisualContainer
 			}
 		}
 		
-	var layoutFrame:LayoutFrame
+	var layoutFrame:LayoutFrame = LayoutFrame()
 		{
 		didSet
 			{
@@ -138,7 +237,7 @@ class VisualItem:CALayer,VisualContainer
 		addSublayer(item)
 		}
 		
-	func frameChanged()
+	func frameChanged(item:VisualItem)
 		{
 		}
 		
@@ -152,6 +251,10 @@ class VisualItem:CALayer,VisualContainer
 		setNeedsLayout()
 		}
 		
+	func handleMouseDownAtPoint(point:CGPoint,inView:DesignView)
+		{
+		}
+		
 	override func encodeWithCoder(coder:NSCoder)
 		{
 		super.encodeWithCoder(coder)
@@ -163,11 +266,14 @@ class VisualItem:CALayer,VisualContainer
 		{
 		var theFrame:CGRect
 		
-		theFrame = self.frame
-		for child in self.sublayers
+		theFrame = self.bounds
+		if self.sublayers != nil
 			{
-			var item = child as! VisualItem
-			item.frame = item.layoutFrame.rectInRect(theFrame)
+			for child in self.sublayers
+				{
+				var item = child as! VisualItem
+				item.frame = item.layoutFrame.rectInRect(theFrame)
+				}
 			}
 		}
 	}

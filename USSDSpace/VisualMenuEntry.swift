@@ -13,7 +13,9 @@ import QuartzCore
 class VisualMenuEntry:VisualItem
 	{
 	internal var labelItem:VisualText = VisualText()
-	
+	private var actualText:String = ""
+	private var menuIndex:Int = 0
+		
 	override init()
 		{
 		super.init()
@@ -23,23 +25,48 @@ class VisualMenuEntry:VisualItem
 		markForLayout()
 		markForDisplay()
 		self.backgroundColor = NSColor.redColor().CGColor
+		self.styling = UFXStylist.menuItemStyle()
 		}
 
+	override func hitTest(point:CGPoint) -> CALayer?
+		{
+		if CGRectContainsPoint(self.frame,point)
+			{
+			return(self)
+			}
+		return(nil)
+		}
+		
 	required init(coder aDecoder: NSCoder) 
 		{
 	    super.init(coder:aDecoder)
 		labelItem = aDecoder.decodeObjectForKey("labelItem") as! VisualText
 		}
 		
+	override func setIndex(index:Int)
+		{
+		menuIndex = index
+		labelItem.text = displayText
+		}
+		
 	var text:String
 		{
 		get
 			{
-			return(labelItem.text)
+			return(actualText)
 			}
 		set
 			{
-			labelItem.text = newValue
+			actualText = newValue
+			labelItem.text = displayText
+			}
+		}
+		
+	var displayText:String
+		{
+		get
+			{
+			return("\(menuIndex).\(actualText)")
 			}
 		}
 		
@@ -49,20 +76,13 @@ class VisualMenuEntry:VisualItem
 		revisedFrame.size.width -= 32
 		var aSize = labelItem.desiredSizeInFrame(revisedFrame)
 		aSize.width += 32
+		aSize.height = maximum(aSize.height,16)
 		return(aSize)
 		}
 		
-	override var style:[NSObject:AnyObject]!
+	override func applyStyling()
 		{
-		get
-			{
-			return(super.style)
-			}
-		set
-			{
-			super.style = newValue
-			labelItem.style = newValue
-			}
+		labelItem.styling = self.styling
 		}
 		
 	override func drawInContext(context:CGContext)

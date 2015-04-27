@@ -42,12 +42,25 @@ class VisualItemSet:SequenceType
 			}
 		}
 		
-	func frameChanged()
+	func frameChanged(sourceItem:VisualItem)
 		{
 		for item in items
 			{
-			item.frameChanged()
+			item.frameChanged(sourceItem)
 			}
+		}
+		
+	func itemContainingPoint(point:CGPoint) -> VisualItem?
+		{
+		for item in items
+			{
+			var found = item.hitTest(point) as! VisualItem?
+			if found != nil
+				{
+				return(found)
+				}
+			}
+		return(nil)
 		}
 		
 	func generate() -> GeneratorOf<VisualItem> 

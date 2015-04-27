@@ -66,12 +66,11 @@ extension NSPoint
 				}
 			}
 		}
+		
 	init(rho:CGFloat,theta:CGFloat)
 		{
-		var rho:CGFloat
 		var radians:CGFloat
 		
-		rho=CGFloat()
 		radians = theta*CGFloat(M_PI)/CGFloat(180.0)
 		self.init(x:rho*cos(radians),y:rho*sin(radians))
 		}

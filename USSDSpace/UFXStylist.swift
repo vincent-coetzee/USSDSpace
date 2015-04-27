@@ -36,6 +36,7 @@ class UFXStylist:NSObject
 	static var StartMenuLinkColor = NSColor.colorWithUnscaled(208,green:180,blue:209)
 	static var MenuItemStyle:[NSObject:AnyObject]?
 	static var MenuStyle:[NSObject:AnyObject]?
+	static var MenuTitleStyle:[NSObject:AnyObject]?
 	
 	class func menuItemStyle() -> [NSObject:AnyObject]
 		{
@@ -43,7 +44,7 @@ class UFXStylist:NSObject
 			{
 			MenuItemStyle = [NSObject:AnyObject]()
 			MenuItemStyle!["foregroundColor"] = NSColor.blackColor().CGColor
-			MenuItemStyle!["font"] = "MuseoSans-300"
+			MenuItemStyle!["fontName"] = "MuseoSans-300"
 			MenuItemStyle!["fontSize"] = 11
 			}
 		return(MenuItemStyle!)
@@ -55,10 +56,22 @@ class UFXStylist:NSObject
 			{
 			MenuStyle = [NSObject:AnyObject]()
 			MenuStyle!["foregroundColor"] = NSColor.blackColor().CGColor
-			MenuStyle!["font"] = "MuseoSans-700"
-			MenuItemStyle!["fontSize"] = 13
+			MenuStyle!["fontName"] = "MuseoSans-700"
+			MenuStyle!["fontSize"] = 13
 			}
 		return(MenuStyle!)
+		}
+		
+	class func menuTitleStyle() -> [NSObject:AnyObject]
+		{
+		if MenuTitleStyle == nil
+			{
+			MenuTitleStyle = [NSObject:AnyObject]()
+			MenuTitleStyle!["foregroundColor"] = NSColor.blackColor().CGColor
+			MenuTitleStyle!["fontName"] = "MuseoSans-500"
+			MenuTitleStyle!["fontSize"] = 12
+			}
+		return(MenuTitleStyle!)
 		}
 		
 	static func styleMenuEntry(item:USSDMenuEntry)

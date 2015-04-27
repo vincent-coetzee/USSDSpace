@@ -77,10 +77,10 @@ class LayoutFrame
 		var extentX:CGFloat
 		var extentY:CGFloat
 		
-		originX = leftRatio * CGRectGetMinX(rect) + leftOffset
-		originY = topRatio * CGRectGetMinY(rect) + topOffset
-		extentX = rightRatio * CGRectGetMaxX(rect) + rightOffset
-		extentY = bottomRatio * CGRectGetMaxY(rect) + bottomOffset
+		originX = CGRectGetMinX(rect) + leftRatio * rect.width + leftOffset
+		originY = CGRectGetMinY(rect) + topRatio * rect.height + topOffset
+		extentX = CGRectGetMinX(rect) + rightRatio * rect.width + rightOffset
+		extentY = CGRectGetMinY(rect) + bottomRatio * rect.height + bottomOffset
 		return(CGRect(x:originX,y:originY,width:extentX-originX,height:extentY-originY))
 		}
 	}

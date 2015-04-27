@@ -42,16 +42,23 @@ class VisualText:VisualItem
 			}
 		}
 		
-	override var style:[NSObject:AnyObject]!
+	override func hitTest(point:CGPoint) -> CALayer?
 		{
-		set
+		if CGRectContainsPoint(self.frame,point)
 			{
-			textLayer.style = newValue
+			return(self)
 			}
-		get
-			{
-			return(textLayer.style)
-			}
+		return(nil)
+		}
+		
+	override func applyStyling()
+		{
+		var fontName:String = self.styling!["fontName"] as! String
+		var fontSize = self.styling!["fontSize"] as! NSNumber
+		var size:CGFloat = CGFloat(fontSize.doubleValue)
+		textLayer.font = NSFont(name:fontName,size:size)
+		textLayer.fontSize = size
+		textLayer.foregroundColor = self.styling!["foregroundColor"]! as! CGColor
 		}
 		
 	override func desiredSizeInFrame(frame:CGRect) -> CGSize
@@ -63,7 +70,8 @@ class VisualText:VisualItem
 		{
 		super.init()
 		addSublayer(textLayer)
-		self.style = UFXStylist.MenuItemStyle
+		textLayer.alignmentMode = kCAAlignmentCenter
+		textLayer.wrapped = true
 		}
 
 	required init(coder aDecoder: NSCoder) 

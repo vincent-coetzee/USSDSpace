@@ -118,11 +118,11 @@ extension NSRect
 		return(NSRect(origin:self.origin.pointByAddingPoint(point),size:self.size))
 		}
 		
-	var centerPoint:NSPoint
+	var centerPoint:CGPoint
 		{
 		get
 			{
-			return(NSPoint(x:CGRectGetMidX(self),y:CGRectGetMidY(self)))
+			return(CGPoint(x:CGRectGetMidX(self),y:CGRectGetMidY(self)))
 			}
 		}
 		

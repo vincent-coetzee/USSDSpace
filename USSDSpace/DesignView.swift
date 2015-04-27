@@ -28,6 +28,8 @@ class DesignView:NSView,VisualContainer
 	var packages:[String:RemoteUSSDPackage] = [String:RemoteUSSDPackage]()
 	var packageNames:[String]?
 	
+	var items:VisualItemSet = VisualItemSet()
+	
 	override var flipped:Bool
 		{
 		get
@@ -278,7 +280,17 @@ class DesignView:NSView,VisualContainer
 		
 		}
 		
-	override func mouseDown(event:NSEvent)
+	func addLink(link:VisualLink)
+		{
+		linkContainerLayer.addVisualLink(link)
+		}
+		
+	func removeLink(link:VisualLink)
+		{
+		linkContainerLayer.removeVisualLink(link)
+		}
+		
+	func OldmouseDown(event:NSEvent)
 		{
 		var point = convertPoint(event.locationInWindow,fromView:nil)
 		var menu = menuContainingPoint(point)
@@ -297,6 +309,17 @@ class DesignView:NSView,VisualContainer
 			dragElement = menu!
 			dragElement!.startDrag()
 			dragOffset = point.pointBySubtractingPoint(menu!.frame.origin)
+			}
+		}
+		
+	override func mouseDown(event:NSEvent)
+		{
+		var point = convertPoint(event.locationInWindow,fromView:nil)
+		var item = items.itemContainingPoint(point)
+		
+		if item != nil
+			{
+			item!.handleMouseDownAtPoint(point,inView:self)
 			}
 		}
 		
@@ -511,6 +534,7 @@ class DesignView:NSView,VisualContainer
 		menu.setFrameOrigin(currentMousePoint())
 		menu.container = self
 		menuContainerLayer.addSublayer(menu)
+		items.addItem(menu)
 		}
 		
 	func menu(menu: NSMenu,updateItem item: NSMenuItem,atIndex index: Int,shouldCancel: Bool) -> Bool

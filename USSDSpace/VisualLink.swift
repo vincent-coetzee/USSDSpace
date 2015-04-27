@@ -10,7 +10,7 @@ import Foundation
 import AppKit
 import QuartzCore
 
-class VisualLink:NSObject
+class VisualLink:VisualItem
 	{
 	private var sourceItem:VisualItem?
 	private var targetItem:VisualItem?
@@ -19,26 +19,23 @@ class VisualLink:NSObject
 	private var targetPoint:CGPoint
 	private var linkColor:NSColor
 	private var lineWidth:CGFloat 
-	private var shadowOffset:CGSize
-	private var shadowOpacity:CGFloat
-	private var shadowRadius:CGFloat
-	private var shadowColor:NSColor
+	internal var linkShadow:Shadow = Shadow()
 	
 	override init()
 		{
 		sourcePoint = CGPoint(x:0,y:0)
 		targetPoint = sourcePoint
-		shadowOffset = CGSize(width:2,height:2)
-		shadowRadius = 2
-		shadowOpacity = 0.6
-		shadowColor = NSColor.blackColor()
-		linkColor = NSColor.grayColor()
+		linkShadow.offset = CGSize(width:2,height:2)
+		linkShadow.radius = 2
+		linkShadow.opacity = 0.6
+		linkShadow.color = NSColor.blackColor()
+		linkColor = NSColor.lightGrayColor()
 		lineWidth = 4
 		super.init()
 		applyStyle()
 		}
 		
-	convenience init(coder aDecoder: NSCoder) 
+	convenience required init(coder aDecoder: NSCoder) 
 		{
 		self.init(coder:aDecoder)
 		sourcePoint = aDecoder.decodePointForKey("sourcePoint")
@@ -48,10 +45,8 @@ class VisualLink:NSObject
 		sourceItem = aDecoder.decodeObjectForKey("sourceItem") as! VisualItem?
 		targetItem = aDecoder.decodeObjectForKey("targetItem") as! VisualItem?
 		lineWidth = CGFloat(aDecoder.decodeDoubleForKey("lineWidth"))
-		shadowOffset = aDecoder.decodeSizeForKey("shadowOffset")
-		shadowOpacity = CGFloat(aDecoder.decodeDoubleForKey("shadowOpacity"))
-		shadowColor = aDecoder.decodeObjectForKey("shadowColor") as! NSColor
-		shadowRadius = CGFloat(aDecoder.decodeDoubleForKey("shadowRadius"))
+		linkShadow = aDecoder.decodeObjectForKey("linkShadow") as! Shadow
+		linkShadow.setOnLayer(displayLayer)
 		applyStyle()
 		}
 		
@@ -60,14 +55,18 @@ class VisualLink:NSObject
 		displayLayer.lineWidth = lineWidth
 		displayLayer.fillColor = linkColor.CGColor
 		displayLayer.strokeColor = linkColor.CGColor
-		displayLayer.shadowColor = shadowColor.CGColor
-		displayLayer.shadowOffset = shadowOffset
-		displayLayer.shadowOpacity = Float(shadowOpacity)
-		displayLayer.shadowRadius = shadowRadius
+		displayLayer.shadowColor = linkShadow.color.CGColor
+		displayLayer.shadowOffset = linkShadow.offset
+		displayLayer.shadowOpacity = Float(linkShadow.opacity)
+		displayLayer.shadowRadius = linkShadow.radius
+		displayLayer.lineCap = kCALineCapRound
+		displayLayer.borderColor = NSColor.cyanColor().CGColor
+		displayLayer.borderWidth = 5
 		}
 		
-	func encodeWithCoder(coder:NSCoder)
+	override func encodeWithCoder(coder:NSCoder)
 		{
+		super.encodeWithCoder(coder)
 		coder.encodePoint(sourcePoint,forKey:"sourcePoint")
 		coder.encodePoint(targetPoint,forKey:"targetPoint")
 		coder.encodeObject(displayLayer,forKey:"displayLayer")
@@ -76,31 +75,34 @@ class VisualLink:NSObject
 		coder.encodeObject(sourceItem,forKey:"sourceItem")
 		coder.encodeObject(targetItem,forKey:"targetItem")
 		coder.encodeDouble(Double(lineWidth),forKey:"lineWidth")
-		coder.encodeSize(shadowOffset,forKey:"shadowOffset")
-		coder.encodeDouble(Double(shadowRadius),forKey:"shadowRadius")
-		coder.encodeDouble(Double(shadowOpacity),forKey:"shadowOpacity")
+		coder.encodeObject(linkShadow,forKey:"linkShadow")
 		}
 		
 	func setSourceItem(item:VisualItem)
 		{
 		sourceItem = item
-		if sourceItem != nil
-			{
-			sourcePoint = sourceItem!.centerPoint
-			}
+		sourceItem!.topItem!.addFrameDependent(self)
+		sourcePoint = sourceItem!.frameAsViewFrame().centerPoint
 		if sourceItem != nil && targetItem != nil
 			{
 			updateDisplay()
 			}
 		}
 		
+	func disconnect(view:DesignView)
+		{
+		view.removeLink(self)
+		sourceItem!.topItem!.removeFrameDependent(self)
+		targetItem!.removeFrameDependent(self)
+		sourceItem = nil
+		targetItem = nil
+		}
+		
 	func setTargetItem(item:VisualItem)
 		{
 		targetItem = item
-		if sourceItem != nil
-			{
-			targetPoint = targetItem!.centerPoint
-			}
+		targetItem!.addFrameDependent(self)
+		targetPoint = targetItem!.frameAsViewFrame().pointOnPerimeterNearestToPoint(sourcePoint)
 		if sourceItem != nil && targetItem != nil
 			{
 			updateDisplay()
@@ -123,6 +125,20 @@ class VisualLink:NSObject
 		updateDisplay()
 		}
 		
+	override func frameChanged(item:VisualItem)
+		{
+		if item == sourceItem!.topItem
+			{
+			sourcePoint = sourceItem!.frameAsViewFrame().centerPoint
+			updateDisplay()
+			}
+		else if item == targetItem!
+			{
+			targetPoint = targetItem!.frameAsViewFrame().pointOnPerimeterNearestToPoint(sourcePoint)
+			updateDisplay()
+			}
+		}
+		
 	func sourceFrameChanged()
 		{
 		sourcePoint = sourceItem!.centerPoint
@@ -131,7 +147,7 @@ class VisualLink:NSObject
 		
 	func targetFrameChanged()
 		{
-		targetPoint = targetItem!.frame.pointOnPerimeterNearestToPoint(sourcePoint)
+		targetPoint = targetItem!.frameAsViewFrame().pointOnPerimeterNearestToPoint(sourcePoint)
 		updateDisplay()
 		}
 		
