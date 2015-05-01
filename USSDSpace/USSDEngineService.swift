@@ -59,6 +59,7 @@ class USSDEngineService:NSObject,NSURLSessionDelegate
 				{
 				self.resultData = data
 				var string = NSString(data:data!,encoding:NSUTF8StringEncoding) as! String
+				NSLog("RAW STRING IS \"\(string)\")")
 				self.resultString = (string as NSString).stringByReplacingOccurrencesOfString("&",withString:"&amp;")
 				self.resultString = (self.resultString! as NSString).stringByReplacingOccurrencesOfString("196.38.58.244",withString:"10.1.7.1")
 				self.resultString = (self.resultString! as NSString).stringByReplacingOccurrencesOfString("utf-8",withString:"UTF8")

@@ -213,6 +213,7 @@ class Simulator:NSObject,NSXMLParserDelegate
 				{
 				var newError:NSErrorPointer = NSErrorPointer()
 				
+				NSLog("\(xml as NSString)")
 				NSLog("ERROR = \(parser!.parserError)")
 				NSLog("LINENUMBER = \(parser!.lineNumber)")
 				NSLog("COLUMN = \(parser!.columnNumber)")
