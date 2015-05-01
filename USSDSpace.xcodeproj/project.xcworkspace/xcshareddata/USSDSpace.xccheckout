@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>FF0DFAC5-B988-42F2-B1CD-88EB2367CFDE</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>USSDSpace</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>5D91968A84BF2E94A4DE06AB4C10E2F0AEA4A6A6</key>
 		<string>github.com:vincent-coetzee/USSDSpace.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>USSDSpace.xcodeproj/project.xcworkspace</string>
+	<string>USSDSpace.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>5D91968A84BF2E94A4DE06AB4C10E2F0AEA4A6A6</key>

@@ -19,7 +19,8 @@ class DesignController:NSObject
 		var simulator:Simulator
 		
 		//startURL: "https://10.1.7.1:18443/ABWeb/ProcessUSSD"
-		simulator = Simulator.openNewSimulatorOn()
+		simulator = Simulator.openNewSimulatorOn(startURL: "https://10.1.7.1:18443/ABWeb/ProcessUSSD")
+//		simulator = Simulator.openNewSimulatorOn(startURL: "http://localhost:8080/ABWeb/ProcessUSSD")
 		simulator.masterController = self
 		simulators.append(simulator)
 		}
