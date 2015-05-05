@@ -25,7 +25,6 @@ class DesignView:NSView,VisualContainer
 	var primaryContainerLayer:CALayer = CALayer()
 	var linkContainerLayer = LinkManagementLayer()
 	
-	var packages:[String:RemoteUSSDPackage] = [String:RemoteUSSDPackage]()
 	var packageNames:[String]?
 	
 	var items:VisualItemSet = VisualItemSet()
@@ -137,20 +136,6 @@ class DesignView:NSView,VisualContainer
 		newItem!.target = self;
 		var subMenu:NSMenu = NSMenu()
 		newItem!.submenu = subMenu
-		for (key,package) in packages
-			{
-			var item = NSMenuItem(title: key,action:Selector("onSomething:") ,keyEquivalent:"")
-			subMenu.addItem(item)
-			item.target = self
-			var packMenu = NSMenu()
-			item.submenu = packMenu
-			for (actName,act) in package.activities
-				{
-				var lowerItem = NSMenuItem(title:act.name,action:"onSomething:",keyEquivalent:"")
-				packMenu.addItem(lowerItem)
-				lowerItem.target = self
-				}
-			}
 		return(newMenu)
 		}
 		

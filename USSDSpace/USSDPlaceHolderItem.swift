@@ -16,7 +16,6 @@ class USSDPlaceHolderItem:USSDMenuItem
 	private var innerLayer:CALayer = CALayer()
 	
 	var linkedTargetSlots:[TargetSlot] = [TargetSlot]()
-	var package:RemoteUSSDPackage?
 
 	override init()
 		{

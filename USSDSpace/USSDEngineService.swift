@@ -44,8 +44,7 @@ class USSDEngineService:NSObject,NSURLSessionDelegate
 		var dict:NSDictionary?
 		var elapsedTimeInMs:Int = 0
 		
-		string = (aString as NSString).stringByReplacingOccurrencesOfString("196.38.58.244",withString:"10.1.7.1")
-		request = NSMutableURLRequest(URL:NSURL(string:string)!)
+		request = NSMutableURLRequest(URL:NSURL(string:aString)!)
 		request.HTTPMethod = "GET"
 		task = session.dataTaskWithRequest(request,completionHandler: 
 			{(data:NSData!,response:NSURLResponse!,error:NSError!) in 
@@ -61,7 +60,7 @@ class USSDEngineService:NSObject,NSURLSessionDelegate
 				var string = NSString(data:data!,encoding:NSUTF8StringEncoding) as! String
 				NSLog("RAW STRING IS \"\(string)\")")
 				self.resultString = (string as NSString).stringByReplacingOccurrencesOfString("&",withString:"&amp;")
-				self.resultString = (self.resultString! as NSString).stringByReplacingOccurrencesOfString("196.38.58.244",withString:"10.1.7.1")
+				self.resultString = (self.resultString! as NSString).stringByReplacingOccurrencesOfString("196.38.58.244:18443",withString:"10.1.7.1:18443")
 				self.resultString = (self.resultString! as NSString).stringByReplacingOccurrencesOfString("utf-8",withString:"UTF8")
 				}
 			})

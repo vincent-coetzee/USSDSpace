@@ -13,7 +13,7 @@ import QuartzCore
 class VisualMenuEntry:VisualItem,NSTextViewDelegate,NSTextDelegate
 	{
 	internal var labelItem:VisualText = VisualText()
-	private var actualText:String = ""
+	internal var actualText:String = ""
 	private var menuIndex:Int = 0
 	private var textView:NSTextView?
 	
@@ -66,6 +66,8 @@ class VisualMenuEntry:VisualItem,NSTextViewDelegate,NSTextDelegate
 	func editTextInView(view:NSView)
 		{
 		var editFrame = self.frameAsViewFrame()
+		editFrame.size.width -= 34
+		editFrame.origin.x += 16
 		textView = NSTextView(frame:editFrame)
 		textView!.string = self.text
 		textView!.font = UFXStylist.MenuItemFont;

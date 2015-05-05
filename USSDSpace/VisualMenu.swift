@@ -13,9 +13,9 @@ import QuartzCore
 class VisualMenu:VisualItem
 	{
 	private let menuSize = CGSize(width:150,height:271)
-	private var titleItem:VisualText?
+	private var titleItem:VisualLabelItem?
 	private var entries:VisualItemSet = VisualItemSet()
-	private var nameItem:VisualText?
+	private var nameItem:VisualLabelItem?
 	private var frameDependents = VisualItemSet()
 	private var imageLayer:CALayer = CALayer()
 	
@@ -23,9 +23,9 @@ class VisualMenu:VisualItem
 		{
 		super.init(coder:aDecoder)
 		self.shadow = Shadow()
-		titleItem = aDecoder.decodeObjectForKey("titleItem") as? VisualText
+		titleItem = aDecoder.decodeObjectForKey("titleItem") as? VisualLabelItem
 		entries = aDecoder.decodeObjectForKey("entries") as! VisualItemSet
-		nameItem = aDecoder.decodeObjectForKey("nameItem") as? VisualText
+		nameItem = aDecoder.decodeObjectForKey("nameItem") as? VisualLabelItem
 		frameDependents = aDecoder.decodeObjectForKey("frameDependents") as! VisualItemSet
 		imageLayer = aDecoder.decodeObjectForKey("imageLayer") as! CALayer
 		}
@@ -71,6 +71,10 @@ class VisualMenu:VisualItem
 		{
 		var newPoint = point.pointBySubtractingPoint(self.frame.origin)
 		
+		if CGRectContainsPoint(nameItem!.frame,newPoint)
+			{
+			return(nameItem)
+			}
 		if CGRectContainsPoint(self.frame,point)
 			{
 			var anItem = entries.itemContainingPoint(newPoint)
@@ -80,9 +84,10 @@ class VisualMenu:VisualItem
 				}
 			return(self)
 			}
+		
 		return(nil)
 		}
-		
+	
 	override init()
 		{
 		super.init()
@@ -130,7 +135,7 @@ class VisualMenu:VisualItem
 		
 	func addTitleItem()
 		{
-		titleItem = VisualText()
+		titleItem = VisualLabelItem()
 		titleItem!.text = "Menu Title"
 		titleItem!.styling = UFXStylist.menuTitleStyle()
 		addItem(titleItem!)
@@ -138,7 +143,7 @@ class VisualMenu:VisualItem
 		
 	func addNameItem()
 		{
-		nameItem = VisualText()
+		nameItem = VisualLabelItem()
 		nameItem!.container = self
 		nameItem!.text = "MENU-NAME"
 		nameItem!.layoutFrame = LayoutFrame(leftRatio:0,leftOffset:2,topRatio:0,topOffset:15,rightRatio:1,rightOffset:-2,bottomRatio:0,bottomOffset:35)

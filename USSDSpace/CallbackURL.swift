@@ -39,7 +39,7 @@ class CallbackURL
 			arguments = (values as NSArray).componentsJoinedByString("&")
 			url = url + ((url as NSString).containsString("?") ? "&" : "?") + arguments
 			}
-		url = (url as NSString).stringByReplacingOccurrencesOfString("https://10.1.7.1",withString:"http://localhost") as String
+		url = (url as NSString).stringByReplacingOccurrencesOfString("https://10.1.7.1:8443",withString:"http://localhost:18443") as String
 		return(NSURL(string:url.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!))!
 		}
 	}
