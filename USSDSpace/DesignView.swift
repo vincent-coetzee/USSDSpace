@@ -529,7 +529,7 @@ class DesignView:NSView,VisualContainer
 			{
 			service.requestToken("vincent.coetzee",userName:"vac14830B",password:"somethingObscure09@")
 			}
-//		service.deployWorkspace(workspace)
+		service.deployWorkspace(workspace)
 		}
 		
 	@IBAction func onDeployAndRun(sender:AnyObject?)

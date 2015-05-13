@@ -22,24 +22,24 @@ class Workspace:NSObject
 	var workspaceName = USSDWorkspace.newUUIDString()
 	var workspaceItem:USSDWorkspaceItem?
 	var visualLinks:[VisualLink] = [VisualLink]()
+	var uuid:String = Workspace.newUUIDString()
 	
 	func asJSONString() -> String
 		{
-//		var targetUUID:String
-//		
-//		targetUUID = startMenu == nil ? "" : startMenu!.uuid
-//		var aString:String = "{\"name\":\"\(workspaceName)\",\"uuid\":\"\(uuid)\",\"startMenuUUID\":\"\(targetUUID)\","
-//		var menuStrings:[String] = [String]()
-//		
-//		for element in elements
-//			{
-//			menuStrings.append(element.asJSONString())
-//			}
-//		var menusString = (menuStrings as NSArray).componentsJoinedByString(",")
-//		aString += "\"menus\":[\(menusString)]"
-//		aString += "}"
-//		return(aString)
-		return("")
+		var targetUUID:String
+		
+		targetUUID = startItem == nil ? "" : startItem!.uuid
+		var aString:String = "{\"type\":\"workspace\",\"name\":\"\(workspaceName)\",\"uuid\":\"\(uuid)\",\"startMenuUUID\":\"\(targetUUID)\","
+		var menuStrings:[String] = [String]()
+		
+		for item in items
+			{
+			menuStrings.append(item.asJSONString())
+			}
+		var menusString = (menuStrings as NSArray).componentsJoinedByString(",")
+		aString += "\"menus\":[\(menusString)]"
+		aString += "}"
+		return(aString)
 		}
 		
 	static func loadFromPath(path:String) -> Workspace
@@ -60,6 +60,7 @@ class Workspace:NSObject
 		
 	func saveOnPath(path:String) -> Bool
 		{
+		NSLog("\(asJSONString())")
 		workspacePath = path
 		return(NSKeyedArchiver.archiveRootObject(self,toFile:path))
 		}
@@ -99,6 +100,10 @@ class Workspace:NSObject
 	func addItem(item:VisualItem)
 		{
 		items.addItem(item)
+		if startItem == nil
+			{
+			startItem = item
+			}
 		}
 		
 	func nextMenuName() -> String

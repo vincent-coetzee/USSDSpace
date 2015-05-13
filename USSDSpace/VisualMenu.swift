@@ -51,6 +51,21 @@ class VisualMenu:VisualItem
 			}
 		}
 		
+	override func asJSONString() -> String
+		{
+		var aString:String = ""
+		var stringItems:[String] = [String]()
+		
+		aString = "{ \"type\":\"menu\",\"uuid\": \"\(uuid)\", \"text\": \"\(titleItem!.text)\", \"menuName\": \"\(nameItem!.text)\", \"transferElements\": [";
+		for entry in entries
+			{
+			stringItems.append(entry.asJSONString())
+			}
+		aString += (stringItems as NSArray).componentsJoinedByString(",")
+		aString += "]}"
+		return(aString)
+		}
+		
 	override func loadIntoLayer(menuLayer:CALayer,linkLayer:LinkManagementLayer)
 		{
 		var newFrame = self.frame

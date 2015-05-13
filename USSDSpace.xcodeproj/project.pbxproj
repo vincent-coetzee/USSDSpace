@@ -341,9 +341,11 @@
 				BF124AB91AEEB64400BC22AE /* VisualActionLink.swift */,
 				BF124AB71AEEB44600BC22AE /* VisualActionMenuEntry.swift */,
 				BF46F1691AED5C64000E63F5 /* VisualContainer.swift */,
+				BF124ABF1AEEC32D00BC22AE /* VisualDataLink.swift */,
 				BF124ABD1AEEC31500BC22AE /* VisualDataMenuEntry.swift */,
 				BF46F1621AED4D5A000E63F5 /* VisualItem.swift */,
 				BF46F16B1AED5E8D000E63F5 /* VisualItemSet.swift */,
+				BF4922551AF93AA2009F1248 /* VisualLabelItem.swift */,
 				BF46F16D1AED6C4D000E63F5 /* VisualLink.swift */,
 				BF46F1771AED9301000E63F5 /* VisualLinkingMenuEntry.swift */,
 				BF46F16F1AED7FFB000E63F5 /* VisualMenu.swift */,
@@ -352,9 +354,7 @@
 				BF46F1731AED857E000E63F5 /* VisualSlot.swift */,
 				BF46F1711AED8092000E63F5 /* VisualText.swift */,
 				BF124ABB1AEEBA5A00BC22AE /* VisualWorkspaceProxyItem.swift */,
-				BF124ABF1AEEC32D00BC22AE /* VisualDataLink.swift */,
 				BF124AC71AEEE38E00BC22AE /* Workspace.swift */,
-				BF4922551AF93AA2009F1248 /* VisualLabelItem.swift */,
 			);
 			name = UFX2;
 			sourceTree = "<group>";

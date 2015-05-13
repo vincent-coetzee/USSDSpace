@@ -66,6 +66,20 @@ class VisualLinkingMenuEntry:VisualMenuEntry
 			}
 		}
 		
+	override func asJSONString() -> String
+		{
+		var aLink:VisualLink?
+		var targetUUID:String
+		
+		aLink = leftSlot.link
+		if aLink == nil
+			{
+			aLink = rightSlot.link
+			}
+		targetUUID = aLink == nil ? "" : aLink!.targetItem!.uuid
+		return("{ \"type\":\"link\",\"uuid\": \"\(uuid)\", \"target-uuid\": \"\(targetUUID)\"}");
+		}
+		
 	override func slotWasUnLinked(slot:VisualSlot)
 		{
 		rightSlot.enabled = true

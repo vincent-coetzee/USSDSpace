@@ -14,6 +14,7 @@ class VisualItem:CALayer,VisualContainer
 	{
 	private var parent:VisualContainer?
 	private var _styling:[NSObject:AnyObject?]?
+			var uuid:String = Workspace.newUUIDString()
 	
 	override func contentsAreFlipped() -> Bool
 		{
@@ -63,6 +64,11 @@ class VisualItem:CALayer,VisualContainer
 		{
 		layoutFrame = LayoutFrame()
 		super.init(layer:layer)
+		}
+		
+	func asJSONString() -> String
+		{
+		return("")
 		}
 		
 	func loadIntoLayer(menuLayer:CALayer,linkLayer:LinkManagementLayer)
@@ -141,8 +147,6 @@ class VisualItem:CALayer,VisualContainer
 			anItem = anItem.container
 			}
 		while !anItem.isView
-		NSLog("MY-FRAME = \(self.frame)")
-		NSLog("VIEW-FRAME = \(self.frameAsViewFrame())")
 		}
 		
 	var styling:[NSObject:AnyObject?]?
@@ -258,6 +262,7 @@ class VisualItem:CALayer,VisualContainer
 	override init()
 		{
 		layoutFrame = LayoutFrame()
+		
 		super.init()
 		}
 		

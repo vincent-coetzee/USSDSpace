@@ -151,7 +151,7 @@ class USSDManagerService
 		ErrorSheet(heading:heading,message:errorMessage)
 		}
 		
-	func deployWorkspace(workspace:USSDWorkspace)
+	func deployWorkspace(workspace:Workspace)
 		{
 		var request:NSMutableURLRequest
 		var task:NSURLSessionUploadTask

@@ -63,6 +63,11 @@ class VisualMenuEntry:VisualItem,NSTextViewDelegate,NSTextDelegate
 		return(nil)
 		}
 		
+	override func asJSONString() -> String
+		{
+		return("{ \"type\":\"menuEntry\",\"uuid\": \"\(uuid)\", \"text\": \"\(text)\", \"menuIndex\": \(menuIndex)}");
+		}
+		
 	func editTextInView(view:NSView)
 		{
 		var editFrame = self.frameAsViewFrame()
