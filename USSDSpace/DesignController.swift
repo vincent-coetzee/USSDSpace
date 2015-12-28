@@ -19,7 +19,7 @@ class DesignController:NSObject
 		var simulator:Simulator
 		
 		//startURL: "https://10.1.7.1:18443/ABWeb/ProcessUSSD" 
-		simulator = Simulator.openNewSimulatorOn(startURL: "https://10.1.7.1:18443/ABWeb/ProcessUSSD")
+		simulator = Simulator.openNewSimulatorOn("https://africanbankdev.payperks.co.za:8443/ABWeb/ProcessUSSD")
 //		simulator = Simulator.openNewSimulatorOn(startURL: "http://localhost:9090/ABWeb/ProcessUSSD")
 		simulator.masterController = self
 		simulators.append(simulator)
@@ -29,7 +29,7 @@ class DesignController:NSObject
 		{
 		var index:Int?
 		
-		index = find(simulators,simulator)
+		index = simulators.indexOf(simulator)
 		if index != nil
 			{
 			simulator.closeWindow()

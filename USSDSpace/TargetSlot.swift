@@ -21,7 +21,7 @@ class TargetSlot:NSObject
 		if link != nil
 			{
 			sourceSlot!.adjustSideIfNeeded()
-			var targetPoint = frame.pointOnPerimeterNearestToPoint(sourceSlot!.centerPoint)
+			let targetPoint = frame.pointOnPerimeterNearestToPoint(sourceSlot!.centerPoint)
 			link!.setEnd(targetPoint)
 			}
 		}

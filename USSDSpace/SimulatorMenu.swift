@@ -45,7 +45,7 @@ class SimulatorMenu:NSObject,NSXMLParserDelegate
 		menuLayer!.wrapped = true
 		menuLayer!.string = title
 		UFXStylist.styleSimulatorLayer(menuLayer!)
-		layer.addSublayer(menuLayer)
+		layer.addSublayer(menuLayer!)
 		for item in items
 			{
 			item.addToLayer(layer,inWidth:inWidth)
@@ -119,7 +119,7 @@ class SimulatorMenu:NSObject,NSXMLParserDelegate
 		return(nil)
 		}
 		
-	func parser(parser: NSXMLParser,didStartElement elementName: String,namespaceURI: String?,qualifiedName: String?,attributes attributeDict: [NSObject : AnyObject])
+	func parser(parser: NSXMLParser,didStartElement elementName: String,namespaceURI: String?,qualifiedName: String?,attributes attributeDict: [String : String])
 		{
 		var item:SimulatorMenuItem
 		
@@ -127,7 +127,7 @@ class SimulatorMenu:NSObject,NSXMLParserDelegate
 		lastElement = elementName
 		if elementName == "option"
 			{
-			item = SimulatorMenuItem(order:attributeDict["order"]! as! String,display:attributeDict["display"]! as! String,command:attributeDict["command"]! as! String,callback:attributeDict["callback"]! as! String)
+			item = SimulatorMenuItem(order:attributeDict["order"]! ,display:attributeDict["display"]! ,command:attributeDict["command"]! ,callback:attributeDict["callback"]! )
 			items.append(item)
 			currentItem = item
 			}

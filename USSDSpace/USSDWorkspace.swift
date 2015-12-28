@@ -37,7 +37,7 @@ class USSDWorkspace:USSDElement
 			{
 			menuStrings.append(element.asJSONString())
 			}
-		var menusString = (menuStrings as NSArray).componentsJoinedByString(",")
+		let menusString = (menuStrings as NSArray).componentsJoinedByString(",")
 		aString += "\"menus\":[\(menusString)]"
 		aString += "}"
 		return(aString)
@@ -48,15 +48,15 @@ class USSDWorkspace:USSDElement
 		var workspace:USSDWorkspace
 		
 		workspace = NSKeyedUnarchiver.unarchiveObjectWithFile(path) as! USSDWorkspace
-		workspace.workspaceName = path.lastPathComponent
+		workspace.workspaceName = NSURL.fileURLWithPath(path).lastPathComponent!
 		workspace.recalibrate()
 		return(workspace)
 		}
 		
 	static func newUUIDString() -> String
 		{
-		var uuid = CFUUIDCreate(kCFAllocatorDefault)
-		var uuidString = CFUUIDCreateString(kCFAllocatorDefault,uuid)
+		let uuid = CFUUIDCreate(kCFAllocatorDefault)
+		let uuidString = CFUUIDCreateString(kCFAllocatorDefault,uuid)
 		return(String(uuidString))
 		}
 		
@@ -103,7 +103,7 @@ class USSDWorkspace:USSDElement
 		coder.encodeObject(workspaceItem,forKey:"workspaceItem")
 		}
 		
-	required init(coder aDecoder: NSCoder) 
+	required init?(coder aDecoder: NSCoder) 
 		{
 		super.init(coder:aDecoder)
 		startMenu = aDecoder.decodeObjectForKey("startMenu") as! USSDMenu?
@@ -137,12 +137,12 @@ class USSDWorkspace:USSDElement
 			{
 			names.append(element.menuName)
 			}
-		return(sorted(names,<))
+		return(names.sort(<))
 		}
 		
 	func nextMenuName() -> String
 		{
-		var aName = "\(campaignName)-\(nextMenuNumber++)"
+		let aName = "\(campaignName)-\(nextMenuNumber++)"
 		return(aName)
 		}
 		

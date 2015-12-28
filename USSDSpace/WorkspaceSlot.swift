@@ -18,7 +18,7 @@ class WorkspaceSlot:Slot
 		self.removeAllAnimations()
 		}
 
-	required init(coder aDecoder: NSCoder)
+	required init?(coder aDecoder: NSCoder)
 		{
 	    super.init(coder:aDecoder)
 		self.removeAllAnimations()
@@ -97,7 +97,7 @@ class WorkspaceSlot:Slot
 		self.contents = self.slotImage
 		}
 		
-	override init(layer:AnyObject?)
+	override init(layer:AnyObject)
 		{
 		super.init(layer:layer)
 		outerFrame = CGRect(x:0,y:0,width:32,height:32)
@@ -105,15 +105,15 @@ class WorkspaceSlot:Slot
 		
 	override func offsetByPoint(point:NSPoint) -> Slot
 		{
-		var origin = outerFrame.origin
-		var newOrigin = origin.pointByAddingPoint(point)
+		let origin = outerFrame.origin
+		let newOrigin = origin.pointByAddingPoint(point)
 		outerFrame = CGRect(origin:newOrigin,size:CGSize(width: 32,height: 32))
 		return(self)
 		}
 		
 	override func newLink() -> SlotLink
 		{
-		var aLink:ActionSlotLink = ActionSlotLink()
+		let aLink:ActionSlotLink = ActionSlotLink()
 		aLink.removeAllAnimations()
 		aLink.sourceItem = menuItem
 		aLink.bubbleLayer!.contents = NSImage(named:"StartMenuBall-24x24")

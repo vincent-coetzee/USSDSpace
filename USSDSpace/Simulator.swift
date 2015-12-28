@@ -37,7 +37,7 @@ class Simulator:NSObject,NSXMLParserDelegate
 	var masterController:DesignController?
 	var targetURL:CallbackURL?
 	
-	class func openNewSimulatorOn(startURL:String = "http://197.96.167.14:8080/bei/ussdhandler") -> Simulator
+	class func openNewSimulatorOn(startURL:String = "http://localhost:8080/bei/ussdhandler") -> Simulator
 		{
 		var newSimulator:Simulator
 		var nib:NSNib
@@ -53,8 +53,8 @@ class Simulator:NSObject,NSXMLParserDelegate
 	@IBAction func onContextOk(sender:AnyObject?)
 		{
 		contextView!.removeFromSuperview()
-		window!.contentView.addSubview(view!)
-		window!.contentView.layer!!.contents = NSImage(named:"WhiteiPhone-292x597")
+		window!.contentView!.addSubview(view!)
+		window!.contentView!.layer!.contents = NSImage(named:"WhiteiPhone-292x597")
 //		window!.makeKeyAndOrderFront(self)
 //		contextWindow!.close()
 		setCallback(targetURL!)
@@ -77,7 +77,7 @@ class Simulator:NSObject,NSXMLParserDelegate
 		{
 		nib = NSNib(nibNamed: "SimulatorWindow",bundle:NSBundle.mainBundle())
 		nib!.instantiateWithOwner(self,topLevelObjects:array)
-		view = SimulatorView(frame:window!.contentView.bounds)
+		view = SimulatorView(frame:window!.contentView!.bounds)
 		view!.menu = viewMenu!
 		view!.controller = self
 		}
@@ -126,11 +126,11 @@ class Simulator:NSObject,NSXMLParserDelegate
 		
 	@IBAction func onFlip(sender:AnyObject?)
 		{
-		var topAnimation = flipAnimationWithDuration(1.0, beginsOnTop: true, scale: 1.3)
-		var bottomAnimation = flipAnimationWithDuration(1.0, beginsOnTop: false, scale: 1.3)
-		var topLayer = topView!.layerFromContents()
-		var bottomLayer = bottomView!.layerFromContents()
-		var distance:CGFloat = 1500
+		let topAnimation = flipAnimationWithDuration(1.0, beginsOnTop: true, scale: 1.3)
+		let bottomAnimation = flipAnimationWithDuration(1.0, beginsOnTop: false, scale: 1.3)
+		let topLayer = topView!.layerFromContents()
+		let bottomLayer = bottomView!.layerFromContents()
+		let distance:CGFloat = 1500
 		var perspective:CATransform3D = CATransform3DIdentity
 		
 		perspective.m34 = -1 / distance
@@ -178,7 +178,7 @@ class Simulator:NSObject,NSXMLParserDelegate
 			{
 			if reply >= "0" || reply <= "99"
 				{
-				var commandIndex = reply.toInt()
+				let commandIndex = Int(reply)
 				callback = menu.menuItemCallbackStringAtCommand(commandIndex!)
 				}
 			}
@@ -202,7 +202,7 @@ class Simulator:NSObject,NSXMLParserDelegate
 		callback.setValue("27828877777",forKey:"msisdn")
 		NSLog("CALLING \(callback.finalURL())")
 		service = USSDEngineService()
-		xml = service.fetchXMLAtURL(callback.finalURL().absoluteString!)!
+		xml = service.fetchXMLAtURL(callback.finalURL().absoluteString)!
 		NSLog("\(xml)")
 		parser = NSXMLParser(data:xml.dataUsingEncoding(NSUTF8StringEncoding)!)
 		if parser != nil
@@ -227,7 +227,7 @@ class Simulator:NSObject,NSXMLParserDelegate
 			}
 		}
 		
-	func parser(parser: NSXMLParser,didStartElement elementName: String,namespaceURI: String?,qualifiedName: String?,attributes attributeDict: [NSObject : AnyObject])
+	func parser(parser: NSXMLParser,didStartElement elementName: String,namespaceURI: String?,qualifiedName: String?,attributes attributeDict: [String : String])
 		{
 		if elementName == "headertext"
 			{

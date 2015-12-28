@@ -34,7 +34,7 @@ extension NSColor
 		var b:CGFloat = 0
 
 		getHue(&h,saturation:&s,brightness:&b,alpha:&a)
-		return(NSColor(hue: h,saturation: s+maximum(0.005,minimum(saturation,1.0)),brightness: b+maximum(0.005,minimum(brightness,1.0)),alpha: a))
+		return(NSColor(hue: h,saturation: s+maximum(0.005,b: minimum(saturation,b: 1.0)),brightness: b+maximum(0.005,b: minimum(brightness,b: 1.0)),alpha: a))
 		}
 		
 	func withAlpha(alpha:CGFloat) -> NSColor

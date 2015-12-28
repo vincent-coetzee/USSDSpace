@@ -36,7 +36,7 @@ class Workspace:NSObject
 			{
 			menuStrings.append(item.asJSONString())
 			}
-		var menusString = (menuStrings as NSArray).componentsJoinedByString(",")
+		let menusString = (menuStrings as NSArray).componentsJoinedByString(",")
 		aString += "\"menus\":[\(menusString)]"
 		aString += "}"
 		return(aString)
@@ -47,14 +47,14 @@ class Workspace:NSObject
 		var workspace:Workspace
 		
 		workspace = NSKeyedUnarchiver.unarchiveObjectWithFile(path) as! Workspace
-		workspace.workspaceName = path.lastPathComponent
+		workspace.workspaceName = NSURL.fileURLWithPath(path).lastPathComponent!
 		return(workspace)
 		}
 		
 	static func newUUIDString() -> String
 		{
-		var uuid = CFUUIDCreate(kCFAllocatorDefault)
-		var uuidString = CFUUIDCreateString(kCFAllocatorDefault,uuid)
+		let uuid = CFUUIDCreate(kCFAllocatorDefault)
+		let uuidString = CFUUIDCreateString(kCFAllocatorDefault,uuid)
 		return(String(uuidString))
 		}
 		
@@ -108,7 +108,7 @@ class Workspace:NSObject
 		
 	func nextMenuName() -> String
 		{
-		var aName = "\(campaignName)-\(nextMenuNumber++)"
+		let aName = "\(campaignName)-\(nextMenuNumber++)"
 		return(aName)
 		}
 		

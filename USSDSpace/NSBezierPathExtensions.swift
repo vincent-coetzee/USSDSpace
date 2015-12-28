@@ -21,12 +21,12 @@ extension NSBezierPath
 	
 	/// Transforms the NSBezierPath into a CGPathRef
 	///
-	/// :returns: The transformed NSBezierPath
+	/// - returns: The transformed NSBezierPath
 	private func transformToCGPath() -> CGPathRef {
 		
 		// Create path
-		var path = CGPathCreateMutable()
-		var points = UnsafeMutablePointer<NSPoint>.alloc(3)
+		let path = CGPathCreateMutable()
+		let points = UnsafeMutablePointer<NSPoint>.alloc(3)
 		let numElements = self.elementCount
 		
 		if numElements > 0 {

@@ -92,7 +92,7 @@ class SlotLink:USSDItem
 		coder.encodeObject(lineColor,forKey:"lineColor")
 		}
 		
-	required init(coder aDecoder: NSCoder) 
+	required init?(coder aDecoder: NSCoder) 
 		{
 		super.init(coder:aDecoder)
 	    startPoint = aDecoder.decodePointForKey("startPoint")

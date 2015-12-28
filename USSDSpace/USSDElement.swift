@@ -57,7 +57,7 @@ class USSDElement:USSDItem
 //		self.setNeedsDisplay()
 		}
 		
-	required init(coder aDecoder: NSCoder) 
+	required init?(coder aDecoder: NSCoder) 
 		{
 	    super.init(coder:aDecoder)
 		alignmentMode = kCAAlignmentCenter
@@ -104,7 +104,7 @@ class USSDElement:USSDItem
 		
 	func sourceSlotSet() -> SlotSet
 		{
-		var slotSet = SlotSet()
+		let slotSet = SlotSet()
 		return(slotSet)
 		}
 		
@@ -137,7 +137,7 @@ class USSDElement:USSDItem
 		menuLayer.addSublayer(self)
 		}
 		
-	override init(layer:AnyObject?)
+	override init(layer:AnyObject)
 		{
 		super.init(layer:layer)
 		alignmentMode = kCAAlignmentCenter

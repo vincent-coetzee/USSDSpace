@@ -25,12 +25,12 @@ class USSDEngineService:NSObject,NSURLSessionDelegate
 		session = NSURLSession(configuration:configuration,delegate:self,delegateQueue:nil)
 		}
 
-	func URLSession(_ session: NSURLSession,didReceiveChallenge challenge: NSURLAuthenticationChallenge,completionHandler completionHandler: (NSURLSessionAuthChallengeDisposition,NSURLCredential!) -> Void)
+	func URLSession(_ session: NSURLSession,didReceiveChallenge challenge: NSURLAuthenticationChallenge,completionHandler completionHandler: (NSURLSessionAuthChallengeDisposition,NSURLCredential?) -> Void)
 		{
-		var trust = challenge.protectionSpace.serverTrust
+		let trust = challenge.protectionSpace.serverTrust
 		var credential:NSURLCredential
 		
-		credential = NSURLCredential(forTrust:trust)
+		credential = NSURLCredential(forTrust:trust!)
 		completionHandler(NSURLSessionAuthChallengeDisposition.UseCredential,credential)
 		}
 		
@@ -47,7 +47,7 @@ class USSDEngineService:NSObject,NSURLSessionDelegate
 		request = NSMutableURLRequest(URL:NSURL(string:aString)!)
 		request.HTTPMethod = "GET"
 		task = session.dataTaskWithRequest(request,completionHandler: 
-			{(data:NSData!,response:NSURLResponse!,error:NSError!) in 
+			{(data:NSData?,response:NSURLResponse?,error:NSError?) in 
 			self.responseData = data
 			self.response = response
 			if error != nil
@@ -57,10 +57,10 @@ class USSDEngineService:NSObject,NSURLSessionDelegate
 			if data != nil
 				{
 				self.resultData = data
-				var string = NSString(data:data!,encoding:NSUTF8StringEncoding) as! String
+				let string = NSString(data:data!,encoding:NSUTF8StringEncoding) as! String
 				NSLog("RAW STRING IS \"\(string)\")")
 				self.resultString = (string as NSString).stringByReplacingOccurrencesOfString("&",withString:"&amp;")
-				self.resultString = (self.resultString! as NSString).stringByReplacingOccurrencesOfString("196.38.58.244:18443",withString:"10.1.7.1:18443")
+				self.resultString = (self.resultString! as NSString).stringByReplacingOccurrencesOfString("196.38.58.244:8443",withString:"africanbankdev.payperks.co.za:8443")
 				self.resultString = (self.resultString! as NSString).stringByReplacingOccurrencesOfString("utf-8",withString:"UTF8")
 				}
 			})

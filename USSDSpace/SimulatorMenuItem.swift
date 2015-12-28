@@ -22,9 +22,9 @@ class SimulatorMenuItem:NSObject,NSXMLParserDelegate,Selectable
 	init(order:String,display:String,command:String,callback:String)
 		{
 		super.init()
-		self.order = order.toInt()!
+		self.order = Int(order)!
 		self.display = display == "true" 
-		self.command = command.toInt()!
+		self.command = Int(command)!
 		self.callback = callback
 		}
 		
@@ -51,7 +51,7 @@ class SimulatorMenuItem:NSObject,NSXMLParserDelegate,Selectable
 		menuItemLayer!.wrapped = true
 		menuItemLayer!.string = label
 		height = label.heightInWidth(inWidth,withFont: UFXStylist.SimulatorFont!)
-		layer.addSublayer(menuItemLayer)
+		layer.addSublayer(menuItemLayer!)
 		UFXStylist.styleSimulatorLayer(menuItemLayer!)
 		}
 	}

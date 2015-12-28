@@ -15,12 +15,12 @@ class VisualText:VisualItem
 	private var textLayer:CATextLayer = CATextLayer()
 	private var realFont:NSFont?
 	
-	override init(layer:AnyObject?)
+	override init(layer:AnyObject)
 		{
 		super.init(layer:layer)
 		}
 		
-	required init(coder aDecoder: NSCoder) 
+	required init?(coder aDecoder: NSCoder) 
 		{
 	    super.init(coder:aDecoder)
 		textLayer = aDecoder.decodeObjectForKey("textLayer") as! CATextLayer
@@ -72,9 +72,9 @@ class VisualText:VisualItem
 		
 	override func applyStyling()
 		{
-		var fontName:String = self.styling!["fontName"] as! String
-		var fontSize = self.styling!["fontSize"] as! NSNumber
-		var size:CGFloat = CGFloat(fontSize.doubleValue)
+		let fontName:String = self.styling!["fontName"] as! String
+		let fontSize = self.styling!["fontSize"] as! NSNumber
+		let size:CGFloat = CGFloat(fontSize.doubleValue)
 		textLayer.font = NSFont(name:fontName,size:size)
 		textLayer.fontSize = size
 		textLayer.foregroundColor = self.styling!["foregroundColor"]! as! CGColor

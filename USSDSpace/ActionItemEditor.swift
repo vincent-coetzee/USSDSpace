@@ -40,7 +40,7 @@ class ActionItemEditor:NSObject
 		popover!.contentViewController = controller
 		rectView = NSView(frame: rect)
 		inView.addSubview(rectView!)
-		popover!.showRelativeToRect(rectView!.bounds,ofView:rectView!,preferredEdge:NSMaxXEdge)
+		popover!.showRelativeToRect(rectView!.bounds,ofView:rectView!,preferredEdge:NSRectEdge.MaxX)
 		self.actionItem = actionItem
 		nameField!.stringValue = self.actionItem!.actionTargetName
 		setAction()

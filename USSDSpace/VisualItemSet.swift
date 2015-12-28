@@ -36,7 +36,7 @@ class VisualItemSet:NSObject,SequenceType
 		
 	func removeItem(item:VisualItem)
 		{
-		var index = find(items,item)
+		let index = items.indexOf(item)
 		if index != nil
 			{
 			items.removeAtIndex(index!)
@@ -63,7 +63,7 @@ class VisualItemSet:NSObject,SequenceType
 		{
 		for item in items
 			{
-			var found = item.hitTest(point) as! VisualItem?
+			let found = item.hitTest(point) as! VisualItem?
 			if found != nil
 				{
 				return(found)
@@ -72,13 +72,13 @@ class VisualItemSet:NSObject,SequenceType
 		return(nil)
 		}
 		
-	func generate() -> GeneratorOf<VisualItem> 
+	func generate() -> AnyGenerator<VisualItem> 
 		{
         // keep the index of the next car in the iteration
         var nextIndex = 0
 
         // Construct a GeneratorOf<Car> instance, passing a closure that returns the next car in the iteration
-        return GeneratorOf<VisualItem> 
+        return anyGenerator 
 			{
             if (nextIndex >= self.items.count) 
 				{

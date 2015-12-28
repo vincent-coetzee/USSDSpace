@@ -115,13 +115,13 @@ class DesignView:NSView,VisualContainer
 		
 	override func menuForEvent(event:NSEvent) -> NSMenu?
 		{
-		var point = convertPoint(event.locationInWindow,fromView:nil)
-		var newMenu:NSMenu = NSMenu()
+		let point = convertPoint(event.locationInWindow,fromView:nil)
+		let newMenu:NSMenu = NSMenu()
 		
 		NSLog("\(event)")
-		if event.type == NSEventType.LeftMouseDown && (event.modifierFlags & NSEventModifierFlags.ControlKeyMask == NSEventModifierFlags.ControlKeyMask)
+		if event.type == NSEventType.LeftMouseDown && (event.modifierFlags.intersect(NSEventModifierFlags.ControlKeyMask) == NSEventModifierFlags.ControlKeyMask)
 			{
-			var itemUnderPoint = items.itemContainingPoint(point)
+			let itemUnderPoint = items.itemContainingPoint(point)
 			if itemUnderPoint != nil
 				{
 				return(itemUnderPoint!.popupMenu())
@@ -134,7 +134,7 @@ class DesignView:NSView,VisualContainer
 		newMenu.addItem(NSMenuItem.separatorItem())
 		newItem = newMenu.addItemWithTitle("Packages",action:"onSomething:",keyEquivalent:"")
 		newItem!.target = self;
-		var subMenu:NSMenu = NSMenu()
+		let subMenu:NSMenu = NSMenu()
 		newItem!.submenu = subMenu
 		return(newMenu)
 		}
@@ -225,7 +225,7 @@ class DesignView:NSView,VisualContainer
 		line = NSLineSegment(start:startPoint,end:startPoint)
 		while continueToLoop == true
 			{
-			var mask:NSEventMask = NSEventMask.LeftMouseUpMask | NSEventMask.LeftMouseDraggedMask
+			let mask:NSEventMask = [NSEventMask.LeftMouseUpMask, NSEventMask.LeftMouseDraggedMask]
 			localEvent = self.window!.nextEventMatchingMask(Int(mask.rawValue))!
 			let point = convertPoint(localEvent.locationInWindow,fromView:nil)
 			line.endPoint = point
@@ -269,8 +269,8 @@ class DesignView:NSView,VisualContainer
 		
 	override func mouseDown(event:NSEvent)
 		{
-		var point = convertPoint(event.locationInWindow,fromView:nil)
-		var item = items.itemContainingPoint(point)
+		let point = convertPoint(event.locationInWindow,fromView:nil)
+		let item = items.itemContainingPoint(point)
 		
 		if item != nil
 			{
@@ -280,7 +280,7 @@ class DesignView:NSView,VisualContainer
 		
 	override func mouseDragged(event:NSEvent)
 		{
-		var point = convertPoint(event.locationInWindow,fromView:nil)
+		let point = convertPoint(event.locationInWindow,fromView:nil)
 		
 		if dragElement != nil
 			{
@@ -290,8 +290,8 @@ class DesignView:NSView,VisualContainer
 		
 	override func mouseUp(event:NSEvent)
 		{
-		var point = convertPoint(event.locationInWindow,fromView:nil)
-		var item = items.itemContainingPoint(point)
+		let point = convertPoint(event.locationInWindow,fromView:nil)
+		let item = items.itemContainingPoint(point)
 		
 		if item != nil
 			{
@@ -322,7 +322,7 @@ class DesignView:NSView,VisualContainer
 		
 	func currentMousePoint() -> CGPoint
 		{
-		var point:NSPoint = self.window!.convertRectFromScreen(NSRect(x:NSEvent.mouseLocation().x,y:NSEvent.mouseLocation().y,width:0,height:0)).origin
+		let point:NSPoint = self.window!.convertRectFromScreen(NSRect(x:NSEvent.mouseLocation().x,y:NSEvent.mouseLocation().y,width:0,height:0)).origin
 		
 		return(convertPoint(point,fromView:nil))
 		}
@@ -345,7 +345,7 @@ class DesignView:NSView,VisualContainer
 		
 	func restoreFromWorkspace(aNewWorkspace:Workspace)
 		{
-		var theNewOne = aNewWorkspace
+		let theNewOne = aNewWorkspace
 		
 		reset()
 		workspace = theNewOne
@@ -456,7 +456,7 @@ class DesignView:NSView,VisualContainer
 		
 	@IBAction func onAddMenuItem(sender:AnyObject?)
 		{
-		var menuItem = USSDMenuItem(text: "New Item")
+		let menuItem = USSDMenuItem(text: "New Item")
 		
 		if selectedElementHolder.selection != nil && selectedElementHolder.selection!.isMenu()
 			{
@@ -484,7 +484,7 @@ class DesignView:NSView,VisualContainer
 			(result: Int) -> Void in 
 			if result == NSFileHandlingPanelOKButton
 				{
-				var data = self.dataWithPDFInsideRect(self.bounds)
+				let data = self.dataWithPDFInsideRect(self.bounds)
 				data.writeToFile(savePanel.URL!.path!,atomically: true)
 				}
 			}
@@ -543,12 +543,12 @@ class DesignView:NSView,VisualContainer
 		
 	@IBAction func onDeleteItem(sender:AnyObject?)
 		{
-		var element = selectedElementHolder.selection
+		let element = selectedElementHolder.selection
 		
 		if element != nil && element!.isMenuItem()
 			{
-			var menuItem = element as! USSDMenuItem
-			var menu = menuItem.menu()
+			let menuItem = element as! USSDMenuItem
+			let menu = menuItem.menu()
 			menu.removeItem(menuItem)
 			}
 		}

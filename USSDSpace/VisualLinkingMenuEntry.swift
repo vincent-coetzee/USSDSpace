@@ -33,12 +33,12 @@ class VisualLinkingMenuEntry:VisualMenuEntry
 		labelItem.backgroundColor = UFXStylist.SlotLinkColor.lighter().withAlpha(0.2).CGColor
 		}
 		
-	override init(layer:AnyObject?)
+	override init(layer:AnyObject)
 		{
 		super.init(layer:layer)
 		}
 
-	required init(coder aDecoder: NSCoder) 
+	required init?(coder aDecoder: NSCoder) 
 		{
 	    super.init(coder:aDecoder)
 		leftSlot = aDecoder.decodeObjectForKey("leftSlot") as! VisualPairedSlot
@@ -90,7 +90,7 @@ class VisualLinkingMenuEntry:VisualMenuEntry
 		{
 		if CGRectContainsPoint(self.frame,point)
 			{
-			var newPoint = point.pointBySubtractingPoint(self.frame.origin)
+			let newPoint = point.pointBySubtractingPoint(self.frame.origin)
 			if CGRectContainsPoint(leftSlot.frame,newPoint)
 				{
 				return(leftSlot)

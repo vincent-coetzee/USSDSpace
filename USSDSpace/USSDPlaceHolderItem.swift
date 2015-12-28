@@ -31,7 +31,7 @@ class USSDPlaceHolderItem:USSDMenuItem
 		self.borderWidth = 0
 		}
 		
-	override init(layer:AnyObject?)
+	override init(layer:AnyObject)
 		{
 		super.init(layer:layer)
 		addSublayer(innerLayer)
@@ -87,7 +87,7 @@ class USSDPlaceHolderItem:USSDMenuItem
 		rightSource.setFrameDelta(delta)
 		}
 
-	required init(coder aDecoder: NSCoder) 
+	required init?(coder aDecoder: NSCoder) 
 		{
 	    super.init(coder:aDecoder)
 		innerLayer = aDecoder.decodeObjectForKey("innerLayer") as! CALayer
@@ -95,7 +95,7 @@ class USSDPlaceHolderItem:USSDMenuItem
 	
 	override func sourceSlotSet() -> SlotSet
 		{
-		var slotSet = SlotSet()
+		let slotSet = SlotSet()
 		
 		slotSet.addSlot(leftSource)
 		slotSet.addSlot(rightSource)
@@ -107,7 +107,7 @@ class USSDPlaceHolderItem:USSDMenuItem
 		
 	override func layoutSublayers()
 		{
-		var someBounds = bounds
+		let someBounds = bounds
 		var half:CGFloat
 		var rect:CGRect
 		

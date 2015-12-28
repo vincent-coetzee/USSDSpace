@@ -22,7 +22,7 @@ class USSDMenuNameItem:USSDMenuEntry
 		super.encodeWithCoder(coder)
 		}
 		
-	required init(coder aDecoder: NSCoder) 
+	required init?(coder aDecoder: NSCoder) 
 		{
 	    super.init(coder:aDecoder)
 		}
@@ -32,7 +32,7 @@ class USSDMenuNameItem:USSDMenuEntry
 		super.init(text:text)
 		}
 		
-	override init(layer:AnyObject?)
+	override init(layer:AnyObject)
 		{
 		super.init(layer:layer)
 		UFXStylist.styleLayerAsMenuName(self)

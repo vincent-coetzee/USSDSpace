@@ -20,7 +20,7 @@ class VisualActionLink:VisualLink
 		super.init()
 		}
 		
-	required init(coder aDecoder: NSCoder) 
+	required init?(coder aDecoder: NSCoder) 
 		{
 		super.init(coder:aDecoder)
 		bubbleLayer = aDecoder.decodeObjectForKey("bubbleLayer") as! CALayer

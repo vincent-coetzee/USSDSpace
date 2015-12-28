@@ -26,9 +26,9 @@ extension String
 		
 	func widthWithFont(font:NSFont) -> CGFloat
 		{
-		var textStorage = NSTextStorage(string: self)
-		var textContainer = NSTextContainer(containerSize: NSSize(width:CGFloat(FLT_MAX),height:CGFloat(FLT_MAX)))
-		var layoutManager = NSLayoutManager()
+		let textStorage = NSTextStorage(string: self)
+		let textContainer = NSTextContainer(containerSize: NSSize(width:CGFloat(FLT_MAX),height:CGFloat(FLT_MAX)))
+		let layoutManager = NSLayoutManager()
 		layoutManager.addTextContainer(textContainer)
 		textStorage.addLayoutManager(layoutManager)
 		textStorage.addAttribute(NSFontAttributeName,value:font,range:NSRange(location: 0,length: textStorage.length))
@@ -39,9 +39,9 @@ extension String
 		
 	func heightInWidth(inWidth:CGFloat,withFont:NSFont) -> CGFloat
 		{
-		var textStorage = NSTextStorage(string: self)
-		var textContainer = NSTextContainer(containerSize: NSSize(width:inWidth,height:CGFloat(FLT_MAX)))
-		var layoutManager = NSLayoutManager()
+		let textStorage = NSTextStorage(string: self)
+		let textContainer = NSTextContainer(containerSize: NSSize(width:inWidth,height:CGFloat(FLT_MAX)))
+		let layoutManager = NSLayoutManager()
 		layoutManager.addTextContainer(textContainer)
 		textStorage.addLayoutManager(layoutManager)
 		textStorage.addAttribute(NSFontAttributeName,value:withFont,range:NSRange(location: 0,length: textStorage.length))

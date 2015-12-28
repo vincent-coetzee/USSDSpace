@@ -20,7 +20,7 @@ class VisualPairedSlot:VisualSlot
 		super.init()
 		}
 		
-	required init(coder aDecoder:NSCoder)
+	required init?(coder aDecoder:NSCoder)
 		{
 		super.init(coder: aDecoder)
 		pairedSlot = aDecoder.decodeObjectForKey("pairedSlot") as? VisualPairedSlot

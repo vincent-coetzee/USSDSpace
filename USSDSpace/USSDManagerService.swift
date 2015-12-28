@@ -41,7 +41,7 @@ class USSDManagerService
 	func workspaceNames()
 		{
 		var request:NSMutableURLRequest
-		var url:NSURL = NSURL(string:baseURL + "/workspaceNames")!
+		let url:NSURL = NSURL(string:baseURL + "/workspaceNames")!
 		
 		request = NSMutableURLRequest(URL: url)
 		request.HTTPMethod = "GET"
@@ -55,7 +55,7 @@ class USSDManagerService
 		request.addValue(contentType,forHTTPHeaderField:"Content-Type")
 		if token != nil
 			{
-			request.addValue(token,forHTTPHeaderField:"Token")
+			request.addValue(token!,forHTTPHeaderField:"Token")
 			}
 		return(request)
 		}
@@ -75,13 +75,13 @@ class USSDManagerService
 		request.HTTPMethod = "POST"
 		string = "{\"personName\":\"\(personName)\",\"requestToken\":\"\(timeString)\",\"timestamp\":\(time.timeIntervalSince1970*1000)}"
 		task = session.uploadTaskWithRequest(request,fromData:string.dataUsingEncoding(NSUTF8StringEncoding),completionHandler: 
-			{(data:NSData!,response:NSURLResponse!,error:NSError!) in 
+			{(data:NSData?,response:NSURLResponse?,error:NSError?) in 
 			self.responseData = data
 			self.response = response
 			NSLog("\(error)")
 			if data != nil
 				{
-				var string = NSString(data:data!,encoding:NSUTF8StringEncoding) as! String
+				let string = NSString(data:data!,encoding:NSUTF8StringEncoding) as! String
 				NSLog("\(string)")
 				dict = JSONParser.parseJSON(string) as! NSDictionary
 				if (dict!.objectForKey("successful") as! NSNumber).boolValue
@@ -90,7 +90,7 @@ class USSDManagerService
 					}
 				else
 					{
-					var errorCode = dict!.objectForKey("errorCode")
+					let errorCode = dict!.objectForKey("errorCode")
 					NSLog("ERROR CODE = \(errorCode)")
 					}
 				}
@@ -161,7 +161,7 @@ class USSDManagerService
 		request.HTTPMethod = "POST"
 		NSLog("\(JSONParser.formatJSON(workspace.asJSONString()))")
 		task = session.uploadTaskWithRequest(request,fromData:workspace.asJSONString().dataUsingEncoding(NSUTF8StringEncoding),completionHandler: 
-			{(data:NSData!,response:NSURLResponse!,error:NSError!) in 
+			{(data:NSData?,response:NSURLResponse?,error:NSError?) in 
 			self.responseData = data
 			self.response = response
 			if error != nil

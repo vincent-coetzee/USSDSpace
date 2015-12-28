@@ -45,7 +45,7 @@ class USSDActionMenuItem:USSDMenuItem,NSPopoverDelegate
 		coder.encodeObject(actionTargetName,forKey:"actionTargetName")
 		}
 		
-	required init(coder aDecoder: NSCoder) 
+	required init?(coder aDecoder: NSCoder) 
 		{
 	    super.init(coder:aDecoder)
 		actionType = aDecoder.decodeObjectForKey("actionType") as! String
@@ -55,7 +55,7 @@ class USSDActionMenuItem:USSDMenuItem,NSPopoverDelegate
 	override func asJSONString() -> String
 		{
 		var aString:String = ""
-		var nextMenu:String = self.connectedActionSlot() != nil ? self.connectedActionSlot()!.link!.targetMenu!.uuid : ""
+		let nextMenu:String = self.connectedActionSlot() != nil ? self.connectedActionSlot()!.link!.targetMenu!.uuid : ""
 		
 		aString = "{ \"type\": \"\(self.dynamicType)\", \"uuid\":\"\(uuid)\", \"itemIndex\": \(menuIndex), \"text\": \"\(text)\",\"actionType\":\"\(actionType)\",\"actionTargetName\":\"\(actionTargetName)\""
 		if nextMenu != ""
@@ -107,7 +107,7 @@ class USSDActionMenuItem:USSDMenuItem,NSPopoverDelegate
 //		addSublayer(actionSlot)
 		}
 		
-	override init(layer:AnyObject?)
+	override init(layer:AnyObject)
 		{
 		super.init(layer:layer)
 		var slotLayer = layer as! USSDActionMenuItem

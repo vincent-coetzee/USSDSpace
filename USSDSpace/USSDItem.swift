@@ -26,7 +26,7 @@ class USSDItem:CATextLayer,Selectable
 //		self.zOrder = zMenu
 		}
 
-	required init(coder aDecoder: NSCoder) 
+	required init?(coder aDecoder: NSCoder) 
 		{
 	    super.init(coder:aDecoder)
 		self.borderWidth = 0
@@ -34,7 +34,7 @@ class USSDItem:CATextLayer,Selectable
 //		self.zOrder = zMenu
 		}
 		
-	override init(layer:AnyObject?)
+	override init(layer:AnyObject)
 		{
 		super.init(layer:layer)
 //		self.zOrder = zMenu

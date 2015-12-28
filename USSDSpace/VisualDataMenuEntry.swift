@@ -20,12 +20,12 @@ class VisualDataMenuEntry:VisualLinkingMenuEntry
 		labelItem.backgroundColor = UFXStylist.DataSlotLinkColor.lighter().withAlpha(0.2).CGColor
 		}
 
-	override init(layer:AnyObject?)
+	override init(layer:AnyObject)
 		{
 		super.init(layer:layer)
 		}
 		
-	required init(coder aDecoder: NSCoder) 
+	required init?(coder aDecoder: NSCoder) 
 		{
 	    super.init(coder: aDecoder)
 		leftSlot.linkCreationClosure = {() in return(VisualDataLink())}

@@ -32,11 +32,11 @@ class VisualItem:CALayer,VisualContainer
 			}
 		}
 		
-	required init(coder aDecoder: NSCoder) 
+	required init?(coder aDecoder: NSCoder) 
 		{
 		layoutFrame = LayoutFrame()
 	    super.init(coder:aDecoder)
-		var anObject = aDecoder.decodeObjectForKey("parent") 
+		let anObject = aDecoder.decodeObjectForKey("parent") 
 		if anObject != nil
 			{
 			parent = anObject as! VisualContainer?
@@ -60,7 +60,7 @@ class VisualItem:CALayer,VisualContainer
 //		coder.encodeObject(_styling as! NSDictionary,forKey:"_styling")
 		}
 		
-	override init(layer:AnyObject?)
+	override init(layer:AnyObject)
 		{
 		layoutFrame = LayoutFrame()
 		super.init(layer:layer)
@@ -78,11 +78,11 @@ class VisualItem:CALayer,VisualContainer
 	func loopUntilMouseUp(inView:DesignView,closure: (point:CGPoint,atEnd:Bool) -> ())
 		{
 		var continueToLoop:Bool = true
-		var mask:NSEventMask = NSEventMask.LeftMouseUpMask | NSEventMask.LeftMouseDraggedMask
+		let mask:NSEventMask = [NSEventMask.LeftMouseUpMask, NSEventMask.LeftMouseDraggedMask]
 		
 		while continueToLoop == true
 			{
-			var localEvent = inView.window!.nextEventMatchingMask(Int(mask.rawValue))!
+			let localEvent = inView.window!.nextEventMatchingMask(Int(mask.rawValue))!
 			let point = inView.convertPoint(localEvent.locationInWindow,fromView:nil)
 			CATransaction.begin()
 			CATransaction.setValue(kCFBooleanTrue,forKey:kCATransactionDisableActions)
@@ -127,7 +127,7 @@ class VisualItem:CALayer,VisualContainer
 		
 		while !aContainer.isView
 			{
-			var anItem = aContainer as! VisualItem
+			let anItem = aContainer as! VisualItem
 			rect.origin = rect.origin.pointByAddingPoint(anItem.frame.origin)
 			aContainer = aContainer.container
 			}
@@ -139,7 +139,7 @@ class VisualItem:CALayer,VisualContainer
 		var anItem:VisualContainer
 		
 		anItem = self
-		do
+		repeat
 			{
 			var avi:VisualItem
 			avi = anItem as! VisualItem
@@ -170,7 +170,7 @@ class VisualItem:CALayer,VisualContainer
 		{
 		get
 			{
-			var aFrame = self.frame
+			let aFrame = self.frame
 			return(CGPoint(x:CGRectGetMidX(aFrame),y:CGRectGetMidY(aFrame)))
 			}
 		}
@@ -304,7 +304,7 @@ class VisualItem:CALayer,VisualContainer
 		theFrame = self.bounds
 		if self.sublayers != nil
 			{
-			for child in self.sublayers
+			for child in self.sublayers!
 				{
 				var item = child as! VisualItem
 				item.frame = item.layoutFrame.rectInRect(theFrame)

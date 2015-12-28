@@ -97,7 +97,7 @@ class UFXStylist:NSObject
 		attributes[NSForegroundColorAttributeName] = SimulatorTopButtonColor
 		button.bordered = false
 		button.setButtonType(NSButtonType.MomentaryChangeButton)
-		button.alignment = NSTextAlignment.CenterTextAlignment
+		button.alignment = NSTextAlignment.Center
 		button.attributedTitle = NSAttributedString(string: text,attributes:attributes)
 		}
 		
@@ -159,7 +159,7 @@ class UFXStylist:NSObject
     var allNames = [String]()
     for familyName in NSFontManager.sharedFontManager().availableFontFamilies
         {
-        for fonts in NSFontManager.sharedFontManager().availableMembersOfFontFamily(familyName as! String)!
+        for fonts in NSFontManager.sharedFontManager().availableMembersOfFontFamily(familyName )!
             {
             if fonts.count > 0
                 {
@@ -167,7 +167,7 @@ class UFXStylist:NSObject
                 }
             }
         }
-		var sortedAllNames = sorted(allNames,<)
+		let sortedAllNames = allNames.sort(<)
 	
 		for name in sortedAllNames
 			{

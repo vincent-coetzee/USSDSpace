@@ -35,7 +35,7 @@ class VisualLink:VisualItem
 		applyStyle()
 		}
 		
-	required init(coder aDecoder: NSCoder) 
+	required init?(coder aDecoder: NSCoder) 
 		{
 		super.init(coder: aDecoder)
 		sourcePoint = aDecoder.decodePointForKey("sourcePoint")

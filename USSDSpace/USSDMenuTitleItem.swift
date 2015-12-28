@@ -47,13 +47,13 @@ class USSDMenuTitleItem:USSDMenuEntry
 		UFXStylist.styleMenuEntry(self)
 		}
 		
-	override init(layer:AnyObject?)
+	override init(layer:AnyObject)
 		{
 		super.init(layer:layer)
 		UFXStylist.styleMenuEntry(self)
 		}
 
-	required init(coder aDecoder: NSCoder) 
+	required init?(coder aDecoder: NSCoder) 
 		{
 		super.init(coder:aDecoder)
 		}

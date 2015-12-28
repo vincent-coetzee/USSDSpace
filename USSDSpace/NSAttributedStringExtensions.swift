@@ -13,9 +13,9 @@ extension NSAttributedString
 	{
 	func width() -> CGFloat
 		{
-		var textStorage = NSTextStorage(attributedString: self)
-		var textContainer = NSTextContainer(containerSize: NSSize(width:CGFloat(FLT_MAX),height:CGFloat(FLT_MAX)))
-		var layoutManager = NSLayoutManager()
+		let textStorage = NSTextStorage(attributedString: self)
+		let textContainer = NSTextContainer(containerSize: NSSize(width:CGFloat(FLT_MAX),height:CGFloat(FLT_MAX)))
+		let layoutManager = NSLayoutManager()
 		layoutManager.addTextContainer(textContainer)
 		textStorage.addLayoutManager(layoutManager)
 		textContainer.lineFragmentPadding = 0.0

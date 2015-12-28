@@ -33,7 +33,7 @@ class USSDMenuEntry:USSDTextElement,NSTextViewDelegate,NSTextDelegate
 		
 	func editTextInView(view:NSView)
 		{
-		var editFrame = self.frame.rectByAddingPointToOrigin(self.menu().frame.origin)
+		let editFrame = self.frame.rectByAddingPointToOrigin(self.menu().frame.origin)
 		textView = NSTextView(frame:editFrame)
 		textView!.string = self.text
 		textView!.font = UFXStylist.MenuItemFont;
@@ -47,10 +47,10 @@ class USSDMenuEntry:USSDTextElement,NSTextViewDelegate,NSTextDelegate
 	func textDidEndEditing(notification:NSNotification) 
 		{
 		var oldText:String = self.text
-		var newText:String = textView!.string!
+		let newText:String = textView!.string!
 		
 		self.text = newText
-		var aMenu = self.menu()
+		let aMenu = self.menu()
 		textView!.removeFromSuperview()
 		textView = nil
 		aMenu.setNeedsLayout()
@@ -84,8 +84,8 @@ class USSDMenuEntry:USSDTextElement,NSTextViewDelegate,NSTextDelegate
 	 
 	 override func sizeToFitInWidth(width:CGFloat) -> CGFloat
 		{
-		var aHeight = self.displayText.heightInWidth(width,withFont: UFXStylist.MenuItemFont!)
-		desiredHeight = maximum(aHeight,12)
+		let aHeight = self.displayText.heightInWidth(width,withFont: UFXStylist.MenuItemFont!)
+		desiredHeight = maximum(aHeight,b: 12)
 		return(aHeight)
 		}
 		
@@ -109,7 +109,7 @@ class USSDMenuEntry:USSDTextElement,NSTextViewDelegate,NSTextDelegate
 		UFXStylist.styleMenuEntry(self)
 		}
 	
-	override init(layer:AnyObject?)
+	override init(layer:AnyObject)
 		{
 		super.init(layer:layer)
 		UFXStylist.styleMenuEntry(self)
@@ -127,7 +127,7 @@ class USSDMenuEntry:USSDTextElement,NSTextViewDelegate,NSTextDelegate
 		coder.encodeInteger(menuIndex,forKey:"menuIndex")
 		}
 		
-	required init(coder aDecoder: NSCoder) 
+	required init?(coder aDecoder: NSCoder) 
 		{
 	    super.init(coder:aDecoder)
 		menuIndex = aDecoder.decodeIntegerForKey("menuIndex")

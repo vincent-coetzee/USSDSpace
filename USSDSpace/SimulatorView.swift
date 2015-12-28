@@ -58,7 +58,7 @@ class SimulatorView:NSView,NSTextViewDelegate,NSTextDelegate
 		var remainder:Int = 182
 		var string:String
 		
-		remainder = count(entryField.string!)
+		remainder = (entryField.string!).characters.count
 		remainder = 182 - remainder
 		characterCountLayer.string = NSString(format:"%ld characters remaining",remainder)
 		}
@@ -154,7 +154,7 @@ class SimulatorView:NSView,NSTextViewDelegate,NSTextDelegate
 		dismissButton.setButtonType(NSButtonType.MomentaryChangeButton)
 		dismissButton.image = NSImage(named:"WhiteButton-107x42")
 		dismissButton.imagePosition = NSCellImagePosition.ImageOnly
-		dismissButton.alignment = NSTextAlignment.CenterTextAlignment
+		dismissButton.alignment = NSTextAlignment.Center
 		dismissButton.target = self
 		dismissButton.action = "onDismiss:"
 		self.addSubview(dismissButton)
@@ -162,7 +162,7 @@ class SimulatorView:NSView,NSTextViewDelegate,NSTextDelegate
 		replyButton.setButtonType(NSButtonType.MomentaryChangeButton)
 		replyButton.image = NSImage(named:"BlackButton-107x42")
 		replyButton.imagePosition = NSCellImagePosition.ImageOnly
-		replyButton.alignment = NSTextAlignment.CenterTextAlignment
+		replyButton.alignment = NSTextAlignment.Center
 		replyButton.target = self
 		replyButton.action = "onReply:"
 		replyButton.keyEquivalent = "\r"
@@ -191,20 +191,20 @@ class SimulatorView:NSView,NSTextViewDelegate,NSTextDelegate
 		
 	override func mouseDown(event:NSEvent)
 		{
-		var point = convertPoint(event.locationInWindow,fromView:nil)
-		var menuItem = currentMenu!.itemContainingPoint(point.pointBySubtractingPoint(menuLayer!.frame.origin))
+		let point = convertPoint(event.locationInWindow,fromView:nil)
+		let menuItem = currentMenu!.itemContainingPoint(point.pointBySubtractingPoint(menuLayer.frame.origin))
 		
 		selectionHolder.selection = menuItem
 		}
 		
 	override func mouseUp(event:NSEvent)
 		{
-		var point = convertPoint(event.locationInWindow,fromView:nil)
-		var menuItem = currentMenu!.itemContainingPoint(point.pointBySubtractingPoint(menuLayer!.frame.origin))
+		let point = convertPoint(event.locationInWindow,fromView:nil)
+		let menuItem = currentMenu!.itemContainingPoint(point.pointBySubtractingPoint(menuLayer.frame.origin))
 		
 		if selectionHolder.selection == menuItem && menuItem != nil
 			{
-			var callbackURL = CallbackURL(base:menuItem!.callback!)
+			let callbackURL = CallbackURL(base:menuItem!.callback!)
 			callbackURL.setValue("\(menuItem!.command)",forKey:"request")
 			controller!.setCallback(callbackURL)
 			}
@@ -269,7 +269,7 @@ class SimulatorView:NSView,NSTextViewDelegate,NSTextDelegate
 		hideKeyboard(false)
 		if menuLayer.sublayers != nil
 			{
-			for aLayer in menuLayer.sublayers
+			for aLayer in menuLayer.sublayers!
 				{
 				aLayer.removeFromSuperlayer()
 				}

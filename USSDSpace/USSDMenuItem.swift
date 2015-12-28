@@ -37,7 +37,7 @@ class USSDMenuItem:USSDMenuEntry
 		coder.encodeObject(rightSource,forKey:"rightSource")
 		}
 		
-	required init(coder aDecoder: NSCoder) 
+	required init?(coder aDecoder: NSCoder) 
 		{
 		leftSource = self.dynamicType.newLeftSlot()
 		rightSource = self.dynamicType.newRightSlot()
@@ -69,7 +69,7 @@ class USSDMenuItem:USSDMenuEntry
 		
 	override func popupMenu() -> NSMenu?
 		{
-		var newMenu = NSMenu()
+		let newMenu = NSMenu()
 		var menuItem:NSMenuItem
 		
 		menuItem = newMenu.addItemWithTitle("Move Up",action:"onMoveUp:",keyEquivalent:"")!
@@ -231,7 +231,7 @@ class USSDMenuItem:USSDMenuEntry
 		self.borderColor = NSColor.lightGrayColor().CGColor
 		}
 		
-	override init(layer:AnyObject?)
+	override init(layer:AnyObject)
 		{
 		leftSource = self.dynamicType.newLeftSlot()
 		rightSource = self.dynamicType.newRightSlot()

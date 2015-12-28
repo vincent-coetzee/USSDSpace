@@ -54,7 +54,7 @@ class USSDWorkspaceItem:USSDPlaceHolderItem
 			}
 		set
 			{
-			var newRect = CGRect(origin:newValue.origin,size:CGSize(width:32,height:32))
+			let newRect = CGRect(origin:newValue.origin,size:CGSize(width:32,height:32))
 			super.frame = newRect
 			leftSource.frame = self.bounds
 			}
@@ -87,9 +87,9 @@ class USSDWorkspaceItem:USSDPlaceHolderItem
 //			}
 //		}
 		
-	override init(layer:AnyObject?)
+	override init(layer:AnyObject)
 		{
-		var incomingLayer = (layer as! USSDWorkspaceItem)
+		let incomingLayer = (layer as! USSDWorkspaceItem)
 		super.init(layer:incomingLayer)
 		leftSource = incomingLayer.leftSource
 		rightSource = incomingLayer.rightSource
@@ -100,7 +100,7 @@ class USSDWorkspaceItem:USSDPlaceHolderItem
 			}
 		}
 		
-	required init(coder aDecoder: NSCoder) 
+	required init?(coder aDecoder: NSCoder) 
 		{
 		super.init(coder:aDecoder)
 		}
@@ -149,7 +149,7 @@ class USSDWorkspaceItem:USSDPlaceHolderItem
 		
 	override func sourceSlotSet() -> SlotSet
 		{
-		var slotSet = SlotSet()
+		let slotSet = SlotSet()
 		
 		slotSet.addSlot(rightSource)
 		rightSource.resetOuterFrame()

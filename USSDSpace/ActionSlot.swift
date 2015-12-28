@@ -43,7 +43,7 @@ class ActionSlot:Slot
 		
 	override func newLink() -> SlotLink
 		{
-		var aLink:ActionSlotLink = ActionSlotLink()
+		let aLink:ActionSlotLink = ActionSlotLink()
 		aLink.sourceItem = menuItem
 		aLink.removeAllAnimations()
 		UFXStylist.styleActionSlotLink(aLink)
@@ -62,13 +62,13 @@ class ActionSlot:Slot
 		self.removeAllAnimations()
 		}
 		
-	override init(layer:AnyObject?)
+	override init(layer:AnyObject)
 		{
 		super.init(layer: layer)
 //		self.contents = UFXStylist.SlotMenuImage
 		}
 
-	required init(coder aDecoder: NSCoder) 
+	required init?(coder aDecoder: NSCoder) 
 		{
 	    super.init(coder:aDecoder)
 //		outerFrame = aDecoder.decodeRectForKey("outerFrame")

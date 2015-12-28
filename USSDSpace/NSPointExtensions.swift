@@ -22,7 +22,7 @@ extension NSPoint
 		
 	func distanceToPoint(point:NSPoint) -> CGFloat
 		{
-		var aFloat:CGFloat = hypot(point.x - self.x,point.y - self.y)
+		let aFloat:CGFloat = hypot(point.x - self.x,point.y - self.y)
 		return(aFloat)
 		}
 		

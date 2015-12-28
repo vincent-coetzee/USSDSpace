@@ -66,7 +66,7 @@ class LinkManagementLayer:CALayer
 		
 	func removeVisualLink(link:VisualLink)
 		{
-		var index = find(visualLinks,link)
+		let index = visualLinks.indexOf(link)
 		if index != nil
 			{
 			CATransaction.begin()
@@ -98,7 +98,7 @@ class LinkManagementLayer:CALayer
 			}
 		}
 
-	required init(coder aDecoder: NSCoder) 
+	required init?(coder aDecoder: NSCoder) 
 		{
 	    fatalError("init(coder:) has not been implemented")
 		}
@@ -108,9 +108,9 @@ class LinkManagementLayer:CALayer
 		CATransaction.begin()
 		CATransaction.setValue(kCFBooleanTrue,forKey:kCATransactionDisableActions)
 		links.append(link)
-		var shapeLayer = link.shapeLayer
+		let shapeLayer = link.shapeLayer
 		addSublayer(shapeLayer)
-		addSublayer(link.bubbleLayer)
+		addSublayer(link.bubbleLayer!)
 		shapeLayer.frame = link.shapeLayerFrame()
 		shapeLayer.setNeedsDisplay()
 		CATransaction.commit()
@@ -122,7 +122,7 @@ class LinkManagementLayer:CALayer
 		CATransaction.setValue(kCFBooleanTrue,forKey:kCATransactionDisableActions)
 		link.shapeLayer.removeFromSuperlayer()
 		link.bubbleLayer!.removeFromSuperlayer()
-		var index = find(links,link)
+		let index = links.indexOf(link)
 		if index != nil
 			{
 			links.removeAtIndex(index!)
@@ -180,9 +180,9 @@ class LinkManagementLayer:CALayer
 //			var imageRect = NSRect(origin:NSPoint(x:0,y:0),size:potentialLink!.bubbleRect!.size)
 //			savedBubbleImage = potentialLink!.bubbleImage!.CGImageForProposedRect(&imageRect,context:nil,hints:nil)?.takeUnretainedValue()
 //			}
-		var shapeLayer = link.shapeLayer
+		let shapeLayer = link.shapeLayer
 		addSublayer(shapeLayer)
-		addSublayer(link.bubbleLayer)
+		addSublayer(link.bubbleLayer!)
 		shapeLayer.frame = link.shapeLayerFrame()
 		shapeLayer.setNeedsDisplay()
 		link.parentLayer = self

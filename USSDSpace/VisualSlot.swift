@@ -25,7 +25,7 @@ class VisualSlot:VisualItem
 		linkCreationClosure = {() in return(VisualLink())}
 		}
 
-	required init(coder aDecoder: NSCoder) 
+	required init?(coder aDecoder: NSCoder) 
 		{
 	    super.init(coder: aDecoder)
 		link = aDecoder.decodeObjectForKey("link") as? VisualLink
@@ -44,7 +44,7 @@ class VisualSlot:VisualItem
 		
 	func newLink() -> VisualLink
 		{
-		var aLink = linkCreationClosure!()
+		let aLink = linkCreationClosure!()
 		aLink.setSource(self)
 		return(aLink)
 		}
@@ -81,7 +81,7 @@ class VisualSlot:VisualItem
 		loopUntilMouseUp(inView,closure: { (point:NSPoint,atEnd:Bool) in
 			if atEnd
 				{
-				var targetItem = inView.items.itemContainingPoint(point)
+				let targetItem = inView.items.itemContainingPoint(point)
 				if targetItem != nil
 					{
 					aLink.setTarget(targetItem!.topItem!)

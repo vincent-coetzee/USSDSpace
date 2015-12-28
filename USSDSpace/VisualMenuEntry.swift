@@ -31,12 +31,12 @@ class VisualMenuEntry:VisualItem,NSTextViewDelegate,NSTextDelegate
 		self.styling = UFXStylist.menuItemStyle()
 		}
 		
-	override init(layer:AnyObject?)
+	override init(layer:AnyObject)
 		{
 		super.init(layer:layer)
 		}
 		
-	required init(coder aDecoder: NSCoder) 
+	required init?(coder aDecoder: NSCoder) 
 		{
 	    super.init(coder:aDecoder)
 		labelItem = aDecoder.decodeObjectForKey("labelItem") as! VisualText
@@ -86,7 +86,7 @@ class VisualMenuEntry:VisualItem,NSTextViewDelegate,NSTextDelegate
 	func textDidEndEditing(notification:NSNotification) 
 		{
 		var oldText:String = self.text
-		var newText:String = textView!.string!
+		let newText:String = textView!.string!
 		
 		self.text = newText
 		textView!.removeFromSuperview()
@@ -140,7 +140,7 @@ class VisualMenuEntry:VisualItem,NSTextViewDelegate,NSTextDelegate
 		revisedFrame.size.width -= 34
 		var aSize = labelItem.desiredSizeInFrame(revisedFrame)
 		aSize.width += 32
-		aSize.height = maximum(aSize.height,16)
+		aSize.height = maximum(aSize.height,b: 16)
 		return(aSize)
 		}
 		

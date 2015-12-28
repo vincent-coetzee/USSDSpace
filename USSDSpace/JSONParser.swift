@@ -18,7 +18,7 @@ class JSONParser
 		
 		data = string.dataUsingEncoding(NSUTF8StringEncoding)!
 		error = NSErrorPointer()
-		object = NSJSONSerialization.JSONObjectWithData(data,options:NSJSONReadingOptions.AllowFragments,error: error)!
+		object = try! NSJSONSerialization.JSONObjectWithData(data,options:NSJSONReadingOptions.AllowFragments)
 		return(object)
 		}
 		
@@ -37,7 +37,7 @@ class JSONParser
 		
 		object = self.parseJSON(string)
 		error = NSErrorPointer()
-		data = NSJSONSerialization.dataWithJSONObject(object,options:NSJSONWritingOptions.PrettyPrinted,error:error)!
+		data = try! NSJSONSerialization.dataWithJSONObject(object,options:NSJSONWritingOptions.PrettyPrinted)
 		output = NSString(data: data,encoding:NSUTF8StringEncoding)! as String
 		return(output)
 		}

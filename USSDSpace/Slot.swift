@@ -188,7 +188,7 @@ class Slot:CALayer
 		coder.encodeBool(_isRight,forKey:"isRight")
 		}
 		
-	required init(coder aDecoder: NSCoder) 
+	required init?(coder aDecoder: NSCoder) 
 		{
 		outerFrame = CGRect(x:0,y:0,width:0,height:0)
 	    super.init(coder:aDecoder)
@@ -238,7 +238,7 @@ class Slot:CALayer
 		
 	func newLink() -> SlotLink
 		{
-		var aLink:SlotLink = SlotLink()
+		let aLink:SlotLink = SlotLink()
 		aLink.removeAllAnimations()
 		aLink.sourceItem = menuItem
 		UFXStylist.styleSlotLink(aLink)
@@ -256,14 +256,14 @@ class Slot:CALayer
 		
 	func offsetByPoint(point:NSPoint) -> Slot
 		{
-		var origin = outerFrame.origin
-		var newOrigin = origin.pointByAddingPoint(point)
+		let origin = outerFrame.origin
+		let newOrigin = origin.pointByAddingPoint(point)
 		
 		outerFrame = CGRect(origin:newOrigin,size:CGSize(width: 16,height: 16))
 		return(self)
 		}
 		
-	override init(layer:AnyObject?)
+	override init(layer:AnyObject)
 		{
 		outerFrame = CGRect(x:0,y:0,width:0,height:0)
 		super.init(layer:layer)

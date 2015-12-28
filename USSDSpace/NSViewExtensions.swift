@@ -13,8 +13,8 @@ extension NSView
 	{
 	func layerFromContents() -> CALayer
 		{
-		var newLayer:CALayer = CALayer()
-		var imageRep = self.bitmapImageRepForCachingDisplayInRect(self.bounds)
+		let newLayer:CALayer = CALayer()
+		let imageRep = self.bitmapImageRepForCachingDisplayInRect(self.bounds)
 		
 		newLayer.bounds = self.bounds
 		cacheDisplayInRect(self.bounds,toBitmapImageRep: imageRep!)

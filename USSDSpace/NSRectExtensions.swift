@@ -20,7 +20,7 @@ func minimum(a:CGFloat,b:CGFloat) -> CGFloat
 	
 func clamp(x:CGFloat,lower:CGFloat,upper:CGFloat) -> CGFloat
 	{
-	return(maximum(lower,minimum(upper,x)))
+	return(maximum(lower,b: minimum(upper,b: x)))
 	}
 	
 extension NSRect
@@ -61,10 +61,10 @@ extension NSRect
 		{
 		var x = point.x
 		var y = point.y
-		var l = CGRectGetMinX(self)
-		var r = CGRectGetMaxX(self)
-		var t = CGRectGetMinY(self)
-		var b = CGRectGetMaxY(self)
+		let l = CGRectGetMinX(self)
+		let r = CGRectGetMaxX(self)
+		let t = CGRectGetMinY(self)
+		let b = CGRectGetMaxY(self)
 		var inside = true
 		
 		if x < l 
@@ -89,10 +89,10 @@ extension NSRect
 			}
 		if inside
 			{
-			var dt = fabs(y - t)
-			var db = fabs(y - b)
-			var dl = fabs(x - l)
-			var dr = fabs(x - r)
+			let dt = fabs(y - t)
+			let db = fabs(y - b)
+			let dl = fabs(x - l)
+			let dr = fabs(x - r)
 			if dt <= db && dt <= dl && dt <= dr
 				{
 				y = t

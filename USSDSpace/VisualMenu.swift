@@ -19,7 +19,7 @@ class VisualMenu:VisualItem
 	private var frameDependents = VisualItemSet()
 	private var imageLayer:CALayer = CALayer()
 	
-	required init(coder aDecoder: NSCoder) 
+	required init?(coder aDecoder: NSCoder) 
 		{
 		super.init(coder:aDecoder)
 		self.shadow = Shadow()
@@ -84,7 +84,7 @@ class VisualMenu:VisualItem
 		
 	override func hitTest(point:CGPoint) -> CALayer?
 		{
-		var newPoint = point.pointBySubtractingPoint(self.frame.origin)
+		let newPoint = point.pointBySubtractingPoint(self.frame.origin)
 		
 		if CGRectContainsPoint(nameItem!.frame,newPoint)
 			{
@@ -92,7 +92,7 @@ class VisualMenu:VisualItem
 			}
 		if CGRectContainsPoint(self.frame,point)
 			{
-			var anItem = entries.itemContainingPoint(newPoint)
+			let anItem = entries.itemContainingPoint(newPoint)
 			if anItem != nil
 				{
 				return(anItem)
@@ -113,14 +113,14 @@ class VisualMenu:VisualItem
 		self.contents = NSImage(named:"WhiteiPhone-150x271")
 		}
 		
-	override init(layer:AnyObject?)
+	override init(layer:AnyObject)
 		{
 		super.init(layer:layer)
 		}
 		
 	override func popupMenu() -> NSMenu?
 		{
-		var newMenu = NSMenu()
+		let newMenu = NSMenu()
 		var menuItem:NSMenuItem
 		
 		menuItem = newMenu.addItemWithTitle("Set as Start Menu",action:"onBecomeStartMenu:",keyEquivalent:"")!
@@ -228,7 +228,7 @@ class VisualMenu:VisualItem
 		
 	override func layoutSublayers()
 		{
-		var myFrame = self.bounds
+		let myFrame = self.bounds
 		var size:CGSize
 		var offset:CGFloat = 0
 		var totalHeight:CGFloat = 0

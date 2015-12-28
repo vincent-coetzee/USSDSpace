@@ -55,7 +55,7 @@ class StartMenuLink:SlotLink
 		bubbleLayer!.contents = bubbleImage
 		}
 
-	required init(coder aDecoder: NSCoder) 
+	required init?(coder aDecoder: NSCoder) 
 		{
 	    super.init(coder:aDecoder)
 		bubbleImage = NSImage(named:"StartMenuBall-24x24")

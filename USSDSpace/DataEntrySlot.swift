@@ -14,7 +14,7 @@ class DataEntrySlot:ActionSlot
 	{
 	override func newLink() -> SlotLink
 		{
-		var aLink:ActionSlotLink = ActionSlotLink()
+		let aLink:ActionSlotLink = ActionSlotLink()
 		aLink.sourceItem = menuItem
 		UFXStylist.styleDataEntrySlotLink(aLink)
 		return(aLink)
@@ -43,7 +43,7 @@ class DataEntrySlot:ActionSlot
 			}
 		}
 		
-	override init(layer:AnyObject?)
+	override init(layer:AnyObject)
 		{
 		super.init(layer: layer)
 		if link != nil
@@ -52,7 +52,7 @@ class DataEntrySlot:ActionSlot
 			}
 		}
 
-	required init(coder aDecoder: NSCoder) 
+	required init?(coder aDecoder: NSCoder) 
 		{
 	    super.init(coder:aDecoder)
 		if link != nil

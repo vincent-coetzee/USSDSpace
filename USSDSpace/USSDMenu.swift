@@ -62,7 +62,7 @@ class USSDMenu:USSDElement
 		
 	override func removeLinkedTargetSlot(targetSlot:TargetSlot)
 		{
-		var index = find(linkedTargetSlots,targetSlot)
+		let index = linkedTargetSlots.indexOf(targetSlot)
 		if index != nil
 			{
 			linkedTargetSlots.removeAtIndex(index!)
@@ -118,7 +118,7 @@ class USSDMenu:USSDElement
 //		self.setNeedsDisplay()
 		}
 		
-	required init(coder aDecoder: NSCoder) 
+	required init?(coder aDecoder: NSCoder) 
 		{
 	    super.init(coder:aDecoder)
 		items = aDecoder.decodeObjectForKey("items") as! [USSDMenuEntry]
@@ -148,7 +148,7 @@ class USSDMenu:USSDElement
 		
 	override func popupMenu() -> NSMenu?
 		{
-		var newMenu = NSMenu()
+		let newMenu = NSMenu()
 		var menuItem:NSMenuItem
 		
 		menuItem = newMenu.addItemWithTitle("Set as Start Menu",action:"onBecomeStartMenu:",keyEquivalent:"")!
@@ -173,19 +173,19 @@ class USSDMenu:USSDElement
 		
 	func onAddDataEntryItem(sender:AnyObject?)
 		{
-		var menuItem = USSDDataEntryMenuItem(text: "REQUEST=")
+		let menuItem = USSDDataEntryMenuItem(text: "REQUEST=")
 		addItem(menuItem)
 		}
 		
 	func onAddActionMenuItem(sender:AnyObject?)
 		{
-		var menuItem = USSDActionMenuItem(text: "Action Item")
+		let menuItem = USSDActionMenuItem(text: "Action Item")
 		addItem(menuItem)
 		}
 		
 	func onAddMenuItem(sender:AnyObject?)
 		{
-		var menuItem = USSDMenuItem(text: "Menu Item")
+		let menuItem = USSDMenuItem(text: "Menu Item")
 		addItem(menuItem)
 		}
 		
@@ -223,7 +223,7 @@ class USSDMenu:USSDElement
 		
 	override func sourceSlotSet() -> SlotSet
 		{
-		var slotSet = SlotSet()
+		let slotSet = SlotSet()
 		
 		for item in items
 			{
@@ -286,14 +286,14 @@ class USSDMenu:USSDElement
 		return(true)
 		}
 		
-	override init(layer:AnyObject?)
+	override init(layer:AnyObject)
 		{
 		super.init(layer:layer)
 		}
 		
 	func removeItem(item:USSDMenuEntry)
 		{
-		var index = find(items,item)
+		let index = items.indexOf(item)
 		if index != nil
 			{
 			item.removeFromSuperlayer()
@@ -317,7 +317,7 @@ class USSDMenu:USSDElement
 		{
 		var index:Int?
 		
-		index = find(items,item)
+		index = items.indexOf(item)
 		if index == nil || index! == 0
 			{
 			return;
@@ -332,7 +332,7 @@ class USSDMenu:USSDElement
 		{
 		var index:Int?
 		
-		index = find(items,item)
+		index = items.indexOf(item)
 		if index == nil || index! == (items.count - 1)
 			{
 			return;
@@ -388,13 +388,13 @@ class USSDMenu:USSDElement
 		var textWidth:CGFloat
 		
 		textWidth = menuSize.width-menuEdgeInsets.left-menuEdgeInsets.right
-		for (index,item) in enumerate(items)
+		for (index,item) in items.enumerate()
 			{
 			item.menuIndex = menuIndex++
 			totalHeight += item.sizeToFitInWidth(textWidth) + interlineSpacing
 			}
 		topOffset = menuEdgeInsets.top + (menuSize.height - menuEdgeInsets.top - menuEdgeInsets.bottom - totalHeight)/2
-		for (index,item) in enumerate(items)
+		for (index,item) in items.enumerate()
 			{
 			height = item.desiredHeight
 			item.layoutInFrame(CGRect(x:menuEdgeInsets.left,y:topOffset+1,width:textWidth,height:height))
